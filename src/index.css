@@ -1,36 +1,36 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap')
 
 @theme {
 
   /* Fonte */
   ----default-font-family: "Open Sans", serif;
-  --fonte-family: "Lato", sans-serif;
+  --font-display: "Lato", sans-serif;
 
-  --Text-Xl: 700 24px/140% "Lato", sans-serif;
-  --Text-Lg: 700 24px/140% "Lato", sans-serif;
-  --Heading-Md: 400 24px/140% "Lato", sans-serif;
-  --Text-Sm: 400 24px/140% "Lato", sans-serif;
-  --Text-Xs: 400 24px/140% "Lato", sans-serif; 
-  --Text-Xxs: 700 24px/140% "Lato", sans-serif;
 
   /* Brand */
-  --blue-dark: #2E3DA3;
-  --blue-base: #5165E1;
-  --blue-light: #8996EB;
+  --color-blue-dark: #2E3DA3;
+  --color-blue-base: #5165E1;
+  --color-blue-light: #8996EB;
 
   /* Grayscale */
-  --gray-100: #151619;
-  --gray-200: #1E2024;
-  --gray-300: #535964;
-  --gray-400: #858B99;
-  --gray-500: #E3E5E8;
-  --gray-600: #F9FAFA;
+  --color-gray-100: #151619;
+  --color-gray-200: #1E2024;
+  --color-gray-300: #535964;
+  --color-gray-400: #858B99;
+  --color-gray-500: #E3E5E8;
+  --color-gray-600: #F9FAFA;
 
   /* Feedback */
-  --feedback-danger: #D03E3E;
-  --feedback-open: #CC3D6A;
-  --feedback-progress: #355EC5;
-  --feedback-done: #508B26;
+  --color-feedback-danger: #D03E3E;
+  --color-feedback-open: #CC3D6A;
+  --color-feedback-progress: #355EC5;
+  --color-feedback-done: #508B26;
 
+}
+
+body {
+  margin: 0 auto;
+  background-image: url("./assets//img/Login_Background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }

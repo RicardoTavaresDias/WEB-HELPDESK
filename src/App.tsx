@@ -1,7 +1,10 @@
+import { Signup } from "./pages/signup"
+import { Signin } from "./pages/signin"
 
 function App() {
   return (
-    <h1 className="text-3xl font-bold underline">Hello word!</h1>
+     <Signup />
+    //<Signin />
   )
 }
 
