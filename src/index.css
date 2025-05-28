@@ -2,11 +2,6 @@
 
 @theme {
 
-  /* Fonte */
-  ----default-font-family: "Open Sans", serif;
-  --font-display: "Lato", sans-serif;
-
-
   /* Brand */
   --color-blue-dark: #2E3DA3;
   --color-blue-base: #5165E1;
@@ -26,6 +21,36 @@
   --color-feedback-progress: #355EC5;
   --color-feedback-done: #508B26;
 
+  
+}
+
+.Text-Xl{
+  @apply text-2xl leading-3.5 font-bold;
+}
+
+.Text-Lg{
+  @apply text-xl leading-3.5 font-bold;
+}
+
+.Heading-Md{
+  @apply text-base leading-3.5 font-normal;
+}
+
+.Text-Sm{
+  @apply text-sm leading-3.5 font-normal;
+}
+
+.Text-Xs{
+  @apply text-xs leading-3.5 font-normal;
+}         
+
+.Text-Xxs{
+  @apply text-[10px] leading-3.5 font-bold uppercase;
+}
+
+
+:root{
+  font-display: "Lato", sans-serif;
 }
 
 body {

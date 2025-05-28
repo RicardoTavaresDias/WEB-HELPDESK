@@ -7,7 +7,7 @@ export function LogoAuth(){
       <img src={Logo_IconDark} className="w-10 h-10"/>
       </div>
       <div>
-        <h1 className="text-2xl/14 text-blue-dark font-display font-bold">HelpDesk</h1>
+        <h1 className="Text-Xl text-blue-dark">HelpDesk</h1>
       </div>
     </div>
   )
