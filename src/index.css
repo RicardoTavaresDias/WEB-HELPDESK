@@ -3,7 +3,7 @@
 @theme {
 
   /* Brand */
-  --color-blue-dark:  ;
+  --color-blue-dark: #2E3DA3;
   --color-blue-base: #5165E1;
   --color-blue-light: #8996EB;
 
@@ -21,7 +21,6 @@
   --color-feedback-progress: #355EC5;
   --color-feedback-done: #508B26;
 
-  
 }
 
 .Text-Xl{
@@ -29,7 +28,7 @@
 }
 
 .Text-Lg{
-  @apply text-xl leading-3.5 font-bold;
+  @apply text-xl leading-3.5 font-normal;
 }
 
 .Heading-Md{
@@ -37,7 +36,7 @@
 }
 
 .Text-Sm{
-  @apply text-sm leading-3.5 font-semibold;
+  @apply text-sm  font-semibold;
 }
 
 .Text-Xs{
@@ -53,9 +52,22 @@
   font-display: "Lato", sans-serif;
 }
 
-body {
+
+
+main {
   margin: 0 auto;
   background-image: url("./assets//img/Login_Background.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+
+.menuMobile:before {
+    content:'';
+    position: absolute;
+    top: -15px;
+    left: 15px;
+    border-style: solid;
+    border-width: 0 14px 16px 14px;
+    border-color: rgba(0, 0, 0, 0) rgba(243, 243, 243, 0) #8996EB rgba(0, 0, 0, 0);
+  }

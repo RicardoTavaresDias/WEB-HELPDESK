@@ -1,10 +1,8 @@
-import { Signup } from "./pages/signup"
-import { Signin } from "./pages/signin"
+import { Routes } from "./routers/index"
 
 function App() {
   return (
-    // <Signup />
-    <Signin />
+    <Routes />
   )
 }
 

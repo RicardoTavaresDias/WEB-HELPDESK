@@ -5,7 +5,7 @@ type Props = {
   placeholder: string
   label: string
   error?: string
-  onChange?: () => void
+  onChange?: any
   value: string
   textLabel?: string
 }
