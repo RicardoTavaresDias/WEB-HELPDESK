@@ -6,16 +6,16 @@ import { Input } from "../../components/ui/input"
 import { useState } from "react"
 
 export function Signup(){
-  const [nome, setNome] = useState("")
+  const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
    const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    console.log({ nome, email, password })
+    console.log({ name, email, password })
 
-    setNome("")
+    setName("")
     setEmail("")
     setPassword("")
   }
@@ -26,7 +26,7 @@ export function Signup(){
         <LogoAuth />
         <form onSubmit={handleSubmit}>
           <FormAuth textTitle="Crie sua conta" textSpan="Informe seu nome, e-mail e senha" label="Cadastrar">
-            <Input type= "text" label="NOME" placeholder="Digite o nome completo" value={nome} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNome(e.target.value)}/>
+            <Input type= "text" label="NOME" placeholder="Digite o nome completo" value={name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}/>
             <Input type= "text" label="E-MAIL" placeholder="exemplo@mail.com" value={email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} />
             <Input type= "password" label="SENHA" placeholder="Digite sua senha" error="Mínimo de 6 dígitos" value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} />
           </FormAuth>
