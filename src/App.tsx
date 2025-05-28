@@ -3,8 +3,8 @@ import { Signin } from "./pages/signin"
 
 function App() {
   return (
-     <Signup />
-    //<Signin />
+    // <Signup />
+    <Signin />
   )
 }
 

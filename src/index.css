@@ -37,7 +37,7 @@
 }
 
 .Text-Sm{
-  @apply text-sm leading-3.5 font-normal;
+  @apply text-sm leading-3.5 font-semibold;
 }
 
 .Text-Xs{

@@ -20,7 +20,7 @@ export function Signin(){
 
   return (
     <>
-      <div className="bg-gray-600 w-170 lg:h-screen ml-auto px-35 py-12 max-sm:py-8 rounded-tl-3xl max-sm:w-95 max-sm:px-4 max-sm:rounded-3xl max-sm:mx-auto">
+      <div className="mt-3 max-sm:mt-8 bg-gray-600 w-170 lg:h-screen ml-auto px-35 py-12 max-sm:py-8 rounded-tl-3xl max-sm:w-95 max-sm:px-4 max-sm:rounded-3xl max-sm:mx-auto">
         <LogoAuth />
         <form onSubmit={handleSubmit}>
           <FormAuth textTitle="Acesse o portal" textSpan="Entre usando seu e-mail e senha cadastrados" label="Entrar">
