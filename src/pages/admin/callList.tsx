@@ -143,7 +143,7 @@ export function CallList() {
                     }
                   >
                     <img
-                      className="w-7 h-7 rounded-md cursor-pointer hover:bg-gray-500 p-1"
+                      className="w-7 h-7 min-w-4 min-h-4 rounded-md cursor-pointer hover:bg-gray-500 p-1"
                       src={penLine}
                     />
                   </button>
