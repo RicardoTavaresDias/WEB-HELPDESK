@@ -1,12 +1,12 @@
-export function Body(){
+export function Body({ children, title = "Title" }: any){
   return (
     <div>
       <div>
-        <span className="Text-Xl text-blue-dark">Meus chamados</span>
+        <span className="Text-Xl text-blue-dark">{title}</span>
       </div>
 
-      <div className="border lg:mt-6 mt-4 h-150 mb-25">
-        ...conteudo
+      <div className="lg:mt-6 mt-4 h-150 mb-25">
+        {children}
       </div>
     </div>
   )
