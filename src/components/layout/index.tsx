@@ -1,5 +1,4 @@
 import Vector from "../../assets/img/Vector.svg"
-import avatar from "../../assets/img/Avatar.svg"
 
 import { Outlet } from 'react-router'
 import { Menu } from "./menu"
@@ -37,12 +36,9 @@ export function Layout({identification}: Props){
           </div>
 
           <div className="lg:hidden">
-
             <button className="group">
-              <img className="w-10 h-10 rounded-full cursor-pointer" src={avatar} alt="Foto do Perfil"/>
-              <MenuLogOut classmobile="left-3 top-24 w-87 scale-y-0 group-focus:scale-y-100 origin-top"/>
+              <MenuLogOut classmobile="left-3 top-24 w-87"/>
             </button>
-
           </div>
         </div>
         {/* </Header, Menu Mobile> */}
@@ -59,8 +55,7 @@ export function Layout({identification}: Props){
                 <div className="flex gap-3 items-center">
                   <button className="group">
                     <div>
-                      <img className="w-10 h-10 rounded-full cursor-pointer" src={avatar} alt="Foto do Perfil "/>
-                      <MenuLogOut classmobile="left-56 top-[calc(100vh-170px)] w-50 scale-x-0 group-focus:scale-x-100 origin-left"/>
+                      <MenuLogOut classmobile="left-56 top-[calc(100vh-170px)] w-50"/>
                     </div>
                   </button>
                   <div>
