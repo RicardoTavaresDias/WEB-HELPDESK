@@ -5,7 +5,7 @@ import { Status } from "../../components/ui/status";
 import { Panel, PanelMobile } from "../../components/table/panel";
 import { PanelRows, PanelRowsMobile } from "../../components/table/panelRows";
 
-import { useState } from "react";
+import { useState, Fragment } from "react";
 
 const chamados = [
   {
@@ -80,7 +80,7 @@ export function CallList() {
         <Panel type="lg" A1="Atualizado em" B1="Id" C1="Título e Serviço" D1="Valor total" E1="Cliente" F1="Técnico" G1="Status" > 
            {/* <Grid desktop row> */}
             {items.map((chamado) => (
-              <>
+              <Fragment key={chamado.id}>
                 <PanelRows>{chamado.date}</PanelRows>
                 <PanelRows>{chamado.id}</PanelRows>
                 <PanelRows>
@@ -115,14 +115,14 @@ export function CallList() {
                     />
                   </button>
                 </PanelRows>
-              </>
+              </Fragment>
             ))}
             {/* </Grid desktop row> */}
         </Panel>
 
         <PanelMobile type="lg" A1="Atualizado em" B1="Título e Serviço" C1="Status">
           {items.map((chamado) => (
-              <>
+              <Fragment key={chamado.id}>
                 <PanelRowsMobile>{chamado.date}</PanelRowsMobile>
                 <PanelRowsMobile>
                   <div>
@@ -140,7 +140,7 @@ export function CallList() {
                     <img className="w-7 h-7 rounded-md cursor-pointer hover:bg-gray-500 p-1" src={penLine} />
                   </button>
                 </PanelRowsMobile>
-              </>
+              </Fragment>
             ))}
           </PanelMobile>
       </div>
