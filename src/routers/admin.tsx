@@ -7,9 +7,9 @@ export function Admin(){
     <Routes>
       <Route path='/' element={<Layout identification="admin"/>} >
         <Route path="/chamados" index element={<CallList />} />
-        <Route path="/tecnicos" index element={"Em Breve..."} />
-        <Route path="/clientes" index element={"Em Breve..."} />
-        <Route path="/servicos" index element={"Em Breve..."} />
+        <Route path="/tecnicos" element={"Em Breve..."} />
+        <Route path="/clientes" element={"Em Breve..."} />
+        <Route path="/servicos" element={"Em Breve..."} />
       </Route>
 
       <Route path="*" element={"Not Found"} />
