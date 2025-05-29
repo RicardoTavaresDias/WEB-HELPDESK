@@ -11,7 +11,7 @@ import { useState, useRef, useEffect } from "react"
 import { Link } from "react-router"
 
 export function MenuLogOut({ classLg, classmobile }: Props){
-  const [open, setOpen] =useState(true)
+  const [open, setOpen] =useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -20,7 +20,6 @@ export function MenuLogOut({ classLg, classmobile }: Props){
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setOpen(false)
       }
-      console.log(menuRef.current === event.target) 
     }
 
     document.addEventListener("click", handleClickOutside)
