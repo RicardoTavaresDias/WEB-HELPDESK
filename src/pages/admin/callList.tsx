@@ -2,6 +2,9 @@ import avatar from "../../assets/img/Avatar.svg";
 import penLine from "../../assets/icon/pen-line.svg";
 import { Status } from "../../components/ui/status";
 
+import { Panel, PanelMobile } from "../../components/table/panel";
+import { PanelRows, PanelRowsMobile } from "../../components/table/panelRows";
+
 import { useState } from "react";
 
 const chamados = [
@@ -68,149 +71,79 @@ export function CallList() {
   const [items, setItems] = useState(chamados);
 
   return (
-    <div>
+    <>
       <div>
         <span className="Text-Xl text-blue-dark">Chamados</span>
       </div>
 
       <div className=" lg:mt-6 mt-4 mb-25">
-        <div className="border-2 rounded-2xl border-gray-500">
-          {/* <Grid descktop 8 col> */}
-          <div className="max-sm:hidden grid grid-cols-[auto_auto_auto_auto_auto_auto_auto_auto] gap-0 rounded-xl">
-            <div className="p-3.5 text-gray-400 justify-start">
-              Atualizado em
-            </div>
-            <div className="p-3.5 text-gray-400 justify-start">Id</div>
-            <div className="p-3.5 text-gray-400 justify-start">
-              Título e Serviço
-            </div>
-            <div className="p-3.5 text-gray-400 justify-start">Valor total</div>
-            <div className="p-3.5 text-gray-400 justify-start">Cliente</div>
-            <div className="p-3.5 text-gray-400 justify-start">Técnico</div>
-            <div className="p-3.5 text-gray-400 justify-start">Status</div>
-            <div className="p-3.5 text-gray-400 justify-start"></div>
-
-            {/* <Grid desktop row> */}
+        <Panel type="lg" A1="Atualizado em" B1="Id" C1="Título e Serviço" D1="Valor total" E1="Cliente" F1="Técnico" G1="Status" > 
+           {/* <Grid desktop row> */}
             {items.map((chamado) => (
               <>
-                <div className="p-3.5 border-t-2 border-gray-500 Text-Xs flex items-center justify-start">
-                  {chamado.date}
-                </div>
-
-                <div className="p-3.5 border-t-2 border-gray-500 Text-Xs flex items-center justify-start">
-                  {chamado.id}
-                </div>
-
-                <div className="p-3.5 border-t-2 border-gray-500 Text-Xs flex items-center justify-start">
+                <PanelRows>{chamado.date}</PanelRows>
+                <PanelRows>{chamado.id}</PanelRows>
+                <PanelRows>
                   <div>
                     <span className="flex flex-col Text-Sm ">
                       {chamado.service.title}
                     </span>
                     {chamado.service.description}
                   </div>
-                </div>
-
-                <div className="p-3.5 border-t-2 border-gray-500 Text-Xs flex items-center justify-start">
-                  {chamado.value}
-                </div>
-
-                <div className="p-3.5 border-t-2 border-gray-500 Text-Xs flex items-center justify-start">
+                </PanelRows>
+                <PanelRows>{chamado.value}</PanelRows>
+                <PanelRows>
                   <div className="flex gap-2 justify-center items-center">
                     <img src={avatar} className="w-5 h-5" />
                     {chamado.customer.name}
                   </div>
-                </div>
-
-                <div className="p-3.5 border-t-2 border-gray-500 Text-Xs flex items-center justify-start">
+                </PanelRows>
+                <PanelRows>
                   <div className="flex gap-2 justify-center items-center">
                     <img src={avatar} className="w-5 h-5" />
                     {chamado.technical.name}
                   </div>
-                </div>
-
-                <div className="p-3.5 border-t-2 border-gray-500 Text-Xs flex items-center justify-start">
-                  <Status
-                    type={chamado.status as "open" | "progress" | "close"}
-                  />
-                </div>
-
-                <div className="p-3.5 border-t-2 border-gray-500 Text-Xs flex items-center justify-start">
-                  <button
-                    onClick={() =>
-                      setItems((prev) =>
-                        prev.filter((value) => value.id !== chamado.id)
-                      )
-                    }
-                  >
+                </PanelRows>
+                <PanelRows>
+                  <Status type={chamado.status as "open" | "progress" | "close"} />
+                </PanelRows>
+                <PanelRows>
+                  <button onClick={() => setItems((prev) => prev.filter((value) => value.id !== chamado.id))} >
                     <img
                       className="w-7 h-7 min-w-4 min-h-4 rounded-md cursor-pointer hover:bg-gray-500 p-1"
                       src={penLine}
                     />
                   </button>
-                </div>
+                </PanelRows>
               </>
             ))}
             {/* </Grid desktop row> */}
-          </div>
-          {/* </Grid descktop 8 col> */}
+        </Panel>
 
-          {/* </Grid mobile 3 col> */}
-          <div className="lg:hidden grid grid-cols-[78px_auto_64px_64px] gap-0 rounded-xl ">
-            <div className="p-3.5 text-gray-400 justify-start Text-Sm truncate">
-              Atualizado em
-            </div>
-            <div className="p-3.5 text-gray-400 justify-start Text-Sm truncate">
-              Título e Serviço
-            </div>
-            <div className="p-3.5 text-gray-400 justify-start Text-Sm">
-              Status
-            </div>
-            <div className="p-3.5 text-gray-400 justify-start"></div>
-
-            {/* <Grid mobile row> */}
-            {items.map((chamado) => (
+        <PanelMobile type="lg" A1="Atualizado em" B1="Título e Serviço" C1="Status">
+          {items.map((chamado) => (
               <>
-                <div className="p-3.5 border-t-2 border-gray-500 Text-Xs flex items-center justify-start">
-                  {chamado.date}
-                </div>
-
-                <div className="p-3.5 border-t-2 border-gray-500 Text-Xs flex items-center justify-start">
+                <PanelRowsMobile>{chamado.date}</PanelRowsMobile>
+                <PanelRowsMobile>
                   <div>
                     <span className="flex flex-col text-sx font-bold mb-1">
                       {chamado.service.title}
                     </span>
                     {chamado.service.description}
                   </div>
-                </div>
-
-                <div className="p-3.5 border-t-2 border-gray-500 Text-Xs flex items-center justify-start">
-                  <Status
-                    type={chamado.status as "open" | "progress" | "close"}
-                    mobile={true}
-                  />
-                </div>
-
-                <div className="p-3.5 border-t-2 border-gray-500 Text-Xs flex items-center justify-start">
-                  <button
-                    onClick={() =>
-                      setItems((prev) =>
-                        prev.filter((value) => value.id !== chamado.id)
-                      )
-                    }
-                  >
-                    <img
-                      className="w-7 h-7 rounded-md cursor-pointer hover:bg-gray-500 p-1"
-                      src={penLine}
-                    />
+                </PanelRowsMobile>
+                <PanelRowsMobile>
+                  <Status type={chamado.status as "open" | "progress" | "close"} mobile={true} />
+                </PanelRowsMobile>
+                <PanelRowsMobile>
+                  <button onClick={() => setItems((prev) => prev.filter((value) => value.id !== chamado.id))} >
+                    <img className="w-7 h-7 rounded-md cursor-pointer hover:bg-gray-500 p-1" src={penLine} />
                   </button>
-                </div>
+                </PanelRowsMobile>
               </>
             ))}
-            {/* </Grid mobile row> */}
-          </div>
-          {/* </Grid mobile 3 col> */}
-        </div>
+          </PanelMobile>
       </div>
-    </div>
-  );
+    </>
+  )
 }
