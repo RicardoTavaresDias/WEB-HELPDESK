@@ -81,3 +81,18 @@ main {
     border-width: 0 14px 16px 14px;
     border-color: rgba(0, 0, 0, 0) rgba(243, 243, 243, 0) #8996EB rgba(0, 0, 0, 0);
   }
+
+  #animeAuth {
+    opacity: 0;
+    transform: translateX(650px);
+    animation: anime 0.4s ease forwards;
+  }
+
+  @keyframes anime {
+    100% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+
+  
