@@ -18,7 +18,7 @@ export function FormAuth({ children, textTitle, textSpan, label }: Props){
         {children}
       </div>
       <div className="mt-10">
-        <Button>{label}</Button>
+        <Button type="lg" typeColor="black" >{label}</Button>
       </div>
     </div>
   )

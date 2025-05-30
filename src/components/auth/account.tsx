@@ -15,7 +15,7 @@ export function Account({ label, h3, span, path }: Props){
         <span className="Text-Xs text-gray-300 mb-10">{span}</span>
       </div>
       <div>
-        <Button classname="bg-gray-500 text-black" path={path} >{label}</Button>
+        <Button type="lg" typeColor="gray" path={path} >{label}</Button>
       </div>
     </div>
   )

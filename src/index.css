@@ -71,7 +71,6 @@ main {
   background-size: cover;
 }
 
-
 .menuMobile:before {
     content:'';
     position: absolute;
@@ -92,6 +91,15 @@ main {
     100% {
       opacity: 1;
       transform: translateX(0px);
+    }
+  }
+
+  /* Para telas com largura até 640px (mobile) */
+  @media (max-width: 640px) {
+   #animeAuth {
+      opacity: 1;
+      transform: translateX(0px);
+      animation: none;
     }
   }
 

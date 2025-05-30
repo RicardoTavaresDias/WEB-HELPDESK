@@ -1,4 +1,4 @@
-const chamados = [
+const called = [
   {
     id: "00001",
     date: "13/04/25 20:56",
@@ -172,4 +172,4 @@ const chamados = [
   }
 ];
 
-export { chamados }
+export { called }
