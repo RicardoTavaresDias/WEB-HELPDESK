@@ -6,66 +6,7 @@ import { Panel, PanelMobile } from "../../components/table/panel";
 import { PanelRows, PanelRowsMobile } from "../../components/table/panelRows";
 
 import { useState, Fragment } from "react";
-
-const chamados = [
-  {
-    id: "00003",
-    date: "13/04/25 20:56",
-    service: { title: "Rede lenta	", description: "Instalação de Rede	" },
-    value: "R$ 180,00",
-    customer: { avatar: "avatar", name: "André Costa" },
-    technical: { avatar: "avatar", name: "Carlos Silva	" },
-    status: "open",
-  },
-  {
-    id: "00004",
-    date: "12/04/25 15:20",
-    service: {
-      title: "Backup não está funcionando	",
-      description: "Recuperação de Dados	",
-    },
-    value: "R$ 200,00",
-    customer: { avatar: "avatar", name: "André Costa" },
-    technical: { avatar: "avatar", name: "Carlos Silva	" },
-    status: "open",
-  },
-  {
-    id: "00001",
-    date: "12/04/25 09:01",
-    service: {
-      title: "Computador não liga",
-      description: "Manutenção de Hardware	",
-    },
-    value: "R$ 150,00",
-    customer: { avatar: "avatar", name: "Aline Souza" },
-    technical: { avatar: "avatar", name: "Carlos Silva	" },
-    status: "progress",
-  },
-  {
-    id: "00002",
-    date: "10/04/25 10:15",
-    service: {
-      title: "Instalação de software de gestão",
-      description: "Suporte de Software",
-    },
-    value: "R$ 200,00",
-    customer: { avatar: "avatar", name: "Julia Maria" },
-    technical: { avatar: "avatar", name: "Ana Oliveira" },
-    status: "progress",
-  },
-  {
-    id: "00005",
-    date: "11/04/25 15:16",
-    service: {
-      title: "Meu fone não conecta no computador",
-      description: "Suporte de Software	",
-    },
-    value: "R$ 80,00",
-    customer: { avatar: "avatar", name: "Suzane Moura" },
-    technical: { avatar: "avatar", name: "Ana Oliveira" },
-    status: "close",
-  },
-];
+import { chamados } from "../../database/admCallList";
 
 export function CallList() {
   const [items, setItems] = useState(chamados);

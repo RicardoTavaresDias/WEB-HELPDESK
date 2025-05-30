@@ -52,6 +52,16 @@
   font-display: "Lato", sans-serif;
 }
 
+/* Constumização da barra de rolagem que é scrollbar */
+section::-webkit-scrollbar {
+  background-color: #F9FAFA;
+  width: 10px;
+}
+
+section::-webkit-scrollbar-thumb {
+    background-color: #E3E5E8;
+    border-radius: 8px;
+  }
 
 
 main {
