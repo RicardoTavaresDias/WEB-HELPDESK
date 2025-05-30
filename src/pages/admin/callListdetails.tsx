@@ -16,8 +16,8 @@ export function CallListdetails(){
   const { id } = useParams()
 
   // exemplo backEnd
-  const [teste] = called.filter(item => item.id === id)
-  const [details, setDetails ] = useState(teste)
+  const [itemCalled] = called.filter(item => item.id === id)
+  const [details, setDetails ] = useState(itemCalled)
 
   const service = (value: string): string[] => {
     if(value === "progress"){
