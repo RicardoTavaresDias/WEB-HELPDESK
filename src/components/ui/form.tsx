@@ -1,4 +1,4 @@
-import { Button } from "../ui/button"
+import { Button } from "./button"
 
 type Props = {
   children: any
@@ -7,7 +7,7 @@ type Props = {
   label: string
 }
 
-export function FormAuth({ children, textTitle, textSpan, label }: Props){
+export function Form({ children, textTitle, textSpan, label }: Props){
   return (
     <div className="w-max p-1.5 py-7 px-14 max-sm:px-6 border-2 border-gray-500 rounded-lg m-auto">
       <div className="mb-10">

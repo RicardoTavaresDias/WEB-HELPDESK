@@ -1,5 +1,5 @@
 import { LogoAuth } from "../../components/auth/logoAuth"
-import { FormAuth } from "../../components/auth/formAuth"
+import { Form } from "../../components/ui/form"
 import { Account } from "../../components/auth/account"
 import { Input } from "../../components/ui/input"
 
@@ -26,11 +26,11 @@ export function Signup(){
         <div id="animeAuth" >
           <LogoAuth />
           <form onSubmit={handleSubmit}>
-            <FormAuth textTitle="Crie sua conta" textSpan="Informe seu nome, e-mail e senha" label="Cadastrar" >
+            <Form textTitle="Crie sua conta" textSpan="Informe seu nome, e-mail e senha" label="Cadastrar" >
               <Input type= "text" label="nome" placeholder="Digite o nome completo" value={name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)} />
               <Input type= "text" label="e-mail" placeholder="exemplo@mail.com" value={email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} />
               <Input type= "password" label="senha" placeholder="Digite sua senha" textLabel="Mínimo de 6 dígitos" value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} />
-            </FormAuth>
+            </Form>
           </form>
           <Account h3="Já uma conta?" span="Entre agora mesmo" label="Acessar conta" path="/"/>
         </div>

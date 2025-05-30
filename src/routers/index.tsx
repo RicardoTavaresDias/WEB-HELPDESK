@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router";
-import { Admin } from "../routers/admin"
+import { Admin} from "../routers/admin"
 
 export function Routes(){
 
