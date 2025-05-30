@@ -9,27 +9,40 @@ import circleCheck from "../../assets/icon/circle-check-big-2.svg"
 
 import avatar from "../../assets/img/Avatar.svg"
 import { called } from "../../database/admCallList"
+import { useState } from "react" 
 
 
 export function CallListdetails(){
   const { id } = useParams()
 
-  const [ details ] = called.filter(item => item.id === id)
+  // exemplo backEnd
+  const [teste] = called.filter(item => item.id === id)
+  const [details, setDetails ] = useState(teste)
+
+  const service = (value: string): string[] => {
+    if(value === "progress"){
+      return ["Aberto", "Encerrado", "open", "close"]
+    }else if(value === "open"){
+      return ["Em atendimento", "Encerrado", "progress", "close"]
+    }
+    return ["Aberto", "Em atendimento", "open", "progress" ]
+  }
+  //
 
   return (
     <>
       <div className="lg:px-20 max-sm:mb-20">
         <DetailsHeader to="/chamados" title="Chamado detalhado" >
-          <Button type="md" typeColor="gray" >
+          <Button type="md" typeColor="gray" onClick={() => setDetails({...details, status: service(details.status)[2]})}>
             <div className="flex items-center justify-center gap-2">
               <img src={clock} className="w-4 h-4" />
-              Em atendimento
+              {service(details.status)[0]}
             </div>
           </Button>
-          <Button type="sm" typeColor="gray" >
+          <Button type="sm" typeColor="gray" onClick={() => setDetails({...details, status: service(details.status)[3]})} >
             <div className="flex items-center justify-center gap-2">
               <img src={circleCheck} className="w-4 h-4" />
-              Encerrado
+              {service(details.status)[1]}
             </div>
           </Button>
         </DetailsHeader>
