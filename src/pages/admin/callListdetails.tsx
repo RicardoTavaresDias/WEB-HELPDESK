@@ -31,7 +31,7 @@ export function CallListdetails(){
 
   return (
     <>
-      <div className="lg:px-20 max-sm:mb-20">
+      <div className="lg:px-20 max-sm:mb-20 max-w-[1280px] m-auto">
         <DetailsHeader to="/chamados" title="Chamado detalhado" >
           <Button type="md" typeColor="gray" onClick={() => setDetails({...details, status: service(details.status)[2]})}>
             <div className="flex items-center justify-center gap-2">

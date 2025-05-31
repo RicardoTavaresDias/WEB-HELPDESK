@@ -13,7 +13,7 @@ export function CallList() {
 
   return (
     <>
-      <div>
+      <div className="max-w-[1280px] m-auto">
         <span className="max-sm:hidden Text-Xl text-blue-dark">Chamados</span>
         <span className="lg:hidden text-xl font-semibold text-blue-dark">Chamados</span>
       </div>

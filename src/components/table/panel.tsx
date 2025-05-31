@@ -1,6 +1,6 @@
 const panel = {
-  lg: ["grid-cols-[auto_auto_auto_auto_auto_auto_auto_auto]"],
-  md: ["grid-cols-[auto_auto_auto_auto]"],
+  lg: ["grid-cols-[auto_auto_auto_auto_auto_auto_auto_80px]"],
+  md: ["grid-cols-[auto_auto_auto_80px]"],
   sm: ["grid-cols-[auto_auto_auto]"]
 }
 
@@ -19,7 +19,7 @@ type Props = {
 
 export function Panel({children, type, A1, B1, C1, D1, E1, F1, G1 }: Props){
   return (
-    <div className="max-sm:hidden border-2 rounded-2xl border-gray-500">
+    <div className="max-sm:hidden border-2 rounded-2xl border-gray-500 max-w-[1280px] m-auto">
       {/* <Grid descktop 8 col> */}
       <div className={`grid ${panel[type]} gap-0 rounded-xl`}>
         <div className="p-3.5 text-gray-400 justify-start">

@@ -9,7 +9,7 @@ import { Button } from "../../components/ui/button";
 export function Technical(){
   return (
     <>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center max-w-[1280px] m-auto">
         <span className="max-sm:hidden Text-Xl text-blue-dark">Técnicos</span>
         <span className="lg:hidden text-xl font-semibold text-blue-dark">Técnicos</span>
         <Button type="md" typeColor="black">
