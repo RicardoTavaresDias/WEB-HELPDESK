@@ -14,7 +14,8 @@ export function CallList() {
   return (
     <>
       <div>
-        <span className="Text-Xl text-blue-dark">Chamados</span>
+        <span className="max-sm:hidden Text-Xl text-blue-dark">Chamados</span>
+        <span className="lg:hidden text-xl font-semibold text-blue-dark">Chamados</span>
       </div>
 
       <div className=" lg:mt-6 mt-4 mb-25">
