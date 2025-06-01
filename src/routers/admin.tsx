@@ -5,6 +5,7 @@ import { CallListdetails } from "../pages/admin/callList/callListdetails"
 import { Technical } from "../pages/admin/technical"
 import { TechnicalNew } from "../pages/admin/technical/technicalNew"
 import { TechnicalEdition } from "../pages/admin/technical/technicalEdition"
+import { Customers } from "../pages/admin/customers"
 
 export function Admin(){
   return (
@@ -18,7 +19,7 @@ export function Admin(){
           <Route path="/tecnicos/novo" element={<TechnicalNew />} />
           <Route path="/tecnicos/edicao" element={<TechnicalEdition />} />
 
-        <Route path="/clientes" element={"Em Breve..."} />
+        <Route path="/clientes" element={<Customers />} />
         <Route path="/servicos" element={"Em Breve..."} />
       </Route>
 

@@ -7,7 +7,7 @@ const panel = {
 type Props = {
   A1: string
   B1: string
-  C1: string
+  C1?: string
   D1?: string
   E1?: string
   F1?: string
@@ -26,9 +26,7 @@ export function Panel({children, type, A1, B1, C1, D1, E1, F1, G1 }: Props){
           {A1}
         </div>
         <div className="p-3.5 text-gray-400 justify-start">{B1}</div>
-        <div className="p-3.5 text-gray-400 justify-start">
-          {C1}
-        </div>
+        {C1 && <div className="p-3.5 text-gray-400 justify-start">{C1}</div>}
 
         {D1 && <div className="p-3.5 text-gray-400 justify-start">{D1}</div>}
         {E1 && <div className="p-3.5 text-gray-400 justify-start">{E1}</div>}
@@ -44,7 +42,7 @@ export function Panel({children, type, A1, B1, C1, D1, E1, F1, G1 }: Props){
 
 const panelMobile = {
   lg: ["grid-cols-[78px_auto_64px_64px]"],
-  md: ["grid-cols-[auto_auto_auto]"]
+  md: ["grid-cols-[134px_120px_auto]"]
 }
 
 type PropsMobile = {
