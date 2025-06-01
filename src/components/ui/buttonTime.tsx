@@ -1,3 +1,5 @@
+import close from "../../assets/icon/x.svg"
+
 type Props = {
   children: any
   isActive?: boolean
@@ -10,8 +12,9 @@ export function ButtonTime({children, isActive, type, onclick}: Props){
   if(isActive){
     return (
       <button className="cursor-pointer" onClick={onclick} >
-        <div className="bg-blue-base p-2 rounded-2xl w-14 h-7 flex justify-center items-center text-gray-600 Text-Xs text-center">
+        <div className="bg-blue-base p-2 rounded-2xl w-17 h-7 flex justify-center items-center text-gray-600 Text-Xs text-center">
           {children}
+          <img src={close} className="w-3.5 h-3.5 ml-1.5"/>
         </div>
       </button>
     )
