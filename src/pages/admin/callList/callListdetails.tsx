@@ -1,14 +1,14 @@
 import { useParams } from "react-router" 
-import { Button } from "../../components/ui/button"
-import { DetailsHeader } from "../../components/details/detailsHeader"
-import { DetailsLeftSatus } from "../../components/details/detailsLeft"
-import { DetailsRight } from "../../components/details/detailsRight"
+import { Button } from "../../../components/ui/button"
+import { DetailsHeader } from "../../../components/details/detailsHeader"
+import { DetailsLeftSatus } from "../../../components/details/detailsLeft"
+import { DetailsRight } from "../../../components/details/detailsRight"
 
-import clock from "../../assets/icon/clock-1.svg"
-import circleCheck from "../../assets/icon/circle-check-big-2.svg"
+import clock from "../../../assets/icon/clock-1.svg"
+import circleCheck from "../../../assets/icon/circle-check-big-2.svg"
 
-import avatar from "../../assets/img/Avatar.svg"
-import { called } from "../../database/admCallList"
+import avatar from "../../../assets/img/Avatar.svg"
+import { called } from "../../../database/admCallList"
 import { useState } from "react" 
 
 
@@ -31,15 +31,15 @@ export function CallListdetails(){
 
   return (
     <>
-      <div className="lg:px-20 max-sm:mb-20 max-w-[1280px] m-auto">
+      <div className="lg:px-20 max-w-[1156px] m-auto">
         <DetailsHeader to="/chamados" title="Chamado detalhado" >
-          <Button type="md" typeColor="gray" onClick={() => setDetails({...details, status: service(details.status)[2]})}>
+          <Button typeSize="base" typeColor="gray" onClick={() => setDetails({...details, status: service(details.status)[2]})}>
             <div className="flex items-center justify-center gap-2">
               <img src={clock} className="w-4 h-4" />
               {service(details.status)[0]}
             </div>
           </Button>
-          <Button type="sm" typeColor="gray" onClick={() => setDetails({...details, status: service(details.status)[3]})} >
+          <Button typeSize="base" typeColor="gray" onClick={() => setDetails({...details, status: service(details.status)[3]})} >
             <div className="flex items-center justify-center gap-2">
               <img src={circleCheck} className="w-4 h-4" />
               {service(details.status)[1]}

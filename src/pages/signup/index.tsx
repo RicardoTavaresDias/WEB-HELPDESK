@@ -26,13 +26,13 @@ export function Signup(){
         <div id="animeAuth" >
           <LogoAuth />
           <form onSubmit={handleSubmit}>
-            <Form textTitle="Crie sua conta" textSpan="Informe seu nome, e-mail e senha" label="Cadastrar" >
+            <Form textTitle="Crie sua conta" subtitle="Informe seu nome, e-mail e senha" textButton="Cadastrar" >
               <Input type= "text" label="nome" placeholder="Digite o nome completo" value={name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)} />
               <Input type= "text" label="e-mail" placeholder="exemplo@mail.com" value={email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} />
               <Input type= "password" label="senha" placeholder="Digite sua senha" textLabel="Mínimo de 6 dígitos" value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} />
             </Form>
           </form>
-          <Account h3="Já uma conta?" span="Entre agora mesmo" label="Acessar conta" path="/"/>
+          <Account texttitle="Já uma conta?" subTitle="Entre agora mesmo" textButton="Acessar conta" to="/"/>
         </div>
         
       </div>

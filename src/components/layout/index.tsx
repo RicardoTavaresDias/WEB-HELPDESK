@@ -76,9 +76,9 @@ export function Layout({identification}: Props){
       </aside>
    
       {/* </Conteúdo> */}
-      <section className={`overflow-auto fixed bg-gray-600 lg:right-0 lg:left-55 h-screen max-sm:w-screen max-sm:rounded-3xl lg:rounded-tl-3xl lg:top-2.5 top-23`}>
+      <section className={`overflow-auto fixed bg-gray-600 lg:right-0 lg:left-55 h-screen max-sm:w-full max-sm:rounded-3xl lg:rounded-tl-3xl lg:top-2.5 top-23`}>
 
-          <div className=" px-6 py-7 lg:px-12 lg:py-13">
+          <div className="p-2 py-7 lg:px-12 lg:py-13 max-sm:w-[375px] m-auto max-w-[1366px] max-sm:mb-20" >
             <Outlet />
           </div>
       

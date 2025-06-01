@@ -2,11 +2,11 @@ import circleAlert from "../../assets/icon/circle-alert.svg"
 
 type Props = {
   type: string
-  placeholder: string
+  placeholder?: string
   label: string
   error?: string
   onChange?: any
-  value: string
+  value?: string
   textLabel?: string
 }
 
