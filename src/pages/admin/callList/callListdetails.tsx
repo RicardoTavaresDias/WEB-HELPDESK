@@ -1,8 +1,5 @@
 import { useParams } from "react-router" 
 import { Button } from "../../../components/ui/button"
-import { DetailsHeader } from "../../../components/details/detailsHeader"
-import { DetailsLeftSatus } from "../../../components/details/detailsLeft"
-import { DetailsRight } from "../../../components/details/detailsRight"
 
 import clock from "../../../assets/icon/clock-1.svg"
 import circleCheck from "../../../assets/icon/circle-check-big-2.svg"
@@ -10,6 +7,9 @@ import circleCheck from "../../../assets/icon/circle-check-big-2.svg"
 import avatar from "../../../assets/img/Avatar.svg"
 import { called } from "../../../database/admCallList"
 import { useState } from "react" 
+import { Modules } from "../../../components/modules"
+import { Status } from "../../../components/ui/status"
+import { ModuleContext } from "../../../components/modules/moduleContext"
 
 
 export function CallListdetails(){
@@ -31,28 +31,37 @@ export function CallListdetails(){
 
   return (
     <>
-      <div className="lg:px-20 max-w-[1156px] m-auto">
-        <DetailsHeader to="/chamados" title="Chamado detalhado" >
-          <Button typeSize="base" typeColor="gray" onClick={() => setDetails({...details, status: service(details.status)[2]})}>
-            <div className="flex items-center justify-center gap-2">
+      <Modules.Root>
+        <Modules.Title title="Chamado detalhado" to="/chamados" >
+          <Button typeColor="gray" typeSize="base" onClick={() => setDetails({...details, status: service(details.status)[2]})}>
+            <div className="flex gap-2 items-center max-sm:px-4.5">
               <img src={clock} className="w-4 h-4" />
               {service(details.status)[0]}
             </div>
           </Button>
-          <Button typeSize="base" typeColor="gray" onClick={() => setDetails({...details, status: service(details.status)[3]})} >
-            <div className="flex items-center justify-center gap-2">
+          <Button typeColor="gray" typeSize="base" onClick={() => setDetails({...details, status: service(details.status)[3]})}>
+            <div className="flex gap-2 items-center max-sm:px-4.5">
               <img src={circleCheck} className="w-4 h-4" />
               {service(details.status)[1]}
             </div>
           </Button>
-        </DetailsHeader>
-      
-        <div className="flex justify-center gap-6 mt-6 max-sm:flex-col max-sm:mt-4 max-sm:gap-4">
-       
-          <DetailsLeftSatus data={details}>
+        </Modules.Title>
+
+        <Modules.Container>
+          {/* <Conteudo Left> */}
+          <Modules.Context isType="50">
+            <div className="flex justify-between items-center mb-1">
+              <span className="Text-Xs text-gray-300">{details.id}</span>
+              <Status type={details.status as "open" | "progress" | "close"} />
+            </div>
+  
+            <span className="text-gray-200 text-base font-medium">Backup não está funcionando	</span>
+
             <div className="mt-5">
               <span className="text-gray-400 Text-Xs">Descrição</span>
-              <p className="text-sm font-normal text-gray-200">{details.service.description}</p>
+              <p className="text-sm font-normal text-gray-200" >
+                O sistema de backup automático parou de funcionar. Última execução bem-sucedida foi há uma semana.
+              </p>
             </div>
 
             <div className="mt-5">
@@ -65,7 +74,7 @@ export function CallListdetails(){
                 <span className="text-gray-400 Text-Xs">Criado em</span>
                 <p className="text-sm font-normal text-gray-200">12/04/25 09:12</p>
               </div>
-              <div>
+              <div className="w-50">
                 <span className="text-gray-400 Text-Xs">Atualizado em</span>
                 <p className="text-sm font-normal text-gray-200">{details.date}</p>
               </div>
@@ -78,9 +87,11 @@ export function CallListdetails(){
                 <span className="text-gray-200 Text-Sm">{details.customer.name}</span>
               </div>
             </div>
-          </DetailsLeftSatus>
+          </Modules.Context>
+          {/* </Conteudo Left>  */}
 
-          <DetailsRight>
+          {/* <Conteudo Right>  */}
+          <ModuleContext isType="50">
             <span className="text-gray-400 Text-Xs">Técnico responsável</span>
             <div className="flex items-center gap-2 mt-2">
               <img src={avatar} className="w-8 h-8" />
@@ -115,10 +126,10 @@ export function CallListdetails(){
               <span className="Text-Sm text-gray-200">Total</span>
               <span className="Text-Sm text-gray-200">{details.value}</span>
             </div>
-          </DetailsRight>
-        </div>
-
-      </div>
+          </ModuleContext>
+          {/* </Conteudo Right>  */}
+        </Modules.Container>
+      </Modules.Root>
     </>
   )
 }

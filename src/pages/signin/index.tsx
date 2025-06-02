@@ -4,10 +4,12 @@ import { Account } from "../../components/auth/account"
 import { Input } from "../../components/ui/input"
 
 import { useState } from "react"
+import { useNavigate } from "react-router"
 
 export function Signin(){
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const navigate = useNavigate()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -16,6 +18,7 @@ export function Signin(){
 
     setEmail("")
     setPassword("")
+    navigate("/chamados")
   }
 
   return (

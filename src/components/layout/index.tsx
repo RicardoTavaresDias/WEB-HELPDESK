@@ -55,7 +55,7 @@ export function Layout({identification}: Props){
                 <div className="flex gap-3 items-center">
                   <button className="group">
                     <div>
-                      <MenuLogOut classmobile="left-56 top-[calc(100vh-170px)] w-50"/>
+                      <MenuLogOut classmobile={`left-56 ${identification === "admin" ? "top-[calc(100vh-110px)]" : "top-[calc(100vh-170px)]"}  w-50`}/>
                     </div>
                   </button>
                   <div>
@@ -78,7 +78,7 @@ export function Layout({identification}: Props){
       {/* </Conteúdo> */}
       <section className={`overflow-auto fixed bg-gray-600 lg:right-0 lg:left-55 h-screen max-sm:w-full max-sm:rounded-3xl lg:rounded-tl-3xl lg:top-2.5 top-23`}>
 
-          <div className="p-2 py-7 lg:px-12 lg:py-13 max-sm:w-[375px] m-auto max-w-[1366px] max-sm:mb-20" >
+          <div className="p-4 py-7 lg:px-12 lg:py-13 max-sm:w-[375px] m-auto max-w-[1366px] max-sm:mb-20" >
             <Outlet />
           </div>
       

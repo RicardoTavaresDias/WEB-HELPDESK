@@ -6,24 +6,28 @@ import { Technical } from "../pages/admin/technical"
 import { TechnicalNew } from "../pages/admin/technical/technicalNew"
 import { TechnicalEdition } from "../pages/admin/technical/technicalEdition"
 import { Customers } from "../pages/admin/customers"
+import { Services } from "../pages/admin/services"
+
+import { Services as Teste } from "./Testes"
 
 export function Admin(){
   return (
     <Routes>
       <Route element={<Layout identification="admin"/>} >
-      
         <Route path="/chamados" index element={<CallList />} />
           <Route path="/chamados/:id" element={<CallListdetails />} />
-
         <Route path="/tecnicos" element={<Technical />} />
           <Route path="/tecnicos/novo" element={<TechnicalNew />} />
           <Route path="/tecnicos/edicao" element={<TechnicalEdition />} />
-
         <Route path="/clientes" element={<Customers />} />
-        <Route path="/servicos" element={"Em Breve..."} />
+        <Route path="/servicos" element={<Services />} />
+
+        {/* Teste */}
+        <Route path="/teste" element={<Teste />} />
+        {/* Teste */}
       </Route>
 
-      <Route path="*" element={"Not Found"} />
+      {/* <Route path="*" element={"Not Found"} /> */}
     </Routes>
   )
 }

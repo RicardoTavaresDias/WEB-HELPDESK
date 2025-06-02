@@ -1,5 +1,4 @@
-import { DetailsHeaderButton } from "../../../components/details/detailsHeaderButton"
-import { DetailsRight } from "../../../components/details/detailsRight"
+import { Modules } from "../../../components/modules"
 import { Button } from "../../../components/ui/button"
 import { ButtonTime } from "../../../components/ui/buttonTime"
 import { Input } from "../../../components/ui/input"
@@ -8,32 +7,32 @@ import { Input } from "../../../components/ui/input"
 export function TechnicalNew(){
   return (
     <>
-      <div className="max-w-[1024px] m-auto">
-        <DetailsHeaderButton header="Perfil de técnico" type="twoButtonHeader" link={"/tecnicos"}>
-          <div className="max-sm:hidden flex gap-2">
-            <Button typeSize="sm" typeColor="gray" onClick={() => alert("Cancelado!")} >Cancelar</Button>
-            <Button typeSize="sm" typeColor="black" onClick={() => alert("Salvo com sucesso!")} >Salvar</Button>
+      <Modules.Root>
+        <Modules.Title title="Perfil de técnico" to="/tecnicos">
+          <div className="max-sm:hidden flex gap-3">
+            <Button typeColor="gray" typeSize="base">Cancelar</Button>
+            <Button typeColor="black" typeSize="base">Salvar</Button>
           </div>
-          <div className="lg:hidden flex gap-2 m-auto mt-3">
-            <Button typeSize="md" typeColor="gray">Cancelar</Button>
-            <Button typeSize="md" typeColor="black">Salvar</Button>
+          <div className="lg:hidden flex gap-3">
+            <Button typeColor="gray" typeSize="md">Cancelar</Button>
+            <Button typeColor="black" typeSize="md">Salvar</Button>
           </div>
-        </DetailsHeaderButton>
+        </Modules.Title>
 
-        <div className="flex justify-center gap-6 mt-6 max-sm:flex-col max-sm:mt-4 max-sm:gap-4 m-auto">
+        <Modules.Container>
+          <Modules.Context isType="40">
+            <div className="break-words max-sm:w-full" >
+              <div className="mb-10">
+                <h3 className="mb-0.5 text-base font-semibold text-gray-200">Dados pessoais</h3>
+                <span className="Text-Xs text-gray-300 mb-10">Defina as informações do perfil de técnico</span>
+              </div>
+              <Input type="text" label="nome" placeholder="Nome completo" />
+              <Input type="text" label="e-mail" placeholder="exemplo@mail.com" />
+              <Input type="password" label="senha" placeholder="Defina a senha de acesso" textLabel="Mínimo de 6 dígitos" />
+            </div> 
+          </Modules.Context>
         
-          <div className="border border-gray-500 w-100 h-fit rounded-lg p-5 lg:p-6 break-words max-sm:w-full" >
-            <div className="mb-10">
-              <h3 className="mb-0.5 text-base font-semibold text-gray-200">Dados pessoais</h3>
-              <span className="Text-Xs text-gray-300 mb-10">Defina as informações do perfil de técnico</span>
-            </div>
-            <Input type="text" label="nome" placeholder="Nome completo" />
-            <Input type="text" label="e-mail" placeholder="exemplo@mail.com" />
-            <Input type="password" label="senha" placeholder="Defina a senha de acesso" textLabel="Mínimo de 6 dígitos" />
-          </div> 
-          
-
-          <DetailsRight>
+          <Modules.Context isType="60">
             <div className="mb-10">
               <h3 className="mb-0.5 text-base font-semibold text-gray-200">Horários de atendimento</h3>
               <span className="Text-Xs text-gray-300 mb-10">Selecione os horários de disponibilidade do técnico para atendimento</span>
@@ -73,9 +72,11 @@ export function TechnicalNew(){
                 <ButtonTime>23:00</ButtonTime>
               </div>
             </div>   
-          </DetailsRight>
-        </div>
-      </div>
+          </Modules.Context>
+        </Modules.Container>
+      </Modules.Root>
+      
+      
     </>
   )
 }

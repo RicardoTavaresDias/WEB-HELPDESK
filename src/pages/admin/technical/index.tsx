@@ -1,74 +1,84 @@
-import { Panel, PanelMobile } from "../../../components/table/panel"
-import { PanelRows, PanelRowsMobile } from "../../../components/table/panelRows"
+import { Panel } from "../../../components/table"
 import avatar from "../../../assets/img/Avatar.svg"
-import penLine from "../../../assets/icon/pen-line.svg";
-import { Link } from "react-router"
+import plus from "../../../assets/icon/plus.svg";
+
 import { ButtonTime } from "../../../components/ui/buttonTime";
-import { DetailsHeaderButton } from "../../../components/details/detailsHeaderButton"
+import { Modules } from "../../../components/modules";
+import { Button } from "../../../components/ui/button";
+import { Link } from "react-router";
 
 export function Technical(){
   return (
     <>
-      <DetailsHeaderButton header={"Técnicos"} link="/tecnicos/novo" />
-
-      <div className=" lg:mt-6 mt-4 mb-25">
-        {/* Desktop */}
-        <Panel type="md" A1="Nome" B1="E-mail" C1="Disponibilidade">
-          <PanelRows>
-            <div className="flex gap-2 justify-center items-center">
-              <img src={avatar} className="w-5 h-5" />
-              Carlos Silva	
+      <div className="mb-7">
+        <Modules.Title title="Técnicos" isButton={true} >
+          <Link to={"/tecnicos/novo"}>
+            <div className="max-sm:hidden">
+              <Button typeColor="black" typeSize="sm">
+                <div className="flex gap-2 items-center"><img src={plus} className="w-4 h-4" />Novo</div>
+              </Button>
             </div>
-          </PanelRows>
-          <PanelRows>
-            carlos.silva@test.com
-          </PanelRows>
-          <PanelRows>
-            <div className="flex gap-2 justify-center items-center">
-              <ButtonTime type="read">08:00</ButtonTime>
-              <ButtonTime type="read">09:00</ButtonTime>
-              <ButtonTime type="read">10:00</ButtonTime>
-              <ButtonTime type="read">11:00</ButtonTime>
-              <ButtonTime type="read">+4</ButtonTime>
-            </div>
-          </PanelRows>
-          <PanelRows>
-            <Link to={"/tecnicos/edicao"} >
-              <img
-                className="w-7 h-7 min-w-4 min-h-4 rounded-md cursor-pointer hover:bg-gray-500 p-1"
-                src={penLine}
-              />
-            </Link>
-          </PanelRows>
-        </Panel>
-        {/* Desktop */}
-
-
-        {/* Mobile */}
-        <PanelMobile type="md" A1="Nome" B1="Disponibilidade">
-          <PanelRowsMobile>
-            <div className="flex gap-2 justify-center items-center">
-              <img src={avatar} className="w-5 h-5" />
-              Carlos Silva	
-            </div>
-          </PanelRowsMobile>
-          <PanelRowsMobile>
-            <div className="flex gap-2 justify-center items-center">
-              <ButtonTime type="read" >08:00</ButtonTime>
-              <ButtonTime type="read" >+4</ButtonTime>
-            </div>
-          </PanelRowsMobile>
-          <PanelRowsMobile>
-            <Link to={"/tecnicos/edicao"} >
-              <img
-                className="w-7 h-7 min-w-4 min-h-4 rounded-md cursor-pointer hover:bg-gray-500 p-1"
-                src={penLine}
-              />
-              </Link>
-          </PanelRowsMobile>
-        </PanelMobile>
-        {/* Mobile */}
+            <div className="lg:hidden"><Button typeColor="black" typeSize="base"><img src={plus} className="w-4 h-4" /></Button></div>
+          </Link>
+        </Modules.Title>
       </div>
+      
+      <Panel.Root className="grid-cols-[auto_auto_350px_73px]">
+        <Panel.Column>Nome</Panel.Column>
+        <Panel.Column>E-mail</Panel.Column>
+        <Panel.Column>Disponibilidade</Panel.Column>
+        <Panel.Column>Icon</Panel.Column>
+
+        <Panel.Rows>
+          <div className="flex gap-2 justify-center items-center">
+            <img src={avatar} className="w-5 h-5" />
+            Carlos Silva
+          </div>
+        </Panel.Rows>
+        <Panel.Rows>
+          carlos.silva@test.com
+        </Panel.Rows>
+        <Panel.Rows>
+          <div className="flex gap-2">
+            <ButtonTime type="read">08:00</ButtonTime>
+            <ButtonTime type="read">09:00</ButtonTime>
+            <ButtonTime type="read">10:00</ButtonTime>
+            <ButtonTime type="read">11:00</ButtonTime>
+            <ButtonTime type="read">+4</ButtonTime>
+          </div>
+        </Panel.Rows>
+        <Panel.Rows>
+          <Link to={"/tecnicos/edicao"}>
+            <Button icon="ban"></Button>
+          </Link>
+        </Panel.Rows>
+      </Panel.Root>
+
+      {/* Mobile */}
+      <Panel.Root className="grid-cols-[auto_auto_63px]" mobile={true}>
+        <Panel.Column>Nome</Panel.Column>
+        <Panel.Column>Disponibilidade</Panel.Column>
+        <Panel.Column>Icon</Panel.Column>
+
+        <Panel.Rows>
+          <div className="flex gap-2 justify-center items-cente">
+            <img src={avatar} className="w-5 h-5" />
+            Carlos Silva
+          </div>
+        </Panel.Rows>
+        <Panel.Rows>
+          <div className="flex gap-1">
+            <ButtonTime type="read">08:00</ButtonTime>
+            <ButtonTime type="read">+4</ButtonTime>
+          </div>
+        </Panel.Rows>
+        <Panel.Rows>
+          <Link to={"/tecnicos/edicao"}>
+            <Button icon="ban"></Button>
+          </Link>
+        </Panel.Rows>
+      </Panel.Root>
+      {/* Mobile */}
     </>
   )
 }

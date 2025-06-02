@@ -1,36 +1,37 @@
-import { DetailsHeaderButton } from "../../../components/details/detailsHeaderButton";
-import { DetailsRight } from "../../../components/details/detailsRight";
 import { Button } from "../../../components/ui/button";
 import avatar from "../../../assets/img/Avatar.svg"
 import { Input } from "../../../components/ui/input";
 import { ButtonTime } from "../../../components/ui/buttonTime";
+import { Modules } from "../../../components/modules";
 
 export function TechnicalEdition(){
   return (
-    <div className="max-w-[1024px] m-auto">
-      <DetailsHeaderButton link="/tecnicos" header="Perfil de técnico" type="twoButtonHeader">
-        <div className="max-sm:hidden flex gap-2">
-          <Button typeColor="gray" typeSize="sm" onClick={() => alert("Cancelado!")}>Cancelar</Button>
-          <Button typeColor="black" typeSize="sm" onClick={() => alert("Salvo com sucesso!")}>Salvar</Button>
+    <Modules.Root>
+      <Modules.Title title="Perfil de técnico" to="/tecnicos">
+        <div className="max-sm:hidden flex gap-3">
+          <Button typeColor="gray" typeSize="base">Cancelar</Button>
+          <Button typeColor="black" typeSize="base">Salvar</Button>
         </div>
-        <div className="lg:hidden flex gap-2 m-auto mt-3">
+        <div className="lg:hidden flex gap-3">
           <Button typeColor="gray" typeSize="md">Cancelar</Button>
-          <Button typeColor="black" typeSize="md" >Salvar</Button>
+          <Button typeColor="black" typeSize="md">Salvar</Button>
         </div>
-      </DetailsHeaderButton>
+      </Modules.Title>
 
-      <div className="flex justify-center gap-6 mt-6 max-sm:flex-col max-sm:mt-4 max-sm:gap-4 m-auto">
-        <div className="border border-gray-500 w-100 h-fit rounded-lg p-5 lg:p-6 break-words max-sm:w-full">
-          <div>
-            <h3 className="text-base font-semibold text-gray-200">Dados pessoais</h3>
-            <span className="Text-Xs text-gray-300">Defina as informações do perfil de técnico</span>
+      <Modules.Container>
+        <Modules.Context isType="40" >
+          <div className="break-words max-sm:w-full">
+            <div>
+              <h3 className="text-base font-semibold text-gray-200">Dados pessoais</h3>
+              <span className="Text-Xs text-gray-300">Defina as informações do perfil de técnico</span>
+            </div>
+            <img className="my-6 w-12 h-12" src={avatar} />
+            <Input type="text" value="Carlos Silva" label="nome"/>
+            <Input type="text" value="carlos.silva@test.com" label="e-mail"/>
           </div>
-          <img className="my-6 w-12 h-12" src={avatar} />
-          <Input type="text" value="Carlos Silva" label="nome"/>
-          <Input type="text" value="carlos.silva@test.com" label="e-mail"/>
-        </div>
+        </Modules.Context>
 
-        <DetailsRight>
+        <Modules.Context  isType="60" >
           <div className="mb-10">
             <h3 className="mb-0.5 text-base font-semibold text-gray-200">Horários de atendimento</h3>
             <span className="Text-Xs text-gray-300 mb-10">Selecione os horários de disponibilidade do técnico para atendimento</span>
@@ -70,8 +71,8 @@ export function TechnicalEdition(){
               <ButtonTime>23:00</ButtonTime>
             </div>
           </div>  
-        </DetailsRight>
-      </div>
-    </div>
+        </Modules.Context>
+      </Modules.Container>
+    </Modules.Root>
   )
 }

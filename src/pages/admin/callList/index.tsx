@@ -1,13 +1,11 @@
 import avatar from "../../../assets/img/Avatar.svg";
-import penLine from "../../../assets/icon/pen-line.svg";
 import { Status } from "../../../components/ui/status";
-
-import { Panel, PanelMobile } from "../../../components/table/panel";
-import { PanelRows, PanelRowsMobile } from "../../../components/table/panelRows";
+import { Panel } from "../../../components/table";
 
 import { Fragment } from "react";
 import { Link } from "react-router";
 import { called } from "../../../database/admCallList";
+import { Button } from "../../../components/ui/button";
 
 export function CallList() {
 
@@ -18,72 +16,82 @@ export function CallList() {
         <span className="lg:hidden text-xl font-semibold text-blue-dark">Chamados</span>
 
         <div className=" lg:mt-6 mt-4">
-          <Panel type="lg" A1="Atualizado em" B1="Id" C1="Título e Serviço" D1="Valor total" E1="Cliente" F1="Técnico" G1="Status" > 
-            {/* <Grid desktop row> */}
-              {called.map((item) => (
+
+          <Panel.Root className="grid-cols-[auto_auto_auto_auto_auto_auto_auto_80px]">
+            <Panel.Column>Atualizado em</Panel.Column>
+            <Panel.Column>Id</Panel.Column>
+            <Panel.Column>Título e Serviço</Panel.Column>
+            <Panel.Column>Valor total</Panel.Column>
+            <Panel.Column>Cliente</Panel.Column>
+            <Panel.Column>Técnico</Panel.Column>
+            <Panel.Column>Status</Panel.Column>
+            <Panel.Column>Icon</Panel.Column>
+
+            {called.map((item) => (
+              <>
                 <Fragment key={item.id}>
-                  <PanelRows>{item.date}</PanelRows>
-                  <PanelRows>{item.id}</PanelRows>
-                  <PanelRows>
+                  <Panel.Rows>{item.date}</Panel.Rows>
+                  <Panel.Rows>{item.id}</Panel.Rows>
+                  <Panel.Rows>
                     <div>
                       <span className="flex flex-col Text-Sm ">
                         {item.service.title}
                       </span>
                       {item.service.description}
                     </div>
-                  </PanelRows>
-                  <PanelRows>{item.value}</PanelRows>
-                  <PanelRows>
+                  </Panel.Rows>
+                  <Panel.Rows>{item.value}</Panel.Rows>
+                  <Panel.Rows>
                     <div className="flex gap-2 justify-center items-center">
                       <img src={avatar} className="w-5 h-5" />
                       {item.customer.name}
                     </div>
-                  </PanelRows>
-                  <PanelRows>
+                  </Panel.Rows>
+                  <Panel.Rows>
                     <div className="flex gap-2 justify-center items-center">
                       <img src={avatar} className="w-5 h-5" />
                       {item.technical.name}
                     </div>
-                  </PanelRows>
-                  <PanelRows>
-                    <Status type={item.status as "open" | "progress" | "close"} />
-                  </PanelRows>
-                  <PanelRows>
+                  </Panel.Rows>
+                  <Panel.Rows><Status type={item.status as "open" | "progress" | "close"} /></Panel.Rows>
+                  <Panel.Rows>
                     <Link to={`/chamados/${item.id}`} >
-                      <img
-                        className="w-7 h-7 min-w-4 min-h-4 rounded-md cursor-pointer hover:bg-gray-500 p-1"
-                        src={penLine}
-                      />
+                      <Button icon={"ban"} />
                     </Link>
-                  </PanelRows>
+                  </Panel.Rows>
                 </Fragment>
-              ))}
-              {/* </Grid desktop row> */}
-          </Panel>
+              </>
+            ))}        
+          </Panel.Root>
 
-          <PanelMobile type="lg" A1="Atualizado em" B1="Título e Serviço" C1="Status">
+          {/* Mobile */}
+          <Panel.Root className="grid-cols-[auto_auto_auto_auto]" mobile={true}>
+            <Panel.Column>Atualizado em</Panel.Column>
+            <Panel.Column>Título e Serviço</Panel.Column>
+            <Panel.Column>Status</Panel.Column>
+            <Panel.Column>Icon</Panel.Column>
+
             {called.map((item) => (
-                <Fragment key={item.id}>
-                  <PanelRowsMobile>{item.date}</PanelRowsMobile>
-                  <PanelRowsMobile>
-                    <div>
+              <Fragment key={item.id}>
+                <Panel.Rows>{item.date}</Panel.Rows>
+                <Panel.Rows>
+                  <div>
                       <span className="flex flex-col text-sx font-bold mb-1">
                         {item.service.title}
                       </span>
                       {item.service.description}
                     </div>
-                  </PanelRowsMobile>
-                  <PanelRowsMobile>
-                    <Status type={item.status as "open" | "progress" | "close"} mobile={true} />
-                  </PanelRowsMobile>
-                  <PanelRowsMobile>
-                    <Link to={`/chamados/${item.id}`} >
-                      <img className="w-7 h-7 rounded-md cursor-pointer hover:bg-gray-500 p-1" src={penLine} />
+                </Panel.Rows>
+                <Panel.Rows><Status type={item.status as "open" | "progress" | "close"}/></Panel.Rows>
+                <Panel.Rows>
+                  <Link to={`/chamados/${item.id}`} >
+                      <Button icon={"ban"} />
                     </Link>
-                  </PanelRowsMobile>
-                </Fragment>
-              ))}
-            </PanelMobile>
+                </Panel.Rows>
+              </Fragment>
+            ))}
+          </Panel.Root>
+          {/* Mobile */}
         </div>
       </div>
     </>

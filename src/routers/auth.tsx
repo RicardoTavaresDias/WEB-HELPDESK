@@ -8,7 +8,7 @@ export function Auth(){
       <Route path="/" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
 
-      <Route path="*" element={"Not Found"} />
+      {/* <Route path="*" element={"Not Found"} /> */}
     </Routes>
   )
 }
