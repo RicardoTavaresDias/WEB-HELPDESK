@@ -1,14 +1,14 @@
 import { Button } from "../ui/button"
 import { Link } from "react-router";
 
-type Props = {
+type AccountProps = {
   textButton: string
   texttitle: string
   subTitle: string
   to: string
 }
 
-export function Account({ textButton, texttitle, subTitle, to }: Props){
+export function Account({ textButton, texttitle, subTitle, to }: AccountProps){
   
   return (
     <div className="w-max p-1.5 py-7 px-14 max-sm:px-6 border-2 border-gray-500 rounded-lg m-auto mt-3">    

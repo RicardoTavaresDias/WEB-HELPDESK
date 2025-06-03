@@ -1,5 +1,5 @@
 type PropsRoot = {
-  children: any
+  children: React.ReactNode
   isActive: Boolean
 }
 

@@ -1,8 +1,8 @@
 import trash from "../../assets/icon/trash.svg"
 import  ban  from "../../assets/icon/pen-line.svg"
 
-type Props = {
-  children?: any
+type ButtonProps = {
+  children?: React.ReactNode
   typeSize?: "base" | "sm" | "md" | "lg" | "xl"
   typeColor?: "black" | "gray"
   onClick?: () => void
@@ -22,7 +22,7 @@ const color = {
   gray: "bg-gray-500 text-gray-200"
 }
 
-export function Button({children, typeSize, typeColor, onClick, icon}: Props){
+export function Button({children, typeSize, typeColor, onClick, icon}: ButtonProps){
   if(icon){
     return (
       <button onClick={onClick}>

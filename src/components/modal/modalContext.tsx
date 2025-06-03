@@ -1,8 +1,8 @@
-type PropsContext = {
-  children: any
+type ModalContextProps = {
+  children: React.ReactNode
 }
 
-export function ModalContext({children}: PropsContext) {
+export function ModalContext({children}: ModalContextProps) {
   return (
     <>
       <div className="border-b border-t w-full border-gray-500 mb-6 p-7">

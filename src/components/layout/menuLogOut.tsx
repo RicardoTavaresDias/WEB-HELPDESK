@@ -2,7 +2,7 @@ import circleUser from "../../assets/icon/circle-user.svg"
 import logOut from "../../assets/icon/log-out.svg"
 import avatar from "../../assets/img/Avatar.svg"
 
-type Props = {
+type MenuLogOutProps = {
   classmobile?: string
   classLg?: string
   identification?: string
@@ -11,7 +11,7 @@ type Props = {
 import { useState, useRef, useEffect } from "react"
 import { Link } from "react-router"
 
-export function MenuLogOut({ classLg, classmobile, identification }: Props){
+export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutProps){
   const [open, setOpen] =useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 

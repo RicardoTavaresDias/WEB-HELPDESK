@@ -1,10 +1,10 @@
-type PropsContext = {
-  children: any
+type ContextProps = {
+  children: React.ReactNode
   className?: string
   isType: "40" | "50" | "60"
 }
 
-export function ModuleContext({children, className, isType = "50"}: PropsContext){
+export function ModuleContext({children, className, isType = "50"}: ContextProps){
 
   const widthMap: Record<string, string> = {
     '40': 'basis-[calc(40%-0.75rem)]',

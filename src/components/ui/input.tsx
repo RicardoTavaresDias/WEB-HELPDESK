@@ -1,6 +1,6 @@
 import circleAlert from "../../assets/icon/circle-alert.svg"
 
-type Props = {
+type InputProps = {
   type: string
   placeholder?: string
   label: string
@@ -10,7 +10,7 @@ type Props = {
   textLabel?: string
 }
 
-export function Input({ type, placeholder, label, error, onChange, value, textLabel}: Props){
+export function Input({ type, placeholder, label, error, onChange, value, textLabel}: InputProps){
   return (
     <div className="group flex flex-col mt-4">
       <label className={`Text-Xxs group-focus-within:text-blue-base ${error ? "text-feedback-danger" : "text-gray-300"}`}>{label}</label>

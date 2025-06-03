@@ -1,13 +1,13 @@
 import close from "../../assets/icon/x.svg"
 
-type Props = {
-  children: any
+type ButtonTimeProps = {
+  children: React.ReactNode
   isActive?: boolean
   type?: "read"
   onclick?: () => void
 }
 
-export function ButtonTime({children, isActive, type, onclick}: Props){
+export function ButtonTime({children, isActive, type, onclick}: ButtonTimeProps){
 
   if(isActive){
     return (

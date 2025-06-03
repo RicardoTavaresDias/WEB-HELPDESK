@@ -1,13 +1,13 @@
 import { Button } from "./button"
 
-type Props = {
-  children: any
+type FormProps = {
+  children: React.ReactNode
   textTitle: string
   subtitle: string
   textButton: string
 }
 
-export function Form({ children, textTitle, subtitle, textButton }: Props){
+export function Form({ children, textTitle, subtitle, textButton }: FormProps){
   return (
     <div className="w-max p-1.5 py-7 px-14 max-sm:px-6 border-2 border-gray-500 rounded-lg m-auto">
       <div className="mb-10">

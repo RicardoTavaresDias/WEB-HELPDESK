@@ -1,4 +1,9 @@
-export function Body({ children, title = "Title" }: any){
+type BodyProps = {
+  children: React.ReactNode
+  title: string
+}
+
+export function Body({ children, title = "Title" }: BodyProps){
   return (
     <div>
       <div>

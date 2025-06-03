@@ -5,11 +5,11 @@ import { Menu } from "./menu"
 import { MenuMobile } from "./menuMobile"
 import { MenuLogOut } from "./menuLogOut"
 
-type Props = {
+type LayoutProps = {
   identification?: string
 }
 
-export function Layout({identification}: Props){
+export function Layout({identification}: LayoutProps){
   return (
     
     <>

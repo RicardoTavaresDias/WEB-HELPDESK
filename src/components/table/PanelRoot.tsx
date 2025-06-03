@@ -1,5 +1,5 @@
 type TableProps = {
-  children: any
+  children: React.ReactNode
   mobile?: boolean
   className: string
 }

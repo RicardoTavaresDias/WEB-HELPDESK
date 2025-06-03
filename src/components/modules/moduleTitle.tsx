@@ -2,7 +2,7 @@ import { Link } from "react-router"
 import arrowLeft from "../../assets/icon/arrow-left.svg"
 
 type TitleProps = {
-  children?: any
+  children?: React.ReactNode
   to?: string
   title: string
   isButton?: Boolean
