@@ -1,4 +1,5 @@
 import { Panel } from "../../components/table"
+import { IconPenLine } from "../../assets/icon/iconPenLine"
 
 export function Services(){
   return (
@@ -34,6 +35,9 @@ export function Services(){
         <Panel.Rows>teste 3</Panel.Rows>
         <Panel.Rows>icon</Panel.Rows>
      </Panel.Root>
+
+      <Button icon={IconPenLine}></Button>
+     
     </>
   )
 }
@@ -42,6 +46,7 @@ import { Button } from "../../components/ui/button";
 import { Status } from "../../components/ui/status";
 
 import  Ban  from "../../assets/icon/pen-line.svg"
+import { IconBan } from "../../assets/icon/iconBan";
 
 
 
@@ -49,30 +54,40 @@ export function Teste(){
   return (
     <>
       <div className="flex gap-2">
+        Com Icone
         <Status type="open" />
         <Status type="progress" />
         <Status type="close" />
       </div>
 
       <div className="flex gap-2 mt-5">
+        Sem Icone
         <Status type="open" isIcon={true} />
         <Status type="progress" isIcon={true} />
         <Status type="close" isIcon={true} />
       </div>
 
       <div className="flex gap-2 mt-5">
+        So Texto
         <Status type="open" isButton={true} />
         <Status type="progress" isButton={true} />
         <Status type="close" isButton={true} />
       </div>
 
       <div className="flex gap-2 mt-5">
+        Com Icone Ativos
         <Status type="active" />
         <Status type="inactive" />
       </div>
 
       <div className="flex gap-2 mt-5">
-        <Button icon={"Ban"} >Teste</Button>
+        So texto Ativos
+        <Status type="active" isButton={true} />
+        <Status type="inactive" isButton={true} />
+      </div>
+
+      <div className="flex gap-2 mt-5">
+        <Button  >Teste</Button>
         
         <Button typeColor="black" >
           <div className="flex items-center gap-2 p-1.5 hover:bg-gray-400">
@@ -80,6 +95,8 @@ export function Teste(){
           </div>
         </Button>
       </div>
+
+      <IconBan color="red" width="20" height="20" />
     </>
   )
 }

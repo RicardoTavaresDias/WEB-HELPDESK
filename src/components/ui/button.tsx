@@ -1,12 +1,11 @@
-import trash from "../../assets/icon/trash.svg"
-import  ban  from "../../assets/icon/pen-line.svg"
 
 type ButtonProps = {
   children?: React.ReactNode
   typeSize?: "base" | "sm" | "md" | "lg" | "xl"
   typeColor?: "black" | "gray"
   onClick?: () => void
-  icon?: string;
+  icon?: React.ElementType,
+  bakground?: string
 }
 
 const size ={
@@ -22,12 +21,12 @@ const color = {
   gray: "bg-gray-500 text-gray-200"
 }
 
-export function Button({children, typeSize, typeColor, onClick, icon}: ButtonProps){
-  if(icon){
+export function Button({children, typeSize, typeColor, onClick, icon: Icon, bakground}: ButtonProps){
+  if(Icon){
     return (
       <button onClick={onClick}>
         <div className="w-7 h-7 p-1.5 rounded-sm hover:bg-gray-500 bg-none cursor-pointer">
-          <img src={icon === "ban" ? ban : trash}  />
+         {Icon && <Icon color={bakground} />}
         </div>
       </button>
     )

@@ -1,6 +1,7 @@
 import { Panel } from "../../../components/table"
 import avatar from "../../../assets/img/Avatar.svg"
 import plus from "../../../assets/icon/plus.svg";
+import { IconPenLine } from "../../../assets/icon/iconPenLine";
 
 import { ButtonTime } from "../../../components/ui/buttonTime";
 import { Modules } from "../../../components/modules";
@@ -49,7 +50,7 @@ export function Technical(){
         </Panel.Rows>
         <Panel.Rows>
           <Link to={"/tecnicos/edicao"}>
-            <Button icon="ban"></Button>
+            <Button icon={IconPenLine} bakground="#535964"></Button>
           </Link>
         </Panel.Rows>
       </Panel.Root>
@@ -74,7 +75,7 @@ export function Technical(){
         </Panel.Rows>
         <Panel.Rows>
           <Link to={"/tecnicos/edicao"}>
-            <Button icon="ban"></Button>
+            <Button icon={IconPenLine} bakground="#535964"></Button>
           </Link>
         </Panel.Rows>
       </Panel.Root>

@@ -1,4 +1,5 @@
 import avatar from "../../../assets/img/Avatar.svg";
+import { IconPenLine } from "../../../assets/icon/iconPenLine";
 import { Status } from "../../../components/ui/status";
 import { Panel } from "../../../components/table";
 
@@ -56,7 +57,7 @@ export function CallList() {
                   <Panel.Rows><Status type={item.status as "open" | "progress" | "close"} /></Panel.Rows>
                   <Panel.Rows>
                     <Link to={`/chamados/${item.id}`} >
-                      <Button icon={"ban"} />
+                      <Button icon={IconPenLine} bakground="#535964" />
                     </Link>
                   </Panel.Rows>
                 </Fragment>
@@ -85,7 +86,7 @@ export function CallList() {
                 <Panel.Rows><Status type={item.status as "open" | "progress" | "close"}/></Panel.Rows>
                 <Panel.Rows>
                   <Link to={`/chamados/${item.id}`} >
-                      <Button icon={"ban"} />
+                      <Button icon={IconPenLine} bakground="#535964" />
                     </Link>
                 </Panel.Rows>
               </Fragment>

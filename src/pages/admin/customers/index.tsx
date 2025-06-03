@@ -1,5 +1,7 @@
 import { Panel } from "../../../components/table";
 import avatar from "../../../assets/img/Avatar.svg"
+import { IconPenLine } from "../../../assets/icon/iconPenLine";
+import { IconTrash } from "../../../assets/icon/iconTrash";
 import { useState } from "react";
 import { Modal } from "../../../components/modal/";
 import { Input } from "../../../components/ui/input";
@@ -44,7 +46,7 @@ export function Customers(){
       <Modules.Root>
         <Modules.Title title="Clientes" />
 
-        <div className="mt-5">
+        <div className="lg:mt-9">
           <Panel.Root className="grid-cols-[48%_auto_10%]">
             <PanelColumn>Nome</PanelColumn>
             <PanelColumn>E-mail</PanelColumn>
@@ -59,8 +61,8 @@ export function Customers(){
             <Panel.Rows>julia.maria@client.com</Panel.Rows>
             <Panel.Rows>
               <div className="flex gap-2">
-                <Button icon="track" onClick={() => setModalRemove(!modalRemove)} />
-                <Button icon="ban" onClick={() => setModalEdition(!modalEdition)} />
+                <Button icon={IconTrash} bakground="#D03E3E" onClick={() => setModalRemove(!modalRemove)} />
+                <Button icon={IconPenLine} bakground="#535964" onClick={() => setModalEdition(!modalEdition)} />
               </div>
             </Panel.Rows>
           </Panel.Root>
@@ -82,8 +84,8 @@ export function Customers(){
           <Panel.Rows><span className="truncate">julia.maria@client.com</span></Panel.Rows>
           <Panel.Rows>
             <div className="flex gap-1">
-              <Button icon="track" onClick={() => setModalRemove(!modalRemove)} ></Button>
-              <Button icon="ban" onClick={() => setModalEdition(!modalEdition)} ></Button>
+              <Button icon={IconTrash} bakground="#D03E3E" onClick={() => setModalRemove(!modalRemove)} ></Button>
+              <Button icon={IconPenLine} bakground="#535964" onClick={() => setModalEdition(!modalEdition)} ></Button>
             </div>
           </Panel.Rows>
         </Panel.Root>

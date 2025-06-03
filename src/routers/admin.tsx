@@ -8,7 +8,7 @@ import { TechnicalEdition } from "../pages/admin/technical/technicalEdition"
 import { Customers } from "../pages/admin/customers"
 import { Services } from "../pages/admin/services"
 
-import { Services as Teste } from "./Testes"
+import { Teste } from "./Testes"
 
 export function Admin(){
   return (

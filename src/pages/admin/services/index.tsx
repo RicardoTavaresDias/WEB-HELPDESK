@@ -1,5 +1,10 @@
 import { Modules } from "../../../components/modules"
 import { Panel } from "../../../components/table"
+
+import { IconPenLine } from "../../../assets/icon/iconPenLine"
+import { IconBan } from "../../../assets/icon/iconBan"
+import { IconCicloCheck } from "../../../assets/icon/iconCicloCheck"
+
 import { Button } from "../../../components/ui/button"
 import { Status } from "../../../components/ui/status"
 import plus from "../../../assets/icon/plus.svg"
@@ -11,6 +16,7 @@ import { Input } from "../../../components/ui/input"
 export function Services(){
   const [modalNew, setModalNew] = useState(false)
   const [modalEdition, setModalEdition] = useState(false)
+  const [status, setStatus] = useState(true)
 
   return (
     <>
@@ -58,12 +64,12 @@ export function Services(){
         <Panel.Rows>Instalação de Rede</Panel.Rows>
         <Panel.Rows>R$ 180,00</Panel.Rows>
         <Panel.Rows>
-          <Status type="active" isButton={true} />
+          <Status type={status ? "active" : "inactive"} isButton={true} />
         </Panel.Rows>
         <Panel.Rows>
           <div className="flex items-center gap-1.5">
-            <Button icon="trunk" onClick={() => alert("Item excluido com sucesso!") } /> Desativar
-            <Button icon="ban" onClick={() => setModalEdition(!modalEdition)} />
+            <Button icon={status ? IconBan : IconCicloCheck} bakground="#535964" onClick={() => setStatus(!status) } /> Desativar
+            <Button icon={IconPenLine} bakground="#535964" onClick={() => setModalEdition(!modalEdition)} />
           </div>
         </Panel.Rows>
       </Panel.Root>
@@ -80,12 +86,12 @@ export function Services(){
         </Panel.Rows>
         <Panel.Rows>R$ 180,00</Panel.Rows>
         <Panel.Rows>
-          <Status type="active" isButton={false} />
+          <Status type={status ? "active" : "inactive"} isButton={false} />
         </Panel.Rows>
         <Panel.Rows>
           <div className="flex items-center gap-1">
-            <Button icon="trunk" onClick={() => alert("Item excluido com sucesso!")} />
-            <Button icon="ban" onClick={() => setModalEdition(!modalEdition)} />
+            <Button icon={status ? IconBan : IconCicloCheck} bakground="#535964" onClick={() => setStatus(!status) } />
+            <Button icon={IconPenLine} bakground="#535964" onClick={() => setModalEdition(!modalEdition)} />
           </div>
         </Panel.Rows>
       </Panel.Root>
