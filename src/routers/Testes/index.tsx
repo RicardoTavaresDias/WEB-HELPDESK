@@ -1,5 +1,4 @@
 import { Panel } from "../../components/table"
-import { IconPenLine } from "../../assets/icon/iconPenLine"
 
 export function Services(){
   return (
@@ -45,8 +44,8 @@ export function Services(){
 import { Button } from "../../components/ui/button";
 import { Status } from "../../components/ui/status";
 
-import  Ban  from "../../assets/icon/pen-line.svg"
 import { IconBan } from "../../assets/icon/iconBan";
+import { IconPenLine } from "../../assets/icon/iconPenLine";
 
 
 
@@ -86,17 +85,9 @@ export function Teste(){
         <Status type="inactive" isButton={true} />
       </div>
 
-      <div className="flex gap-2 mt-5">
-        <Button  >Teste</Button>
-        
-        <Button typeColor="black" >
-          <div className="flex items-center gap-2 p-1.5 hover:bg-gray-400">
-             <img src={Ban} className="w-4 h-4" />
-          </div>
-        </Button>
-      </div>
 
-      <IconBan color="red" width="20" height="20" />
+      {/* Icon Button */}
+      <IconBan color="red" onClick={() => alert("Deu certo Icon!")} className="hover:bg-gray-500 cursor-pointer p-1.5 w-7 h-7 rounded-md" />
     </>
   )
 }
