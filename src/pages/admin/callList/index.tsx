@@ -4,9 +4,7 @@ import { Status } from "../../../components/ui/status";
 import { Panel } from "../../../components/table";
 
 import { Fragment } from "react";
-import { Link } from "react-router";
 import { called } from "../../../database/admCallList";
-import { Button } from "../../../components/ui/button";
 
 export function CallList() {
 
@@ -56,9 +54,7 @@ export function CallList() {
                   </Panel.Rows>
                   <Panel.Rows><Status type={item.status as "open" | "progress" | "close"} /></Panel.Rows>
                   <Panel.Rows>
-                    <Link to={`/chamados/${item.id}`} >
-                      <Button icon={IconPenLine} bakground="#535964" />
-                    </Link>
+                    <IconPenLine to={`/chamados/${item.id}`} />
                   </Panel.Rows>
                 </Fragment>
               </>
@@ -85,9 +81,7 @@ export function CallList() {
                 </Panel.Rows>
                 <Panel.Rows><Status type={item.status as "open" | "progress" | "close"}/></Panel.Rows>
                 <Panel.Rows>
-                  <Link to={`/chamados/${item.id}`} >
-                      <Button icon={IconPenLine} bakground="#535964" />
-                    </Link>
+                  <IconPenLine to={`/chamados/${item.id}`} />
                 </Panel.Rows>
               </Fragment>
             ))}

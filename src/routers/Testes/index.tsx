@@ -35,7 +35,7 @@ export function Services(){
         <Panel.Rows>icon</Panel.Rows>
      </Panel.Root>
 
-      <Button icon={IconPenLine}></Button>
+      <IconPenLine to={"/tecnicos/edicao"} />
      
     </>
   )
@@ -87,7 +87,7 @@ export function Teste(){
 
 
       {/* Icon Button */}
-      <IconBan color="red" onClick={() => alert("Deu certo Icon!")} className="hover:bg-gray-500 cursor-pointer p-1.5 w-7 h-7 rounded-md" />
+      <IconPenLine color="red" onClick={() => alert("Deu certo Icon!")} className="hover:bg-gray-500 cursor-pointer p-1.5 w-7 h-7 rounded-md" />
     </>
   )
 }

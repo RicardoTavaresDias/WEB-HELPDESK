@@ -49,9 +49,7 @@ export function Technical(){
           </div>
         </Panel.Rows>
         <Panel.Rows>
-          <Link to={"/tecnicos/edicao"}>
-            <Button icon={IconPenLine} bakground="#535964"></Button>
-          </Link>
+          <IconPenLine to={"/tecnicos/edicao"} />
         </Panel.Rows>
       </Panel.Root>
 
@@ -74,9 +72,7 @@ export function Technical(){
           </div>
         </Panel.Rows>
         <Panel.Rows>
-          <Link to={"/tecnicos/edicao"}>
-            <Button icon={IconPenLine} bakground="#535964"></Button>
-          </Link>
+          <IconPenLine to={"/tecnicos/edicao"} />
         </Panel.Rows>
       </Panel.Root>
       {/* Mobile */}

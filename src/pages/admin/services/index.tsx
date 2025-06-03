@@ -68,8 +68,9 @@ export function Services(){
         </Panel.Rows>
         <Panel.Rows>
           <div className="flex items-center gap-1.5">
-            <Button icon={status ? IconBan : IconCicloCheck} bakground="#535964" onClick={() => setStatus(!status) } /> Desativar
-            <Button icon={IconPenLine} bakground="#535964" onClick={() => setModalEdition(!modalEdition)} />
+            {status && <IconBan onClick={() => setStatus(!status) } >Desativar</IconBan>}
+            {!status && <IconCicloCheck onClick={() => setStatus(!status)} >Reativar</IconCicloCheck>}
+            <IconPenLine onClick={() => setModalEdition(!modalEdition)} />
           </div>
         </Panel.Rows>
       </Panel.Root>
@@ -90,8 +91,9 @@ export function Services(){
         </Panel.Rows>
         <Panel.Rows>
           <div className="flex items-center gap-1">
-            <Button icon={status ? IconBan : IconCicloCheck} bakground="#535964" onClick={() => setStatus(!status) } />
-            <Button icon={IconPenLine} bakground="#535964" onClick={() => setModalEdition(!modalEdition)} />
+            {status && <IconBan onClick={() => setStatus(!status) } />}
+            {!status && <IconCicloCheck onClick={() => setStatus(!status)} />}
+            <IconPenLine onClick={() => setModalEdition(!modalEdition)} />
           </div>
         </Panel.Rows>
       </Panel.Root>
