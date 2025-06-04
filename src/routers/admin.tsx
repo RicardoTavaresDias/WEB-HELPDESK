@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router"
-import { Layout } from "../components/layout"
+import { Layout } from "../pages/layout"
 import { CallList } from "../pages/admin/callList"
 import { CallListdetails } from "../pages/admin/callList/callListdetails"
 import { Technical } from "../pages/admin/technical"

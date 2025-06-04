@@ -48,9 +48,9 @@ export function Menu({ element }: any){
 
           {element === "técnico" &&
             <>
-              <li className={`flex items-center gap-3 Text-Sm ${currentPath === "meus_chamados" ? button.active : button.notActive} cursor-pointer rounded-md h-11`}>
+              <li className={`flex items-center gap-3 Text-Sm ${currentPath === "chamados" ? button.active : button.notActive} cursor-pointer rounded-md h-11`}>
                 <img src={clipboardList} className="ml-3 w-5 h-5" />
-                <Link to="/meus_chamados" >Meus Chamados</Link>
+                Meus Chamados
               </li>
             </>
           }

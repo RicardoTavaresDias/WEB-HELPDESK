@@ -41,18 +41,20 @@ export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutP
 
           <div>
             <ul className="mt-1 flex flex-col gap-1">
-              {identification === "admin" &&
+              {identification === "admin" ||
                 <li className="flex items-center gap-3 Text-Sm text-gray-400 cursor-pointer rounded-md h-11 hover:bg-gray-200 hover:text-gray-600">
                   <img src={circleUser} className="ml-3 w-5 h-5" />
-                  <a href="#" className="">Perfil</a>
+                  <button onClick={() => setOpen(!open)} >
+                    <a href="#" className="">Perfil</a>
+                  </button>
                 </li>
               }
-              
+             
               <li className="flex items-center gap-3 Text-Sm text-feedback-danger cursor-pointer rounded-md h-11 hover:bg-gray-200">
                 <img src={logOut} className="ml-3 w-5 h-5"  />
                 <Link to="/" >Sair</Link>
               </li>
-              
+               
             </ul>
           </div>
 

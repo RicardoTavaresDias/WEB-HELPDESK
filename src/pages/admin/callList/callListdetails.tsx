@@ -1,15 +1,11 @@
 import { useParams } from "react-router" 
-import { Button } from "../../../components/ui/button"
-
-import clock from "../../../assets/icon/clock-1.svg"
-import circleCheck from "../../../assets/icon/circle-check-big-2.svg"
-
 import avatar from "../../../assets/img/Avatar.svg"
 import { called } from "../../../database/admCallList"
 import { useState } from "react" 
 import { Modules } from "../../../components/modules"
 import { Status } from "../../../components/ui/status"
 import { ModuleContext } from "../../../components/modules/moduleContext"
+import { ButtonServices } from "../../../components/ui/buttonServices"
 
 
 export function CallListdetails(){
@@ -19,13 +15,15 @@ export function CallListdetails(){
   const [itemCalled] = called.filter(item => item.id === id)
   const [details, setDetails ] = useState(itemCalled)
 
-  const service = (value: string): string[] => {
+  type ServicesStatus = "open" | "progress" | "close"
+
+  const service = (value: string): [ServicesStatus, ServicesStatus] => {
     if(value === "progress"){
-      return ["Aberto", "Encerrado", "open", "close"]
+      return ["open", "close"]
     }else if(value === "open"){
-      return ["Em atendimento", "Encerrado", "progress", "close"]
+      return ["progress", "close"]
     }
-    return ["Aberto", "Em atendimento", "open", "progress" ]
+    return ["open", "progress"]
   }
   //
 
@@ -33,18 +31,8 @@ export function CallListdetails(){
     <>
       <Modules.Root>
         <Modules.Title title="Chamado detalhado" to="/chamados" >
-          <Button typeColor="gray" typeSize="base" onClick={() => setDetails({...details, status: service(details.status)[2]})}>
-            <div className="flex gap-2 items-center max-sm:px-4.5">
-              <img src={clock} className="w-4 h-4" />
-              {service(details.status)[0]}
-            </div>
-          </Button>
-          <Button typeColor="gray" typeSize="base" onClick={() => setDetails({...details, status: service(details.status)[3]})}>
-            <div className="flex gap-2 items-center max-sm:px-4.5">
-              <img src={circleCheck} className="w-4 h-4" />
-              {service(details.status)[1]}
-            </div>
-          </Button>
+          <ButtonServices status={service(details.status)[0]} onClick={() => setDetails({...details, status: service(details.status)[0]})} />
+          <ButtonServices status={service(details.status)[1]} onClick={() => setDetails({...details, status: service(details.status)[1]})} />
         </Modules.Title>
 
         <Modules.Container>

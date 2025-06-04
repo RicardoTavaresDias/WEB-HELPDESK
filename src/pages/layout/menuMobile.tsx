@@ -30,7 +30,9 @@ export function MenuMobile({ element }: any){
             <div className="flex"> 
               <span className="Text-Xxs text-gray-400">Menu</span>
             </div>
-              <Menu element={element} />
+              <button onClick={() => setOpen(!open)} >
+                <Menu element={element} />
+              </button>
             </div>
         </button>
       </div>

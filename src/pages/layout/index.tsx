@@ -37,7 +37,7 @@ export function Layout({identification}: LayoutProps){
 
           <div className="lg:hidden">
             <button className="group">
-              <MenuLogOut classmobile="right-3 top-24 w-87"/>
+              <MenuLogOut classmobile="right-3 top-24 w-87" identification={identification}/>
             </button>
           </div>
         </div>
@@ -55,7 +55,7 @@ export function Layout({identification}: LayoutProps){
                 <div className="flex gap-3 items-center">
                   <button className="group">
                     <div>
-                      <MenuLogOut classmobile={`left-56 ${identification === "admin" ? "top-[calc(100vh-110px)]" : "top-[calc(100vh-170px)]"}  w-50`}/>
+                      <MenuLogOut classmobile={`left-56 ${identification === "admin" ? "top-[calc(100vh-110px)]" : "top-[calc(100vh-158px)]"}  w-50`} identification={identification} />
                     </div>
                   </button>
                   <div>
