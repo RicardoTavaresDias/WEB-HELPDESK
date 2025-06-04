@@ -84,8 +84,10 @@ export function Called(){
       <Modal.Root isActive={modal}>
         <Modal.Title title="Alterar senha" onClose={() => {setModal(!modal)}} onClick={() => {isModal(); setModal(!modal)}} />
         <Modal.Context >
-          <Input type="password" label="Senha atual" placeholder="Digite sua senha atual" />
-          <Input type="password" label="Nova senha" placeholder="Digite sua nova senha" textLabel="Mínimo de 6 dígitos" />
+          <div className="lg:w-fit lg:m-auto">
+            <Input type="password" label="Senha atual" placeholder="Digite sua senha atual" />
+            <Input type="password" label="Nova senha" placeholder="Digite sua nova senha" textLabel="Mínimo de 6 dígitos" />
+          </div>
         </Modal.Context>
         <div className="m-auto mb-5">
           <Button typeSize="xl" typeColor="black" >Salvar</Button>

@@ -8,7 +8,7 @@ export function Routes(){
   return (
     <BrowserRouter>
       <Auth />
-      {/* <Admin /> */}
+      <Admin />
       <Technical />
     </BrowserRouter>
   )

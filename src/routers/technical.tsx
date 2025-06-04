@@ -7,7 +7,7 @@ export function Technical(){
   return (
     <Routes>
       <Route element={<Layout identification="técnico"/>} >
-        <Route path="/chamados" element={<Called />} />
+        <Route path="/meus_chamados" element={<Called />} />
 
       </Route>
 
