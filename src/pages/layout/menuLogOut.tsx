@@ -2,6 +2,8 @@ import circleUser from "../../assets/icon/circle-user.svg"
 import logOut from "../../assets/icon/log-out.svg"
 import avatar from "../../assets/img/Avatar.svg"
 
+import { useProfile } from "../../context"
+
 type MenuLogOutProps = {
   classmobile?: string
   classLg?: string
@@ -14,6 +16,7 @@ import { Link } from "react-router"
 export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutProps){
   const [open, setOpen] =useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
+  const { profileModal, isModal }: any = useProfile()
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -42,18 +45,21 @@ export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutP
           <div>
             <ul className="mt-1 flex flex-col gap-1">
               {identification === "admin" ||
-                <li className="flex items-center gap-3 Text-Sm text-gray-400 cursor-pointer rounded-md h-11 hover:bg-gray-200 hover:text-gray-600">
-                  <img src={circleUser} className="ml-3 w-5 h-5" />
-                  <button onClick={() => setOpen(!open)} >
-                    <a href="#" className="">Perfil</a>
-                  </button>
-                </li>
+                <button onClick={() => {setOpen(!open); isModal()}} >
+                  <li className="flex items-center gap-3 Text-Sm text-gray-400 cursor-pointer rounded-md h-11 hover:bg-gray-200 hover:text-gray-600">
+                    <img src={circleUser} className="ml-3 w-5 h-5" />
+                    
+                      {/* Perfil */}{profileModal ? "true" : "false"}
+                    
+                  </li>
+                </button>
               }
-             
-              <li className="flex items-center gap-3 Text-Sm text-feedback-danger cursor-pointer rounded-md h-11 hover:bg-gray-200">
-                <img src={logOut} className="ml-3 w-5 h-5"  />
-                <Link to="/" >Sair</Link>
-              </li>
+              <Link to="/" >
+                <li className="flex items-center gap-3 Text-Sm text-feedback-danger cursor-pointer rounded-md h-11 hover:bg-gray-200">
+                  <img src={logOut} className="ml-3 w-5 h-5"  />
+                  Sair
+                </li>
+              </Link>
                
             </ul>
           </div>

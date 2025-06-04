@@ -36,9 +36,9 @@ export function Layout({identification}: LayoutProps){
           </div>
 
           <div className="lg:hidden">
-            <button className="group">
+            <div className="group">
               <MenuLogOut classmobile="right-3 top-24 w-87" identification={identification}/>
-            </button>
+            </div>
           </div>
         </div>
         {/* </Header, Menu Mobile> */}
@@ -53,11 +53,11 @@ export function Layout({identification}: LayoutProps){
             <div>
               
                 <div className="flex gap-3 items-center">
-                  <button className="group">
+                  <div className="group">
                     <div>
                       <MenuLogOut classmobile={`left-56 ${identification === "admin" ? "top-[calc(100vh-110px)]" : "top-[calc(100vh-158px)]"}  w-50`} identification={identification} />
                     </div>
-                  </button>
+                  </div>
                   <div>
                     <div>
                       <p className="text-gray-600 Text-Sm mb-1 w-28 truncate">Usuário Adm</p>

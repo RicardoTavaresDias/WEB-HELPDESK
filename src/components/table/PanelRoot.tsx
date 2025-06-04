@@ -23,5 +23,3 @@ export function PanelRoot({children, mobile, className}: TableProps){
     </div>
   )
 }
-
-// grid-cols-[auto_auto_auto_auto_auto_auto_auto_80px]
