@@ -1,7 +1,7 @@
 
 type ButtonProps = {
   children?: React.ReactNode
-  typeSize?: "base" | "sm" | "md" | "lg" | "xl"
+  typeSize?: "xxs" | "base" | "sm" | "md" | "lg" | "xl"
   typeColor?: "black" | "gray"
   onClick?: () => void
   icon?: React.ElementType,
@@ -9,6 +9,7 @@ type ButtonProps = {
 }
 
 const size ={
+  xxs: "p-1",
   base:"p-2.5 lg:px-6",
   sm: "p-2.5 w-22",
   md: "py-2.5 w-41 lg:w-47",

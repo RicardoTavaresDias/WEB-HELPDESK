@@ -40,7 +40,7 @@ export function CallListdetails(){
           <Modules.Context isType="50">
             <div className="flex justify-between items-center mb-1">
               <span className="Text-Xs text-gray-300">{details.id}</span>
-              <Status type={details.status as "open" | "progress" | "close"} />
+              <Status type={details.status as "open" | "progress" | "close"} isText />
             </div>
   
             <span className="text-gray-200 text-base font-medium">Backup não está funcionando	</span>
@@ -56,7 +56,7 @@ export function CallListdetails(){
               <span className="text-gray-400 Text-Xs">Categoria</span>
               <p className="text-sm font-normal text-gray-200">Recuperação de Dados</p>
             </div>
-
+           
             <div className="mt-5 flex justify-between">
               <div>
                 <span className="text-gray-400 Text-Xs">Criado em</span>

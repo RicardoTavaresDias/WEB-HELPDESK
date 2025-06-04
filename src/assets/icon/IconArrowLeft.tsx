@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 
-export function IconArrowLeft({ to, ...props }: any) {
+export function IconArrowLeft({ children, to, ...props }: any) {
   return (
     <div >
       <Link to={to} className="flex items-center gap-2">
@@ -18,7 +18,7 @@ export function IconArrowLeft({ to, ...props }: any) {
             fill="#535964"
           />
         </svg>
-        <span className="text-gray-300 Text-Xs">Voltar</span>
+        <span className="text-gray-300 Text-Xs">{children}</span>
       </Link>
     </div>
   );

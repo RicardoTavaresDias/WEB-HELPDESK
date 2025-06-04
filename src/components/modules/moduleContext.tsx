@@ -1,12 +1,13 @@
 type ContextProps = {
   children: React.ReactNode
   className?: string
-  isType: "40" | "50" | "60"
+  isType: "30" | "40" | "50" | "60"
 }
 
 export function ModuleContext({children, className, isType = "50"}: ContextProps){
 
   const widthMap: Record<string, string> = {
+    '30': 'basis-[calc(33%-0.80rem)]',
     '40': 'basis-[calc(40%-0.75rem)]',
     '50': 'basis-[calc(50%-0.75rem)]',
     '60': 'xl:basis-[calc(59%-0.75rem)] lg:basis-[calc(53%-0.75rem)]',

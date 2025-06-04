@@ -13,7 +13,7 @@ export function ModuleTitle({children, to, title, isButton}: TitleProps){
       <div className={`flex justify-between lg:items-center ${isButton || "max-sm:flex-col"} ${isButton && "items-center"}`}>
         <div className="flex flex-col gap-3">
           {to &&
-            <IconArrowLeft to={to} />
+            <IconArrowLeft to={to} >Voltar</IconArrowLeft>
           } 
           <span className="max-sm:hidden Text-Xl text-blue-dark text-xl font-bold">{title}</span>
           <span className="lg:hidden text-xl font-bold text-blue-dark">{title}</span>

@@ -1,12 +1,13 @@
 type RootProps =  {
-  children: React.ReactNode
+  children: React.ReactNode,
+  displauFull?: boolean
 }
 
 
-export function ModuleRoot({children}: RootProps){
+export function ModuleRoot({children, displauFull}: RootProps){
    return (
     <>
-      <div className="2xl:px-20 max-w-[1156px] m-auto">
+      <div className={displauFull ? "m-auto" : "2xl:px-20 max-w-[1156px] m-auto" }>
         {children}
       </div>
     </>

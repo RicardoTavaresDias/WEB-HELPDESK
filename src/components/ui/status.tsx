@@ -9,6 +9,7 @@ type StatusProps = {
   type: "open" | "progress" | "close" | "active" | "inactive"
   isIcon?: boolean
   isButton?: boolean // true só icon e false com text
+  isText?: boolean
 }
 
 const status = {
@@ -19,7 +20,7 @@ const status = {
   inactive: ["bg-feedback-open/20 text-feedback-open", ban, "Inativo"]
 }
 
-export function Status({type, isIcon, isButton}: StatusProps){
+export function Status({type, isIcon, isButton, isText}: StatusProps){
   if(isIcon || isButton){
     return (
       <div className={`${status[type][0]} p-2 px-4 h-7-open Text-Xs rounded-full flex justify-center items-center gap-1.5 w-fit`}>
@@ -32,7 +33,8 @@ export function Status({type, isIcon, isButton}: StatusProps){
    return (
     <div className={`${status[type][0]} p-2 h-7-open Text-Xs rounded-full flex justify-center items-center gap-1.5 w-fit`}>
       <img className="w-4 h-4" src={status[type][1]} />
-      <div className="max-sm:hidden">{status[type][2]}</div> 
+      <div className={"max-sm:hidden"}>{status[type][2]}</div> 
+      {isText && <div className="lg:hidden">{status[type][2]}</div>}
     </div>
   )
 }

@@ -16,7 +16,7 @@ import { Link } from "react-router"
 export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutProps){
   const [open, setOpen] =useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
-  const { profileModal, isModal }: any = useProfile()
+  const { isModal }: any = useProfile()
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -48,9 +48,7 @@ export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutP
                 <button onClick={() => {setOpen(!open); isModal()}} >
                   <li className="flex items-center gap-3 Text-Sm text-gray-400 cursor-pointer rounded-md h-11 hover:bg-gray-200 hover:text-gray-600">
                     <img src={circleUser} className="ml-3 w-5 h-5" />
-                    
-                      {/* Perfil */}{profileModal ? "true" : "false"}
-                    
+                    Perfil
                   </li>
                 </button>
               }
