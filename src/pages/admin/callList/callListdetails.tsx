@@ -5,7 +5,11 @@ import { useState } from "react"
 import { Modules } from "../../../components/modules"
 import { Status } from "../../../components/ui/status"
 import { ModuleContext } from "../../../components/modules/moduleContext"
-import { ButtonServices } from "../../../components/ui/buttonServices"
+
+import { IconCicleHelp } from "../../../assets/icon/iconCicleHelp";
+import { IconCicloCheckBig } from "../../../assets/icon/iconCicloCheckBig";
+import { IconClock } from "../../../assets/icon/iconClock";
+import { UiButton } from "../../../components/ui/UiButton"
 
 
 export function CallListdetails(){
@@ -15,24 +19,28 @@ export function CallListdetails(){
   const [itemCalled] = called.filter(item => item.id === id)
   const [details, setDetails ] = useState(itemCalled)
 
-  type ServicesStatus = "open" | "progress" | "close"
-
-  const service = (value: string): [ServicesStatus, ServicesStatus] => {
-    if(value === "progress"){
-      return ["open", "close"]
-    }else if(value === "open"){
-      return ["progress", "close"]
-    }
-    return ["open", "progress"]
-  }
-  //
-
   return (
     <>
       <Modules.Root>
         <Modules.Title title="Chamado detalhado" to="/chamados" >
-          <ButtonServices status={service(details.status)[0]} onClick={() => setDetails({...details, status: service(details.status)[0]})} />
-          <ButtonServices status={service(details.status)[1]} onClick={() => setDetails({...details, status: service(details.status)[1]})} />
+          {details.status === "open" &&
+            <>
+              <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => setDetails({...details, status: "progress"})} >Em Atendimento</UiButton>
+              <UiButton typeColor="gray" typeSize="md" icon={IconCicloCheckBig} onClick={() => setDetails({...details, status: "close"})} >Encerrado</UiButton>
+            </>
+          }
+          {details.status === "progress" &&
+            <>
+              <UiButton typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => setDetails({...details, status: "open"})} >Aberto</UiButton>
+              <UiButton typeColor="gray" typeSize="md" icon={IconCicloCheckBig} onClick={() => setDetails({...details, status: "close"})} >Encerrado</UiButton>
+            </>
+          }
+          {details.status === "close" &&
+            <>
+              <UiButton typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => setDetails({...details, status: "open"})} >Aberto</UiButton>
+              <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => setDetails({...details, status: "progress"})} >Em Atendimento</UiButton>
+            </>
+          }
         </Modules.Title>
 
         <Modules.Container>

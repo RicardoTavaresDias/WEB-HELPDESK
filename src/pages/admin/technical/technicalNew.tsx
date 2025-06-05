@@ -1,7 +1,7 @@
 import { Modules } from "../../../components/modules"
-import { Button } from "../../../components/ui/button"
 import { ButtonTime } from "../../../components/ui/buttonTime"
 import { Input } from "../../../components/ui/input"
+import { UiButton } from "../../../components/ui/UiButton"
 
 
 export function TechnicalNew(){
@@ -9,14 +9,8 @@ export function TechnicalNew(){
     <>
       <Modules.Root>
         <Modules.Title title="Perfil de técnico" to="/tecnicos">
-          <div className="max-sm:hidden flex gap-3">
-            <Button typeColor="gray" typeSize="base">Cancelar</Button>
-            <Button typeColor="black" typeSize="base">Salvar</Button>
-          </div>
-          <div className="lg:hidden flex gap-3">
-            <Button typeColor="gray" typeSize="md">Cancelar</Button>
-            <Button typeColor="black" typeSize="md">Salvar</Button>
-          </div>
+          <UiButton typeColor="gray" typeSize="llg" >Cancelar</UiButton>
+          <UiButton typeColor="black" typeSize="llg" >Salvar</UiButton>
         </Modules.Title>
 
         <Modules.Container>

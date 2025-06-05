@@ -1,14 +1,14 @@
 import { Modal } from "../../components/modal";
-import { Button } from "../../components/ui/button";
 import { useProfile } from "../../context"
 import avatar from "../../assets/img/Avatar.svg"
-import { IconPenLine } from "../../assets/icon/iconPenLine";
 import { IconTrash } from "../../assets/icon/iconTrash";
 import { Input } from "../../components/ui/input";
 import { ButtonTime } from "../../components/ui/buttonTime";
 import { useState } from "react";
 import { Modules } from "../../components/modules";
 import { Status } from "../../components/ui/status";
+import { UiButton } from "../../components/ui/UiButton";
+import { IconUpload } from "../../assets/icon/IconUpload";
 
 export function Called(){
   const [modal, setModal] = useState(false)
@@ -26,15 +26,8 @@ export function Called(){
             <div className="flex items-center gap-3">
               <img src={avatar} className="w-12 h-12"/>
               <div className="flex items-center gap-1">
-                <Button typeColor="gray" typeSize="xxs" >
-                  <div className="p-[3.5px]">
-                    <div className="flex gap-1 items-center Text-Xs">
-                      <IconPenLine className="w-3.5 h-3.5" />
-                      Nova imagem
-                    </div>
-                  </div>
-                </Button>
-                <IconTrash />
+                <UiButton typeColor="gray" typeSize="xxs" icon={IconUpload} color="black" >Nova imagem</UiButton>
+                <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconTrash} />
               </div>
             </div>
             {/* Avatar */}
@@ -46,9 +39,9 @@ export function Called(){
                 <Input type="password" label="senha" value="carlos.silva@test.com" />
                 <div className="absolute right-0 ">
                   <div className="">
-                    <Button typeColor="gray" typeSize="xxs" onClick={() => {setModal(!modal); isModal()}} >
+                    <button className="p-1 bg-gray-500 rounded-md text-xxs font-semibold cursor-pointer" onClick={() => {setModal(!modal); isModal()}} >
                       <span className="Text-Xs m-3 ">Alterar</span>
-                    </Button>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -74,7 +67,7 @@ export function Called(){
         </Modal.Context>
 
         <div className="m-auto mb-5">
-          <Button typeSize="xl" typeColor="black" >Salvar</Button>
+          <UiButton typeSize="xl" typeColor="black" >Salvar</UiButton>
         </div>
       </Modal.Root>
       {/* Perfil */}
@@ -90,7 +83,7 @@ export function Called(){
           </div>
         </Modal.Context>
         <div className="m-auto mb-5">
-          <Button typeSize="xl" typeColor="black" >Salvar</Button>
+          <UiButton typeSize="xl" typeColor="black" >Salvar</UiButton>
         </div>
       </Modal.Root>
       {/* Alterar Senha */}

@@ -1,14 +1,12 @@
-import { Link } from "react-router";
 
 export function IconTrash({to, ...props }: any) {
   return (
     <div>
-      <Link to={to}>
         <svg
           viewBox="0 0 32 32"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="hover:bg-gray-500 cursor-pointer p-1.5 w-7 h-7 rounded-md"
+          // className="hover:bg-gray-500 cursor-pointer p-1.5 w-7 h-7 rounded-md"
           {...props}
         >
           <path
@@ -18,7 +16,6 @@ export function IconTrash({to, ...props }: any) {
             fill={"#D03E3E"}
           />
         </svg>
-      </Link>
     </div>
   );
 }

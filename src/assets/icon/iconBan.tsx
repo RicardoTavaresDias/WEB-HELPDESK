@@ -1,11 +1,9 @@
-import { Link } from "react-router";
 
 export function IconBan({ to, children, ...props }: any) {
   return (
     <div className="flex items-center">
-      <Link to={to}>
         <svg
-          className="hover:bg-gray-500 cursor-pointer p-1.5 w-7 h-7 rounded-md"
+          // className="hover:bg-gray-500 cursor-pointer p-1.5 w-7 h-7 rounded-md"
           viewBox="0 0 32 32"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +14,6 @@ export function IconBan({ to, children, ...props }: any) {
             fill={"#535964"}
           />
         </svg>
-      </Link>
       {children}
     </div>
   );

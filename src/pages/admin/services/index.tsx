@@ -5,13 +5,13 @@ import { IconPenLine } from "../../../assets/icon/iconPenLine"
 import { IconBan } from "../../../assets/icon/iconBan"
 import { IconCicloCheck } from "../../../assets/icon/iconCicloCheck"
 
-import { Button } from "../../../components/ui/button"
 import { Status } from "../../../components/ui/status"
-import plus from "../../../assets/icon/plus.svg"
 import { Modal } from "../../../components/modal"
 
 import { useState } from "react";
 import { Input } from "../../../components/ui/input"
+import { UiButton } from "../../../components/ui/UiButton"
+import { IconPlus } from "../../../assets/icon/iconPlus"
 
 export function Services(){
   const [modalNew, setModalNew] = useState(false)
@@ -26,9 +26,9 @@ export function Services(){
           <Input type="text" label="Título" placeholder="Nome do serviço"/>
           <Input type="text" label="Valor" placeholder="R$ 0,00" />
         </Modal.Context>
-        <div className="m-auto mb-5">
-          <Button typeSize="xl" typeColor="black">Salvar</Button>
-        </div>
+        <Modal.Actions>
+          <UiButton typeSize="xl" typeColor="black">Salvar</UiButton>
+        </Modal.Actions>
       </Modal.Root>
 
       <Modal.Root isActive={modalEdition}>
@@ -37,21 +37,14 @@ export function Services(){
           <Input type="text" label="Título"  value="Instalação de rede" />
           <Input type="text" label="Valor" value="R$ 180,00" />
         </Modal.Context>
-        <div className="m-auto mb-5">
-          <Button typeSize="xl" typeColor="black">Salvar</Button>
-        </div>
+        <Modal.Actions>
+          <UiButton typeSize="xl" typeColor="black">Salvar</UiButton>
+        </Modal.Actions>
       </Modal.Root>
 
       <div className="mb-7">
         <Modules.Title title="Técnicos" isButton={true} >
-          <div className="max-sm:hidden">
-            <Button typeColor="black" typeSize="sm" onClick={() => setModalNew(!modalNew)}>
-              <div className="flex gap-2 items-center"><img src={plus} className="w-4 h-4" />Novo</div>
-            </Button>
-          </div>
-          <div className="lg:hidden">
-            <Button typeColor="black" typeSize="base" onClick={() => setModalNew(!modalNew)} ><img src={plus} className="w-4 h-4" /></Button>
-          </div>
+          <UiButton icon={IconPlus} typeColor="black" typeSize="xs" color="#F9FAFA" onClick={() => setModalNew(!modalNew)} >{<span className="max-sm:hidden">Novo</span>}</UiButton>
         </Modules.Title>
       </div>
 
@@ -67,11 +60,11 @@ export function Services(){
           <Status type={status ? "active" : "inactive"} isButton={true} />
         </Panel.Rows>
         <Panel.Rows>
-          <div className="flex items-center gap-1.5">
-            {status && <IconBan onClick={() => setStatus(!status) } >Desativar</IconBan>}
-            {!status && <IconCicloCheck onClick={() => setStatus(!status)} >Reativar</IconCicloCheck>}
-            <IconPenLine onClick={() => setModalEdition(!modalEdition)} />
+          <div className="flex items-center gap-1 mr-1">
+            {status && <><UiButton typeColor="hoverGray" typeSize="xxs" icon={IconBan} onClick={() => setStatus(!status)} />Desativar</>}
+            {!status && <><UiButton typeColor="hoverGray" typeSize="xxs" icon={IconCicloCheck} onClick={() => setStatus(!status)} />Reativar</>}
           </div>
+          <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
         </Panel.Rows>
       </Panel.Root>
 
@@ -90,11 +83,11 @@ export function Services(){
           <Status type={status ? "active" : "inactive"} isButton={false} />
         </Panel.Rows>
         <Panel.Rows>
-          <div className="flex items-center gap-1">
-            {status && <IconBan onClick={() => setStatus(!status) } />}
-            {!status && <IconCicloCheck onClick={() => setStatus(!status)} />}
-            <IconPenLine onClick={() => setModalEdition(!modalEdition)} />
+          <div className="flex items-center gap-1 mr-0.5">
+            {status && <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconBan} onClick={() => setStatus(!status)} />}
+            {!status && <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconCicloCheck} onClick={() => setStatus(!status)} />}
           </div>
+          <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
         </Panel.Rows>
       </Panel.Root>
       {/* Mobile */}

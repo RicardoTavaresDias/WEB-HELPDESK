@@ -1,12 +1,12 @@
 import { Panel } from "../../../components/table"
 import avatar from "../../../assets/img/Avatar.svg"
-import plus from "../../../assets/icon/plus.svg";
 import { IconPenLine } from "../../../assets/icon/iconPenLine";
 
 import { ButtonTime } from "../../../components/ui/buttonTime";
 import { Modules } from "../../../components/modules";
-import { Button } from "../../../components/ui/button";
 import { Link } from "react-router";
+import { UiButton } from "../../../components/ui/UiButton";
+import { IconPlus } from "../../../assets/icon/iconPlus";
 
 export function Technical(){
   return (
@@ -14,12 +14,7 @@ export function Technical(){
       <div className="mb-7">
         <Modules.Title title="Técnicos" isButton={true} >
           <Link to={"/tecnicos/novo"}>
-            <div className="max-sm:hidden">
-              <Button typeColor="black" typeSize="sm">
-                <div className="flex gap-2 items-center"><img src={plus} className="w-4 h-4" />Novo</div>
-              </Button>
-            </div>
-            <div className="lg:hidden"><Button typeColor="black" typeSize="base"><img src={plus} className="w-4 h-4" /></Button></div>
+            <UiButton icon={IconPlus} typeColor="black" typeSize="xs" color="#F9FAFA" >{<span className="max-sm:hidden">Novo</span>}</UiButton>
           </Link>
         </Modules.Title>
       </div>
@@ -49,7 +44,7 @@ export function Technical(){
           </div>
         </Panel.Rows>
         <Panel.Rows>
-          <IconPenLine to={"/tecnicos/edicao"} />
+          <Link to="/tecnicos/edicao" ><UiButton typeColor="hoverGray" typeSize="xxs" icon={IconPenLine} /></Link>
         </Panel.Rows>
       </Panel.Root>
 
@@ -72,7 +67,7 @@ export function Technical(){
           </div>
         </Panel.Rows>
         <Panel.Rows>
-          <IconPenLine to={"/tecnicos/edicao"} />
+          <Link to="/tecnicos/edicao" ><UiButton typeColor="hoverGray" typeSize="xxs" icon={IconPenLine} /></Link>
         </Panel.Rows>
       </Panel.Root>
       {/* Mobile */}

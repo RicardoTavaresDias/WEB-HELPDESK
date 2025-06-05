@@ -1,4 +1,12 @@
 import { Panel } from "../../components/table"
+import { Button } from "../../components/ui/button";
+import { Status } from "../../components/ui/status";
+
+import { IconBan } from "../../assets/icon/iconBan";
+import { IconPenLine } from "../../assets/icon/iconPenLine";
+import { UiButton } from "../../components/ui/UiButton";
+import { IconClock } from "../../assets/icon/iconClock";
+import { IconPlus } from "../../assets/icon/iconPlus";
 
 export function Services(){
   return (
@@ -41,11 +49,6 @@ export function Services(){
   )
 }
 
-import { Button } from "../../components/ui/button";
-import { Status } from "../../components/ui/status";
-
-import { IconBan } from "../../assets/icon/iconBan";
-import { IconPenLine } from "../../assets/icon/iconPenLine";
 
 
 
@@ -88,11 +91,21 @@ export function Teste(){
 
       {/* Icon Button */}
       <IconPenLine color="red" onClick={() => alert("Deu certo Icon!")} className="hover:bg-gray-500 cursor-pointer p-1.5 w-7 h-7 rounded-md" />
+
+      <div className="flex gap-3">
+        <UiButton typeColor="gray" typeSize="md" >Cancelar</UiButton>
+        <UiButton typeColor="black" typeSize="md" >Salvar </UiButton>
+      </div>
+      
+      
     </>
   )
 }
 
 import { Modules } from "../../components/modules"
+import { IconArrowLeft } from "../../assets/icon/IconArrowLeft";
+
+
 
 export function Module(){
   return (

@@ -5,9 +5,9 @@ import { IconTrash } from "../../../assets/icon/iconTrash";
 import { useState } from "react";
 import { Modal } from "../../../components/modal/";
 import { Input } from "../../../components/ui/input";
-import { Button } from "../../../components/ui/button";
 import { Modules } from "../../../components/modules";
 import { PanelColumn } from "../../../components/table/panelColumn";
+import { UiButton } from "../../../components/ui/UiButton";
 
 export function Customers(){
   const [modalRemove, setModalRemove] = useState(false)
@@ -22,8 +22,8 @@ export function Customers(){
           <p className="text-gray-200 Text-md mt-5 max-sm:w-75">Ao excluir, todos os chamados deste cliente serão removidos e esta ação não poderá ser desfeita.</p>
         </Modal.Context>
         <Modal.Actions>
-          <Button typeSize="md" typeColor="gray" onClick={() => setModalRemove(!modalRemove)} >Cancelar</Button>
-          <Button typeSize="md" typeColor="black" >Sim, excluir</Button>
+          <UiButton typeSize="lg" typeColor="gray" onClick={() => setModalRemove(!modalRemove)} >Cancelar</UiButton>
+          <UiButton typeSize="lg" typeColor="black" >Sim, excluir</UiButton>
         </Modal.Actions>
       </Modal.Root>
 
@@ -39,7 +39,7 @@ export function Customers(){
           </div>  
         </Modal.Context>
         <Modal.Actions>
-          <Button typeSize="xl" typeColor="black">Salvar</Button>
+          <UiButton typeSize="xl" typeColor="black" >Salvar</UiButton>
         </Modal.Actions>
       </Modal.Root>
 
@@ -60,10 +60,8 @@ export function Customers(){
             </Panel.Rows>
             <Panel.Rows>julia.maria@client.com</Panel.Rows>
             <Panel.Rows>
-              <div className="flex gap-2">
-                <IconTrash onClick={() => setModalRemove(!modalRemove)} />
-                <IconPenLine onClick={() => setModalEdition(!modalEdition)} />
-              </div>
+              <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconTrash} onClick={() => setModalRemove(!modalRemove)} />
+              <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
             </Panel.Rows>
           </Panel.Root>
         </div>
@@ -83,10 +81,8 @@ export function Customers(){
           </Panel.Rows>
           <Panel.Rows><span className="truncate">julia.maria@client.com</span></Panel.Rows>
           <Panel.Rows>
-            <div className="flex gap-1">
-              <IconTrash onClick={() => setModalRemove(!modalRemove)} />
-              <IconPenLine onClick={() => setModalEdition(!modalEdition)} />
-            </div>
+            <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconTrash} onClick={() => setModalRemove(!modalRemove)} />
+            <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
           </Panel.Rows>
         </Panel.Root>
         {/* Mobile */}
