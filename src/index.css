@@ -59,12 +59,11 @@ section::-webkit-scrollbar {
 }
 
 section::-webkit-scrollbar-thumb {
-    background-color: #E3E5E8;
-    border-radius: 8px;
-  }
+  background-color: #E3E5E8;
+  border-radius: 8px;
+}
 
-
-main {
+body {
   margin: 0 auto;
   background-image: url("./assets//img/Login_Background.png");
   background-repeat: no-repeat;

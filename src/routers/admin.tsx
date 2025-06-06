@@ -7,6 +7,7 @@ import { TechnicalNew } from "../pages/admin/technical/technicalNew"
 import { TechnicalEdition } from "../pages/admin/technical/technicalEdition"
 import { Customers } from "../pages/admin/customers"
 import { Services } from "../pages/admin/services"
+import { NotFound } from "../pages/notFound"
 
 export function Admin(){
   return (
@@ -21,7 +22,7 @@ export function Admin(){
         <Route path="/servicos" element={<Services />} />
       </Route>
 
-      <Route path="*" element={"Not Found"} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }

@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router"
 import { Layout } from "../pages/layout"
 import { Called } from "../pages/technical"
 import { CallDetails } from "../pages/technical/callDetails"
+import { NotFound } from "../pages/notFound"
 
 export function Technical(){
   return (
@@ -11,7 +12,8 @@ export function Technical(){
         <Route path="/chamados/:id" element={<CallDetails />} />
       </Route>
       
-      <Route path="*" element={"Not Found"} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
+    
   )
 }
