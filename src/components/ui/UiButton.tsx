@@ -9,9 +9,9 @@ type VariantProps = {
 
 const variant = {
   size: {
-    xxs: " py-1.5 px-1.5 rounded-md", //botão dos icons escrita e exclusão
+    xxs: " p-1.5 rounded-md", //botão dos icons escrita e exclusão
     xs: " py-3 max-sm:py-2.5 px-4 max-sm:px-3 rounded-md", // botão plus
-    md: " py-3 px-5 rounded-md max-sm:px-7.5", // botão cancelar e salvar e botões status dos chamados admin
+    md: " py-3 px-5 rounded-md max-sm:px-6.5", // botão cancelar e salvar e botões status dos chamados admin
     lg: " py-3 px-15 max-sm:px-10 rounded-md", // botões duplos modal cancelar e excluir
     llg: " py-3 px-8 max-sm:px-15 rounded-md", // botões duplos edição cancelar e salva na pagina admin tecnico
     xl: " lg:px-43 px-35 py-3 rounded-md" // botão grande salvar Modal unico
@@ -34,7 +34,7 @@ export function UiButton({children, typeColor, typeSize, color = "#535964", icon
           }
           {...props}
       >
-        {Icon && <Icon className="w-4 h-4" color={color} />}
+        {Icon && <Icon className="w-4.5 h-4.5" color={color} />}
         {children}
       </button>
     </>

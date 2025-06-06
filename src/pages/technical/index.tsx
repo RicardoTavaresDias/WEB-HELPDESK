@@ -1,161 +1,203 @@
-import { Modal } from "../../components/modal";
-import { useProfile } from "../../context"
 import avatar from "../../assets/img/Avatar.svg"
-import { IconTrash } from "../../assets/icon/iconTrash";
-import { Input } from "../../components/ui/input";
-import { ButtonTime } from "../../components/ui/buttonTime";
-import { useState } from "react";
+
 import { Modules } from "../../components/modules";
 import { Status } from "../../components/ui/status";
 import { UiButton } from "../../components/ui/UiButton";
-import { IconUpload } from "../../assets/icon/IconUpload";
+import { IconPenLine } from "../../assets/icon/iconPenLine";
+import { IconCicloCheckBig } from "../../assets/icon/iconCicloCheckBig";
+import { Link } from "react-router";
+import { IconClock } from "../../assets/icon/iconClock";
+import { IsProfile } from "../../components/profile";
 
 export function Called(){
-  const [modal, setModal] = useState(false)
-  const { profileModal, isModal }: any = useProfile()
-
+  
   return (
     <>
-      {/* Perfil */}
-      <Modal.Root isActive={profileModal}>
-        <Modal.Title title="Perfil" onClose={() => isModal()} />
-
-        <Modal.Context className="mb-0 border-t">
-          <div className="lg:w-fit lg:m-auto">
-            {/* Avatar */}
-            <div className="flex items-center gap-3">
-              <img src={avatar} className="w-12 h-12"/>
-              <div className="flex items-center gap-1">
-                <UiButton typeColor="gray" typeSize="xxs" icon={IconUpload} color="black" >Nova imagem</UiButton>
-                <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconTrash} />
-              </div>
-            </div>
-            {/* Avatar */}
-
-            <div className="mt-5">
-              <Input type="text" label="nome" value="Carlos Silva" />
-              <Input type="text" label="e-mail" value="carlos.silva@test.com" />
-              <div className="flex items-center relative ">
-                <Input type="password" label="senha" value="carlos.silva@test.com" />
-                <div className="absolute right-0 ">
-                  <div className="">
-                    <button className="p-1 bg-gray-500 rounded-md text-xxs font-semibold cursor-pointer" onClick={() => {setModal(!modal); isModal()}} >
-                      <span className="Text-Xs m-3 ">Alterar</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Modal.Context>
-
-        <Modal.Context className="border-t border-b mb-6">
-          <div >
-            <div>
-              <span className="Text-Sm">Disponibilidade</span>
-              <p className="Text-Xs text-gray-300">Horários de atendimento definidos pelo admin</p>
-            </div>
-            <div className="flex gap-1 mt-3">
-              <ButtonTime type="read" >09:00</ButtonTime>
-              <ButtonTime type="read" >10:00</ButtonTime>
-              <ButtonTime type="read" >12:00</ButtonTime>
-              <ButtonTime type="read" >13:00</ButtonTime>
-              <ButtonTime type="read" >15:00</ButtonTime>
-              <ButtonTime type="read" >16:00</ButtonTime>
-            </div>
-          </div>
-        </Modal.Context>
-
-        <div className="m-auto mb-5">
-          <UiButton typeSize="xl" typeColor="black" >Salvar</UiButton>
-        </div>
-      </Modal.Root>
-      {/* Perfil */}
-
-
-      {/* Alterar Senha */}
-      <Modal.Root isActive={modal}>
-        <Modal.Title title="Alterar senha" onClose={() => {setModal(!modal)}} onClick={() => {isModal(); setModal(!modal)}} />
-        <Modal.Context >
-          <div className="lg:w-fit lg:m-auto">
-            <Input type="password" label="Senha atual" placeholder="Digite sua senha atual" />
-            <Input type="password" label="Nova senha" placeholder="Digite sua nova senha" textLabel="Mínimo de 6 dígitos" />
-          </div>
-        </Modal.Context>
-        <div className="m-auto mb-5">
-          <UiButton typeSize="xl" typeColor="black" >Salvar</UiButton>
-        </div>
-      </Modal.Root>
-      {/* Alterar Senha */}
-      
-
-
-
-
-
-      {/* Conteúdo */}
+      <IsProfile myProfile="technical" />
       <Modules.Root displauFull>
         <Modules.Title title="Meus chamados" />
 
+        {/* Em atendimento */}
         <div className="mt-7 max-sm:mt-1">
           <Status type="progress" isText />
           <Modules.Container>
-            <Modules.Context isType="30">
-              <div className="w-[346px]">
-                Conteúdo 1
+            <Modules.Context isType="30" >
+              <div className="lg:w-[346px]">
+                <div className="flex items-center justify-between">
+                  0003
+                  <div className="flex gap-1.5 items-center">
+                    <Link to={`/meus_chamados/00004`} ><UiButton icon={IconPenLine} typeColor="gray" typeSize="xxs" /></Link>
+                    <UiButton icon={IconCicloCheckBig } typeColor="black" typeSize="xxs" color="#F9FAFA" ><span className="px-1">Encerrar</span></UiButton>
+                  </div>
+                </div>
+
+                <div className="">
+                  <span className="text-base font-semibold text-gray-200">Rede Lenta</span>
+                  <p className="text-sm">Instalação de Rede	</p>
+                </div>
+
+                <div className="flex justify-between mt-4.5 text-base">
+                  <span>10/04/25 15:13</span>
+                  <span>R$ 200,00</span>
+                </div>
+
+                <div className="my-4 border-1 border-gray-500"></div>
+
+                <div className="flex justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <img src={avatar} className="w-5 h5" />
+                    André Costa
+                  </div>
+                  <Status type="progress" isIcon />
+                </div>
               </div>
             </Modules.Context>
           </Modules.Container>
         </div>
+        {/* Em atendimento */}
 
-
-
-
+        {/* Aberto */}
         <div className="mt-7">
           <Status type="open" isText />
           <Modules.Container>
             <Modules.Context isType="30">
-              <div className="w-[346px]">
-                Conteúdo 1
+              <div className="lg:w-[346px]">
+                <div className="flex items-center justify-between">
+                  0003
+                  <div className="flex gap-1.5 items-center">
+                    <Link to={`/meus_chamados/00002`} ><UiButton icon={IconPenLine} typeColor="gray" typeSize="xxs" /></Link>
+                    <UiButton icon={IconClock} typeColor="black" typeSize="xxs" color="#F9FAFA" ><span className="px-1">Iniciar</span></UiButton>
+                  </div>
+                </div>
+
+                <div className="">
+                  <span className="text-base font-semibold text-gray-200">Rede Lenta</span>
+                  <p className="text-sm">Instalação de Rede	</p>
+                </div>
+
+                <div className="flex justify-between mt-4.5 text-base">
+                  <span>10/04/25 15:13</span>
+                  <span>R$ 200,00</span>
+                </div>
+
+                <div className="my-4 border-1 border-gray-500"></div>
+
+                <div className="flex justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <img src={avatar} className="w-5 h5" />
+                    André Costa
+                  </div>
+                  <Status type="open" isIcon />
+                </div>
               </div>
             </Modules.Context>
 
             <Modules.Context isType="30">
-              <div className="w-[346px]">
-                Conteúdo 2
+              <div className="lg:w-[346px]">
+                <div className="flex items-center justify-between">
+                  0003
+                  <div className="flex gap-1.5 items-center">
+                    <Link to={`/meus_chamados/00002`} ><UiButton icon={IconPenLine} typeColor="gray" typeSize="xxs" /></Link>
+                    <UiButton icon={IconClock} typeColor="black" typeSize="xxs" color="#F9FAFA" ><span className="px-1">Iniciar</span></UiButton>
+                  </div>
+                </div>
+
+                <div className="">
+                  <span className="text-base font-semibold text-gray-200">Rede Lenta</span>
+                  <p className="text-sm">Instalação de Rede	</p>
+                </div>
+
+                <div className="flex justify-between mt-4.5 text-base">
+                  <span>10/04/25 15:13</span>
+                  <span>R$ 200,00</span>
+                </div>
+
+                <div className="my-4 border-1 border-gray-500"></div>
+
+                <div className="flex justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <img src={avatar} className="w-5 h5" />
+                    André Costa
+                  </div>
+                  <Status type="open" isIcon />
+                </div>
               </div>
             </Modules.Context>
 
             <Modules.Context isType="30">
-              <div className="w-[346px]">
-                Conteúdo 3
-              </div>
-            </Modules.Context>
+              <div className="lg:w-[346px]">
+                <div className="flex items-center justify-between">
+                  0003
+                  <div className="flex gap-1.5 items-center">
+                    <Link to={`/meus_chamados/00002`} ><UiButton icon={IconPenLine} typeColor="gray" typeSize="xxs" /></Link>
+                    <UiButton icon={IconClock} typeColor="black" typeSize="xxs" color="#F9FAFA" ><span className="px-1">Iniciar</span></UiButton>
+                  </div>
+                </div>
 
-            <Modules.Context isType="30">
-              <div className="w-[346px]">
-                Conteúdo 4
+                <div className="">
+                  <span className="text-base font-semibold text-gray-200">Rede Lenta</span>
+                  <p className="text-sm">Instalação de Rede	</p>
+                </div>
+
+                <div className="flex justify-between mt-4.5 text-base">
+                  <span>10/04/25 15:13</span>
+                  <span>R$ 200,00</span>
+                </div>
+
+                <div className="my-4 border-1 border-gray-500"></div>
+
+                <div className="flex justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <img src={avatar} className="w-5 h5" />
+                    André Costa
+                  </div>
+                  <Status type="open" isIcon />
+                </div>
               </div>
             </Modules.Context>
           </Modules.Container>
         </div>
+        {/* Aberto */}
 
-
-
-
+        {/* Encerrado */}
         <div className="mt-7">
           <Status type="close" isText />
           <Modules.Container>
             <Modules.Context isType="30">
-              <div className="w-[346px]">
-                Conteúdo 1
+              <div className="lg:w-[346px]">
+                <div className="flex items-center justify-between">
+                  0003
+                  <div className="flex gap-1.5 items-center">
+                    <Link to={`/meus_chamados/00005`} ><UiButton icon={IconPenLine} typeColor="gray" typeSize="xxs" /></Link>
+                  </div>
+                </div>
+
+                <div className="">
+                  <span className="text-base font-semibold text-gray-200">Rede Lenta</span>
+                  <p className="text-sm">Instalação de Rede	</p>
+                </div>
+
+                <div className="flex justify-between mt-4.5 text-base">
+                  <span>10/04/25 15:13</span>
+                  <span>R$ 200,00</span>
+                </div>
+
+                <div className="my-4 border-1 border-gray-500"></div>
+
+                <div className="flex justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <img src={avatar} className="w-5 h5" />
+                    André Costa
+                  </div>
+                  <Status type="close" isIcon />
+                </div>
               </div>
             </Modules.Context>
           </Modules.Container>
         </div>
+        {/* Encerrado */}
 
       </Modules.Root>
-      {/* Conteúdo */}
     </>
   )
 }

@@ -1,0 +1,22 @@
+export function IconCamera({ color, ...props }: any) {
+  return (
+    <div>
+      <svg
+        viewBox="0 0 24 24"
+        fill={"#858B99"}
+        stroke="#E3E5E8"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        className="lucide lucide-camera-icon lucide-camera"
+        {...props}
+      >
+        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+        <circle cx="12" cy="13" r="3" />
+      </svg>
+    </div>
+  );
+}
+
+
+
