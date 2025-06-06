@@ -46,7 +46,7 @@ export function IsProfile({myProfile}: IsProfileProps){
               </div> */}
 
               <div className="ml-6">
-                <button className="flex items-center gap-1 bg-gray-500 rounded px-2 py-1.5 cursor-pointer">
+                <button className="flex items-center gap-1 bg-gray-500 rounded px-2 py-2 cursor-pointer">
                   <IconTrash className="w-4 h-4" /> 
                   <span className="Text-Xs">Remover</span>
                 </button>
