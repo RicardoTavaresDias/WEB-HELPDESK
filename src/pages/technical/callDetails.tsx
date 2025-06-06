@@ -23,7 +23,7 @@ export function CallDetails(){
       <IsProfile myProfile="technical" />
 
       <Modules.Root>
-        <Modules.Title title="Chamado detalhado" to="/meus_chamados">
+        <Modules.Title title="Chamado detalhado" to="/chamados">
           {details.status === "open" &&
             <>
               <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => setDetails({...details, status: "progress"})} >Encerrar</UiButton>

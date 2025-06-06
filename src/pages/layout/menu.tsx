@@ -43,28 +43,12 @@ export function Menu({ element }: any){
                 <img src={wrench} className="ml-3 w-5 h-5" />
                 <Link to="/servicos" >Serviços</Link>
               </li>
-
-              {/* -------------------------------------------------- PROVISORIO --------------------------------------------------------------------------- */}
-
-                    {/* Provisorio Momento Desenvolvimento */}
-                    <li className={`flex items-center gap-3 Text-Sm ${currentPath === "" ? button.active : button.notActive} cursor-pointer rounded-md h-11`}>
-                      <img src="https://images.icon-icons.com/11/PNG/256/technicalsupport_support_representative_person_people_woman_1643.png" className="ml-3 w-5 h-5" />
-                      <Link to="/meus_chamados" >AREA DO TÉCNICO</Link>
-                    </li>
-
-                    <li className={`flex items-center gap-3 Text-Sm ${currentPath === "" ? button.active : button.notActive} cursor-pointer rounded-md h-11`}>
-                      <img src="https://images.icon-icons.com/2898/PNG/512/test_exam_icon_182954.png" className="ml-3 w-5 h-5" />
-                      <Link to="/teste" >TESTE</Link>
-                    </li>
-                    {/* Provisorio Momento Desenvolvimento */}
-
-              {/* -------------------------------------------------- PROVISORIO --------------------------------------------------------------------------- */}
             </>
           }
 
           {element === "técnico" &&
             <>
-              <li className={`flex items-center gap-3 Text-Sm ${currentPath === "meus_chamados" ? button.active : button.notActive} cursor-pointer rounded-md h-11`}>
+              <li className={`flex items-center gap-3 Text-Sm ${currentPath === "chamados" ? button.active : button.notActive} cursor-pointer rounded-md h-11`}>
                 <img src={clipboardList} className="ml-3 w-5 h-5" />
                 <Link to="/chamados" >Meus Chamados</Link>
               </li>
@@ -73,14 +57,14 @@ export function Menu({ element }: any){
 
           {element === "cliente" &&
             <>
-              <li className={`flex items-center gap-3 Text-Sm ${currentPath === "meus_chamados" ? button.active : button.notActive} cursor-pointer rounded-md h-11`}>
+              <li className={`flex items-center gap-3 Text-Sm ${currentPath === "chamados" ? button.active : button.notActive} cursor-pointer rounded-md h-11`}>
                 <img src={clipboardList} className="ml-3 w-5 h-5" />
-                <Link to="/meus_chamados" >Meus Chamados</Link>
+                <Link to="/chamados" >Meus Chamados</Link>
               </li>
 
-              <li className={`flex items-center gap-3 Text-Sm ${currentPath === "meus_chamados" ? button.active : button.notActive} cursor-pointer rounded-md h-11`}>
+              <li className={`flex items-center gap-3 Text-Sm ${currentPath === "criar_chamado" ? button.active : button.notActive} cursor-pointer rounded-md h-11`}>
                 <img src={plus} className="ml-3 w-5 h-5" />
-                <Link to="/#" >Meus Chamados</Link>
+                <Link to="/criar_chamado" >Criar chamado</Link>
               </li>
             </>
           }

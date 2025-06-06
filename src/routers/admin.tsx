@@ -8,8 +8,6 @@ import { TechnicalEdition } from "../pages/admin/technical/technicalEdition"
 import { Customers } from "../pages/admin/customers"
 import { Services } from "../pages/admin/services"
 
-import { Teste } from "./Testes"
-
 export function Admin(){
   return (
     <Routes>
@@ -21,13 +19,9 @@ export function Admin(){
           <Route path="/tecnicos/edicao" element={<TechnicalEdition />} />
         <Route path="/clientes" element={<Customers />} />
         <Route path="/servicos" element={<Services />} />
-
-        {/* Teste */}
-        <Route path="/teste" element={<Teste />} />
-        {/* Teste */}
       </Route>
 
-      {/* <Route path="*" element={"Not Found"} /> */}
+      <Route path="*" element={"Not Found"} />
     </Routes>
   )
 }

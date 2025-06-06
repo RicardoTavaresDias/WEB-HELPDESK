@@ -26,7 +26,7 @@ export function Called(){
                 <div className="flex items-center justify-between">
                   0003
                   <div className="flex gap-1.5 items-center">
-                    <Link to={`/meus_chamados/00004`} ><UiButton icon={IconPenLine} typeColor="gray" typeSize="xxs" /></Link>
+                    <Link to={`/chamados/00004`} ><UiButton icon={IconPenLine} typeColor="gray" typeSize="xxs" /></Link>
                     <UiButton icon={IconCicloCheckBig } typeColor="black" typeSize="xxs" color="#F9FAFA" ><span className="px-1">Encerrar</span></UiButton>
                   </div>
                 </div>
@@ -65,7 +65,7 @@ export function Called(){
                 <div className="flex items-center justify-between">
                   0003
                   <div className="flex gap-1.5 items-center">
-                    <Link to={`/meus_chamados/00002`} ><UiButton icon={IconPenLine} typeColor="gray" typeSize="xxs" /></Link>
+                    <Link to={`/chamados/00002`} ><UiButton icon={IconPenLine} typeColor="gray" typeSize="xxs" /></Link>
                     <UiButton icon={IconClock} typeColor="black" typeSize="xxs" color="#F9FAFA" ><span className="px-1">Iniciar</span></UiButton>
                   </div>
                 </div>
@@ -97,7 +97,7 @@ export function Called(){
                 <div className="flex items-center justify-between">
                   0003
                   <div className="flex gap-1.5 items-center">
-                    <Link to={`/meus_chamados/00002`} ><UiButton icon={IconPenLine} typeColor="gray" typeSize="xxs" /></Link>
+                    <Link to={`/chamados/00002`} ><UiButton icon={IconPenLine} typeColor="gray" typeSize="xxs" /></Link>
                     <UiButton icon={IconClock} typeColor="black" typeSize="xxs" color="#F9FAFA" ><span className="px-1">Iniciar</span></UiButton>
                   </div>
                 </div>
@@ -129,7 +129,7 @@ export function Called(){
                 <div className="flex items-center justify-between">
                   0003
                   <div className="flex gap-1.5 items-center">
-                    <Link to={`/meus_chamados/00002`} ><UiButton icon={IconPenLine} typeColor="gray" typeSize="xxs" /></Link>
+                    <Link to={`/chamados/00002`} ><UiButton icon={IconPenLine} typeColor="gray" typeSize="xxs" /></Link>
                     <UiButton icon={IconClock} typeColor="black" typeSize="xxs" color="#F9FAFA" ><span className="px-1">Iniciar</span></UiButton>
                   </div>
                 </div>
@@ -168,7 +168,7 @@ export function Called(){
                 <div className="flex items-center justify-between">
                   0003
                   <div className="flex gap-1.5 items-center">
-                    <Link to={`/meus_chamados/00005`} ><UiButton icon={IconPenLine} typeColor="gray" typeSize="xxs" /></Link>
+                    <Link to={`/chamados/00005`} ><UiButton icon={IconPenLine} typeColor="gray" typeSize="xxs" /></Link>
                   </div>
                 </div>
 
