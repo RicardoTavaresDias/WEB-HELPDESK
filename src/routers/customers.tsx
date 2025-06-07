@@ -12,11 +12,11 @@ export function Customers(){
         <Route path="/chamados" element={<Called />} />
           <Route path="/chamados/:id" element={"<Called />"} />
         <Route path="/criar_chamado" element={<CreateCall />} />
+
+        <Route path="/teste" element={<Teste />} />
       </Route>
 
-        {/* Teste */}
-        <Route path="/teste" element={<Teste />} />
-        {/* Teste */}
+       
       {/* <Route path="*" element={"Not Found"} /> */}
     </Routes>
   )

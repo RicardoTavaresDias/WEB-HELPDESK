@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Modal } from "../../components/modal";
 import { useProfile } from "../../context";
 import { IconCamera } from "../../assets/icon/Iconcamera";
@@ -7,6 +7,7 @@ import { Input } from "../../components/ui/input";
 import { ButtonTime } from "../../components/ui/buttonTime";
 import { UiButton } from "../../components/ui/UiButton";
 import avatar from "../../assets/img/Avatar.svg"
+import { IconPlay } from "../../assets/icon/IconPlay";
 
 type IsProfileProps = {
   myProfile: "technical" | "customers"
@@ -15,6 +16,23 @@ type IsProfileProps = {
 export function IsProfile({myProfile}: IsProfileProps){
   const [modal, setModal] = useState(false)
   const { profileModal, isModal }: any = useProfile()
+
+  const [isOpen, setIsOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+  
+    useEffect(() => {
+      function handleClickOutside(event: MouseEvent) {
+        // Fecha o menu se clicar fora
+        if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+          setIsOpen(false)
+        }
+      }
+  
+      document.addEventListener("click", handleClickOutside)
+      return () => {
+        document.removeEventListener("click", handleClickOutside)
+      }
+    }, [])
   
   return (
     <>
@@ -23,19 +41,38 @@ export function IsProfile({myProfile}: IsProfileProps){
         <Modal.Title title="Perfil" onClose={() => isModal()} />
 
         <Modal.Context className={myProfile !== "technical" ? "" : "mb-0 border-t"}>
-          <div className="lg:w-fit lg:m-auto">
+          <div className="lg:w-fit lg:m-auto relative">
             {/* Avatar */}
-            <div className="flex items-center">
-              <img src={avatar} className="w-12 h-12 relative"/>
+            <div className="flex items-center w-fit" ref={menuRef}>
+              <img src={avatar} className="w-15 h-15 relative"/>
             
-              <div className="absolute ml-8 mt-5.5 z-40 cursor-pointer">
-                <div className="bg-gray-500/85 rounded-full relative w-5.5 h-5.5 flex justify-center items-center " >
-                  <IconCamera className="w-4 h-4 " />
-                  <div className="opacity-0 rounded-full absolute top-0 left-0 right-0 bottom-0">
+            
+              <div className="absolute ml-10 mt-9 z-40 cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+                <div className="bg-gray-500/85 rounded-full relative w-5.5 h-5.5 flex justify-center items-center" >
+                  <IconCamera className="w-5 h-5 " />
+                  {/* <div className="opacity-0 rounded-full absolute top-0 left-0 right-0 bottom-0">
                     <input type="file" className="w-6 h-6" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
+              
+
+              {isOpen &&
+                <div className="w-50 bg-gray-500 p-2 absolute top-19 left-8 rounded" >
+                  <ul className="Text-Xs relative">
+                    <IconPlay className="w-5 absolute -top-4" />
+                    <li className="hover:bg-gray-400/15 cursor-pointer p-1.5 flex items-center gap-2 relative rounded">
+                      <IconCamera className="w-5.5" />
+                      Escolher foto
+                      <input type="file" className="absolute w-42 opacity-0" />
+                    </li>
+                    <li className="hover:bg-gray-400/15 cursor-pointer p-1.5 flex items-center gap-2 rounded">
+                      <IconTrash className="w-4 ml-1" />
+                      Remover foto atual
+                    </li>
+                  </ul>
+                </div>
+              }
 
 
               {/* Icon no avatar lixeira */}
@@ -45,12 +82,12 @@ export function IsProfile({myProfile}: IsProfileProps){
                 </div>
               </div> */}
 
-              <div className="ml-6">
+              {/* <div className="ml-6">
                 <button className="flex items-center gap-1 bg-gray-500 rounded px-2 py-2 cursor-pointer">
                   <IconTrash className="w-4 h-4" /> 
                   <span className="Text-Xs">Remover</span>
                 </button>
-              </div>
+              </div> */}
 
             </div>
             {/* Avatar */}
