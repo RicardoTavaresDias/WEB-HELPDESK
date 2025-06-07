@@ -33,8 +33,8 @@ export function IsProfile({myProfile}: IsProfileProps){
             
             
               <div className="absolute ml-10 mt-9 z-40 cursor-pointer" onClick={() => setOpen(!open)}>
-                <div className="bg-gray-500/85 rounded-full relative w-5.5 h-5.5 flex justify-center items-center" >
-                  <IconCamera className="w-5 h-5 " />
+                <div className="bg-gray-500 rounded-full relative w-6 h-6 flex justify-center items-center" >
+                  <IconCamera className="w-5 h-5 fill-gray-400 hover:fill-gray-200" />
                   {/* <div className="opacity-0 rounded-full absolute top-0 left-0 right-0 bottom-0">
                     <input type="file" className="w-6 h-6" />
                   </div> */}
@@ -46,12 +46,12 @@ export function IsProfile({myProfile}: IsProfileProps){
                 <div className="w-50 bg-gray-500 p-2 absolute top-19 left-8 rounded" >
                   <ul className="Text-Xs relative">
                     <IconPlay className="w-5 absolute -top-4" />
-                    <li className="hover:bg-gray-400/15 cursor-pointer p-1.5 flex items-center gap-2 relative rounded">
-                      <IconCamera className="w-5.5" />
+                    <li className="hover:bg-gray-400/15 cursor-pointer p-1.5 flex items-center gap-2 relative rounded" onClick={() => setOpen(!open)}>
+                      <IconCamera className="w-5.5 fill-gray-400" />
                       Escolher foto
                       <input type="file" className="absolute w-42 opacity-0" />
                     </li>
-                    <li className="hover:bg-gray-400/15 cursor-pointer p-1.5 flex items-center gap-2 rounded">
+                    <li className="hover:bg-gray-400/15 cursor-pointer p-1.5 flex items-center gap-2 rounded" onClick={() => setOpen(!open)}>
                       <IconTrash className="w-4 ml-1" />
                       Remover foto atual
                     </li>
