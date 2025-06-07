@@ -3,6 +3,8 @@ import logOut from "../../assets/icon/log-out.svg"
 import avatar from "../../assets/img/Avatar.svg"
 
 import { useProfile } from "../../context"
+import { Link } from "react-router"
+import { useOpenModal } from "../../hooks/useOpenModal"
 
 type MenuLogOutProps = {
   classmobile?: string
@@ -10,27 +12,9 @@ type MenuLogOutProps = {
   identification?: string
 }
 
-import { useState, useRef, useEffect } from "react"
-import { Link } from "react-router"
-
 export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutProps){
-  const [open, setOpen] =useState(false)
-  const menuRef = useRef<HTMLDivElement>(null)
+  const { menuRef, open, setOpen } = useOpenModal()
   const { isModal }: any = useProfile()
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      // Fecha o menu se clicar fora
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setOpen(false)
-      }
-    }
-
-    document.addEventListener("click", handleClickOutside)
-    return () => {
-      document.removeEventListener("click", handleClickOutside)
-    }
-  }, [])
 
   return (
     <div ref={menuRef}>
@@ -61,9 +45,7 @@ export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutP
                
             </ul>
           </div>
-
         </div>
-  
     </div>
   )
 }

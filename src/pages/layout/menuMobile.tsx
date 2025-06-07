@@ -2,25 +2,10 @@ import menu from "../../assets/icon/menu.svg"
 import x from "../../assets/icon/x.svg"
 import { Menu } from "./menu"
 
-import { useState, useRef, useEffect } from "react"
+import { useOpenModal } from "../../hooks/useOpenModal"
 
 export function MenuMobile({ element }: any){
-  const [open, setOpen] =useState(false)
-  const menuRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      // Fecha o menu se clicar fora
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setOpen(false)
-      }
-    }
-
-    document.addEventListener("click", handleClickOutside)
-    return () => {
-      document.removeEventListener("click", handleClickOutside)
-    }
-  }, [])
+  const { open, menuRef, setOpen } = useOpenModal()
 
   return (
     <div ref={menuRef}>

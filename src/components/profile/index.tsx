@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { Modal } from "../../components/modal";
 import { useProfile } from "../../context";
 import { IconCamera } from "../../assets/icon/Iconcamera";
@@ -8,31 +8,16 @@ import { ButtonTime } from "../../components/ui/buttonTime";
 import { UiButton } from "../../components/ui/UiButton";
 import avatar from "../../assets/img/Avatar.svg"
 import { IconPlay } from "../../assets/icon/IconPlay";
+import { useOpenModal } from "../../hooks/useOpenModal"
 
 type IsProfileProps = {
   myProfile: "technical" | "customers"
 }
 
 export function IsProfile({myProfile}: IsProfileProps){
-  const [modal, setModal] = useState(false)
+  const { menuRef, open, setOpen } = useOpenModal()
+  const [modalPassword, setModalPassword] = useState(false)
   const { profileModal, isModal }: any = useProfile()
-
-  const [isOpen, setIsOpen] = useState(false)
-  const menuRef = useRef<HTMLDivElement>(null)
-  
-    useEffect(() => {
-      function handleClickOutside(event: MouseEvent) {
-        // Fecha o menu se clicar fora
-        if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-          setIsOpen(false)
-        }
-      }
-  
-      document.addEventListener("click", handleClickOutside)
-      return () => {
-        document.removeEventListener("click", handleClickOutside)
-      }
-    }, [])
   
   return (
     <>
@@ -47,7 +32,7 @@ export function IsProfile({myProfile}: IsProfileProps){
               <img src={avatar} className="w-15 h-15 relative"/>
             
             
-              <div className="absolute ml-10 mt-9 z-40 cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+              <div className="absolute ml-10 mt-9 z-40 cursor-pointer" onClick={() => setOpen(!open)}>
                 <div className="bg-gray-500/85 rounded-full relative w-5.5 h-5.5 flex justify-center items-center" >
                   <IconCamera className="w-5 h-5 " />
                   {/* <div className="opacity-0 rounded-full absolute top-0 left-0 right-0 bottom-0">
@@ -57,7 +42,7 @@ export function IsProfile({myProfile}: IsProfileProps){
               </div>
               
 
-              {isOpen &&
+              {open &&
                 <div className="w-50 bg-gray-500 p-2 absolute top-19 left-8 rounded" >
                   <ul className="Text-Xs relative">
                     <IconPlay className="w-5 absolute -top-4" />
@@ -99,7 +84,7 @@ export function IsProfile({myProfile}: IsProfileProps){
                 <Input type="password" label="senha" value="carlos.silva@test.com" />
                 <div className="absolute right-0 ">
                   <div className="">
-                    <button className="p-1 bg-gray-500 rounded-md text-xxs font-semibold cursor-pointer" onClick={() => {setModal(!modal); isModal()}} >
+                    <button className="p-1 bg-gray-500 rounded-md text-xxs font-semibold cursor-pointer" onClick={() => {setModalPassword(!modalPassword); isModal()}} >
                       <span className="Text-Xs m-3 ">Alterar</span>
                     </button>
                   </div>
@@ -135,8 +120,8 @@ export function IsProfile({myProfile}: IsProfileProps){
       {/* Perfil */}
 
       {/* Alterar Senha */}
-      <Modal.Root isActive={modal}>
-        <Modal.Title title="Alterar senha" onClose={() => {setModal(!modal)}} onClick={() => {isModal(); setModal(!modal)}} />
+      <Modal.Root isActive={modalPassword}>
+        <Modal.Title title="Alterar senha" onClose={() => {setModalPassword(!modalPassword)}} onClick={() => {isModal(); setModalPassword(!modalPassword)}} />
         <Modal.Context >
           <div className="lg:w-fit lg:m-auto">
             <Input type="password" label="Senha atual" placeholder="Digite sua senha atual" />
