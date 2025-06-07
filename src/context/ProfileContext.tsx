@@ -1,13 +1,12 @@
 import { createContext } from "react";
 import { useState } from "react";
-import { useContext } from "react";
 
 type ProfileContextType = {
   profileModal: boolean;
   isModal: () => void;
 };
 
-const ProfileContext = createContext<ProfileContextType | undefined>(undefined)
+export const ProfileContext = createContext({} as ProfileContextType)
 
 type ProfileProviderProps = {
   children: React.ReactNode;
@@ -26,5 +25,3 @@ export function ProfileProvider({children}: ProfileProviderProps){
     </ProfileContext.Provider>
   )
 }
-
-export const useProfile = () => useContext(ProfileContext)

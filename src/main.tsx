@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { ProfileProvider } from './context/index.tsx'
+import { ProfileProvider } from './context/ProfileContext.tsx'
 
 import './index.css'
 import App from './App.tsx'

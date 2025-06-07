@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Modal } from "../../components/modal";
-import { useProfile } from "../../context";
+import { useProfile } from "../../hooks/useProfile";
 import { IconCamera } from "../../assets/icon/Iconcamera";
 import { IconTrash } from "../../assets/icon/iconTrash";
 import { Input } from "../../components/ui/input";

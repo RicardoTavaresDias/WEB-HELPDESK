@@ -1,7 +1,7 @@
 import logOut from "../../assets/icon/log-out.svg"
 import avatar from "../../assets/img/Avatar.svg"
 
-import { useProfile } from "../../context"
+import { useProfile } from "../../hooks/useProfile"
 import { Link } from "react-router"
 import { useOpenModal } from "../../hooks/useOpenModal"
 import { IconCicleUser } from "../../assets/icon/iconCicleUser"
