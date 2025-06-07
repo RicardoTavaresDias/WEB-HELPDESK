@@ -1,10 +1,10 @@
-import circleUser from "../../assets/icon/circle-user.svg"
 import logOut from "../../assets/icon/log-out.svg"
 import avatar from "../../assets/img/Avatar.svg"
 
 import { useProfile } from "../../context"
 import { Link } from "react-router"
 import { useOpenModal } from "../../hooks/useOpenModal"
+import { IconCicleUser } from "../../assets/icon/iconCicleUser"
 
 type MenuLogOutProps = {
   classmobile?: string
@@ -30,8 +30,8 @@ export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutP
             <ul className="mt-1 flex flex-col gap-1">
               {identification === "admin" ||
                 <button onClick={() => {setOpen(!open); isModal()}} >
-                  <li className="flex items-center gap-3 Text-Sm text-gray-400 cursor-pointer rounded-md h-11 hover:bg-gray-200 hover:text-gray-600">
-                    <img src={circleUser} className="ml-3 w-5 h-5" />
+                  <li className="flex items-center gap-3 Text-Sm text-gray-400 cursor-pointer rounded-md h-11 hover:bg-gray-200 hover:text-gray-600 group/user">
+                    <IconCicleUser className="ml-3 w-5 h-5 fill-gray-400 group-hover/user:fill-gray-600" />
                     Perfil
                   </li>
                 </button>
