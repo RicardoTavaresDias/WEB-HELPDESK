@@ -35,7 +35,6 @@ export function IsProfile({myProfile}: IsProfileProps){
                   <IconCamera className="w-5 h-5 fill-gray-400 hover:fill-gray-200" />
                 </div>
               </div>
-<<<<<<< HEAD
 
               {/* Modal Escolher foto do perfil */}
               <div className={`absolute top-19 left-8 z-20 ${open ? "scale-100 opacity-100" : "scale-95 opacity-0"} transition-all ease-out duration-200`}>
@@ -55,24 +54,7 @@ export function IsProfile({myProfile}: IsProfileProps){
                 </div>
               </div>
               {/* Modal Escolher foto do perfil */}
-=======
-              
-              {/* Modal foto input file e remove, com animação de transição */}
-              <div className={`${open ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"} w-50 bg-gray-500 p-2 absolute top-19 left-8 rounded shadow-lg transition-transform duration-200 ease-out transform`} >
-                <ul className="Text-Xs relative">
-                  <IconPlay className="w-5 absolute -top-4" />
-                  <li className="hover:bg-gray-400/15 cursor-pointer p-1.5 flex items-center gap-2 relative rounded" onClick={() => setOpen(!open)}>
-                    <IconCamera className="w-5.5 fill-gray-400" />
-                    Escolher foto
-                    <input type="file" className="absolute w-42 opacity-0" />
-                  </li>
-                  <li className="hover:bg-gray-400/15 cursor-pointer p-1.5 flex items-center gap-2 rounded" onClick={() => setOpen(!open)}>
-                    <IconTrash className="w-4 ml-1" />
-                    Remover foto atual
-                  </li>
-                </ul>
-              </div>
->>>>>>> 4aa6396fcf0977e65ae5fafe5a8727b9f5cbf860
+
             </div>
             {/* Avatar */}
 
