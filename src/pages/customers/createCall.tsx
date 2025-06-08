@@ -99,7 +99,7 @@ export function CreateCall(){
 
               <p className="Text-Xs my-6 text-gray-300">O chamado será automaticamente atribuído a um técnico disponível</p>
 
-              <UiButton typeColor="black" typeSize="sm">Criar chamado</UiButton>
+              <UiButton typeColor="black" typeSize="base">Criar chamado</UiButton>
           </Modules.Context>
         </Modules.Container>
       </Modules.Root>

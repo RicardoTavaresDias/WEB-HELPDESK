@@ -4,15 +4,15 @@ type VariantProps = {
   children?: React.ReactNode,
   icon?: ElementType
   typeColor: "black" | "gray" | "hoverGray"
-  typeSize: "xxs" | "xs" | "md" | "sm" | "lg" | "llg" | "xl"
+  typeSize: "base" | "xxs" | "xs" | "md" | "lg" | "llg" | "xl"
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 const variant = {
   size: {
+    base: " py-3 w-full rounded-md justify-center",
     xxs: " p-1.5 rounded-md", //botão dos icons escrita e exclusão
     xs: " py-3 max-sm:py-2.5 px-4 max-sm:px-3 rounded-md", // botão plus
     md: " py-3 px-5 rounded-md max-sm:px-6.5", // botão cancelar e salvar e botões status dos chamados admin
-    sm: " py-3 w-full rounded-md justify-center ",
     lg: " py-3 px-15 max-sm:px-10 rounded-md", // botões duplos modal cancelar e excluir
     llg: " py-3 px-8 max-sm:px-15 rounded-md", // botões duplos edição cancelar e salva na pagina admin tecnico
     xl: " lg:px-43 px-35 py-3 rounded-md" // botão grande salvar Modal unico
@@ -29,7 +29,7 @@ export function UiButton({children, typeColor, typeSize, color = "#535964", icon
   return (
     <>
       <button className={
-        "Text-Sm flex items-center gap-1.5 cursor-pointer" + 
+        "Text-Sm flex items-center gap-1.5 cursor-pointer hover:shadow-lg/15" + 
           variant.typeColor[typeColor] + 
           variant.size[typeSize] 
           }

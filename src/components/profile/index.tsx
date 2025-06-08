@@ -65,7 +65,7 @@ export function IsProfile({myProfile}: IsProfileProps){
                 <Input type="password" label="senha" value="carlos.silva@test.com" />
                 <div className="absolute right-0 ">
                   <div className="">
-                    <button className="p-1 bg-gray-500 rounded-md text-xxs font-semibold cursor-pointer" onClick={() => {setModalPassword(!modalPassword); isModal()}} >
+                    <button className="p-1 bg-gray-500 rounded-md text-xxs font-semibold cursor-pointer hover:shadow-md" onClick={() => {setModalPassword(!modalPassword); isModal()}} >
                       <span className="Text-Xs m-3 ">Alterar</span>
                     </button>
                   </div>
