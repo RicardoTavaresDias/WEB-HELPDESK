@@ -95,7 +95,7 @@ export function IsProfile({myProfile}: IsProfileProps){
         }
 
         <div className="m-auto mb-5">
-          <UiButton typeSize="xl" typeColor="black" >Salvar</UiButton>
+          <UiButton typeSize="xxl" typeColor="black" >Salvar</UiButton>
         </div>
       </Modal.Root>
       {/* Perfil */}
@@ -110,7 +110,7 @@ export function IsProfile({myProfile}: IsProfileProps){
           </div>
         </Modal.Context>
         <div className="m-auto mb-5">
-          <UiButton typeSize="xl" typeColor="black" >Salvar</UiButton>
+          <UiButton typeSize="xxl" typeColor="black" >Salvar</UiButton>
         </div>
       </Modal.Root>
       {/* Alterar Senha */}

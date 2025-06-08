@@ -39,7 +39,7 @@ export function Customers(){
           </div>  
         </Modal.Context>
         <Modal.Actions>
-          <UiButton typeSize="xl" typeColor="black" >Salvar</UiButton>
+          <UiButton typeSize="xxl" typeColor="black" >Salvar</UiButton>
         </Modal.Actions>
       </Modal.Root>
 

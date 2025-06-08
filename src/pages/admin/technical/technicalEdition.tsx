@@ -8,8 +8,8 @@ export function TechnicalEdition(){
   return (
     <Modules.Root>
       <Modules.Title title="Perfil de técnico" to="/tecnicos">
-        <UiButton typeColor="gray" typeSize="llg" >Cancelar</UiButton>
-        <UiButton typeColor="black" typeSize="llg" >Salvar</UiButton>
+        <UiButton typeColor="gray" typeSize="xl" >Cancelar</UiButton>
+        <UiButton typeColor="black" typeSize="xl" >Salvar</UiButton>
       </Modules.Title>
 
       <Modules.Container>

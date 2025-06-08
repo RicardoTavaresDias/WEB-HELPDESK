@@ -9,9 +9,9 @@ export function Routes(){
   return (
     <BrowserRouter>
       <Auth />
-      {/* <Admin /> */}
+      <Admin />
       {/* <Technical /> */}
-      <Customers />
+      {/* <Customers /> */}
     </BrowserRouter>
   )
 }
