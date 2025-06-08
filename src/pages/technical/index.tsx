@@ -41,7 +41,7 @@ export function Called(){
                   <span>R$ 200,00</span>
                 </div>
 
-                <div className="my-4 border-1 border-gray-500"></div>
+                <div className="my-4 border-t-1 border-gray-500/45"></div>
 
                 <div className="flex justify-between">
                   <div className="flex items-center gap-1.5">
@@ -80,7 +80,7 @@ export function Called(){
                   <span>R$ 200,00</span>
                 </div>
 
-                <div className="my-4 border-1 border-gray-500"></div>
+                <div className="my-4 border-t-1 border-gray-500/45"></div>
 
                 <div className="flex justify-between">
                   <div className="flex items-center gap-1.5">
@@ -112,7 +112,7 @@ export function Called(){
                   <span>R$ 200,00</span>
                 </div>
 
-                <div className="my-4 border-1 border-gray-500"></div>
+                <div className="my-4 border-t-1 border-gray-500/45"></div>
 
                 <div className="flex justify-between">
                   <div className="flex items-center gap-1.5">
@@ -144,7 +144,7 @@ export function Called(){
                   <span>R$ 200,00</span>
                 </div>
 
-                <div className="my-4 border-1 border-gray-500"></div>
+                <div className="my-4 border-t-1 border-gray-500/45"></div>
 
                 <div className="flex justify-between">
                   <div className="flex items-center gap-1.5">
@@ -182,7 +182,7 @@ export function Called(){
                   <span>R$ 200,00</span>
                 </div>
 
-                <div className="my-4 border-1 border-gray-500"></div>
+                <div className="my-4 border-t-1 border-gray-500/45"></div>
 
                 <div className="flex justify-between">
                   <div className="flex items-center gap-1.5">
