@@ -13,7 +13,7 @@ export function Admin(){
   return (
     <Routes>
       <Route element={<Layout identification="admin"/>} >
-        <Route path="/chamados" element={<CallList />} />
+        <Route path="/" element={<CallList />} />
           <Route path="/chamados/:id" element={<CallListdetails />} />
         <Route path="/tecnicos" element={<Technical />} />
           <Route path="/tecnicos/novo" element={<TechnicalNew />} />

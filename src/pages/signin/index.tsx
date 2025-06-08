@@ -6,19 +6,24 @@ import { Input } from "../../components/ui/input"
 import { useState } from "react"
 import { useNavigate } from "react-router"
 
+import { useProfile } from "../../hooks/useProfile" // remover
+
 export function Signin(){
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
 
+  const { setTeste } = useProfile() // remover
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
     console.log({ email, password })
-
+    setTeste(email) // remover
+    
     setEmail("")
     setPassword("")
-    navigate("/chamados")
+    navigate("/")
   }
 
   return (

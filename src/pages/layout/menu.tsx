@@ -22,9 +22,9 @@ export function Menu({ element }: any){
     
           {element === "admin" &&
             <>
-              <li className={`flex items-center gap-3 Text-Sm ${currentPath === "chamados" ? button.active : button.notActive} cursor-pointer rounded-md h-11 group/list`}>
-                <IconClipboardList className={`ml-3 w-5 h-5  ${currentPath === "chamados" ? "fill-gray-600" : "fill-gray-400 group-hover/list:fill-gray-500" }`} />
-                <Link to="/chamados" >Chamados</Link>
+              <li className={`flex items-center gap-3 Text-Sm ${currentPath === "" || currentPath === "chamados" ? button.active : button.notActive} cursor-pointer rounded-md h-11 group/list`}>
+                <IconClipboardList className={`ml-3 w-5 h-5  ${currentPath === "" || currentPath === "chamados" ? "fill-gray-600" : "fill-gray-400 group-hover/list:fill-gray-500" }`} />
+                <Link to="/" >Chamados</Link>
               </li>
 
               <li className={`flex items-center gap-3 Text-Sm ${currentPath === "tecnicos" ? button.active : button.notActive} cursor-pointer rounded-md h-11 group/user`}>
@@ -47,18 +47,18 @@ export function Menu({ element }: any){
 
           {element === "técnico" &&
             <>
-              <li className={`flex items-center gap-3 Text-Sm ${currentPath === "chamados" ? button.active : button.notActive} cursor-pointer rounded-md h-11 group/list`}>
-                <IconClipboardList className={`ml-3 w-5 h-5  ${currentPath === "chamados" ? "fill-gray-600" : "fill-gray-400 group-hover/list:fill-gray-500" }`} />
-                <Link to="/chamados" >Meus Chamados</Link>
+              <li className={`flex items-center gap-3 Text-Sm ${currentPath === "" || currentPath === "chamados" ? button.active : button.notActive} cursor-pointer rounded-md h-11 group/list`}>
+                <IconClipboardList className={`ml-3 w-5 h-5  ${currentPath === "" || currentPath === "chamados" ? "fill-gray-600" : "fill-gray-400 group-hover/list:fill-gray-500" }`} />
+                <Link to="/" >Meus Chamados</Link>
               </li>
             </>
           }
           
           {element === "cliente" &&
             <>
-              <li className={`flex items-center gap-3 Text-Sm ${currentPath === "chamados" ? button.active : button.notActive} cursor-pointer rounded-md h-11 group/list`}>
-                <IconClipboardList className={`ml-3 w-5 h-5  ${currentPath === "chamados" ? "fill-gray-600" : "fill-gray-400 group-hover/list:fill-gray-500" }`} />
-                <Link to="/chamados" >Meus Chamados</Link>
+              <li className={`flex items-center gap-3 Text-Sm ${currentPath === "" || currentPath === "chamados" ? button.active : button.notActive} cursor-pointer rounded-md h-11 group/list`}>
+                <IconClipboardList className={`ml-3 w-5 h-5  ${currentPath === "" || currentPath === "chamados" ? "fill-gray-600" : "fill-gray-400 group-hover/list:fill-gray-500" }`} />
+                <Link to="/" >Meus Chamados</Link>
               </li>
 
               {/* Arrumar Icon, remover fill */}

@@ -17,7 +17,7 @@ export function CallDetails(){
       <IsProfile myProfile="customers" />
 
       <Modules.Root>
-        <Modules.Title title="Chamado detalhado" to="/chamados" />
+        <Modules.Title title="Chamado detalhado" to="/" />
         <Modules.Container>
 
           <Modules.Context isType="60">

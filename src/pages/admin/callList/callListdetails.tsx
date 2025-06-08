@@ -22,7 +22,7 @@ export function CallListdetails(){
   return (
     <>
       <Modules.Root>
-        <Modules.Title title="Chamado detalhado" to="/chamados" >
+        <Modules.Title title="Chamado detalhado" to="/" >
           {details.status === "open" &&
             <>
               <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => setDetails({...details, status: "progress"})} >Em Atendimento</UiButton>

@@ -7,7 +7,7 @@ export function NotFound(){
         <h1 className="text-[170px] max-sm:text-[90px]" >Oops!</h1>
         <span className="uppercase text-2xl max-sm:text-base" >404 - page not Found</span>
         <p className="max-sm:text-sm">A página solicitada não pôde ser encontrada</p>
-        <Link to={"/chamados"} className="mt-10">
+        <Link to={"/"} className="mt-10">
           <span className="bg-gray-500 px-10 py-2 rounded text-gray-200 font-semibold ">
             Voltar
           </span>
