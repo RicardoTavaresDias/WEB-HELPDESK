@@ -134,7 +134,7 @@ export function CallDetails(){
                 <p className="text-sm font-semibold text-gray-200">Recuperação de Dados</p>
                 <div className="flex items-center gap-6">
                   <span className="Text-Xs text-gray-200">R$ 120,00</span>
-                  <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconTrash} />
+                  <UiButton typeColor="gray" typeSize="xxs" icon={IconTrash} />
                 </div>
               </div>
 
@@ -142,7 +142,7 @@ export function CallDetails(){
                 <p className="text-sm font-semibold text-gray-200">Formatação do PC</p>
                 <div className="flex items-center gap-6">
                   <span className="Text-Xs text-gray-200">R$ 75,00</span>
-                  <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconTrash} />
+                  <UiButton typeColor="gray" typeSize="xxs" icon={IconTrash} />
                 </div>
               </div>
               

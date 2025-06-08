@@ -50,7 +50,7 @@ export function Customers(){
           <Panel.Root className="grid-cols-[48%_auto_10%]">
             <PanelColumn>Nome</PanelColumn>
             <PanelColumn>E-mail</PanelColumn>
-            <PanelColumn>Icon</PanelColumn>
+            <PanelColumn>{""}</PanelColumn>
             
             <Panel.Rows>
               <div className="flex gap-3 items-center">
@@ -60,18 +60,20 @@ export function Customers(){
             </Panel.Rows>
             <Panel.Rows>julia.maria@client.com</Panel.Rows>
             <Panel.Rows>
-              <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconTrash} onClick={() => setModalRemove(!modalRemove)} />
-              <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
+              <div className="flex gap-1.5">
+                <UiButton typeColor="gray" typeSize="xxs" icon={IconTrash} onClick={() => setModalRemove(!modalRemove)} />
+                <UiButton typeColor="gray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
+              </div>
             </Panel.Rows>
           </Panel.Root>
         </div>
       </Modules.Root>
 
       {/* Mobile */}
-      <Panel.Root mobile={true} className="grid-cols-[40%_35%_auto]" >
+      <Panel.Root mobile={true} className="grid-cols-[40%_33%_auto]" >
         <PanelColumn>Nome</PanelColumn>
         <PanelColumn>E-mail</PanelColumn>
-        <PanelColumn>Icon</PanelColumn>
+        <PanelColumn>{""}</PanelColumn>
 
         <Panel.Rows>
             <div className="flex gap-3 items-center">
@@ -81,8 +83,10 @@ export function Customers(){
           </Panel.Rows>
           <Panel.Rows><span className="truncate">julia.maria@client.com</span></Panel.Rows>
           <Panel.Rows>
-            <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconTrash} onClick={() => setModalRemove(!modalRemove)} />
-            <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
+            <div className="flex gap-1.5">
+              <UiButton typeColor="gray" typeSize="xxs" icon={IconTrash} onClick={() => setModalRemove(!modalRemove)} />
+              <UiButton typeColor="gray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
+            </div>
           </Panel.Rows>
         </Panel.Root>
         {/* Mobile */}

@@ -50,7 +50,7 @@ export function CreateCall(){
                 } 
 
                 {/* Select */}
-                <div className="relative" ref={menuRef}>
+                <div className="relative" ref={menuRef} >
                   <Input type="text" placeholder="Selecione a categoria de atendimento" label="categoria de serviço" isScren value={select} disabled border={open} />
                   <IconChevronDown className={`w-5 h-5 absolute top-10.5 right-1 cursor-pointer  ${open ? "rotate-180 fill-blue-base" : "fill-gray-400"}`} onClick={() => setOpen(!open)}/>
 
@@ -62,7 +62,7 @@ export function CreateCall(){
                         {option && option.map((value, index) => (
                           <>
                             <div key={index} className={`py-2 ${select === value ? "text-gray-200 font-semibold" : ""} flex justify-between`} onClick={() => { setSelect(value); setOpen(!open)} }>
-                              {value}
+                              <span className="hover:text-gray-200">{value}</span>
                               {select === value && <IconCheck className="w-5 h-5 fill-blue-base" />}
                             </div>
                           </>

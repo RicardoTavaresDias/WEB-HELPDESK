@@ -29,7 +29,7 @@ export function Called(){
         <Panel.Column>Valor total</Panel.Column>
         <Panel.Column>Técnico</Panel.Column>
         <Panel.Column>Status</Panel.Column>
-        <Panel.Column>Icon</Panel.Column>
+        <Panel.Column>{""}</Panel.Column>
 
         {called.map(item => (
           <>
@@ -55,7 +55,7 @@ export function Called(){
             </Panel.Rows>
              <Panel.Rows><Status type={item.status as "open" | "progress" | "close"} /></Panel.Rows>
              <Panel.Rows>
-              <Link to={`/chamados/${item.id}`}><UiButton icon={IconEye} typeSize="xxs" typeColor="hoverGray" /></Link>
+              <Link to={`/chamados/${item.id}`}><UiButton icon={IconEye} typeSize="xxs" typeColor="gray" /></Link>
             </Panel.Rows>
             </Fragment>
           </>
@@ -68,7 +68,7 @@ export function Called(){
         <Panel.Column>Atualizado em</Panel.Column>
         <Panel.Column>Título</Panel.Column>
         <Panel.Column>Status</Panel.Column>
-        <Panel.Column>Icon</Panel.Column>
+        <Panel.Column>{""}</Panel.Column>
 
         {called.map(item => (
           <>
@@ -81,7 +81,7 @@ export function Called(){
               </Panel.Rows>
               <Panel.Rows><Status type={item.status as "open" | "progress" | "close"}/></Panel.Rows>
               <Panel.Rows>
-                <Link to={`/chamados/${item.id}`}><UiButton icon={IconEye} typeSize="xxs" typeColor="hoverGray" /></Link>
+                <Link to={`/chamados/${item.id}`}><UiButton icon={IconEye} typeSize="xxs" typeColor="gray" /></Link>
               </Panel.Rows>
             </Fragment>
           </>

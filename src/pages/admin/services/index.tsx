@@ -52,7 +52,7 @@ export function Services(){
         <Panel.Column>Título</Panel.Column>
         <Panel.Column>Valor</Panel.Column>
         <Panel.Column>Status</Panel.Column>
-        <Panel.Column>Icon</Panel.Column>
+        <Panel.Column>{""}</Panel.Column>
 
         <Panel.Rows>Instalação de Rede</Panel.Rows>
         <Panel.Rows>R$ 180,00</Panel.Rows>
@@ -60,11 +60,11 @@ export function Services(){
           <Status type={status ? "active" : "inactive"} isButton={true} />
         </Panel.Rows>
         <Panel.Rows>
-          <div className="flex items-center gap-1 mr-1">
-            {status && <><UiButton typeColor="hoverGray" typeSize="xxs" icon={IconBan} onClick={() => setStatus(!status)} />Desativar</>}
-            {!status && <><UiButton typeColor="hoverGray" typeSize="xxs" icon={IconCicloCheck} onClick={() => setStatus(!status)} />Reativar</>}
+          <div className="flex items-center gap-1 mr-2.5">
+            {status && <><IconBan className="w-4 h-4 cursor-pointer" onClick={() => setStatus(!status)} />Desativar</>}
+            {!status && <><IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => setStatus(!status)} />Reativar</>}
           </div>
-          <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
+          <UiButton typeColor="gray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
         </Panel.Rows>
       </Panel.Root>
 
@@ -73,7 +73,7 @@ export function Services(){
         <Panel.Column>Título</Panel.Column>
         <Panel.Column>Valor</Panel.Column>
         <Panel.Column>Status</Panel.Column>
-        <Panel.Column>Icon</Panel.Column>
+        <Panel.Column>{""}</Panel.Column>
 
         <Panel.Rows>
           <span className="truncate">Instalação de Rede</span>
@@ -83,11 +83,11 @@ export function Services(){
           <Status type={status ? "active" : "inactive"} isButton={false} />
         </Panel.Rows>
         <Panel.Rows>
-          <div className="flex items-center gap-1 mr-0.5">
-            {status && <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconBan} onClick={() => setStatus(!status)} />}
-            {!status && <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconCicloCheck} onClick={() => setStatus(!status)} />}
+          <div className="flex items-center gap-1 mr-2.5">
+            {status && <IconBan className="w-4 h-4 cursor-pointer" onClick={() => setStatus(!status)} />}
+            {!status && <IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => setStatus(!status)} />}
           </div>
-          <UiButton typeColor="hoverGray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
+          <UiButton typeColor="gray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
         </Panel.Rows>
       </Panel.Root>
       {/* Mobile */}

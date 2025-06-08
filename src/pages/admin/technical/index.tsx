@@ -23,7 +23,7 @@ export function Technical(){
         <Panel.Column>Nome</Panel.Column>
         <Panel.Column>E-mail</Panel.Column>
         <Panel.Column>Disponibilidade</Panel.Column>
-        <Panel.Column>Icon</Panel.Column>
+        <Panel.Column>{""}</Panel.Column>
 
         <Panel.Rows>
           <div className="flex gap-2 justify-center items-center">
@@ -44,7 +44,7 @@ export function Technical(){
           </div>
         </Panel.Rows>
         <Panel.Rows>
-          <Link to="/tecnicos/edicao" ><UiButton typeColor="hoverGray" typeSize="xxs" icon={IconPenLine} /></Link>
+          <Link to="/tecnicos/edicao" ><UiButton typeColor="gray" typeSize="xxs" icon={IconPenLine} /></Link>
         </Panel.Rows>
       </Panel.Root>
 
@@ -52,7 +52,7 @@ export function Technical(){
       <Panel.Root className="grid-cols-[auto_auto_63px]" mobile={true}>
         <Panel.Column>Nome</Panel.Column>
         <Panel.Column>Disponibilidade</Panel.Column>
-        <Panel.Column>Icon</Panel.Column>
+        <Panel.Column>{""}</Panel.Column>
 
         <Panel.Rows>
           <div className="flex gap-2 justify-center items-cente">
@@ -67,7 +67,7 @@ export function Technical(){
           </div>
         </Panel.Rows>
         <Panel.Rows>
-          <Link to="/tecnicos/edicao" ><UiButton typeColor="hoverGray" typeSize="xxs" icon={IconPenLine} /></Link>
+          <Link to="/tecnicos/edicao" ><UiButton typeColor="gray" typeSize="xxs" icon={IconPenLine} /></Link>
         </Panel.Rows>
       </Panel.Root>
       {/* Mobile */}

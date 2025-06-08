@@ -3,7 +3,7 @@ import type { ButtonHTMLAttributes, ElementType } from "react"
 type VariantProps = {
   children?: React.ReactNode,
   icon?: ElementType
-  typeColor: "black" | "gray" | "hoverGray"
+  typeColor: "black" | "gray" | "hoverGray" | "none"
   typeSize: "base" | "xxs" | "xs" | "md" | "lg" | "llg" | "xl"
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
@@ -20,7 +20,8 @@ const variant = {
   typeColor: {
     gray: " bg-gray-500 text-gray-200",
     black: " bg-gray-200 text-gray-600",
-    hoverGray: " hover:bg-gray-500 cursor-pointer"
+    hoverGray: " hover:bg-gray-500 cursor-pointer",
+    none: ""
   }
 
 }
