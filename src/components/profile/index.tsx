@@ -29,51 +29,33 @@ export function IsProfile({myProfile}: IsProfileProps){
           <div className="lg:w-fit lg:m-auto relative">
             {/* Avatar */}
             <div className="flex items-center w-fit" ref={menuRef}>
-              <img src={avatar} className="w-15 h-15 relative"/>
+              <img src={avatar} className="w-15 h-15"/>
             
             
               <div className="absolute ml-10 mt-9 z-40 cursor-pointer" onClick={() => setOpen(!open)}>
-                <div className="bg-gray-500 rounded-full relative w-6 h-6 flex justify-center items-center" >
+                <div className="bg-gray-500 rounded-full w-6.5 h-6.5 flex justify-center items-center" >
                   <IconCamera className="w-5 h-5 fill-gray-400 hover:fill-gray-200" />
-                  {/* <div className="opacity-0 rounded-full absolute top-0 left-0 right-0 bottom-0">
-                    <input type="file" className="w-6 h-6" />
-                  </div> */}
                 </div>
               </div>
-              
 
-              {open &&
-                <div className="w-50 bg-gray-500 p-2 absolute top-19 left-8 rounded" >
-                  <ul className="Text-Xs relative">
-                    <IconPlay className="w-5 absolute -top-4" />
-                    <li className="hover:bg-gray-400/15 cursor-pointer p-1.5 flex items-center gap-2 relative rounded" onClick={() => setOpen(!open)}>
-                      <IconCamera className="w-5.5 fill-gray-400" />
+              {/* Modal Escolher foto do perfil */}
+              <div className={`absolute top-19 left-8 z-20 ${open ? "scale-100 opacity-100" : "scale-95 opacity-0"} transition-all ease-out duration-200`}>
+                <IconPlay className="w-5 absolute -top-2 left-3 fill-gray-600 drop-shadow-xl/60  border-none -z-10" />
+                <div className={`w-50 bg-gray-600 p-2 drop-shadow-2xl/10 rounded-lg  `} >
+                  <ul className="Text-Xs">
+                    <li className="hover:bg-gray-400/8 cursor-pointer p-1.5 flex items-center gap-2 rounded" onClick={() => setOpen(!open)}>
+                      <IconCamera className="w-5.5 fill-gray-400/70 stroke-gray-600" />
                       Escolher foto
                       <input type="file" className="absolute w-42 opacity-0" />
                     </li>
-                    <li className="hover:bg-gray-400/15 cursor-pointer p-1.5 flex items-center gap-2 rounded" onClick={() => setOpen(!open)}>
+                    <li className="hover:bg-gray-400/8 cursor-pointer p-1.5 flex items-center gap-2 rounded" onClick={() => setOpen(!open)}>
                       <IconTrash className="w-4 ml-1" />
                       Remover foto atual
                     </li>
                   </ul>
                 </div>
-              }
-
-
-              {/* Icon no avatar lixeira */}
-              {/* <div className="absolute z-50 mb-8 -ml-1 cursor-pointer">
-                <div className="bg-gray-500/90 rounded-full relative w-5.5 h-5.5 flex justify-center items-center " >
-                  <IconTrash className="w-3 h-3" color="#858B99" />
-                </div>
-              </div> */}
-
-              {/* <div className="ml-6">
-                <button className="flex items-center gap-1 bg-gray-500 rounded px-2 py-2 cursor-pointer">
-                  <IconTrash className="w-4 h-4" /> 
-                  <span className="Text-Xs">Remover</span>
-                </button>
-              </div> */}
-
+              </div>
+              {/* Modal Escolher foto do perfil */}
             </div>
             {/* Avatar */}
 
