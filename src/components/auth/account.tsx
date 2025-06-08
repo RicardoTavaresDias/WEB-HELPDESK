@@ -1,5 +1,5 @@
-import { Button } from "../ui/button"
 import { Link } from "react-router";
+import { UiButton } from "../ui/UiButton";
 
 type AccountProps = {
   textButton: string
@@ -16,9 +16,9 @@ export function Account({ textButton, texttitle, subTitle, to }: AccountProps){
         <h3 className="mb-0.5 Text-Lg text-gray-200">{texttitle}</h3>
         <span className="Text-Xs text-gray-300 mb-10">{subTitle}</span>
       </div>
-      <div>
+      <div className="w-86 max-sm:w-73">
         <Link to={to}>
-          <Button typeSize="lg" typeColor="gray" >{textButton}</Button>
+          <UiButton typeColor="gray" typeSize="base">{textButton}</UiButton>
         </Link>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Button } from "./button"
+import { UiButton } from "./UiButton"
 
 type FormProps = {
   children: React.ReactNode
@@ -18,7 +18,7 @@ export function Form({ children, textTitle, subtitle, textButton }: FormProps){
         {children}
       </div>
       <div className="mt-10">
-        <Button typeSize="lg" typeColor="black" >{textButton}</Button>
+        <UiButton typeSize="base" typeColor="black" >{textButton}</UiButton>
       </div>
     </div>
   )
