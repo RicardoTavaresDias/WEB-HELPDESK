@@ -16,7 +16,6 @@ export function CreateCall(){
   const { menuRef, setOpen, open } = useOpenModal()
 
   
-
   return (
     <>
       <IsProfile myProfile="customers" /> 
@@ -40,14 +39,16 @@ export function CreateCall(){
                 <Input type="text" label="Título" placeholder="Digite um título para o chamado" isScren />
 
                 {/* Textarea */}
-                <label className={`Text-Xxs  uppercase mt-4 ${error ? "text-feedback-danger" : "text-gray-300"}`} >descrição</label>
-                <textarea className="border-b border-gray-500 py-2 mt-1 Text-Md outline-none h-[154px]" placeholder="Descreva o que está acontecendo"/>
-                {error &&
-                  <div className="flex gap-1 mt-2">
-                    <img src={circleAlert} className="w-4 h-4"/>
-                    <span className="Text-Xs text-feedback-danger" >{error}</span>
-                  </div>
-                } 
+                <div className="flex flex-col group">
+                  <label className={`group-focus-within:text-blue-base Text-Xxs  uppercase mt-4 ${error ? "text-feedback-danger" : "text-gray-300"} `} >descrição</label>
+                  <textarea className="group-focus-within:border-blue-base border-b border-gray-500 py-2 mt-1 Text-Md outline-none h-[154px] resize-none"  placeholder="Descreva o que está acontecendo"/>
+                  {error &&
+                    <div className="flex gap-1 mt-2">
+                      <img src={circleAlert} className="w-4 h-4"/>
+                      <span className="Text-Xs text-feedback-danger" >{error}</span>
+                    </div>
+                  } 
+                </div>
 
                 {/* Select */}
                 <div className="relative" ref={menuRef} >
