@@ -7,10 +7,8 @@ import { Customers } from "../routers/customers"
 import { useProfile } from "../hooks/useProfile" // remover
 
 export function Routes(){
-  const { teste } = useProfile() // remover
-
   function Route() {
-    switch (teste) {
+    switch (useProfile().teste) {
       case "admin":
         return <Admin /> 
       case "cliente":
