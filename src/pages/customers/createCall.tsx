@@ -11,7 +11,7 @@ import { IconCheck } from "../../assets/icon/iconCheck";
 
 export function CreateCall(){
   const [error, setError] = useState("")
-  const [option, setOption] = useState(["Rede", "Formatação", "Instação de software"])
+  const option = ["Rede", "Formatação", "Instação de software"]
   const [select, setSelect] = useState("")
   const { menuRef, setOpen, open } = useOpenModal()
 
