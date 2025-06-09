@@ -37,7 +37,7 @@ export function IsProfile({myProfile}: IsProfileProps){
               </div>
 
               {/* Modal Escolher foto do perfil */}
-              <div className={`absolute top-19 left-8 z-20 ${open ? "scale-100 opacity-100" : "scale-95 opacity-0"} transition-all ease-out duration-200`}>
+              <div className={`absolute top-19 left-8 z-20 ${open ? "scale-100 opacity-100" : "scale-95 opacity-0 hidden"} origin-top transition ease-out duration-200`}>
                 <IconPlay className="w-5 absolute -top-2 left-3 fill-gray-600 drop-shadow-xl/60  border-none -z-10" />
                 <div className={`w-50 bg-gray-600 p-2 drop-shadow-2xl/10 rounded-lg  `} >
                   <ul className="Text-Xs">
@@ -62,7 +62,7 @@ export function IsProfile({myProfile}: IsProfileProps){
               <Input type="text" label="nome" value="Carlos Silva" />
               <Input type="text" label="e-mail" value="carlos.silva@test.com" />
               <div className="flex items-center relative ">
-                <Input type="password" label="senha" value="carlos.silva@test.com" />
+                <Input type="password" label="senha" value="carlos.silva@test.com" disabled/>
                 <div className="absolute right-0 ">
                   <div className="">
                     <button className="p-1 bg-gray-500 rounded-md text-xxs font-semibold cursor-pointer hover:shadow-md" onClick={() => {setModalPassword(!modalPassword); isModal()}} >

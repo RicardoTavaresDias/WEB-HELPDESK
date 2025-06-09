@@ -58,18 +58,16 @@ export function CreateCall(){
                   {open &&
                     <div className="w-full bg-gray-600 border border-gray-400/15 rounded-lg shadow-xl px-5 py-4 text-gray-400 Text-Md" >
                       <span className="Text-Xxs text-gray-400">opções</span>
-
                       <div className="mt-4  Text-Sm cursor-pointer">
                         {option && option.map((value, index) => (
                           <>
-                            <div key={index} className={`py-2 ${select === value ? "text-gray-200 font-semibold" : ""} flex justify-between`} onClick={() => { setSelect(value); setOpen(!open)} }>
-                              <span className="hover:text-gray-200">{value}</span>
+                            <div key={index} className={`py-2 ${select === value && "text-gray-200 font-semibold"} flex justify-between group`} onClick={() => { setSelect(value); setOpen(!open)} }>
+                              <span className="group-hover:text-gray-200">{value}</span>
                               {select === value && <IconCheck className="w-5 h-5 fill-blue-base" />}
                             </div>
                           </>
                         ))}
                       </div>
-                    
                     </div>
                   }
                 </div>
