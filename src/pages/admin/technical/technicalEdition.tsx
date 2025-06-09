@@ -4,7 +4,17 @@ import { ButtonTime } from "../../../components/ui/buttonTime";
 import { Modules } from "../../../components/modules";
 import { UiButton } from "../../../components/ui/UiButton";
 
+import { useState } from "react";
+
+const day = {
+  morning: ["07:00", "08:00", "09:00", "10:00", "11:00", "12:00"],
+  afternoon: ["13:00", "14:00", "15:00", "16:00", "17:00", "18:00"],
+  night: ["19:00", "20:00", "21:00", "22:00", "23:00"]
+}
+
 export function TechnicalEdition(){
+  const [user, setUser] = useState(["09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "20:00", "21:00" ])
+
   return (
     <Modules.Root>
       <Modules.Title title="Perfil de técnico" to="/tecnicos">
@@ -33,36 +43,70 @@ export function TechnicalEdition(){
 
           <div>
             <span className="text-xs font-semibold text-gray-300 uppercase">Manhã</span>
-            <div className="flex gap-2 mt-2 flex-wrap" >
-              <ButtonTime>07:00</ButtonTime>
-              <ButtonTime>08:00</ButtonTime>
-              <ButtonTime isActive={true} >09:00</ButtonTime>
-              <ButtonTime isActive={true} >10:00</ButtonTime>
-              <ButtonTime isActive={true} >11:00</ButtonTime>
-              <ButtonTime>12:00</ButtonTime>
+              <div className="flex gap-2 mt-2 flex-wrap" >
+
+                {day.morning.map(value => {
+                  if(user.includes(value)){
+                    return (
+                      <div key={`${Date.now()}-${Math.floor(Math.random() * 1000)}`}>
+                        <ButtonTime onClick={() => setUser(prev => prev.filter(use => use !== value))} isActive>{value}</ButtonTime>
+                      </div>
+                    )
+                  }
+
+                  return (
+                    <div key={`${Date.now()}-${Math.floor(Math.random() * 1000)}`}>
+                      <ButtonTime onClick={() => setUser(prev => [value, ...prev])}>{value}</ButtonTime>
+                    </div>
+                  )
+                })}
+
             </div>
           </div>
 
           <div className="mt-5">
             <span className="text-xs font-semibold text-gray-300 uppercase">Tarde </span>
             <div className="flex gap-2 mt-2 flex-wrap" >
-              <ButtonTime>13:00</ButtonTime>
-              <ButtonTime isActive={true} >14:00</ButtonTime>
-              <ButtonTime isActive={true} >15:00</ButtonTime>
-              <ButtonTime isActive={true} >16:00</ButtonTime>
-              <ButtonTime>17:00</ButtonTime>
-              <ButtonTime>18:00</ButtonTime>
+              
+              {day.afternoon.map(value => {
+                  if(user.includes(value)){
+                    return (
+                      <div key={`${Date.now()}-${Math.floor(Math.random() * 1000)}`}>
+                        <ButtonTime onClick={() => setUser(prev => prev.filter(use => use !== value))} isActive>{value}</ButtonTime>
+                      </div>
+                    )
+                  }
+
+                  return (
+                    <div key={`${Date.now()}-${Math.floor(Math.random() * 1000)}`}>
+                      <ButtonTime onClick={() => setUser(prev => [value, ...prev])}>{value}</ButtonTime>
+                    </div>
+                  )
+                })}
+
             </div>
           </div>
 
           <div className="mt-5">
             <span className="text-xs font-semibold text-gray-300 uppercase">Noite</span>
             <div className="flex gap-2 mt-2 flex-wrap" >
-              <ButtonTime>19:00</ButtonTime>
-              <ButtonTime isActive={true} >20:00</ButtonTime>
-              <ButtonTime isActive={true} >21:00</ButtonTime>
-              <ButtonTime>22:00</ButtonTime>
-              <ButtonTime>23:00</ButtonTime>
+              
+              {day.night.map(value => {
+                  if(user.includes(value)){
+                    return (
+                      <div key={`${Date.now()}-${Math.floor(Math.random() * 1000)}`}>
+                        <ButtonTime onClick={() => setUser(prev => prev.filter(use => use !== value))} isActive>{value}</ButtonTime>
+                      </div>
+                    )
+                  }
+
+                  return (
+                    <div key={`${Date.now()}-${Math.floor(Math.random() * 1000)}`}>
+                      <ButtonTime onClick={() => setUser(prev => [value, ...prev])}>{value}</ButtonTime>
+                    </div>
+                  )
+                })}
+
             </div>
           </div>  
         </Modules.Context>
