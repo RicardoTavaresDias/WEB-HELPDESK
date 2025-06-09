@@ -5,6 +5,7 @@ import { Modules } from "../../../components/modules";
 import { UiButton } from "../../../components/ui/UiButton";
 
 import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid'
 
 const day = {
   morning: ["07:00", "08:00", "09:00", "10:00", "11:00", "12:00"],
@@ -48,14 +49,14 @@ export function TechnicalEdition(){
                 {day.morning.map(value => {
                   if(user.includes(value)){
                     return (
-                      <div key={`${Date.now()}-${Math.floor(Math.random() * 1000)}`}>
+                      <div key={uuidv4()}>
                         <ButtonTime onClick={() => setUser(prev => prev.filter(use => use !== value))} isActive>{value}</ButtonTime>
                       </div>
                     )
                   }
 
                   return (
-                    <div key={`${Date.now()}-${Math.floor(Math.random() * 1000)}`}>
+                    <div key={uuidv4()}>
                       <ButtonTime onClick={() => setUser(prev => [value, ...prev])}>{value}</ButtonTime>
                     </div>
                   )
@@ -71,14 +72,14 @@ export function TechnicalEdition(){
               {day.afternoon.map(value => {
                   if(user.includes(value)){
                     return (
-                      <div key={`${Date.now()}-${Math.floor(Math.random() * 1000)}`}>
+                      <div key={uuidv4()}>
                         <ButtonTime onClick={() => setUser(prev => prev.filter(use => use !== value))} isActive>{value}</ButtonTime>
                       </div>
                     )
                   }
 
                   return (
-                    <div key={`${Date.now()}-${Math.floor(Math.random() * 1000)}`}>
+                    <div key={uuidv4()}>
                       <ButtonTime onClick={() => setUser(prev => [value, ...prev])}>{value}</ButtonTime>
                     </div>
                   )
@@ -94,14 +95,14 @@ export function TechnicalEdition(){
               {day.night.map(value => {
                   if(user.includes(value)){
                     return (
-                      <div key={`${Date.now()}-${Math.floor(Math.random() * 1000)}`}>
+                      <div key={uuidv4()}>
                         <ButtonTime onClick={() => setUser(prev => prev.filter(use => use !== value))} isActive>{value}</ButtonTime>
                       </div>
                     )
                   }
 
                   return (
-                    <div key={`${Date.now()}-${Math.floor(Math.random() * 1000)}`}>
+                    <div key={uuidv4()}>
                       <ButtonTime onClick={() => setUser(prev => [value, ...prev])}>{value}</ButtonTime>
                     </div>
                   )
