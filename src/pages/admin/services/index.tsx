@@ -18,33 +18,51 @@ export function Services(){
   const [modalEdition, setModalEdition] = useState(false)
   const [status, setStatus] = useState(true)
 
+  const handleEditionSubmit = (formData: FormData) => {
+    const title = formData.get("title")
+    const value = formData.get("value")
+
+    console.log("Services Edition", {title, value})
+  }
+
+  const handleSubmit = (formData: FormData) => {
+    const title = formData.get("title")
+    const value = formData.get("value")
+
+    console.log("services", {title, value})
+  }
+
   return (
     <>
-      <Modal.Root isActive={modalNew} >
-        <Modal.Title title="Cadastro de serviço" onClose={() => setModalNew(!modalNew)} />
-        <Modal.Context>
-          <Input type="text" label="Título" placeholder="Nome do serviço"/>
-          <Input type="text" label="Valor" placeholder="R$ 0,00" />
-        </Modal.Context>
-        <Modal.Actions>
-          <UiButton typeSize="xxl" typeColor="black">Salvar</UiButton>
-        </Modal.Actions>
-      </Modal.Root>
+      <form action={handleSubmit}>
+        <Modal.Root isActive={modalNew} >
+          <Modal.Title title="Cadastro de serviço" onClose={() => setModalNew(!modalNew)} />
+          <Modal.Context>
+            <Input type="text" name="title" label="Título" placeholder="Nome do serviço"/>
+            <Input type="text" name="value" label="Valor" placeholder="R$ 0,00" />
+          </Modal.Context>
+          <Modal.Actions>
+            <UiButton type="submit" typeSize="xxl" typeColor="black">Salvar</UiButton>
+          </Modal.Actions>
+        </Modal.Root>
+      </form>
 
-      <Modal.Root isActive={modalEdition}>
-        <Modal.Title title="Cadastro de serviço" onClose={() => setModalEdition(!modalEdition)}/>
-        <Modal.Context>
-          <Input type="text" label="Título"  value="Instalação de rede" />
-          <Input type="text" label="Valor" value="R$ 180,00" />
-        </Modal.Context>
-        <Modal.Actions>
-          <UiButton typeSize="xxl" typeColor="black">Salvar</UiButton>
-        </Modal.Actions>
-      </Modal.Root>
+      <form action={handleEditionSubmit}>
+        <Modal.Root isActive={modalEdition}>
+          <Modal.Title title="Cadastro de serviço" onClose={() => setModalEdition(!modalEdition)}/>
+          <Modal.Context>
+            <Input type="text" name="title" label="Título"  value="Instalação de rede" />
+            <Input type="text" name="value" label="Valor" value="R$ 180,00" />
+          </Modal.Context>
+          <Modal.Actions>
+            <UiButton type="submit" typeSize="xxl" typeColor="black">Salvar</UiButton>
+          </Modal.Actions>
+        </Modal.Root>
+      </form>
 
       <div className="mb-7">
         <Modules.Title title="Técnicos" isButton={true} >
-          <UiButton icon={IconPlus} typeColor="black" typeSize="xs" color="#F9FAFA" onClick={() => setModalNew(!modalNew)} >{<span className="max-sm:hidden">Novo</span>}</UiButton>
+          <UiButton type="button" icon={IconPlus} typeColor="black" typeSize="xs" color="#F9FAFA" onClick={() => setModalNew(!modalNew)} >{<span className="max-sm:hidden">Novo</span>}</UiButton>
         </Modules.Title>
       </div>
 
@@ -64,7 +82,7 @@ export function Services(){
             {status && <><IconBan className="w-4 h-4 cursor-pointer" onClick={() => setStatus(!status)} />Desativar</>}
             {!status && <><IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => setStatus(!status)} />Reativar</>}
           </div>
-          <UiButton typeColor="gray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
+          <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
         </Panel.Rows>
       </Panel.Root>
 
@@ -87,7 +105,7 @@ export function Services(){
             {status && <IconBan className="w-4 h-4 cursor-pointer" onClick={() => setStatus(!status)} />}
             {!status && <IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => setStatus(!status)} />}
           </div>
-          <UiButton typeColor="gray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
+          <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
         </Panel.Rows>
       </Panel.Root>
       {/* Mobile */}

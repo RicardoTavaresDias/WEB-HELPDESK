@@ -26,29 +26,22 @@ export function CallDetails(){
         <Modules.Title title="Chamado detalhado" to="/">
           {details.status === "open" &&
             <>
-              <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => setDetails({...details, status: "progress"})} >Encerrar</UiButton>
-              <UiButton typeColor="black" typeSize="md" color="#F9FAFA" icon={IconCicloCheckBig} onClick={() => setDetails({...details, status: "close"})} >Iniciar atendimento</UiButton>
+              <UiButton type="button" typeColor="gray" typeSize="md" icon={IconClock} onClick={() => setDetails({...details, status: "progress"})} >Encerrar</UiButton>
+              <UiButton type="button" typeColor="black" typeSize="md" color="#F9FAFA" icon={IconCicloCheckBig} onClick={() => setDetails({...details, status: "close"})} >Iniciar atendimento</UiButton>
             </>
           }
           {details.status === "progress" &&
             <>
-              <UiButton typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => setDetails({...details, status: "open"})} >Abrir</UiButton>
-              <UiButton typeColor="black" typeSize="md" icon={IconCicloCheckBig} color="#F9FAFA" onClick={() => setDetails({...details, status: "close"})} >Encerrar</UiButton>
+              <UiButton type="button" typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => setDetails({...details, status: "open"})} >Abrir</UiButton>
+              <UiButton type="button" typeColor="black" typeSize="md" icon={IconCicloCheckBig} color="#F9FAFA" onClick={() => setDetails({...details, status: "close"})} >Encerrar</UiButton>
             </>
           }
           {details.status === "close" &&
             <>
-              <UiButton typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => setDetails({...details, status: "open"})} >Abrir</UiButton>
-              <UiButton typeColor="black" typeSize="md" color="#F9FAFA" icon={IconClock} onClick={() => setDetails({...details, status: "progress"})} >Iniciar atendimento</UiButton>
+              <UiButton type="button" typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => setDetails({...details, status: "open"})} >Abrir</UiButton>
+              <UiButton type="button" typeColor="black" typeSize="md" color="#F9FAFA" icon={IconClock} onClick={() => setDetails({...details, status: "progress"})} >Iniciar atendimento</UiButton>
             </>
           }
-
-
-
-
-
-          {/* <UiButton typeColor="gray" typeSize="md" icon={IconCicloCheckBig}>Encerrar</UiButton>
-          <UiButton typeColor="black" typeSize="md" color="#F9FAFA" icon={IconCicloCheckBig}>Iniciar atendimento</UiButton> */}
         </Modules.Title>
 
         <Modules.Container>
@@ -125,7 +118,7 @@ export function CallDetails(){
           <Modules.Context isType="60">
             <div className="flex items-center justify-between">
               <span className="text-gray-400 Text-Xs">Serviços adicionais</span>
-              <UiButton typeColor="black" typeSize="xxs" icon={IconPlus} color="#F9FAFA" />
+              <UiButton type="button" typeColor="black" typeSize="xxs" icon={IconPlus} color="#F9FAFA" />
             </div>
 
             <div className="mt-4 flex flex-col gap-4">
@@ -134,7 +127,7 @@ export function CallDetails(){
                 <p className="text-sm font-semibold text-gray-200">Recuperação de Dados</p>
                 <div className="flex items-center gap-6">
                   <span className="Text-Xs text-gray-200">R$ 120,00</span>
-                  <UiButton typeColor="gray" typeSize="xxs" icon={IconTrash} />
+                  <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconTrash} />
                 </div>
               </div>
 
@@ -142,7 +135,7 @@ export function CallDetails(){
                 <p className="text-sm font-semibold text-gray-200">Formatação do PC</p>
                 <div className="flex items-center gap-6">
                   <span className="Text-Xs text-gray-200">R$ 75,00</span>
-                  <UiButton typeColor="gray" typeSize="xxs" icon={IconTrash} />
+                  <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconTrash} />
                 </div>
               </div>
               

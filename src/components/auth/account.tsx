@@ -18,7 +18,7 @@ export function Account({ textButton, texttitle, subTitle, to }: AccountProps){
       </div>
       <div className="w-86 max-sm:w-73">
         <Link to={to}>
-          <UiButton typeColor="gray" typeSize="base">{textButton}</UiButton>
+          <UiButton type="button" typeColor="gray" typeSize="base">{textButton}</UiButton>
         </Link>
       </div>
     </div>

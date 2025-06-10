@@ -14,7 +14,7 @@ export function Technical(){
       <div className="mb-7">
         <Modules.Title title="Técnicos" isButton={true} >
           <Link to={"/tecnicos/novo"}>
-            <UiButton icon={IconPlus} typeColor="black" typeSize="xs" color="#F9FAFA" >{<span className="max-sm:hidden">Novo</span>}</UiButton>
+            <UiButton type="button" icon={IconPlus} typeColor="black" typeSize="xs" color="#F9FAFA" >{<span className="max-sm:hidden">Novo</span>}</UiButton>
           </Link>
         </Modules.Title>
       </div>
@@ -44,7 +44,7 @@ export function Technical(){
           </div>
         </Panel.Rows>
         <Panel.Rows>
-          <Link to="/tecnicos/edicao" ><UiButton typeColor="gray" typeSize="xxs" icon={IconPenLine} /></Link>
+          <Link to="/tecnicos/edicao" ><UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} /></Link>
         </Panel.Rows>
       </Panel.Root>
 
@@ -67,7 +67,7 @@ export function Technical(){
           </div>
         </Panel.Rows>
         <Panel.Rows>
-          <Link to="/tecnicos/edicao" ><UiButton typeColor="gray" typeSize="xxs" icon={IconPenLine} /></Link>
+          <Link to="/tecnicos/edicao" ><UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} /></Link>
         </Panel.Rows>
       </Panel.Root>
       {/* Mobile */}

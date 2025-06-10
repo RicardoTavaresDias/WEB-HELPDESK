@@ -18,7 +18,7 @@ export function Form({ children, textTitle, subtitle, textButton }: FormProps){
         {children}
       </div>
       <div className="mt-10">
-        <UiButton typeSize="base" typeColor="black" >{textButton}</UiButton>
+        <UiButton type="submit" typeSize="base" typeColor="black" >{textButton}</UiButton>
       </div>
     </div>
   )

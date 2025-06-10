@@ -55,7 +55,7 @@ export function Called(){
             </Panel.Rows>
              <Panel.Rows><Status type={item.status as "open" | "progress" | "close"} /></Panel.Rows>
              <Panel.Rows>
-              <Link to={`/chamados/${item.id}`}><UiButton icon={IconEye} typeSize="xxs" typeColor="gray" /></Link>
+              <Link to={`/chamados/${item.id}`}><UiButton type="button" icon={IconEye} typeSize="xxs" typeColor="gray" /></Link>
             </Panel.Rows>
             </Fragment>
           </>
@@ -81,7 +81,7 @@ export function Called(){
               </Panel.Rows>
               <Panel.Rows><Status type={item.status as "open" | "progress" | "close"}/></Panel.Rows>
               <Panel.Rows>
-                <Link to={`/chamados/${item.id}`}><UiButton icon={IconEye} typeSize="xxs" typeColor="gray" /></Link>
+                <Link to={`/chamados/${item.id}`}><UiButton type="button" icon={IconEye} typeSize="xxs" typeColor="gray" /></Link>
               </Panel.Rows>
             </Fragment>
           </>
