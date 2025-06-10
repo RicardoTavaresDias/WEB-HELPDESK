@@ -1,5 +1,5 @@
 import type { InputHTMLAttributes } from "react"
-import circleAlert from "../../assets/icon/circle-alert.svg"
+import { IconCicloAlert } from "../../assets/icon/iconCicleAlert"
 
 type InputProps = {
   label: string
@@ -17,7 +17,7 @@ export function Input({ label, error, textLabel, isScren,  border, ...props }: I
 
       {error &&
         <div className="flex gap-1">
-          <img src={circleAlert} className="w-4 h-4"/>
+          <IconCicloAlert className="w-4 h-4 fill-feedback-danger"/>
           <span className="Text-Xs text-feedback-danger" >{error}</span>
         </div>
       } 

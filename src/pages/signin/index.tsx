@@ -27,7 +27,7 @@ export function Signin(){
             <LogoAuth />
             <form action={handleSubmit}>
               <Form textTitle="Acesse o portal" subtitle="Entre usando seu e-mail e senha cadastrados" textButton="Entrar">
-                <Input type= "text" name="email" label="e-mail" placeholder="exemplo@mail.com"  />
+                <Input type= "text" name="email" label="e-mail" placeholder="exemplo@mail.com" />
                 <Input type= "password" name="password" label="senha" placeholder="Digite sua senha" />
               </Form>
             </form>

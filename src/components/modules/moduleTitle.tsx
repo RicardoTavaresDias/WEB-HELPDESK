@@ -1,4 +1,4 @@
-import { IconArrowLeft } from "../../assets/icon/IconArrowLeft"
+import { IconArrowLeft } from "../../assets/icon/iconArrowLeft"
 
 type TitleProps = {
   children?: React.ReactNode

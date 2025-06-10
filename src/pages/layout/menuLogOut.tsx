@@ -1,10 +1,10 @@
-import logOut from "../../assets/icon/log-out.svg"
 import avatar from "../../assets/img/Avatar.svg"
 
 import { useProfile } from "../../hooks/useProfile"
 import { Link } from "react-router"
 import { useOpenModal } from "../../hooks/useOpenModal"
 import { IconCicleUser } from "../../assets/icon/iconCicleUser"
+import { IconLogOut } from "../../assets/icon/iconLogOut"
 
 type MenuLogOutProps = {
   classmobile?: string
@@ -40,7 +40,7 @@ export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutP
               }
               <Link to="/" onClick={() => setTeste("")} > {/* Remover */}
                 <li className="flex items-center gap-3 Text-Sm text-feedback-danger cursor-pointer rounded-md h-11 hover:bg-gray-200">
-                  <img src={logOut} className="ml-3 w-5 h-5"  />
+                  <IconLogOut className="ml-3 w-5 h-5 fill-feedback-danger"  />
                   Sair
                 </li>
               </Link>

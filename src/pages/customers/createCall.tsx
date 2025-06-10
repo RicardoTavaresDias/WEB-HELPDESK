@@ -1,7 +1,6 @@
 import { Modules } from "../../components/modules";
 import { IsProfile } from "../../components/profile";
 import { UiButton } from "../../components/ui/UiButton";
-import circleAlert from "../../assets/icon/circle-alert.svg"
 
 import { useState } from "react";
 import { Input } from "../../components/ui/input";
@@ -9,6 +8,7 @@ import { useOpenModal } from "../../hooks/useOpenModal"
 import { IconChevronDown } from "../../assets/icon/iconChevronDown";
 import { IconCheck } from "../../assets/icon/iconCheck";
 import { v4 as uuidv4 } from 'uuid'
+import { IconCicloAlert } from "../../assets/icon/iconCicleAlert";
 
 export function CreateCall(){
   const [error, setError] = useState("")
@@ -50,10 +50,10 @@ export function CreateCall(){
                   {/* Textarea */}
                   <div className="flex flex-col group">
                     <label className={`group-focus-within:text-blue-base Text-Xxs  uppercase mt-4 ${error ? "text-feedback-danger" : "text-gray-300"} `} >descrição</label>
-                    <textarea name="description" className="group-focus-within:border-blue-base border-b border-gray-500 py-2 mt-1 Text-Md outline-none h-[154px] resize-none"  placeholder="Descreva o que está acontecendo"/>
+                    <textarea name="description" className="group-focus-within:border-blue-base border-b border-gray-500 py-2 mt-1 Text-Md outline-none h-[154px] resize-none"  placeholder="Descreva o que está acontecendo" />
                     {error &&
                       <div className="flex gap-1 mt-2">
-                        <img src={circleAlert} className="w-4 h-4"/>
+                        <IconCicloAlert className="w-4 h-4 fill-feedback-danger"/>
                         <span className="Text-Xs text-feedback-danger" >{error}</span>
                       </div>
                     } 
