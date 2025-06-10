@@ -46,7 +46,7 @@ export function Services(){
           <Modal.Title title="Cadastro de serviço" onClose={() => setModalNew(!modalNew)} />
           <Modal.Context>
             <Input type="text" name="title" label="Título" placeholder="Nome do serviço"/>
-            <Input type="text" name="value" label="Valor" placeholder="R$ 0,00" value={valueNew} onChange={(e) => setValueNew(currency(e.target.value))} />
+            <Input type="text" name="value" label="Valor" placeholder="R$ 0,00" value={valueNew} onChange={(e) => setValueNew( currency(e.target.value) )} />
           </Modal.Context>
           <Modal.Actions>
             <UiButton type="submit" typeSize="xxl" typeColor="black">Salvar</UiButton>
@@ -59,7 +59,7 @@ export function Services(){
           <Modal.Title title="Cadastro de serviço" onClose={() => setModalEdition(!modalEdition)}/>
           <Modal.Context>
             <Input type="text" name="title" label="Título"  value={title} onChange={(e) => setTitle(e.target.value)} />
-            <Input type="text" name="value" label="Valor" value={value} onChange={(e) => setValue(currency(e.target.value))} />
+            <Input type="text" name="value" label="Valor" value={value} onChange={(e) => setValue( currency(e.target.value) )} />
           </Modal.Context>
           <Modal.Actions>
             <UiButton type="submit" typeSize="xxl" typeColor="black">Salvar</UiButton>
