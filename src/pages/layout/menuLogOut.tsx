@@ -16,8 +16,6 @@ export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutP
   const { menuRef, open, setOpen } = useOpenModal()
   const { isModal }: any = useProfile()
 
-  const { setTeste } = useProfile() // remover
-
   return (
     <div ref={menuRef}>
 
@@ -38,7 +36,7 @@ export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutP
                   </li>
                 </button>
               }
-              <Link to="/" onClick={() => setTeste("")} > {/* Remover */}
+              <Link to="/" >
                 <li className="flex items-center gap-3 Text-Sm text-feedback-danger cursor-pointer rounded-md h-11 hover:bg-gray-200">
                   <IconLogOut className="ml-3 w-5 h-5 fill-feedback-danger"  />
                   Sair

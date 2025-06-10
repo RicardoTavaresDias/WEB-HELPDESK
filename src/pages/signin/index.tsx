@@ -4,18 +4,14 @@ import { Account } from "../../components/auth/account"
 import { Input } from "../../components/ui/input"
 import { useNavigate } from "react-router"
 
-import { useProfile } from "../../hooks/useProfile" // remover
-
 export function Signin(){
   const navigate = useNavigate()
-  const { setTeste } = useProfile() // remover
 
   const handleSubmit = (formData: FormData) => {
     const email = formData.get("email")
     const password = formData.get("password")
 
     console.log("Signin", { email, password })
-    setTeste(email) // remover
     navigate("/")
   }
 

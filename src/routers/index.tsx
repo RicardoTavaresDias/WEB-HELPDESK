@@ -4,11 +4,11 @@ import { Auth } from "../routers/auth"
 import { Technical } from "../routers/technical"
 import { Customers } from "../routers/customers"
 
-import { useProfile } from "../hooks/useProfile" // remover
-
 export function Routes(){
+  const session = ""
+
   function Route() {
-    switch (useProfile().teste) {
+    switch (session) {
       case "admin":
         return <Admin /> 
       case "cliente":
@@ -26,11 +26,3 @@ export function Routes(){
     </BrowserRouter>
   )
 }
-
-
-
-
-// Remover
-// ProfileContext.tsx
-// signin
-// menuLogOut.tsx
