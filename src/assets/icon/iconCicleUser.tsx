@@ -1,4 +1,6 @@
-export function IconCicleUser({ ...props }: any) {
+import type { SVGProps } from "react";
+
+export function IconCicleUser({ ...props }: SVGProps<SVGSVGElement>) {
     return (
         <div>
             <svg

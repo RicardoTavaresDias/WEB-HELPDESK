@@ -1,4 +1,6 @@
-export function IconWrench({ ...props }: any) {
+import type { SVGProps } from "react";
+
+export function IconWrench({ ...props }: SVGProps<SVGSVGElement>) {
     return (
         <div>
             <svg

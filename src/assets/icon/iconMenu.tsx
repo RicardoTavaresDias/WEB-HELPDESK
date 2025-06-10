@@ -1,4 +1,6 @@
-export function IconMenu({...props }: any) {
+import type { SVGProps } from "react";
+
+export function IconMenu({...props }: SVGProps<SVGSVGElement>) {
   return (
     <div>
       <svg

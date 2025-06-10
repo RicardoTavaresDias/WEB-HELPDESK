@@ -1,4 +1,6 @@
-export function IconEye({ color, ...props }: any) {
+import type { IconProps } from "../../types/icon";
+
+export function IconEye({ color, ...props }: IconProps) {
   return (
     <div>
       <svg

@@ -1,4 +1,6 @@
-export function IconLogOut({ ...props }: any) {
+import type { SVGProps } from "react";
+
+export function IconLogOut({ ...props }: SVGProps<SVGSVGElement>) {
   return (
     <div>
       <svg

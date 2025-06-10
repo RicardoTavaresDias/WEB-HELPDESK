@@ -1,4 +1,6 @@
-export function IconChevronDown({ ...props }: any) {
+import type { SVGProps } from "react";
+
+export function IconChevronDown({ ...props }: SVGProps<SVGSVGElement>) {
   return (
     <div>
       <svg

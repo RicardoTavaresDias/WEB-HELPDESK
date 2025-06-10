@@ -1,4 +1,6 @@
-export function IconCamera({ color, ...props }: any) {
+import type { SVGProps } from "react";
+
+export function IconCamera({...props}: SVGProps<SVGSVGElement> ) {
   return (
     <div>
       <svg

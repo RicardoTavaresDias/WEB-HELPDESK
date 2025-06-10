@@ -1,4 +1,6 @@
-export function IconCicleHelp({ color, ...props }: any) {
+import type { IconProps } from "../../types/icon";
+
+export function IconCicleHelp({ color, ...props }: IconProps) {
   return (
     <div>
       <svg

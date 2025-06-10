@@ -1,12 +1,12 @@
+import type { SVGProps } from "react";
 
-export function IconTrash({to, ...props }: any) {
+export function IconTrash({...props }: SVGProps<SVGSVGElement>) {
   return (
     <div>
         <svg
           viewBox="0 0 32 32"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          // className="hover:bg-gray-500 cursor-pointer p-1.5 w-7 h-7 rounded-md"
           {...props}
         >
           <path

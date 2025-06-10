@@ -1,4 +1,6 @@
-export function IconPlay({ ...props }: any) {
+import type { SVGProps } from "react";
+
+export function IconPlay({ ...props }: SVGProps<SVGSVGElement>) {
   return (
     <div>
       <svg

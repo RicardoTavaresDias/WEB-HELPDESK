@@ -1,5 +1,6 @@
+import type { IconProps } from "../../types/icon";
 
-export function IconBan({ to, children, ...props }: any) {
+export function IconBan({children, ...props }: IconProps) {
   return (
     <div className="flex items-center">
         <svg

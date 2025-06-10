@@ -1,4 +1,6 @@
-export function IconClock({ color, ...props }: any) {
+import type { IconProps } from "../../types/icon";
+
+export function IconClock({ color, ...props }: IconProps) {
   return (
     <div>
       <svg

@@ -1,6 +1,7 @@
 import { Link } from "react-router";
+import type { IconProps } from "../../types/icon";
 
-export function IconArrowLeft({ children, to, ...props }: any) {
+export function IconArrowLeft({ children, to = "#", ...props }: IconProps) {
   return (
     <div >
       <Link to={to} className="flex items-center gap-2">

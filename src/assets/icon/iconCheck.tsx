@@ -1,4 +1,6 @@
-export function IconCheck({ ...props }: any) {
+import type { SVGProps } from "react";
+
+export function IconCheck({ ...props }: SVGProps<SVGSVGElement>) {
   return (
     <div>
       <svg

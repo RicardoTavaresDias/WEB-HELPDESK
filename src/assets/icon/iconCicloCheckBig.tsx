@@ -1,4 +1,6 @@
-export function IconCicloCheckBig({ color, ...props }: any) {
+import type { IconProps } from "../../types/icon";
+
+export function IconCicloCheckBig({ color, ...props }: IconProps) {
   return (
     <div>
       <svg

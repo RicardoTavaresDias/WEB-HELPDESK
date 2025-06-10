@@ -1,4 +1,6 @@
-export function IconCicloAlert({ ...props }: any) {
+import type { SVGProps } from "react";
+
+export function IconCicloAlert({ ...props }: SVGProps<SVGSVGElement>) {
   return (
     <div>
       <svg

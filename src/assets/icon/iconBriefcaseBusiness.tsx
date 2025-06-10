@@ -1,4 +1,6 @@
-export function IconBriefcaseBusiness({ ...props }: any) {
+import type { SVGProps } from "react";
+
+export function IconBriefcaseBusiness({ ...props }: SVGProps<SVGSVGElement>) {
     return (
         <div>
             <svg
