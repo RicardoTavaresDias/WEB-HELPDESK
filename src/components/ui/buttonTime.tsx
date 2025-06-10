@@ -1,4 +1,4 @@
-import close from "../../assets/icon/x.svg"
+import { IconX } from "../../assets/icon/IconX"
 
 type ButtonTimeProps = {
   children: React.ReactNode
@@ -14,7 +14,7 @@ export function ButtonTime({children, isActive, type, onClick}: ButtonTimeProps)
       <button className="cursor-pointer" onClick={onClick} >
         <div className="bg-blue-base p-2 rounded-2xl w-17 h-7 flex justify-center items-center text-gray-600 Text-Xs text-center">
           {children}
-          <img src={close} className="w-3.5 h-3.5 ml-1.5"/>
+          <IconX className="w-3.5 h-3.5 ml-1.5 fill-gray-600"/>
         </div>
       </button>
     )

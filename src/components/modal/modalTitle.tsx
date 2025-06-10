@@ -1,12 +1,11 @@
 import { IconArrowLeft } from "../../assets/icon/IconArrowLeft"
-import close from "../../assets/icon/x-2.svg"
+import { IconX } from "../../assets/icon/IconX"
 
 type PropsTitle = {
   onClose: () => void
   title: string
   onClick?: () => void
 }
-
 
 export function ModalTitle({onClose, title, onClick}: PropsTitle){
   return (
@@ -19,7 +18,7 @@ export function ModalTitle({onClose, title, onClick}: PropsTitle){
           <span className="text-base font-semibold text-gray-200" >{title}</span>
         </div>
         <button onClick={onClose}>
-          <img src={close} className="w-4.5 h-4.5 cursor-pointer" />
+          <IconX className="w-4.5 h-4.5 cursor-pointer fill-gray-200" />
         </button>
       </div>
     </>
