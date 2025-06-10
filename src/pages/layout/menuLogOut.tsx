@@ -31,7 +31,7 @@ export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutP
           <div>
             <ul className="mt-1 flex flex-col gap-1">
               {identification === "admin" ||
-                <button onClick={() => {setOpen(!open); isModal()}} >
+                <button type="button" onClick={() => {setOpen(!open); isModal()}} >
                   <li className="flex items-center gap-3 Text-Sm text-gray-400 cursor-pointer rounded-md h-11 hover:bg-gray-200 hover:text-gray-600 group/user">
                     <IconCicleUser className="ml-3 w-5 h-5 fill-gray-400 group-hover/user:fill-gray-600" />
                     Perfil
