@@ -13,10 +13,12 @@ import { IconTrash } from "../../assets/icon/iconTrash";
 import { IsProfile } from "../../components/profile";
 import { Modal } from "../../components/modal";
 import { Input } from "../../components/ui/input";
+import { currency } from "../../lib/currency";
 
 export function CallDetails(){
   const { id } = useParams()
   const [modalServices, setModalServices] = useState(false)
+   const [value, setValue] = useState("")
 
   const [itemCalled] = called.filter(item => item.id === id)
   const [details, setDetails ] = useState(itemCalled)
@@ -38,7 +40,7 @@ export function CallDetails(){
           <Modal.Title title="Serviço adicional" onClose={() => setModalServices(!modalServices)}/>
           <Modal.Context>
             <Input type="text" name="description" label="Descrição" placeholder="Assinatura de backup"/>
-            <Input type="text" name="value" label="Valor" placeholder="R$ 120,00" />
+            <Input type="text" name="value" label="Valor" placeholder="R$ 120,00" value={value} onChange={(e) => setValue( currency(e.target.value) )} />
           </Modal.Context>
           <Modal.Actions>
             <UiButton type="submit" typeSize="xxl" typeColor="black">Salvar</UiButton>

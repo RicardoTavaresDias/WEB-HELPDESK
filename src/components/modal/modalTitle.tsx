@@ -17,7 +17,7 @@ export function ModalTitle({onClose, title, onClick}: PropsTitle){
           }
           <span className="text-base font-semibold text-gray-200" >{title}</span>
         </div>
-        <button onClick={onClose}>
+        <button type="button" onClick={onClose}>
           <IconX className="w-4.5 h-4.5 cursor-pointer fill-gray-200" />
         </button>
       </div>

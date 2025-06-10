@@ -12,6 +12,7 @@ import { useState } from "react";
 import { Input } from "../../../components/ui/input"
 import { UiButton } from "../../../components/ui/UiButton"
 import { IconPlus } from "../../../assets/icon/iconPlus"
+import { currency } from "../../../lib/currency"
 
 export function Services(){
   const [modalNew, setModalNew] = useState(false)
@@ -20,6 +21,7 @@ export function Services(){
 
   const [title, setTitle] = useState("Instalação de rede")
   const [value, setValue] = useState("R$ 180,00")
+  const [valueNew, setValueNew] =useState("")
 
   const handleEditionSubmit = (formData: FormData) => {
     const title = formData.get("title")
@@ -44,7 +46,7 @@ export function Services(){
           <Modal.Title title="Cadastro de serviço" onClose={() => setModalNew(!modalNew)} />
           <Modal.Context>
             <Input type="text" name="title" label="Título" placeholder="Nome do serviço"/>
-            <Input type="text" name="value" label="Valor" placeholder="R$ 0,00" />
+            <Input type="text" name="value" label="Valor" placeholder="R$ 0,00" value={valueNew} onChange={(e) => setValueNew(currency(e.target.value))} />
           </Modal.Context>
           <Modal.Actions>
             <UiButton type="submit" typeSize="xxl" typeColor="black">Salvar</UiButton>
@@ -57,7 +59,7 @@ export function Services(){
           <Modal.Title title="Cadastro de serviço" onClose={() => setModalEdition(!modalEdition)}/>
           <Modal.Context>
             <Input type="text" name="title" label="Título"  value={title} onChange={(e) => setTitle(e.target.value)} />
-            <Input type="text" name="value" label="Valor" value={value} onChange={(e) => setValue(e.target.value)} />
+            <Input type="text" name="value" label="Valor" value={value} onChange={(e) => setValue(currency(e.target.value))} />
           </Modal.Context>
           <Modal.Actions>
             <UiButton type="submit" typeSize="xxl" typeColor="black">Salvar</UiButton>
