@@ -11,16 +11,40 @@ import { useParams } from "react-router"
 import { IconPlus } from "../../assets/icon/iconPlus";
 import { IconTrash } from "../../assets/icon/iconTrash";
 import { IsProfile } from "../../components/profile";
+import { Modal } from "../../components/modal";
+import { Input } from "../../components/ui/input";
 
 export function CallDetails(){
   const { id } = useParams()
+  const [modalServices, setModalServices] = useState(false)
 
   const [itemCalled] = called.filter(item => item.id === id)
   const [details, setDetails ] = useState(itemCalled)
 
+  const handleSubmit = (formData: FormData) => {
+    const description = formData.get("description")
+    const value = formData.get("value")
+
+    setModalServices(!modalServices)
+    console.log("Technical Create Services", { description, value })
+  }
+
   return (
     <>
       <IsProfile myProfile="technical" />
+
+      <form action={handleSubmit}>
+        <Modal.Root isActive={modalServices}>
+          <Modal.Title title="Serviço adicional" onClose={() => setModalServices(!modalServices)}/>
+          <Modal.Context>
+            <Input type="text" name="description" label="Descrição" placeholder="Assinatura de backup"/>
+            <Input type="text" name="value" label="Valor" placeholder="R$ 120,00" />
+          </Modal.Context>
+          <Modal.Actions>
+            <UiButton type="submit" typeSize="xxl" typeColor="black">Salvar</UiButton>
+          </Modal.Actions>
+        </Modal.Root>
+      </form>
 
       <Modules.Root>
         <Modules.Title title="Chamado detalhado" to="/">
@@ -118,7 +142,7 @@ export function CallDetails(){
           <Modules.Context isType="60">
             <div className="flex items-center justify-between">
               <span className="text-gray-400 Text-Xs">Serviços adicionais</span>
-              <UiButton type="button" typeColor="black" typeSize="xxs" icon={IconPlus} color="#F9FAFA" />
+              <UiButton type="button" typeColor="black" typeSize="xxs" icon={IconPlus} color="#F9FAFA" onClick={() => setModalServices(!modalServices)}/>
             </div>
 
             <div className="mt-4 flex flex-col gap-4">
