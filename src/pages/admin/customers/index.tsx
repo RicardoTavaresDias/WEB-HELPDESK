@@ -18,7 +18,7 @@ export function Customers(){
 
   const handleSubmit = (formData: FormData) => {
     const name = formData.get("name")
-    const email = formData.get("andre.costa@client.com")
+    const email = formData.get("email")
 
     setModalEdition(!modalEdition)
     console.log("Customers", {name, email})
