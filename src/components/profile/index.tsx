@@ -18,6 +18,9 @@ export function IsProfile({myProfile}: IsProfileProps){
   const { menuRef, open, setOpen } = useOpenModal()
   const [modalPassword, setModalPassword] = useState(false)
   const { profileModal, isModal }: any = useProfile()
+
+  const [name, setName] = useState("Carlos Silva")
+  const [email, setEmail] = useState("carlos.silva@test.com")
   const [password, setPassword] = useState("123456")
 
   const handleSubmit = (formData: FormData) => {
@@ -85,10 +88,10 @@ export function IsProfile({myProfile}: IsProfileProps){
               {/* Avatar */}
 
               <div className="mt-5">
-                <Input type="text" name="name" label="nome" value="Carlos Silva" />
-                <Input type="text" name="email" label="e-mail" value="carlos.silva@test.com" />
+                <Input type="text" name="name" label="nome" value={name} onChange={(e) => setName(e.target.value)} />
+                <Input type="text" name="email" label="e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
                 <div className="flex items-center relative ">
-                  <Input type="password" name="password" label="senha" value={password} />
+                  <Input type="password" name="password" label="senha" value={password} onChange={() => null} />
                   <div className="absolute right-0 ">
                     <div className="">
                       <button type="button" className="p-1 bg-gray-500 rounded-md text-xxs font-semibold cursor-pointer hover:shadow-md" onClick={() => {setModalPassword(!modalPassword); isModal()}} >

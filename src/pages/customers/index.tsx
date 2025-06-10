@@ -32,8 +32,7 @@ export function Called(){
         <Panel.Column>{""}</Panel.Column>
 
         {called.map(item => (
-          <>
-            <Fragment key={item.id}>
+          <Fragment key={item.id}>
             <Panel.Rows>{item.date}</Panel.Rows>
             <Panel.Rows>
               <span className="flex flex-col Text-Sm ">
@@ -57,8 +56,7 @@ export function Called(){
              <Panel.Rows>
               <Link to={`/chamados/${item.id}`}><UiButton type="button" icon={IconEye} typeSize="xxs" typeColor="gray" /></Link>
             </Panel.Rows>
-            </Fragment>
-          </>
+          </Fragment>
         ))}
 
       </Panel.Root>
@@ -71,20 +69,18 @@ export function Called(){
         <Panel.Column>{""}</Panel.Column>
 
         {called.map(item => (
-          <>
-            <Fragment key={item.id}>
-              <Panel.Rows>{item.date}</Panel.Rows>
-              <Panel.Rows>
-                <span className="flex flex-col text-sx font-bold mb-1">
-                  {item.service.title}
-                </span>
-              </Panel.Rows>
-              <Panel.Rows><Status type={item.status as "open" | "progress" | "close"}/></Panel.Rows>
-              <Panel.Rows>
-                <Link to={`/chamados/${item.id}`}><UiButton type="button" icon={IconEye} typeSize="xxs" typeColor="gray" /></Link>
-              </Panel.Rows>
-            </Fragment>
-          </>
+          <Fragment key={item.id}>
+            <Panel.Rows>{item.date}</Panel.Rows>
+            <Panel.Rows>
+              <span className="flex flex-col text-sx font-bold mb-1">
+                {item.service.title}
+              </span>
+            </Panel.Rows>
+            <Panel.Rows><Status type={item.status as "open" | "progress" | "close"}/></Panel.Rows>
+            <Panel.Rows>
+              <Link to={`/chamados/${item.id}`}><UiButton type="button" icon={IconEye} typeSize="xxs" typeColor="gray" /></Link>
+            </Panel.Rows>
+          </Fragment>
         ))}
       </Panel.Root>
       {/* Mobile */}

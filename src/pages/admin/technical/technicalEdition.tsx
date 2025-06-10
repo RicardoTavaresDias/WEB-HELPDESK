@@ -15,6 +15,8 @@ const day = {
 
 export function TechnicalEdition(){
   const [user, setUser] = useState<string[]>(["09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "20:00", "21:00" ])
+  const [name, setName] = useState("Carlos Silva")
+  const [email, setEmail] = useState("carlos.silva@test.com")
 
   const handleSubmit = (formData: FormData) => {
     const name = formData.get("name")
@@ -39,8 +41,8 @@ export function TechnicalEdition(){
                 <span className="Text-Xs text-gray-300">Defina as informações do perfil de técnico</span>
               </div>
               <img className="my-6 w-12 h-12" src={avatar} />
-              <Input type="text" name="name" value="Carlos Silva" label="nome"/>
-              <Input type="text" name="email" value="carlos.silva@test.com" label="e-mail"/>
+              <Input type="text" name="name" value={name} label="nome" onChange={(e) => setName(e.target.value)} />
+              <Input type="text" name="email" value={email} label="e-mail" onChange={(e) => setEmail(e.target.value)} />
             </div>
           </Modules.Context>
 

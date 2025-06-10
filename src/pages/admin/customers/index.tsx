@@ -13,9 +13,12 @@ export function Customers(){
   const [modalRemove, setModalRemove] = useState(false)
   const [modalEdition, setModalEdition] = useState(false)
 
+  const [name, setName] = useState("André Costa")
+  const [email, setEmail] = useState("carlos.silva@test.com")
+
   const handleSubmit = (formData: FormData) => {
     const name = formData.get("name")
-    const email = formData.get("email")
+    const email = formData.get("andre.costa@client.com")
 
     console.log("Customers", {name, email})
   }
@@ -41,8 +44,8 @@ export function Customers(){
             <div>
               <img src={avatar} className="w-12 h-12"/>
               <div className="pt-5">
-                <Input type="text" name="name" label="nome" value="André Costa"/>
-                <Input type="text" name="email" label="e-mail" value="andre.costa@client.com"/>
+                <Input type="text" name="name" label="nome" value={name} onChange={(e) => setName(e.target.value)} />
+                <Input type="text" name="email" label="e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
             </div>  
           </Modal.Context>

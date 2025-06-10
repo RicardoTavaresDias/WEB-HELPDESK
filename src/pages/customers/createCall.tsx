@@ -8,6 +8,7 @@ import { Input } from "../../components/ui/input";
 import { useOpenModal } from "../../hooks/useOpenModal"
 import { IconChevronDown } from "../../assets/icon/iconChevronDown";
 import { IconCheck } from "../../assets/icon/iconCheck";
+import { v4 as uuidv4 } from 'uuid'
 
 export function CreateCall(){
   const [error, setError] = useState("")
@@ -60,20 +61,18 @@ export function CreateCall(){
 
                   {/* Select */}
                   <div className="relative" ref={menuRef} >
-                    <Input type="text" name="category" placeholder="Selecione a categoria de atendimento" label="categoria de serviço" isScren value={select} border={open} />
+                    <Input type="text" name="category" placeholder="Selecione a categoria de atendimento" label="categoria de serviço" isScren value={select} border={open} onChange={() => null} />
                     <IconChevronDown className={`w-5 h-5 absolute top-10.5 right-1 cursor-pointer  ${open ? "rotate-180 fill-blue-base" : "fill-gray-400"}`} onClick={() => setOpen(!open)}/>
 
                     {open &&
                       <div className="w-full bg-gray-600 border border-gray-400/15 rounded-lg shadow-xl px-5 py-4 text-gray-400 Text-Md" >
                         <span className="Text-Xxs text-gray-400">opções</span>
                         <div className="mt-4  Text-Sm cursor-pointer">
-                          {option && option.map((value, index) => (
-                            <>
-                              <div key={index} className={`py-2 ${select === value && "text-gray-200 font-semibold"} flex justify-between group`} onClick={() => { setSelect(value); setOpen(!open)} }>
-                                <span className="group-hover:text-gray-200">{value}</span>
-                                {select === value && <IconCheck className="w-5 h-5 fill-blue-base" />}
-                              </div>
-                            </>
+                          {option && option.map(value => (
+                            <div key={uuidv4()} className={`py-2 ${select === value && "text-gray-200 font-semibold"} flex justify-between group`} onClick={() => { setSelect(value); setOpen(!open)} } >
+                              <span className="group-hover:text-gray-200">{value}</span>
+                              {select === value && <IconCheck className="w-5 h-5 fill-blue-base" />}
+                            </div>
                           ))}
                         </div>
                       </div>

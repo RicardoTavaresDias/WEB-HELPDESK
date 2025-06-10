@@ -29,37 +29,35 @@ export function CallList() {
             <Panel.Column>{""}</Panel.Column>
 
             {called.map((item) => (
-              <>
-                <Fragment key={item.id}>
-                  <Panel.Rows>{item.date}</Panel.Rows>
-                  <Panel.Rows>{item.id}</Panel.Rows>
-                  <Panel.Rows>
-                    <div>
-                      <span className="flex flex-col Text-Sm ">
-                        {item.service.title}
-                      </span>
-                      {item.service.description}
-                    </div>
-                  </Panel.Rows>
-                  <Panel.Rows>{item.value}</Panel.Rows>
-                  <Panel.Rows>
-                    <div className="flex gap-2 justify-center items-center">
-                      <img src={avatar} className="w-5 h-5" />
-                      {item.customer.name}
-                    </div>
-                  </Panel.Rows>
-                  <Panel.Rows>
-                    <div className="flex gap-2 justify-center items-center">
-                      <img src={avatar} className="w-5 h-5" />
-                      {item.technical.name}
-                    </div>
-                  </Panel.Rows>
-                  <Panel.Rows><Status type={item.status as "open" | "progress" | "close"} /></Panel.Rows>
-                  <Panel.Rows>
-                    <Link to={`/chamados/${item.id}`}><UiButton icon={IconPenLine} typeSize="xxs" typeColor="gray" /></Link>
-                  </Panel.Rows>
-                </Fragment>
-              </>
+              <Fragment key={item.id}>
+                <Panel.Rows>{item.date}</Panel.Rows>
+                <Panel.Rows>{item.id}</Panel.Rows>
+                <Panel.Rows>
+                  <div>
+                    <span className="flex flex-col Text-Sm ">
+                      {item.service.title}
+                    </span>
+                    {item.service.description}
+                  </div>
+                </Panel.Rows>
+                <Panel.Rows>{item.value}</Panel.Rows>
+                <Panel.Rows>
+                  <div className="flex gap-2 justify-center items-center">
+                    <img src={avatar} className="w-5 h-5" />
+                    {item.customer.name}
+                  </div>
+                </Panel.Rows>
+                <Panel.Rows>
+                  <div className="flex gap-2 justify-center items-center">
+                    <img src={avatar} className="w-5 h-5" />
+                    {item.technical.name}
+                  </div>
+                </Panel.Rows>
+                <Panel.Rows><Status type={item.status as "open" | "progress" | "close"} /></Panel.Rows>
+                <Panel.Rows>
+                  <Link to={`/chamados/${item.id}`}><UiButton icon={IconPenLine} typeSize="xxs" typeColor="gray" /></Link>
+                </Panel.Rows>
+              </Fragment>
             ))}        
           </Panel.Root>
 
