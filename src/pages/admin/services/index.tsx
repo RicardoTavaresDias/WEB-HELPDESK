@@ -25,6 +25,7 @@ export function Services(){
     const title = formData.get("title")
     const value = formData.get("value")
 
+    setModalEdition(!modalEdition)
     console.log("Services Edition", {title, value})
   }
 
@@ -32,6 +33,7 @@ export function Services(){
     const title = formData.get("title")
     const value = formData.get("value")
 
+    setModalNew(!modalNew)
     console.log("services", {title, value})
   }
 

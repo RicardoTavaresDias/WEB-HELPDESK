@@ -20,6 +20,7 @@ export function Customers(){
     const name = formData.get("name")
     const email = formData.get("andre.costa@client.com")
 
+    setModalEdition(!modalEdition)
     console.log("Customers", {name, email})
   }
 

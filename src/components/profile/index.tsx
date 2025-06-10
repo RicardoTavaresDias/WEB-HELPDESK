@@ -29,6 +29,7 @@ export function IsProfile({myProfile}: IsProfileProps){
     const password = formData.get("password")
     const file = formData.get("file")
 
+    isModal()
     console.log("Modal Perfil", { name, email, password, file })
   }
 
