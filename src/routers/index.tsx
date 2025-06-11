@@ -23,13 +23,7 @@ export function Routes(){
   }
 
   if(isLoading){
-    return (
-      <>
-        <div className="w-screen h-screen bg-white flex justify-center items-center text-[90px] max-sm:text-[45px] ">
-          Carregando....
-        </div>
-      </>
-    )
+    return null
   }
 
   return (

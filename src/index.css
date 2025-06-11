@@ -65,13 +65,18 @@ section::-webkit-scrollbar-thumb {
 
 body {
   margin: 0 auto;
-  background-image: url("./assets//img/Login_Background.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+ 
 
+  -webkit-font-smoothing: antialiased;
   margin: 0;
   padding: 0;
   overflow: hidden;
+}
+
+main {
+  background-image: url("./assets/logo2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .menuMobile:before {
