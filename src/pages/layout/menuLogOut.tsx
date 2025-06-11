@@ -5,6 +5,7 @@ import { Link } from "react-router"
 import { useOpenModal } from "../../hooks/useOpenModal"
 import { IconCicleUser } from "../../assets/icon/iconCicleUser"
 import { IconLogOut } from "../../assets/icon/iconLogOut"
+import { useAuth } from "../../hooks/useAuth"
 
 type MenuLogOutProps = {
   classmobile?: string
@@ -15,6 +16,8 @@ type MenuLogOutProps = {
 export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutProps){
   const { menuRef, open, setOpen } = useOpenModal()
   const { isModal }: any = useProfile()
+  const { remove } = useAuth()
+
 
   return (
     <div ref={menuRef}>
@@ -36,9 +39,9 @@ export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutP
                   </li>
                 </button>
               }
-              <Link to="/" >
+              <Link to="/" onClick={() => remove()} > {/* // authProvider */}
                 <li className="flex items-center gap-3 Text-Sm text-feedback-danger cursor-pointer rounded-md h-11 hover:bg-gray-200">
-                  <IconLogOut className="ml-3 w-5 h-5 fill-feedback-danger"  />
+                  <IconLogOut className="ml-3 w-5 h-5 fill-feedback-danger" />
                   Sair
                 </li>
               </Link>

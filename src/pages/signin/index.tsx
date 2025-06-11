@@ -4,13 +4,18 @@ import { Account } from "../../components/auth/account"
 import { Input } from "../../components/ui/input"
 import { useNavigate } from "react-router"
 
+import { useAuth } from "../../hooks/useAuth"
+import { response } from "../../database/response"
+
 export function Signin(){
   const navigate = useNavigate()
+  const { save } = useAuth()
 
   const handleSubmit = (formData: FormData) => {
     const email = formData.get("email")
     const password = formData.get("password")
 
+    save(response) // authProvider
     console.log("Signin", { email, password })
     navigate("/")
   }
