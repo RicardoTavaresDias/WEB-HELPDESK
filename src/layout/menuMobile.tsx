@@ -9,7 +9,7 @@ export function MenuMobile({ element }: any){
   return (
     <div ref={menuRef}>
       <button type="button" className="group" onClick={() => setOpen(!open)} >
-        <IconX className="w-5 h-5 cursor-pointer fill-gray-600" isActive={open} />
+        <IconX className="w-10 h-10 cursor-pointer fill-gray-600 bg-gray-200 p-2.5 rounded" isActive={open} />
       </button>
 
       <div className={`absolute left-3 top-24 z-10 ${open ? "scale-y-100" : "scale-y-0"} origin-top duration-200 bg-gray-100 flex flex-col gap-3 w-87 rounded-xl p-4`} >
