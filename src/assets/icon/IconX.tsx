@@ -1,7 +1,11 @@
 import type { SVGProps } from "react";
 
-export function IconX({...props }: SVGProps<SVGSVGElement>) {
-  return (
+type IconXProps = {
+  isActive: Boolean
+} & SVGProps<SVGSVGElement>
+
+export function IconX({isActive, ...props }: IconXProps) {
+  return isActive ? (
     <div>
       <svg
         viewBox="0 0 32 32"
@@ -13,5 +17,17 @@ export function IconX({...props }: SVGProps<SVGSVGElement>) {
         />
       </svg>
     </div>
-  );
+  ) : (
+    <div>
+      <svg
+        viewBox="0 0 32 32"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}
+      >
+        <path
+          d="M4 8.00008C4 7.2637 4.59695 6.66675 5.33333 6.66675H26.6667C27.403 6.66675 28 7.2637 28 8.00008C28 8.73646 27.403 9.33341 26.6667 9.33341H5.33333C4.59695 9.33341 4 8.73646 4 8.00008ZM4 16.0001C4 15.2637 4.59695 14.6667 5.33333 14.6667H26.6667C27.403 14.6667 28 15.2637 28 16.0001C28 16.7365 27.403 17.3334 26.6667 17.3334H5.33333C4.59695 17.3334 4 16.7365 4 16.0001ZM4 24.0001C4 23.2637 4.59695 22.6667 5.33333 22.6667H26.6667C27.403 22.6667 28 23.2637 28 24.0001C28 24.7365 27.403 25.3334 26.6667 25.3334H5.33333C4.59695 25.3334 4 24.7365 4 24.0001Z"
+        />
+      </svg>
+    </div>
+  )
 }
