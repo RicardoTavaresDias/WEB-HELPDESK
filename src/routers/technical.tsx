@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router"
-import { Layout } from "../pages/layout"
+import { Layout } from "../layout"
 import { Called } from "../pages/technical"
 import { CallDetails } from "../pages/technical/callDetails"
 import { NotFound } from "../pages/notFound"

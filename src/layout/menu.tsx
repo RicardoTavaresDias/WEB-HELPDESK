@@ -1,10 +1,10 @@
 import { useLocation } from "react-router"
 import { Link } from "react-router"
-import { IconPlus } from "../../assets/icon/iconPlus"
-import { IconCicleUser } from "../../assets/icon/iconCicleUser"
-import { IconBriefcaseBusiness } from "../../assets/icon/iconBriefcaseBusiness"
-import { IconWrench } from "../../assets/icon/iconWrench"
-import { IconClipboardList } from "../../assets/icon/iconClipboardList"
+import { IconPlus } from "../assets/icon/iconPlus"
+import { IconCicleUser } from "../assets/icon/iconCicleUser"
+import { IconBriefcaseBusiness } from "../assets/icon/iconBriefcaseBusiness"
+import { IconWrench } from "../assets/icon/iconWrench"
+import { IconClipboardList } from "../assets/icon/iconClipboardList"
 
 export function Menu({ element }: any){
   const location = useLocation();
