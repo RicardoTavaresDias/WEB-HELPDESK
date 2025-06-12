@@ -30,7 +30,7 @@ export function UiButton({children, typeColor, typeSize, color = "#535964", icon
   return (
     <>
       <button className={
-        "Text-Sm flex items-center gap-1.5 cursor-pointer hover:shadow-md" + 
+        "Text-Sm flex items-center gap-1.5 cursor-pointer hover:shadow-lg transition-shadow" + 
           variant.typeColor[typeColor] + 
           variant.size[typeSize] 
           }
