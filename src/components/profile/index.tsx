@@ -55,7 +55,7 @@ export function IsProfile({myProfile}: IsProfileProps){
         <Modal.Root isActive={profileModal}>
           <Modal.Title title="Perfil" onClose={() => isModal()} />
           <Modal.Context className={myProfile !== "technical" ? "" : "mb-0 border-t"}>
-            <div className="lg:w-fit lg:m-auto relative">
+            <div className="lg:w-full relative">
               {/* Avatar */}
               <div className="flex items-center w-fit" ref={menuRef}>
                 <img src={avatar} className="w-15 h-15"/>
@@ -91,11 +91,11 @@ export function IsProfile({myProfile}: IsProfileProps){
               <div className="mt-5">
                 <Input type="text" name="name" label="nome" value={name} onChange={(e) => setName(e.target.value)} />
                 <Input type="text" name="email" label="e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
-                <div className="flex items-center relative ">
+                <div className="relative ">
                   <Input type="password" name="password" label="senha" value={password} onChange={() => null} />
                   <div className="absolute right-0 ">
                     <div className="">
-                      <button type="button" className="p-1 bg-gray-500 rounded-md text-xxs font-semibold cursor-pointer hover:shadow-md" onClick={() => {setModalPassword(!modalPassword); isModal()}} >
+                      <button type="button" className="absolute bottom-5 right-1 p-1 bg-gray-500 rounded-md text-xxs font-semibold cursor-pointer hover:shadow-md" onClick={() => {setModalPassword(!modalPassword); isModal()}} >
                         <span className="Text-Xs m-3 ">Alterar</span>
                       </button>
                     </div>
@@ -136,7 +136,7 @@ export function IsProfile({myProfile}: IsProfileProps){
         <Modal.Root isActive={modalPassword}>
           <Modal.Title title="Alterar senha" onClose={() => {setModalPassword(!modalPassword)}} onClick={() => {isModal(); setModalPassword(!modalPassword)}} />
           <Modal.Context >
-            <div className="lg:w-fit lg:m-auto">
+            <div>
               <Input type="password" name="currentPassword" label="Senha atual" placeholder="Digite sua senha atual" />
               <Input type="password" name="newPassword" label="Nova senha" placeholder="Digite sua nova senha" textLabel="Mínimo de 6 dígitos" />
             </div>

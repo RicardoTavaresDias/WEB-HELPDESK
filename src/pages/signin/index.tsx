@@ -29,8 +29,8 @@ export function Signin(){
   return (
     <>
       <main className="pt-3">
-        <div className="bg-gray-600 w-170 ml-auto px-35 py-12 max-sm:py-8 rounded-tl-3xl max-sm:w-95 max-sm:px-4 max-sm:rounded-3xl max-sm:mx-auto  lg:h-[calc(100vh-12px)]  flex items-center">
-          <div id="animeAuth">
+        <div className="bg-gray-600 2xl:w-170 w-145 ml-auto py-12 max-sm:py-8 rounded-tl-3xl max-sm:w-95 max-sm:px-4 max-sm:rounded-3xl max-sm:mx-auto  lg:h-[calc(100vh-12px)]  flex items-center justify-center">
+          <div id="animeAuth" className="w-110 px-4 2xl:px-0">
             <LogoAuth />
             <form action={handleSubmit}>
               <Form textTitle="Acesse o portal" subtitle="Entre usando seu e-mail e senha cadastrados" textButton="Entrar">

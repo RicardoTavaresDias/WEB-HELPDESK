@@ -13,7 +13,7 @@ export function Input({ label, error, textLabel, isScren,  border, ...props }: I
   return (
     <div className="group flex flex-col mt-4">
       <label className={`Text-Xxs group-focus-within:text-blue-base ${error ? "text-feedback-danger" : "text-gray-300"}`}>{label}</label>
-      <input className={` ${isScren && "w-full"} border-b-1 ${border ? "border-blue-base" : "border-gray-500"} w-86 max-sm:w-73 Heading-Md my-2 pb-2 outline-none group-focus-within:border-blue-base`} {...props} />
+      <input className={` ${isScren && "w-full"} border-b-1 ${border ? "border-blue-base" : "border-gray-500"} max-sm:w-73 Heading-Md my-2 pb-2 outline-none group-focus-within:border-blue-base`} {...props} />
 
       {error &&
         <div className="flex gap-1">
