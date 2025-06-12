@@ -5,7 +5,7 @@ import { Input } from "../../components/ui/input"
 import { useNavigate } from "react-router"
 
 import { useAuth } from "../../hooks/useAuth"
-import { response } from "../../database/response"
+import type { ResponseType } from "../../database/response"
 
 export function Signin(){
   const navigate = useNavigate()
@@ -15,7 +15,13 @@ export function Signin(){
     const email = formData.get("email")
     const password = formData.get("password")
 
-    save(response) // authProvider
+    save({
+      token: "123456",
+      user: {
+        role: email
+      }
+    } as ResponseType) // authProvider
+
     console.log("Signin", { email, password })
     navigate("/")
   }
