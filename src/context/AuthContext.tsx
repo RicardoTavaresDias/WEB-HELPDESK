@@ -6,6 +6,9 @@ type AuthContextType = {
   remove: () => void
   session: ResponseType | null
   isLoading: boolean
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+  teste : boolean
+  setTeste: React.Dispatch<React.SetStateAction<boolean>>
 };
 
 type AuthProviderType = {children: React.ReactNode}
@@ -16,6 +19,7 @@ export const AuthContext = createContext({} as AuthContextType)
 export function AuthProvider({children}: AuthProviderType ){
   const [session, setSession] = useState<ResponseType | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [teste, setTeste] = useState(false)
 
   function save(data: ResponseType){
     localStorage.setItem(`${LOCAL_STORAGE_KEY}:user`, JSON.stringify(data.user))
@@ -53,7 +57,7 @@ export function AuthProvider({children}: AuthProviderType ){
  
 
   return (
-    <AuthContext.Provider value={{ session, save, remove, isLoading }}>
+    <AuthContext.Provider value={{ session, save, remove, setIsLoading, isLoading, teste, setTeste }}>
       {children}
     </AuthContext.Provider>
   )

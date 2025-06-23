@@ -45,8 +45,8 @@ export function Layout({identification}: LayoutProps){
 
         {/* <Menu Desktop> */}
         <nav className="max-sm:hidden w-fit ">
-          <div className="flex flex-col justify-between h-[calc(100vh-120px)] overflow-auto">
-            <div className="max-sm:hidden lg:w-46">
+          <div className="flex flex-col justify-between h-[calc(100vh-120px)] overflow-auto ">
+            <div className="max-sm:hidden lg:w-46 ">
               <Menu element={identification} />
             </div>
 

@@ -13,9 +13,9 @@ export function Routes(){
     switch (session?.user.role) {
       case "admin":
         return <Admin /> 
-      case "cliente":
+      case "customer":
         return <Customers /> 
-      case "tecnico":
+      case "technical":
         return <Technical /> 
       default:
         return <Auth />
