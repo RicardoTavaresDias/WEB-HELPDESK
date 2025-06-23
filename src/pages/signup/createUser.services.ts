@@ -2,6 +2,8 @@ import { api } from "../../services/api"
 import { AxiosError } from "axios"
 import { useState } from "react";
 import { useForm } from 'react-hook-form'
+import { userSchema } from "./createUser.shema"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 type Inputs = {
   name: string
@@ -11,6 +13,7 @@ type Inputs = {
 
 export const useCreateUser = () => {
   const [messageSucess, setMessageSucess] = useState("")
+  const { isUserSchema } = userSchema()
   
   const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<Inputs>(
     { 
@@ -22,6 +25,7 @@ export const useCreateUser = () => {
         email: '',
         password: '',
       },
+      resolver: zodResolver(isUserSchema)
     })
     
 
@@ -32,10 +36,7 @@ export const useCreateUser = () => {
       reset()
     } catch (error){
       if(error instanceof AxiosError) {
-        error.response?.data.error.name && setError("name", {message: error.response?.data.error.name[0]})
-        error.response?.data.error.email && setError("email", {message: error.response?.data.error.email[0]})
-        error.response?.data.error.password && setError("password", {message: error.response?.data.error.password[0]})
-        typeof error.response?.data.error === "string" && setError("root", {message: error.response?.data.error})
+        setError("root", {message: error.response?.data.error})
       }
       console.log(error)
     }

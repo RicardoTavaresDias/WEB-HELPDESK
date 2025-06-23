@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router"
 import { useAuth } from "../../hooks/useAuth"
-import type { ResponseType } from "../../database/response"
 import { api } from "../../services/api"
 import { AxiosError } from "axios"
 
 import { useForm } from 'react-hook-form'
+import { authSchema } from "./auth.schema"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 type Inputs = {
   email: string,
@@ -14,6 +15,7 @@ type Inputs = {
 export const useSignin = () => {
   const navigate = useNavigate()
   const { save } = useAuth()
+  const { shema } = authSchema()
 
   const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<Inputs>(
     { 
@@ -23,7 +25,9 @@ export const useSignin = () => {
       defaultValues: {
         email: '',
         password: '',
+        
       },
+      resolver: zodResolver(shema)
     })
   
 
@@ -37,15 +41,13 @@ export const useSignin = () => {
           name: response.data.user.name,
           role: response.data.user.role
         }
-      } as ResponseType) // authProvider
+      })
   
       reset()
       navigate("/")
     } catch (error){
       if(error instanceof AxiosError) {
-        error.response?.data.error.email && setError("email", {message: error.response?.data.error.email[0]})
-        error.response?.data.error.password && setError("password", {message: error.response?.data.error.password[0]})
-        typeof error.response?.data.error === "string" && setError("root", {message: error.response?.data.error})
+        setError("root", {message: error.response?.data.error})
       }
       console.log(error)
     }
