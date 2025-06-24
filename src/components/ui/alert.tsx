@@ -17,7 +17,7 @@ export function Alert({ severity, open = true, children }: AlertType) {
   
   return (
     <>
-      <div className={`w-1/4 ${backGraund[severity][1]} p-3 rounded absolute bottom-7 right-7 ${open ? "translate-y-0 opacity-100" : "translate-y-40 opacity-0"}  transition ease-out duration-300`}>
+      <div className={`w-1/4 max-sm:w-[350px] max-sm:mt-4 max-sm:ml-4 ${backGraund[severity][1]} p-3 rounded absolute z-60 max-sm:top-0 lg:bottom-7 lg:right-7 ${open ? "translate-y-0 opacity-100" : "max-sm:-translate-y-40 translate-y-40 opacity-0"}  transition ease-out duration-300`}>
         <div className="flex gap-2">
           {severity === "success" && <CircleCheckBig className={`w-4.5 ${backGraund[severity][0]}`} />}
           {severity === "info" && <Info className={`w-4.5 ${backGraund[severity][0]}`} />}

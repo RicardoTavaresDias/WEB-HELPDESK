@@ -44,11 +44,11 @@ export const useSignin = () => {
   
       reset()
       navigate("/")
-    } catch (error){
+    } catch (error: any){
       if(error instanceof AxiosError) {
-        setError("root", {message: error.response?.data.message})
+        return setError("root", {message: error.response?.data.message})
       }
-      console.log(error)
+      return setError("root", {message: error.message})
     }
   }
 
