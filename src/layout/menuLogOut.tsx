@@ -1,11 +1,11 @@
-import avatar from "../assets/img/Avatar.svg"
+import avatar from "@/assets/img/Avatar.svg"
 
-import { useProfile } from "../hooks/useProfile"
+import { useProfile } from "@/hooks/useProfile"
 import { Link } from "react-router"
-import { useOpenModal } from "../hooks/useOpenModal"
-import { IconCicleUser } from "../assets/icon/iconCicleUser"
-import { IconLogOut } from "../assets/icon/iconLogOut"
-import { useAuth } from "../hooks/useAuth"
+import { useOpenModal } from "@/hooks/useOpenModal"
+import { IconCicleUser } from "@/assets/icon/iconCicleUser"
+import { IconLogOut } from "@/assets/icon/iconLogOut"
+import { useAuth } from "@/hooks/useAuth"
 
 type MenuLogOutProps = {
   classmobile?: string

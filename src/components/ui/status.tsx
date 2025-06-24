@@ -1,8 +1,8 @@
-import { IconCicleHelp } from "../../assets/icon/iconCicleHelp"
-import { IconClock } from "../../assets/icon/iconClock"
-import { IconCheck } from "../../assets/icon/iconCheck"
-import { IconCicloCheckBig } from "../../assets/icon/iconCicloCheckBig"
-import { IconBan } from "../../assets/icon/iconBan"
+import { IconCicleHelp } from "@/assets/icon/iconCicleHelp"
+import { IconClock } from "@/assets/icon/iconClock"
+import { IconCheck } from "@/assets/icon/iconCheck"
+import { IconCicloCheckBig } from "@/assets/icon/iconCicloCheckBig"
+import { IconBan } from "@/assets/icon/iconBan"
 
 type StatusProps = {
   type: "open" | "progress" | "close" | "active" | "inactive"

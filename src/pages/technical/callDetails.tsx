@@ -1,19 +1,19 @@
-import { IconCicleHelp } from "../../assets/icon/iconCicleHelp";
-import { IconCicloCheckBig } from "../../assets/icon/iconCicloCheckBig";
-import { IconClock } from "../../assets/icon/iconClock";
-import { Modules } from "../../components/modules";
-import { Status } from "../../components/ui/status";
-import { UiButton } from "../../components/ui/UiButton";
-import { called } from "../../database/admCallList"
-import avatar from "../../assets/img/Avatar.svg"
+import { IconCicleHelp } from "@/assets/icon/iconCicleHelp";
+import { IconCicloCheckBig } from "@/assets/icon/iconCicloCheckBig";
+import { IconClock } from "@/assets/icon/iconClock";
+import { Modules } from "@/components/modules";
+import { Status } from "@/components/ui/status";
+import { UiButton } from "@/components/ui/UiButton";
+import { called } from "@/database/admCallList"
+import avatar from "@/assets/img/Avatar.svg"
 import { useState } from "react" 
 import { useParams } from "react-router" 
-import { IconPlus } from "../../assets/icon/iconPlus";
-import { IconTrash } from "../../assets/icon/iconTrash";
-import { IsProfile } from "../../components/profile";
-import { Modal } from "../../components/modal";
-import { Input } from "../../components/ui/input";
-import { currency } from "../../lib/currency";
+import { IconPlus } from "@/assets/icon/iconPlus";
+import { IconTrash } from "@/assets/icon/iconTrash";
+import { IsProfile } from "@/components/profile";
+import { Modal } from "@/components/modal";
+import { Input } from "@/components/ui/input";
+import { currency } from "@/lib/currency";
 
 export function CallDetails(){
   const { id } = useParams()

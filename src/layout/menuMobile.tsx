@@ -1,6 +1,6 @@
 import { Menu } from "./menu"
-import { useOpenModal } from "../hooks/useOpenModal"
-import { IconMobile } from "../assets/icon/iconMobile"
+import { useOpenModal } from "@/hooks/useOpenModal"
+import { IconMobile } from "@/assets/icon/iconMobile"
 
 export function MenuMobile({ element }: any){
   const { open, menuRef, setOpen } = useOpenModal()

@@ -1,12 +1,12 @@
-import avatar from "../../../assets/img/Avatar.svg";
-import { IconPenLine } from "../../../assets/icon/iconPenLine";
-import { Status } from "../../../components/ui/status";
-import { Panel } from "../../../components/table";
+import avatar from "@/assets/img/Avatar.svg";
+import { IconPenLine } from "@/assets/icon/iconPenLine";
+import { Status } from "@/components/ui/status";
+import { Panel } from "@/components/table";
 
 import { Fragment } from "react";
-import { called } from "../../../database/admCallList";
+import { called } from "@/database/admCallList";
 import { Link } from "react-router";
-import { UiButton } from "../../../components/ui/UiButton";
+import { UiButton } from "@/components/ui/UiButton";
 
 export function CallList() {
 

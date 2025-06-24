@@ -1,15 +1,15 @@
 import { useParams } from "react-router" 
-import avatar from "../../../assets/img/Avatar.svg"
-import { called } from "../../../database/admCallList"
+import avatar from "@/assets/img/Avatar.svg"
+import { called } from "@/database/admCallList"
 import { useState } from "react" 
-import { Modules } from "../../../components/modules"
-import { Status } from "../../../components/ui/status"
-import { ModuleContext } from "../../../components/modules/moduleContext"
+import { Modules } from "@/components/modules"
+import { Status } from "@/components/ui/status"
+import { ModuleContext } from "@/components/modules/moduleContext"
 
-import { IconCicleHelp } from "../../../assets/icon/iconCicleHelp";
-import { IconCicloCheckBig } from "../../../assets/icon/iconCicloCheckBig";
-import { IconClock } from "../../../assets/icon/iconClock";
-import { UiButton } from "../../../components/ui/UiButton"
+import { IconCicleHelp } from "@/assets/icon/iconCicleHelp";
+import { IconCicloCheckBig } from "@/assets/icon/iconCicloCheckBig";
+import { IconClock } from "@/assets/icon/iconClock";
+import { UiButton } from "@/components/ui/UiButton"
 
 
 export function CallListdetails(){

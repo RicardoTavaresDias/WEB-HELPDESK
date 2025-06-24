@@ -1,10 +1,10 @@
-import { api } from "../../services/api"
+import { api } from "@/services/api"
 import { AxiosError } from "axios"
 import { useState } from "react";
 import { useForm } from 'react-hook-form'
-import { userTechnicalrSchema } from "../../schemas/users.schemas"
+import { userTechnicalrSchema } from "@/schemas/users.schemas"
 import { zodResolver } from "@hookform/resolvers/zod"
-import type { InputsRegisterUser } from "../../types/users"
+import type { InputsRegisterUser } from "@/types/users"
 
 
 export const useSignup = () => {

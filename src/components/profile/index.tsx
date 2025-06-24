@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { Modal } from "../../components/modal";
-import { useProfile } from "../../hooks/useProfile";
-import { IconCamera } from "../../assets/icon/Iconcamera";
-import { IconTrash } from "../../assets/icon/iconTrash";
-import { Input } from "../../components/ui/input";
-import { ButtonTime } from "../../components/ui/buttonTime";
-import { UiButton } from "../../components/ui/UiButton";
-import avatar from "../../assets/img/Avatar.svg"
-import { IconPlay } from "../../assets/icon/IconPlay";
-import { useOpenModal } from "../../hooks/useOpenModal"
+import { Modal } from "@/components/modal";
+import { useProfile } from "@/hooks/useProfile";
+import { IconCamera } from "@/assets/icon/Iconcamera";
+import { IconTrash } from "@/assets/icon/iconTrash";
+import { Input } from "@/components/ui/input";
+import { ButtonTime } from "@/components/ui/buttonTime";
+import { UiButton } from "@/components/ui/UiButton";
+import avatar from "@/assets/img/Avatar.svg"
+import { IconPlay } from "@/assets/icon/IconPlay";
+import { useOpenModal } from "@/hooks/useOpenModal"
 
 type IsProfileProps = {
   myProfile: "technical" | "customers"

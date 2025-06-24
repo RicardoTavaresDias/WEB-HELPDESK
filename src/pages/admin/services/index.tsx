@@ -1,18 +1,18 @@
-import { Modules } from "../../../components/modules"
-import { Panel } from "../../../components/table"
+import { Modules } from "@/components/modules"
+import { Panel } from "@/components/table"
 
-import { IconPenLine } from "../../../assets/icon/iconPenLine"
-import { IconBan } from "../../../assets/icon/iconBan"
-import { IconCicloCheck } from "../../../assets/icon/iconCicloCheck"
+import { IconPenLine } from "@/assets/icon/iconPenLine"
+import { IconBan } from "@/assets/icon/iconBan"
+import { IconCicloCheck } from "@/assets/icon/iconCicloCheck"
 
-import { Status } from "../../../components/ui/status"
-import { Modal } from "../../../components/modal"
+import { Status } from "@/components/ui/status"
+import { Modal } from "@/components/modal"
 
 import { useState } from "react";
-import { Input } from "../../../components/ui/input"
-import { UiButton } from "../../../components/ui/UiButton"
-import { IconPlus } from "../../../assets/icon/iconPlus"
-import { currency } from "../../../lib/currency"
+import { Input } from "@/components/ui/input"
+import { UiButton } from "@/components/ui/UiButton"
+import { IconPlus } from "@/assets/icon/iconPlus"
+import { currency } from "@/lib/currency"
 
 export function Services(){
   const [modalNew, setModalNew] = useState(false)

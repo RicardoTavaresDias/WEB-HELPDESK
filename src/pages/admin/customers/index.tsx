@@ -1,13 +1,13 @@
-import { Panel } from "../../../components/table";
-import avatar from "../../../assets/img/Avatar.svg"
-import { IconPenLine } from "../../../assets/icon/iconPenLine";
-import { IconTrash } from "../../../assets/icon/iconTrash";
+import { Panel } from "@/components/table";
+import avatar from "@/assets/img/Avatar.svg"
+import { IconPenLine } from "@/assets/icon/iconPenLine";
+import { IconTrash } from "@/assets/icon/iconTrash";
 import { useState } from "react";
-import { Modal } from "../../../components/modal/";
-import { Input } from "../../../components/ui/input";
-import { Modules } from "../../../components/modules";
-import { PanelColumn } from "../../../components/table/panelColumn";
-import { UiButton } from "../../../components/ui/UiButton";
+import { Modal } from "@/components/modal/";
+import { Input } from "@/components/ui/input";
+import { Modules } from "@/components/modules";
+import { PanelColumn } from "@/components/table/panelColumn";
+import { UiButton } from "@/components/ui/UiButton";
 
 export function Customers(){
   const [modalRemove, setModalRemove] = useState(false)

@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router"
 import { useAuth } from "../useAuth"
-import { api } from "../../services/api"
+import { api } from "@/services/api"
 import { AxiosError } from "axios"
 
 import { useForm } from 'react-hook-form'
-import { userCustomerSchema } from "../../schemas/users.schemas"
+import { userCustomerSchema } from "@/schemas/users.schemas"
 import { zodResolver } from "@hookform/resolvers/zod"
-import type { InputsSigninUser } from "../../types/users"
+import type { InputsSigninUser } from "@/types/users"
 
 
 export const useSignin = () => {

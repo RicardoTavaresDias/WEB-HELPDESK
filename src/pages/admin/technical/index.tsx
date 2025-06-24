@@ -1,12 +1,12 @@
-import { Panel } from "../../../components/table"
-import avatar from "../../../assets/img/Avatar.svg"
-import { IconPenLine } from "../../../assets/icon/iconPenLine";
+import { Panel } from "@/components/table"
+import avatar from "@/assets/img/Avatar.svg"
+import { IconPenLine } from "@/assets/icon/iconPenLine";
 
-import { ButtonTime } from "../../../components/ui/buttonTime";
-import { Modules } from "../../../components/modules";
+import { ButtonTime } from "@/components/ui/buttonTime";
+import { Modules } from "@/components/modules";
 import { Link } from "react-router";
-import { UiButton } from "../../../components/ui/UiButton";
-import { IconPlus } from "../../../assets/icon/iconPlus";
+import { UiButton } from "@/components/ui/UiButton";
+import { IconPlus } from "@/assets/icon/iconPlus";
 
 export function Technical(){
   return (

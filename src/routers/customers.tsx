@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router"
-import { Layout } from "../layout"
-import { Called } from "../pages/customers"
-import { CreateCall } from "../pages/customers/createCall"
-import { CallDetails } from "../pages/customers/callDetails"
-import { NotFound } from "../pages/notFound"
+import { Layout } from "@/layout"
+import { Called } from "@/pages/customers"
+import { CreateCall } from "@/pages/customers/createCall"
+import { CallDetails } from "@/pages/customers/callDetails"
+import { NotFound } from "@/pages/notFound"
 
 export function Customers(){
   return (

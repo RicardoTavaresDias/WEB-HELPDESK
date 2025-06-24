@@ -1,14 +1,14 @@
-import { Modules } from "../../components/modules";
-import { IsProfile } from "../../components/profile";
-import { UiButton } from "../../components/ui/UiButton";
+import { Modules } from "@/components/modules";
+import { IsProfile } from "@/components/profile";
+import { UiButton } from "@/components/ui/UiButton";
 
 import { useState } from "react";
-import { Input } from "../../components/ui/input";
-import { useOpenModal } from "../../hooks/useOpenModal"
-import { IconChevronDown } from "../../assets/icon/iconChevronDown";
-import { IconCheck } from "../../assets/icon/iconCheck";
+import { Input } from "@/components/ui/input";
+import { useOpenModal } from "@/hooks/useOpenModal"
+import { IconChevronDown } from "@/assets/icon/iconChevronDown";
+import { IconCheck } from "@/assets/icon/iconCheck";
 import { v4 as uuid } from 'uuid'
-import { IconCicloAlert } from "../../assets/icon/iconCicleAlert";
+import { IconCicloAlert } from "@/assets/icon/iconCicleAlert";
 
 export function CreateCall(){
   const [error, setError] = useState("")

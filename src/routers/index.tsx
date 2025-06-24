@@ -1,10 +1,10 @@
 import { BrowserRouter } from "react-router";
-import { Admin } from "../routers/admin"
-import { Auth } from "../routers/auth"
-import { Technical } from "../routers/technical"
-import { Customers } from "../routers/customers"
+import { Admin } from "@/routers/admin"
+import { Auth } from "@/routers/auth"
+import { Technical } from "@/routers/technical"
+import { Customers } from "@/routers/customers"
 
-import { useAuth } from "../hooks/useAuth"
+import { useAuth } from "@/hooks/useAuth"
 
 export function Routes(){
   const { session, isLoading } = useAuth()

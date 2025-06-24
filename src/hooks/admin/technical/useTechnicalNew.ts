@@ -1,12 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { api } from "../../../services/api"
+import { api } from "@/services/api"
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from "react"
-import { day } from "../../../lib/day"
+import { day } from "@/lib/day"
 import dayjs from "dayjs"
 import { AxiosError } from "axios"
-import { userTechnicalrSchema } from "../../../schemas/users.schemas"
-import type { InputsRegisterUser } from "../../../types/users"
+import { userTechnicalrSchema } from "@/schemas/users.schemas"
+import type { InputsRegisterUser } from "@/types/users"
 
 
 export const useTechnicalNew = () => {

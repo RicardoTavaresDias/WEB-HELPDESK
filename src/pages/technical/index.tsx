@@ -1,13 +1,13 @@
-import avatar from "../../assets/img/Avatar.svg"
+import avatar from "@/assets/img/Avatar.svg"
 
-import { Modules } from "../../components/modules";
-import { Status } from "../../components/ui/status";
-import { UiButton } from "../../components/ui/UiButton";
-import { IconPenLine } from "../../assets/icon/iconPenLine";
-import { IconCicloCheckBig } from "../../assets/icon/iconCicloCheckBig";
+import { Modules } from "@/components/modules";
+import { Status } from "@/components/ui/status";
+import { UiButton } from "@/components/ui/UiButton";
+import { IconPenLine } from "@/assets/icon/iconPenLine";
+import { IconCicloCheckBig } from "@/assets/icon/iconCicloCheckBig";
 import { Link } from "react-router";
-import { IconClock } from "../../assets/icon/iconClock";
-import { IsProfile } from "../../components/profile";
+import { IconClock } from "@/assets/icon/iconClock";
+import { IsProfile } from "@/components/profile";
 
 export function Called(){
   

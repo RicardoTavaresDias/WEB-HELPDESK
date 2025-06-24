@@ -1,5 +1,5 @@
 import type { InputHTMLAttributes } from "react"
-import { IconCicloAlert } from "../../assets/icon/iconCicleAlert"
+import { IconCicloAlert } from "@/assets/icon/iconCicleAlert"
 
 type InputProps = {
   label: string

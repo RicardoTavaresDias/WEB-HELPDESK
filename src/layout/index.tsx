@@ -1,4 +1,4 @@
-import Vector from "../assets/img/Vector.svg"
+import Vector from "@/assets/img/Vector.svg"
 
 import { Outlet } from 'react-router'
 import { Menu } from "./menu"

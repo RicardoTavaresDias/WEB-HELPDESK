@@ -1,14 +1,14 @@
 import { Fragment } from "react";
-import { Modules } from "../../components/modules"
-import { IsProfile } from "../../components/profile"
-import { Panel } from "../../components/table"
-import avatar from "../../assets/img/Avatar.svg";
+import { Modules } from "@/components/modules"
+import { IsProfile } from "@/components/profile"
+import { Panel } from "@/components/table"
+import avatar from "@/assets/img/Avatar.svg";
 
-import { called } from "../../database/admCallList";
-import { Status } from "../../components/ui/status";
+import { called } from "@/database/admCallList";
+import { Status } from "@/components/ui/status";
 import { Link } from "react-router";
-import { UiButton } from "../../components/ui/UiButton";
-import { IconEye } from "../../assets/icon/iconEye";
+import { UiButton } from "@/components/ui/UiButton";
+import { IconEye } from "@/assets/icon/iconEye";
 
 export function Called(){
   return (

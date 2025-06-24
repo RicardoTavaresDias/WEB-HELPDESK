@@ -1,9 +1,9 @@
-import { LogoAuth } from "../../components/auth/logoAuth"
-import { Form } from "../../components/ui/form"
-import { Account } from "../../components/auth/account"
-import { Input } from "../../components/ui/input"
-import { useSignin } from "../../hooks/signin/useSignin"
-import { IconCicloAlert } from "../../assets/icon/iconCicleAlert"
+import { LogoAuth } from "@/components/auth/logoAuth"
+import { Form } from "@/components/ui/form"
+import { Account } from "@/components/auth/account"
+import { Input } from "@/components/ui/input"
+import { useSignin } from "@/hooks/signin/useSignin"
+import { IconCicloAlert } from "@/assets/icon/iconCicleAlert"
 
 export function Signin(){
   const { register, handleSubmit, onSubmit, isSubmitting, errors } = useSignin()

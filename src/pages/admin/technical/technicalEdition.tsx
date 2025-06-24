@@ -1,8 +1,8 @@
-import avatar from "../../../assets/img/Avatar.svg"
-import { Input } from "../../../components/ui/input";
-import { ButtonTime } from "../../../components/ui/buttonTime";
-import { Modules } from "../../../components/modules";
-import { UiButton } from "../../../components/ui/UiButton";
+import avatar from "@/assets/img/Avatar.svg"
+import { Input } from "@/components/ui/input";
+import { ButtonTime } from "@/components/ui/buttonTime";
+import { Modules } from "@/components/modules";
+import { UiButton } from "@/components/ui/UiButton";
 
 import { useState } from "react";
 import { v4 as uuid } from 'uuid'

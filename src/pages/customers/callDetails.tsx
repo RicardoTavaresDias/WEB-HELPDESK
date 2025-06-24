@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { useParams } from "react-router"
-import { called } from "../../database/admCallList"
-import { IsProfile } from "../../components/profile"
-import { Modules } from "../../components/modules"
-import { Status } from "../../components/ui/status"
-import avatar from "../../assets/img/Avatar.svg"
+import { called } from "@/database/admCallList"
+import { IsProfile } from "@/components/profile"
+import { Modules } from "@/components/modules"
+import { Status } from "@/components/ui/status"
+import avatar from "@/assets/img/Avatar.svg"
 
 export function CallDetails(){
   const { id } = useParams()

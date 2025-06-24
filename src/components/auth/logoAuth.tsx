@@ -1,4 +1,4 @@
-import Logo_IconDark from "../../assets/img/Logo_IconDark.svg"
+import Logo_IconDark from "@/assets/img/Logo_IconDark.svg"
 
 export function LogoAuth(){
   return (

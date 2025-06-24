@@ -1,12 +1,12 @@
-import { Modules } from "../../../components/modules"
-import { ButtonTime } from "../../../components/ui/buttonTime"
-import { Input } from "../../../components/ui/input"
-import { UiButton } from "../../../components/ui/UiButton"
+import { Modules } from "@/components/modules"
+import { ButtonTime } from "@/components/ui/buttonTime"
+import { Input } from "@/components/ui/input"
+import { UiButton } from "@/components/ui/UiButton"
 import { v4 as uuid } from 'uuid'
-import { day } from "../../../lib/day"
-import { useTechnicalNew } from "../../../hooks/admin/technical/useTechnicalNew"
-import { IconCicloAlert } from "../../../assets/icon/iconCicleAlert"
-import { IconCicloCheckBig } from "../../../assets/icon/iconCicloCheckBig"
+import { day } from "@/lib/day"
+import { useTechnicalNew } from "@/hooks/admin/technical/useTechnicalNew"
+import { IconCicloAlert } from "@/assets/icon/iconCicleAlert"
+import { IconCicloCheckBig } from "@/assets/icon/iconCicloCheckBig"
 
 export function TechnicalNew(){
   const { 
