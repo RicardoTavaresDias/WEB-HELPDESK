@@ -40,15 +40,16 @@ export const useSignin = () => {
         user: {
           id: response.data.user.id,
           name: response.data.user.name,
-          role: response.data.user.role
-        }
+          role: response.data.user.role,
+          avatar: response.data.user.avatar
+        }, 
       })
   
       reset()
       navigate("/")
     } catch (error){
       if(error instanceof AxiosError) {
-        setError("root", {message: error.response?.data.error})
+        setError("root", {message: error.response?.data.message})
       }
       console.log(error)
     }

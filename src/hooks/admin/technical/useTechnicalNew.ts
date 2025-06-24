@@ -80,7 +80,7 @@ export const useTechnicalNew = () => {
       
     } catch(error: any){
       if(error instanceof AxiosError) {
-        return setError("root", {message: error.response?.data.error})
+        return setError("root", {message: error.response?.data.message})
       }
 
       setError("root", {message: error.message})

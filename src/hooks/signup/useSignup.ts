@@ -36,7 +36,7 @@ export const useSignup = () => {
       reset()
     } catch (error){
       if(error instanceof AxiosError) {
-        setError("root", {message: error.response?.data.error})
+        setError("root", {message: error.response?.data.message})
       }
       console.log(error)
     }
