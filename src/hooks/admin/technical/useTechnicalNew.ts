@@ -19,7 +19,7 @@ export const useTechnicalNew = () => {
     if(messageError.length) setMessageError("")
   }, [user])
 
-  const { register, handleSubmit, reset, setError, formState: {errors} } = useForm<InputsRegisterUser>({
+  const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<InputsRegisterUser>({
     criteriaMode: 'all',
       mode: 'all',
       defaultValues: {
@@ -99,6 +99,7 @@ export const useTechnicalNew = () => {
     messageSucess,
     messageError,
     setMessageSucess,
-    onCancel
+    onCancel,
+    isSubmitting
   }
 }

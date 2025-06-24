@@ -6,6 +6,7 @@ import { v4 as uuid } from 'uuid'
 import { day } from "@/lib/day"
 import { useTechnicalNew } from "@/hooks/admin/technical/useTechnicalNew"
 import { Alert } from "@/components/ui/alert"
+import { Loading } from "@/components/ui/loading"
 
 export function TechnicalNew(){
   const { 
@@ -18,11 +19,13 @@ export function TechnicalNew(){
     messageSucess, 
     messageError, 
     setMessageSucess, 
-    onCancel 
+    onCancel,
+    isSubmitting
   } = useTechnicalNew()
   
   return (
     <>
+      {isSubmitting && <Loading />}
       <Alert severity="error" open={!!errors.root?.message} >{errors.root?.message}</Alert>
       <Alert severity="error" open={!!messageError}>{messageError}</Alert>
       <Alert severity="success" open={!!messageSucess}>{messageSucess}</Alert>

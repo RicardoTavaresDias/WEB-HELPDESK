@@ -20,7 +20,7 @@ export function Form({ children, textTitle, subtitle, textButton, isLoading }: F
         {children}
       </div>
       <div className="mt-10">
-        <UiButton type="submit" typeSize="base" typeColor="black" disabled={isLoading} >{isLoading ? "Carregando..." : textButton}</UiButton>
+        <UiButton type="submit" typeSize="base" typeColor="black" disabled={isLoading} >{textButton}</UiButton>
       </div>
     </div>
   )

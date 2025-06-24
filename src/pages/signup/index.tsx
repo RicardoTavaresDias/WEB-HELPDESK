@@ -5,12 +5,14 @@ import { Input } from "@/components/ui/input"
 
 import { useSignup } from "@/hooks/signup/useSignup"
 import { Alert } from "@/components/ui/alert"
+import { Loading } from "@/components/ui/loading"
 
 export function Signup(){
   const { register, handleSubmit, onSubmit, errors, isSubmitting, messageSucess } = useSignup()
    
   return (
     <>
+      {isSubmitting && <Loading />}
       <Alert severity="error" open={!!errors.root?.message} >{errors.root?.message}</Alert>
       <Alert severity="success" open={!!messageSucess}>{messageSucess}</Alert>
 
