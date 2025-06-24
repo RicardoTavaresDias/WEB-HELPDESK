@@ -1,39 +1,51 @@
+import { useNavigate } from "react-router"
+import { useAuth } from "../useAuth"
 import { api } from "../../services/api"
 import { AxiosError } from "axios"
-import { useState } from "react";
+
 import { useForm } from 'react-hook-form'
-import { userSchema } from "./createUser.shema"
+import { signinSchema } from "../../schemas/signin/signin.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 type Inputs = {
-  name: string
   email: string,
   password: string,
 };
 
-export const useCreateUser = () => {
-  const [messageSucess, setMessageSucess] = useState("")
-  const { isUserSchema } = userSchema()
-  
+export const useSignin = () => {
+  const navigate = useNavigate()
+  const { save } = useAuth()
+  const { resultShema } = signinSchema()
+
   const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<Inputs>(
     { 
       // configuração de inicialização dos campos, criteriaMode e mode ficara assistindo toda ação do formulario
       criteriaMode: 'all',
       mode: 'all',
       defaultValues: {
-        name: '',
         email: '',
         password: '',
+        
       },
-      resolver: zodResolver(isUserSchema)
+      resolver: zodResolver(resultShema)
     })
-    
+  
 
   const onSubmit = async (data: Inputs) => {
     try {
-      const response = await api.post("/user/cliente", data)
-      setMessageSucess(response.data.message)
+      const response = await api.post("/", data)
+      
+      save({
+        token: response.data.token,
+        user: {
+          id: response.data.user.id,
+          name: response.data.user.name,
+          role: response.data.user.role
+        }
+      })
+  
       reset()
+      navigate("/")
     } catch (error){
       if(error instanceof AxiosError) {
         setError("root", {message: error.response?.data.error})
@@ -46,8 +58,7 @@ export const useCreateUser = () => {
     register,
     handleSubmit,
     onSubmit,
-    errors,
     isSubmitting,
-    messageSucess
+    errors
   }
 }

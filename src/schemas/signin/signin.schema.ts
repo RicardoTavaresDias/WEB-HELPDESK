@@ -1,7 +1,7 @@
 import z from "zod"
 
-export const authSchema = () => {
-  const shema = z.object({
+export const signinSchema = () => {
+  const resultShema = z.object({
     email: z.string({ message: "Campo somente string" })
     .min(1, { message: "Campo obrigatório" })
     .email({ message: "E-mail inválido" }),
@@ -9,5 +9,5 @@ export const authSchema = () => {
     .min(6, { message: "Preencha o campo com pelo menos 6 caracteres" })
   })
 
-  return { shema } 
+  return { resultShema } 
 }

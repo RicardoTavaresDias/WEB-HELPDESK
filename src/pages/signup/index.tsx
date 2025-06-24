@@ -3,12 +3,12 @@ import { Form } from "../../components/ui/form"
 import { Account } from "../../components/auth/account"
 import { Input } from "../../components/ui/input"
 
-import { useCreateUser } from "./createUser.services"
+import { useSignup } from "../../hooks/signup/useSignup"
 import { IconCicloAlert } from "../../assets/icon/iconCicleAlert"
 import { IconCicloCheckBig } from "../../assets/icon/iconCicloCheckBig"
 
 export function Signup(){
-  const { register, handleSubmit, onSubmit, errors, isSubmitting, messageSucess } =useCreateUser()
+  const { register, handleSubmit, onSubmit, errors, isSubmitting, messageSucess } = useSignup()
    
 
   return (

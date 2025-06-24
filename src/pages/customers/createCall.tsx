@@ -7,7 +7,7 @@ import { Input } from "../../components/ui/input";
 import { useOpenModal } from "../../hooks/useOpenModal"
 import { IconChevronDown } from "../../assets/icon/iconChevronDown";
 import { IconCheck } from "../../assets/icon/iconCheck";
-import { v4 as uuidv4 } from 'uuid'
+import { v4 as uuid } from 'uuid'
 import { IconCicloAlert } from "../../assets/icon/iconCicleAlert";
 
 export function CreateCall(){
@@ -69,7 +69,7 @@ export function CreateCall(){
                         <span className="Text-Xxs text-gray-400">opções</span>
                         <div className="mt-4  Text-Sm cursor-pointer">
                           {option && option.map(value => (
-                            <div key={uuidv4()} className={`py-2 ${select === value && "text-gray-200 font-semibold"} flex justify-between group`} onClick={() => { setSelect(value); setOpen(!open)} } >
+                            <div key={uuid()} className={`py-2 ${select === value && "text-gray-200 font-semibold"} flex justify-between group`} onClick={() => { setSelect(value); setOpen(!open)} } >
                               <span className="group-hover:text-gray-200">{value}</span>
                               {select === value && <IconCheck className="w-5 h-5 fill-blue-base" />}
                             </div>

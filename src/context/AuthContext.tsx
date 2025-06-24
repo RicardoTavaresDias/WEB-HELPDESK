@@ -1,10 +1,20 @@
 import { createContext, useEffect, useState } from "react";
-import type { ResponseType } from "../database/response"
+import { api } from "../services/api";
+import dayjs from "dayjs"
+
+type User = {
+  token: string
+  user: {
+    id: string
+    name: string
+    role: string
+  }
+}
 
 type AuthContextType = {
-  save: (data: ResponseType) => void
+  save: (data: User) => void
   remove: () => void
-  session: ResponseType | null
+  session: User | null
   isLoading: boolean
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
   teste : boolean
@@ -17,13 +27,14 @@ const LOCAL_STORAGE_KEY = "@helpDesk"
 export const AuthContext = createContext({} as AuthContextType)
 
 export function AuthProvider({children}: AuthProviderType ){
-  const [session, setSession] = useState<ResponseType | null>(null)
+  const [session, setSession] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [teste, setTeste] = useState(false)
 
-  function save(data: ResponseType){
+  function save(data: User){
     localStorage.setItem(`${LOCAL_STORAGE_KEY}:user`, JSON.stringify(data.user))
     localStorage.setItem(`${LOCAL_STORAGE_KEY}:token`, data.token)
+    api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`
 
     setSession(data)
   }
@@ -41,6 +52,7 @@ export function AuthProvider({children}: AuthProviderType ){
     const token = localStorage.getItem(`${LOCAL_STORAGE_KEY}:token`)
 
     if(token && user){
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`
       setSession({
         token,
         user: JSON.parse(user)
