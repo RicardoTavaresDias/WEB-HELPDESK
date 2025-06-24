@@ -1,9 +1,18 @@
-export function Avatar({ user, ...props }: any) {
-  if(user?.avatar === "default.svg"){
+import type { UserSession } from "@/types/users"
 
+type AvatarType = {
+  user: UserSession
+  size?: string
+  onClick?: () => void 
+}
+
+export function Avatar({ user, size = "w-10 h-10", onClick }: AvatarType) {
+  if(!user) return null
+
+  if(user?.avatar === "default.svg"){
     return (
       <>
-        <div className="bg-blue-dark w-10 h-10 rounded-full flex justify-center items-center text-gray-600 cursor-pointer" {...props} >
+        <div className={`bg-blue-dark ${size} rounded-full flex justify-center items-center text-gray-600 cursor-pointer`} onClick={onClick} >
           <span className="uppercase">
             {
               `${user.name.split(" ")[0][0].toUpperCase()}${user.name.split(" ")[1] ? user.name.split(" ")[1][0].toUpperCase() : ""}`
@@ -19,10 +28,9 @@ export function Avatar({ user, ...props }: any) {
       <img 
         src={`/public/${user?.avatar}`} 
         alt="foto do usuario" 
-        className="w-10 h-10 rounded-full cursor-pointer"
-        {...props}
+        className={`${size} rounded-full cursor-pointer`}
+        onClick={onClick}
       />
     </>
   )
-  
 }

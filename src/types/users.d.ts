@@ -12,6 +12,7 @@ export type InputsSigninUser = {
 export type UserSession = {
   id: string
   name: string
+  email: string
   role: string
   avatar: string
 }
