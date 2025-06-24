@@ -21,6 +21,12 @@
   --color-feedback-progress: #355EC5;
   --color-feedback-done: #508B26;
 
+  /* Alert*/
+  --color-error: rgb(253, 237, 237);
+  --color-warning: rgb(255, 244, 229);
+  --color-info: rgb(229, 246, 253);
+  --color-success: rgb(237, 247, 237);
+
 }
 
 .Text-Xl{

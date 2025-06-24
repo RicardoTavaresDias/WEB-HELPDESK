@@ -5,8 +5,7 @@ import { UiButton } from "@/components/ui/UiButton"
 import { v4 as uuid } from 'uuid'
 import { day } from "@/lib/day"
 import { useTechnicalNew } from "@/hooks/admin/technical/useTechnicalNew"
-import { IconCicloAlert } from "@/assets/icon/iconCicleAlert"
-import { IconCicloCheckBig } from "@/assets/icon/iconCicloCheckBig"
+import { Alert } from "@/components/ui/alert"
 
 export function TechnicalNew(){
   const { 
@@ -24,6 +23,10 @@ export function TechnicalNew(){
   
   return (
     <>
+      <Alert severity="error" open={!!errors.root?.message} >{errors.root?.message}</Alert>
+      <Alert severity="error" open={!!messageError}>{messageError}</Alert>
+      <Alert severity="success" open={!!messageSucess}>{messageSucess}</Alert>
+
       <form onSubmit={handleSubmit(onSubmit)} >
         <Modules.Root>
           <Modules.Title title="Perfil de técnico" to="/tecnicos">
@@ -38,18 +41,7 @@ export function TechnicalNew(){
                   <h3 className="mb-0.5 text-base font-semibold text-gray-200">Dados pessoais</h3>
                   <span className="Text-Xs text-gray-300 mb-10">Defina as informações do perfil de técnico</span>
                 </div>
-                {errors.root &&
-                  <div className="flex gap-1 items-center">
-                    <IconCicloAlert className="w-4 h-4 fill-feedback-danger"/>
-                    <span className="Text-Md text-feedback-danger" >{errors.root.message}</span>
-                  </div>
-                }
-                {messageSucess &&
-                  <div className="flex gap-1 items-center">
-                    <IconCicloCheckBig className="w-4 h-4 fill-feedback-done"/>
-                    <span className="Text-Md text-feedback-done" >{messageSucess}</span>
-                  </div>
-                }  
+            
                 <Input 
                   {...register("name")} 
                   type="text" 
@@ -85,13 +77,6 @@ export function TechnicalNew(){
                 <h3 className="mb-0.5 text-base font-semibold text-gray-200">Horários de atendimento</h3>
                 <span className="Text-Xs text-gray-300 mb-10">Selecione os horários de disponibilidade do técnico para atendimento</span>
               </div>
-
-              {messageError &&
-                <div className="flex gap-1 items-center mb-5">
-                  <IconCicloAlert className="w-4 h-4 fill-feedback-danger"/>
-                  <span className="Text-Md text-feedback-danger" >{messageError}</span>
-                </div>
-              }
 
               <div>
                 <span className="text-xs font-semibold text-gray-300 uppercase ">Manhã</span>
