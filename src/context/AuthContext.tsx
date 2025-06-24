@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import { api } from "../services/api";
-import dayjs from "dayjs"
 
 type User = {
   token: string
@@ -65,8 +64,6 @@ export function AuthProvider({children}: AuthProviderType ){
   useEffect(() => {
     loadUser()
   }, [])
-
- 
 
   return (
     <AuthContext.Provider value={{ session, save, remove, setIsLoading, isLoading, teste, setTeste }}>
