@@ -5,25 +5,21 @@ import { useEffect, useState } from "react"
 import { day } from "../../../lib/day"
 import dayjs from "dayjs"
 import { AxiosError } from "axios"
-import { technicalNewSchema } from "../../../schemas/admin/technical/technicalNew.schema"
+import { userTechnicalrSchema } from "../../../schemas/users.schemas"
+import type { InputsRegisterUser } from "../../../types/users"
 
-type Inputs = {
-  name: string
-  email: string
-  password: string
-}
 
 export const useTechnicalNew = () => {
   const [user, setUser] = useState<string[]>([])
   const [messageSucess, setMessageSucess] = useState("")
   const [messageError, setMessageError] = useState("")
-  const { resultShema } =  technicalNewSchema()
+  const { resultShema } =  userTechnicalrSchema()
 
   useEffect(() => {
     if(messageError.length) setMessageError("")
   }, [user])
 
-  const { register, handleSubmit, reset, setError, formState: {errors} } = useForm<Inputs>({
+  const { register, handleSubmit, reset, setError, formState: {errors} } = useForm<InputsRegisterUser>({
     criteriaMode: 'all',
       mode: 'all',
       defaultValues: {
@@ -58,7 +54,7 @@ export const useTechnicalNew = () => {
       )
   }
 
-  const onSubmit = async (data: Inputs) => {
+  const onSubmit = async (data: InputsRegisterUser) => {
     if(!user.length){
       return setMessageError("Informe os horários de disponibilidade do técnico ")
     }

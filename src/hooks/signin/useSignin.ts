@@ -4,20 +4,17 @@ import { api } from "../../services/api"
 import { AxiosError } from "axios"
 
 import { useForm } from 'react-hook-form'
-import { signinSchema } from "../../schemas/signin/signin.schema"
+import { userCustomerSchema } from "../../schemas/users.schemas"
 import { zodResolver } from "@hookform/resolvers/zod"
+import type { InputsSigninUser } from "../../types/users"
 
-type Inputs = {
-  email: string,
-  password: string,
-};
 
 export const useSignin = () => {
   const navigate = useNavigate()
   const { save } = useAuth()
-  const { resultShema } = signinSchema()
+  const { resultShema } = userCustomerSchema()
 
-  const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<Inputs>(
+  const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<InputsSigninUser>(
     { 
       // configuração de inicialização dos campos, criteriaMode e mode ficara assistindo toda ação do formulario
       criteriaMode: 'all',
@@ -31,7 +28,7 @@ export const useSignin = () => {
     })
   
 
-  const onSubmit = async (data: Inputs) => {
+  const onSubmit = async (data: InputsSigninUser) => {
     try {
       const response = await api.post("/", data)
       
