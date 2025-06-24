@@ -4,14 +4,16 @@ import { Outlet } from 'react-router'
 import { Menu } from "./menu"
 import { MenuMobile } from "./menuMobile"
 import { MenuLogOut } from "./menuLogOut"
+import { useAuth } from "@/hooks/useAuth"
 
 type LayoutProps = {
   identification?: string
 }
 
 export function Layout({identification}: LayoutProps){
+  const { session } = useAuth()
+
   return (
-    
     <>
       <aside className="bg-gray-100 w-full h-screen relative p-6 lg:p-4" >
          {/* <Header, Menu Mobile> */}
@@ -60,10 +62,10 @@ export function Layout({identification}: LayoutProps){
                   </div>
                   <div>
                     <div>
-                      <p className="text-gray-600 Text-Sm mb-1 w-28 truncate">Usuário Adm</p>
+                      <p className="text-gray-600 Text-Sm mb-1 w-28 truncate">{`${session?.user.name[0].toUpperCase()}${session?.user.name.substring(1)}`}</p>
                     </div>
                     <div className="w-28 truncate">
-                      <p className="text-gray-400 Text-Xs w-28 truncate" >user.adm@test.com</p>
+                      <p className="text-gray-400 Text-Xs w-28 truncate" >{session?.user.email}</p>
                     </div>
                   </div>
                 </div>

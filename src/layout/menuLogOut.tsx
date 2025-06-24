@@ -1,11 +1,10 @@
-import avatar from "@/assets/img/Avatar.svg"
-
 import { useProfile } from "@/hooks/useProfile"
 import { Link } from "react-router"
 import { useOpenModal } from "@/hooks/useOpenModal"
 import { IconCicleUser } from "@/assets/icon/iconCicleUser"
 import { IconLogOut } from "@/assets/icon/iconLogOut"
 import { useAuth } from "@/hooks/useAuth"
+import { Avatar } from "@/components/ui/avatar"
 
 type MenuLogOutProps = {
   classmobile?: string
@@ -16,13 +15,14 @@ type MenuLogOutProps = {
 export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutProps){
   const { menuRef, open, setOpen } = useOpenModal()
   const { isModal }: any = useProfile()
-  const { remove } = useAuth()
+  const { remove, session } = useAuth()
 
 
   return (
     <div ref={menuRef}>
 
-      <img className="w-10 h-10 rounded-full cursor-pointer" src={avatar} alt="Foto do Perfil" onClick={() => setOpen(!open)}/>
+     
+      <Avatar user={session?.user} onClick={() => setOpen(!open)}/>
         <div className={`${classmobile} ${classLg} ${open ? "max-sm:scale-y-100 lg:scale-x-100" : "max-sm:scale-y-0 lg:scale-x-0" } origin-left max-sm:origin-top absolute z-20 duration-200 bg-gray-100 flex flex-col gap-3 rounded-xl p-4`}>
        
           <div className="flex"> 
