@@ -2,11 +2,10 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { api } from "@/services/api"
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from "react"
-import { day } from "@/lib/day"
-import dayjs from "dayjs"
 import { AxiosError } from "axios"
 import { userTechnicalrSchema } from "@/schemas/users.schemas"
 import type { UserTechnicalrSchema } from "@/schemas/users.schemas"
+import { formatHours } from "@/lib/formatHours"
 
 
 export const useTechnicalNew = () => {
@@ -30,36 +29,14 @@ export const useTechnicalNew = () => {
       resolver: zodResolver(userTechnicalrSchema)
   })
 
-  const formatHours = () => {
-    let morning: Date[] = []
-    let afternoon: Date[] = []
-    let night: Date[] =  []
-
-    for(const hour of user){
-      if(day.morning.includes(hour)){
-        morning.push(dayjs(`${dayjs().format("YYYY-MM-DD")}${hour}`, "YYYY-MM-DD HH:mm").toDate()) 
-      } else if(day.afternoon.includes(hour)){
-        afternoon.push(dayjs(`${dayjs().format("YYYY-MM-DD")}${hour}`, "YYYY-MM-DD HH:mm").toDate()) 
-      }else {
-        night.push(dayjs(`${dayjs().format("YYYY-MM-DD")}${hour}`, "YYYY-MM-DD HH:mm").toDate()) 
-      }
-    }
-
-    return (
-        [
-          {startTime: morning.sort()[0] || null, endTime: morning.sort()[morning.length - 1] || null}, 
-          {startTime: afternoon.sort()[0] || null, endTime: afternoon.sort()[afternoon.length - 1] || null}, 
-          {startTime: night.sort()[0] || null, endTime: night.sort()[night.length - 1] || null}
-        ]
-      )
-  }
+  
 
   const onSubmit = async (data: UserTechnicalrSchema) => {
     if(!user.length){
       return setMessageError("Informe os horários de disponibilidade do técnico ")
     }
 
-    const hours = formatHours()
+    const hours = formatHours(user)
 
     try{
       const response = await api.post("/user/tecnico", 
