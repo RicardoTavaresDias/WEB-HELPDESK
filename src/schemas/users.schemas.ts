@@ -1,28 +1,38 @@
-import z from "zod"
+import z from "zod";
 
-export const userTechnicalrSchema = () => {
-  const resultShema = z.object({
-    name: z.string({ message: "Campo somente string" })
-    .min(1, { message: "Campo obrigatório" }),
-    email: z.string({ message: "Campo somente string" })
+export const userTechnicalrSchema = z.object({
+  name: z
+    .string({ message: "Campo somente string" })
+    .min(1, { message: "Campo obrigatório" })
+    .transform((name) => {
+      return name
+        .trim()
+        .split(" ")
+        .map((word) => {
+          return word[0].toUpperCase().concat(word.substring(1));
+        }).join(" ")
+    }),
+  email: z
+    .string({ message: "Campo somente string" })
     .min(1, { message: "Campo obrigatório" })
     .email({ message: "E-mail inválido" }),
-    password: z.string({ message: "Campo somente string" })
-    .min(6, { message: "Preencha o campo com pelo menos 6 caracteres" })
-  })
+  password: z
+    .string({ message: "Campo somente string" })
+    .min(6, { message: "Preencha o campo com pelo menos 6 caracteres" }),
+});
 
-  return { resultShema }
-}
+export type UserTechnicalrSchema = z.infer<typeof userTechnicalrSchema>
 
 
-export const userCustomerSchema = () => {
-  const resultShema = z.object({
-    email: z.string({ message: "Campo somente string" })
+
+export const userCustomerSchema = z.object({
+  email: z
+    .string({ message: "Campo somente string" })
     .min(1, { message: "Campo obrigatório" })
     .email({ message: "E-mail inválido" }),
-    password: z.string({ message: "Campo somente string" })
-    .min(6, { message: "Preencha o campo com pelo menos 6 caracteres" })
-  })
+  password: z
+    .string({ message: "Campo somente string" })
+    .min(6, { message: "Preencha o campo com pelo menos 6 caracteres" }),
+});
 
-  return { resultShema } 
-}
+export type UserCustomerSchema = z.infer<typeof userCustomerSchema>

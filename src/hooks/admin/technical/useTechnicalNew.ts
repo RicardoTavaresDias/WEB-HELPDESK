@@ -6,20 +6,20 @@ import { day } from "@/lib/day"
 import dayjs from "dayjs"
 import { AxiosError } from "axios"
 import { userTechnicalrSchema } from "@/schemas/users.schemas"
-import type { InputsRegisterUser } from "@/types/users"
+import type { UserTechnicalrSchema } from "@/schemas/users.schemas"
 
 
 export const useTechnicalNew = () => {
   const [user, setUser] = useState<string[]>([])
   const [messageSucess, setMessageSucess] = useState("")
   const [messageError, setMessageError] = useState("")
-  const { resultShema } =  userTechnicalrSchema()
+  
 
   useEffect(() => {
     if(messageError.length) setMessageError("")
   }, [user])
 
-  const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<InputsRegisterUser>({
+  const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<UserTechnicalrSchema>({
     criteriaMode: 'all',
       mode: 'all',
       defaultValues: {
@@ -27,7 +27,7 @@ export const useTechnicalNew = () => {
         email: '',
         password: ''
       },
-      resolver: zodResolver(resultShema)
+      resolver: zodResolver(userTechnicalrSchema)
   })
 
   const formatHours = () => {
@@ -54,7 +54,7 @@ export const useTechnicalNew = () => {
       )
   }
 
-  const onSubmit = async (data: InputsRegisterUser) => {
+  const onSubmit = async (data: UserTechnicalrSchema) => {
     if(!user.length){
       return setMessageError("Informe os horários de disponibilidade do técnico ")
     }

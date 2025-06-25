@@ -4,14 +4,13 @@ import { useState } from "react";
 import { useForm } from 'react-hook-form'
 import { userTechnicalrSchema } from "@/schemas/users.schemas"
 import { zodResolver } from "@hookform/resolvers/zod"
-import type { InputsRegisterUser } from "@/types/users"
+import type { UserTechnicalrSchema } from "@/schemas/users.schemas"
 
 
 export const useSignup = () => {
   const [messageSucess, setMessageSucess] = useState("")
-  const { resultShema } = userTechnicalrSchema()
   
-  const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<InputsRegisterUser>(
+  const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<UserTechnicalrSchema>(
     { 
       // configuração de inicialização dos campos, criteriaMode e mode ficara assistindo toda ação do formulario
       criteriaMode: 'all',
@@ -21,11 +20,11 @@ export const useSignup = () => {
         email: '',
         password: '',
       },
-      resolver: zodResolver(resultShema)
+      resolver: zodResolver(userTechnicalrSchema)
     })
     
 
-  const onSubmit = async (data: InputsRegisterUser) => {
+  const onSubmit = async (data: UserTechnicalrSchema) => {
     try {
       const response = await api.post("/user/cliente", data)
       setMessageSucess(response.data.message)
