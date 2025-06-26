@@ -4,6 +4,7 @@ export const userTechnicalrSchema = z.object({
   name: z
     .string({ message: "Campo somente string" })
     .min(1, { message: "Campo obrigatório" })
+    .regex(/^[a-zA-Z\s]*$/, { message: "Campo nome deve conter apenas letras e espaços." })
     .transform((name) => {
       return name
         .trim()

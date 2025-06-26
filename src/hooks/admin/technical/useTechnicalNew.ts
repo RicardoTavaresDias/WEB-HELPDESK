@@ -29,7 +29,6 @@ export const useTechnicalNew = () => {
       resolver: zodResolver(userTechnicalrSchema)
   })
 
-  
 
   const onSubmit = async (data: UserTechnicalrSchema) => {
     if(!user.length){

@@ -8,8 +8,8 @@ api.interceptors.response.use(
   response => response,
   (error) => {
     console.log(error)
-    if(error.response?.data.message === "JWT token not found" || 
-      error.response?.data.message === "Invalid JWT token"){
+    if(error.response?.data.message === "Token JWT não encontrado" || 
+      error.response?.data.message === "Token JWT inválido"){
       localStorage.clear()
       window.location.assign("/")
     }
