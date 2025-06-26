@@ -32,7 +32,7 @@ export function Alert({ severity, open = true, children }: AlertType) {
             {severity === "error" && <CircleAlert className={`w-4.5 ${backGraund[severity][0]}`} />}
             <div className="flex flex-col">
               <span className="text-md font-semibold ">{severity[0].toUpperCase() + severity.substring(1)}</span>
-              <span className="text-sm">
+              <span className="text-sm break-words w-102">
                 {children}
               </span>
             </div>
