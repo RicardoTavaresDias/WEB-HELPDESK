@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router"
-import { useAuth } from "../useAuth"
+import { useAuth } from "@/hooks/useAuth"
 import { api } from "@/services/api"
 import { AxiosError } from "axios"
 

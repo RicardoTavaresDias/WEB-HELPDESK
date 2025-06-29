@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router"
-import { Signin } from "@/pages/signin"
-import { Signup } from "@/pages/signup"
-import { NotFound } from "@/pages/notFound"
+import { Signin } from "@/features/auth/pages/signin"
+import { Signup } from "@/features/auth/pages/signup"
+import { NotFound } from "@/features/notFound"
 
 export function Auth(){
   return (

@@ -3,7 +3,7 @@ import { Form } from "@/components/ui/form"
 import { Account } from "@/components/auth/account"
 import { Input } from "@/components/ui/input"
 
-import { useSignup } from "@/hooks/signup/useSignup"
+import { useSignup } from "@/features/auth/hooks/useSignup"
 import { Alert } from "@/components/ui/alert"
 import { Loading } from "@/components/ui/loading"
 

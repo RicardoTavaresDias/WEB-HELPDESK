@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router"
 import { Layout } from "@/layout"
-import { CallList } from "@/pages/admin/callList"
-import { CallListdetails } from "@/pages/admin/callList/callListdetails"
-import { Technical } from "@/pages/admin/technical"
-import { TechnicalNew } from "@/pages/admin/technical/technicalNew"
-import { TechnicalEdition } from "@/pages/admin/technical/technicalEdition"
-import { Customers } from "@/pages/admin/customers"
-import { Services } from "@/pages/admin/services"
-import { NotFound } from "@/pages/notFound"
+import { CallList } from "@/features/admin/called/pages"
+import { CallListdetails } from "@/features/admin/called/pages/callListdetails"
+import { Technical } from "@/features/admin/technicals/pages"
+import { TechnicalNew } from "@/features/admin/technicals/pages/technicalNew"
+import { TechnicalEdition } from "@/features/admin/technicals/pages/technicalEdition"
+import { Customers } from "@/features/admin/customers/pages"
+import { Services } from "@/features/admin/services/pages"
+import { NotFound } from "@/features/notFound"
 
 export function Admin(){
   return (
