@@ -26,7 +26,7 @@ export const useSignup = () => {
 
   const onSubmit = async (data: UserTechnicalrSchema) => {
     try {
-      const response = await api.post("/user/cliente", data)
+      const response = await api.post("/user/customer", data)
       setMessageSucess(response.data.message)
       reset()
     } catch (error: any){

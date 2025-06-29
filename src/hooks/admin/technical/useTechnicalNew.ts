@@ -38,7 +38,7 @@ export const useTechnicalNew = () => {
     const hours = formatHours(user)
 
     try{
-      const response = await api.post("/user/tecnico", 
+      const response = await api.post("/user/technical", 
         { 
           name: data.name, 
           email: data.email, 
