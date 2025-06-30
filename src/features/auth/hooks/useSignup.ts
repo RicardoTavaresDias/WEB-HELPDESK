@@ -2,15 +2,15 @@ import { api } from "@/services/api"
 import { AxiosError } from "axios"
 import { useState } from "react";
 import { useForm } from 'react-hook-form'
-import { userTechnicalrSchema } from "@/schemas/users.schemas"
+import { signupSchema } from "@/features/auth/schemas/AuthSchema"
 import { zodResolver } from "@hookform/resolvers/zod"
-import type { UserTechnicalrSchema } from "@/schemas/users.schemas"
+import type { signupSchemaType } from "@/features/auth/schemas/AuthSchema"
 
 
 export const useSignup = () => {
   const [messageSucess, setMessageSucess] = useState("")
   
-  const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<UserTechnicalrSchema>(
+  const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<signupSchemaType>(
     { 
       // configuração de inicialização dos campos, criteriaMode e mode ficara assistindo toda ação do formulario
       criteriaMode: 'all',
@@ -20,11 +20,11 @@ export const useSignup = () => {
         email: '',
         password: '',
       },
-      resolver: zodResolver(userTechnicalrSchema)
+      resolver: zodResolver(signupSchema)
     })
     
 
-  const onSubmit = async (data: UserTechnicalrSchema) => {
+  const onSubmit = async (data: signupSchemaType) => {
     try {
       const response = await api.post("/user/customer", data)
       setMessageSucess(response.data.message)

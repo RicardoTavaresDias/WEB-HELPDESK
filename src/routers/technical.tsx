@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router"
 import { Layout } from "@/layout"
-import { Called } from "@/features/technical/pages"
-import { CallDetails } from "@/features/technical/pages/callDetails"
+import { Called } from "@/features/technical/pages/TechnicalHomePage"
+import { CallDetails } from "@/features/technical/pages/TechnicalCalledDetailsPage"
 import { NotFound } from "@/features/notFound"
 
 export function Technical(){

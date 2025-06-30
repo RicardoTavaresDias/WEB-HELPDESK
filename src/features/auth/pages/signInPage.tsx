@@ -2,7 +2,7 @@ import { LogoAuth } from "@/components/auth/logoAuth"
 import { Form } from "@/components/ui/form"
 import { Account } from "@/components/auth/account"
 import { Input } from "@/components/ui/input"
-import { useSignin } from "../hooks/useSignin"
+import { useSignin } from "../hooks/useSignIn"
 import { Alert } from "@/components/ui/alert"
 import { Loading } from "@/components/ui/loading"
 

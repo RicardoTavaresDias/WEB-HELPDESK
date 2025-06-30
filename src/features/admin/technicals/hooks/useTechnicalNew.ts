@@ -3,8 +3,8 @@ import { api } from "@/services/api"
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from "react"
 import { AxiosError } from "axios"
-import { userTechnicalrSchema } from "@/schemas/users.schemas"
-import type { UserTechnicalrSchema } from "@/schemas/users.schemas"
+import { userTechnicalSchema } from "@/features/admin/technicals/schemas/AdminTechnicalSchema"
+import type { UserTechnicalSchemaType } from "@/features/admin/technicals/schemas/AdminTechnicalSchema"
 import { formatHours } from "@/lib/formatHours"
 
 
@@ -18,7 +18,7 @@ export const useTechnicalNew = () => {
     if(messageError.length) setMessageError("")
   }, [user])
 
-  const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<UserTechnicalrSchema>({
+  const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<UserTechnicalSchemaType>({
     criteriaMode: 'all',
       mode: 'all',
       defaultValues: {
@@ -26,11 +26,11 @@ export const useTechnicalNew = () => {
         email: '',
         password: ''
       },
-      resolver: zodResolver(userTechnicalrSchema)
+      resolver: zodResolver(userTechnicalSchema)
   })
 
 
-  const onSubmit = async (data: UserTechnicalrSchema) => {
+  const onSubmit = async (data: UserTechnicalSchemaType) => {
     if(!user.length){
       return setMessageError("Informe os horários de disponibilidade do técnico ")
     }

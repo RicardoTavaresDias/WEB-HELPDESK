@@ -4,16 +4,16 @@ import { api } from "@/services/api"
 import { AxiosError } from "axios"
 
 import { useForm } from 'react-hook-form'
-import { userCustomerSchema } from "@/schemas/users.schemas"
+import { signinSchema } from "@/features/auth/schemas/AuthSchema"
 import { zodResolver } from "@hookform/resolvers/zod"
-import type { UserCustomerSchema } from "@/schemas/users.schemas"
+import type { signinSchemaType } from "@/features/auth/schemas/AuthSchema"
 
 
 export const useSignin = () => {
   const navigate = useNavigate()
   const { save } = useAuth()
 
-  const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<UserCustomerSchema>(
+  const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<signinSchemaType>(
     { 
       // configuração de inicialização dos campos, criteriaMode e mode ficara assistindo toda ação do formulario
       criteriaMode: 'all',
@@ -23,11 +23,11 @@ export const useSignin = () => {
         password: '',
         
       },
-      resolver: zodResolver(userCustomerSchema)
+      resolver: zodResolver(signinSchema)
     })
   
 
-  const onSubmit = async (data: UserCustomerSchema) => {
+  const onSubmit = async (data: signinSchemaType) => {
     try {
       const response = await api.post("/", data)
       
