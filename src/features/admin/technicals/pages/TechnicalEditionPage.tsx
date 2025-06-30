@@ -12,11 +12,24 @@ import { Avatar } from "@/components/ui/avatar";
 
 
 export function TechnicalEdition(){
-  const { hours, setHours, register, handleSubmit, onSubmit, isSubmitting, messageError, messageSucess, errors, isLoading, avatar, fetchLoad } = useTechnicalEdition() 
+  const { 
+    hours, 
+    setHours, 
+    register, 
+    handleSubmit, 
+    onSubmit, 
+    isSubmitting, 
+    messageError, 
+    messageSucess, 
+    errors, 
+    isLoading, 
+    avatar, 
+    fetchLoad 
+  } = useTechnicalEdition() 
 
   return (
     <>
-      {isSubmitting || isLoading && <Loading />}
+      {/* {isSubmitting || isLoading && <Loading />} */}
         <Alert severity="error" open={!!errors.root?.message} >{errors.root?.message}</Alert>
         <Alert severity="error" open={!!messageError}>{messageError}</Alert>
         <Alert severity="success" open={!!messageSucess}>{messageSucess}</Alert>
@@ -24,8 +37,8 @@ export function TechnicalEdition(){
       <Modules.Root>
         <form onSubmit={handleSubmit(onSubmit as any)}>
           <Modules.Title title="Perfil de técnico" to="/tecnicos">
-            <UiButton type="button" typeColor="gray" typeSize="xl" onClick={() => fetchLoad()}>Cancelar</UiButton>
-            <UiButton type="submit" typeColor="black" typeSize="xl" >Salvar</UiButton>
+            <UiButton type="button" typeColor="gray" typeSize="xl" onClick={() => fetchLoad() } disabled={isSubmitting} >Cancelar</UiButton>
+            <UiButton type="submit" typeColor="black" typeSize="xl" disabled={isSubmitting} >Salvar</UiButton>
           </Modules.Title>
 
           <Modules.Container>

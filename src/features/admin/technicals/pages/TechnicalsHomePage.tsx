@@ -13,12 +13,16 @@ import { Alert } from "@/components/ui/alert";
 import { Loading } from "@/components/ui/loading";
 
 export function Technical(){
-  const { users, isLoading, messageError } = useTechnicalHome()
+  const { 
+    users, 
+    isLoading, 
+    messageError 
+  } = useTechnicalHome()
 
   return (
     <>
-      {isLoading && <Loading />}
-        <Alert severity="error" open={!!messageError}>{messageError}</Alert>
+      {/* {isLoading && <Loading />}
+        <Alert severity="error" open={!!messageError}>{messageError}</Alert> */}
       
       <div className="mb-7">
         <Modules.Title title="Técnicos" isButton={true} >

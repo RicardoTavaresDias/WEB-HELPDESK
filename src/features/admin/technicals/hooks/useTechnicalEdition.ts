@@ -7,7 +7,6 @@ import { userTechnicalSchema, type UserTechnicalSchemaType } from "../schemas/Ad
 import { AxiosError } from "axios"
 import { zodResolver } from "@hookform/resolvers/zod"
 
-
 export const useTechnicalEdition = () => {
   const [hours, setHours ] = useState<string[]>([])
   const [messageSucess, setMessageSucess] = useState("")
@@ -56,14 +55,6 @@ export const useTechnicalEdition = () => {
       setIsLoading(false)
     }
   }
-
-  useEffect(() => {
-    fetchLoad()    
-  },[])
-
-
- 
-  
   
   const onSubmit = async (data: UserTechnicalType) => {
     if(!hours.length){
@@ -87,6 +78,7 @@ export const useTechnicalEdition = () => {
         
       setMessageError("")
       setMessageSucess(response.data.message)
+  
       
     } catch(error: any){
       if(error instanceof AxiosError) {
@@ -96,6 +88,10 @@ export const useTechnicalEdition = () => {
       setError("root", {message: error.message})
     }
   }
+
+   useEffect(() => {
+    fetchLoad()    
+  },[])
 
   return {
     hours,
