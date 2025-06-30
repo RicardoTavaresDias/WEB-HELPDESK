@@ -26,8 +26,8 @@ export function Alert({ severity, open = true, children }: AlertType) {
       <div className={`
         w-1/4 max-sm:w-full
         ${backGraund[severity][1]}
-        p-3 max-sm:py-5 rounded
-        absolute z-60 max-sm:top-0 lg:bottom-7 lg:right-7
+        p-3 max-sm:py-5 rounded 
+        absolute z-60 max-sm:top-0 max-sm:left-0 lg:bottom-7 lg:right-7
         ${active ? "translate-y-0 opacity-100" : "max-sm:-translate-y-40 translate-y-40 opacity-0"}
         transition ease-out duration-300 fixed
       `}>
