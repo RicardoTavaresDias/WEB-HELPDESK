@@ -57,8 +57,11 @@ export const useTechnicalEdition = () => {
   }
   
   const onSubmit = async (data: UserTechnicalType) => {
-    if(!hours.length){
+    if(messageSucess.length > 0){
       setMessageSucess("")
+    }
+
+    if(!hours.length){
       return setMessageError("Informe os horários de disponibilidade do técnico")
     }
 
