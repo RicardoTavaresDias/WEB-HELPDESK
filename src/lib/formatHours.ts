@@ -31,3 +31,59 @@ export const formatHours = (userHours: string[]): userHoursReturn => {
       ]
     )
 }
+
+
+type usersType = {
+  id: string
+  name: string
+  email: string
+  role: string
+  avatar: string
+  createdAt: Date
+  updatedAt: Date
+  userHours: hoursType[]
+}
+
+type hoursType = {
+  id: string
+  fkUserTechnical: string
+  startTime: Date
+  endTime: Date
+  createdAt: Date
+  updatedAt: Date
+}
+
+export type mappedUserType = Omit<usersType, "userHours"> & {
+  userHours: string[][]
+}
+
+export const hourFormatList = (users: usersType[]): mappedUserType[] => {
+    const userMap = users.map(user => {
+    const userHours = user.userHours.map(hour => {
+
+      const morning = day.morning.filter(morning => 
+        morning >= dayjs(hour.startTime).format("HH:mm") && 
+        morning <= dayjs(hour.endTime).format("HH:mm"))
+      if(morning.length > 0) return morning
+
+      const afternoon = day.afternoon.filter(afternoon => 
+        afternoon >= dayjs(hour.startTime).format("HH:mm") && 
+        afternoon <= dayjs(hour.endTime).format("HH:mm"))
+      if(afternoon.length > 0) return afternoon
+
+      const night = day.night.filter(night => 
+        night >= dayjs(hour.startTime).format("HH:mm") && 
+        night <= dayjs(hour.endTime).format("HH:mm"))
+      if(night.length > 0) return night
+
+      return []
+    })
+    
+    return {
+      ...user,
+      userHours
+    }
+  })
+
+  return userMap
+}

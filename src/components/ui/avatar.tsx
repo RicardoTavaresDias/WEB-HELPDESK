@@ -1,7 +1,9 @@
-import type { UserSession } from "@/types/users"
-
 type AvatarType = {
-  user: UserSession
+  user: {
+    name: string
+    avatar: string
+    email?: string
+  }
   size?: string
   onClick?: () => void 
 }

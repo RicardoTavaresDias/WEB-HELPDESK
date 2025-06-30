@@ -1,5 +1,5 @@
 import { Panel } from "@/components/table"
-import avatar from "@/assets/img/Avatar.svg"
+import { Avatar } from "@/components/ui/avatar";
 import { IconPenLine } from "@/assets/icon/iconPenLine";
 
 import { ButtonTime } from "@/components/ui/buttonTime";
@@ -7,10 +7,19 @@ import { Modules } from "@/components/modules";
 import { Link } from "react-router";
 import { UiButton } from "@/components/ui/UiButton";
 import { IconPlus } from "@/assets/icon/iconPlus";
+import { Fragment } from "react";
+import { useTechnicalHome } from "../hooks/useTechnicalsHome"
+import { Alert } from "@/components/ui/alert";
+import { Loading } from "@/components/ui/loading";
 
 export function Technical(){
+  const { users, isLoading, messageError } = useTechnicalHome()
+
   return (
     <>
+      {isLoading && <Loading />}
+        <Alert severity="error" open={!!messageError}>{messageError}</Alert>
+      
       <div className="mb-7">
         <Modules.Title title="Técnicos" isButton={true} >
           <Link to={"/tecnicos/novo"}>
@@ -25,27 +34,41 @@ export function Technical(){
         <Panel.Column>Disponibilidade</Panel.Column>
         <Panel.Column>{""}</Panel.Column>
 
-        <Panel.Rows>
-          <div className="flex gap-2 justify-center items-center">
-            <img src={avatar} className="w-5 h-5" />
-            Carlos Silva
-          </div>
-        </Panel.Rows>
-        <Panel.Rows>
-          carlos.silva@test.com
-        </Panel.Rows>
-        <Panel.Rows>
-          <div className="flex gap-2">
-            <ButtonTime type="read">08:00</ButtonTime>
-            <ButtonTime type="read">09:00</ButtonTime>
-            <ButtonTime type="read">10:00</ButtonTime>
-            <ButtonTime type="read">11:00</ButtonTime>
-            <ButtonTime type="read">+4</ButtonTime>
-          </div>
-        </Panel.Rows>
-        <Panel.Rows>
-          <Link to="/tecnicos/edicao" ><UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} /></Link>
-        </Panel.Rows>
+        {
+          users && users.map(user => (
+            <Fragment key={user.id}>
+              <Panel.Rows>
+                <div className="flex gap-2 justify-center items-center">
+                  <Avatar user={{ name: user.name, avatar: "default.svg" }} size="w-6 h-6" />
+                  {user.name}
+                </div>
+              </Panel.Rows>
+              <Panel.Rows>
+                  {user.email}
+              </Panel.Rows>
+              <Panel.Rows>
+                <div className="flex gap-2">
+                  {
+                    user.userHours.flat().map((hour, index) => {
+                      return (
+                        <Fragment key={index}>
+                          <ButtonTime type="read">{hour}</ButtonTime>
+                        </Fragment>
+                      )
+                    }).slice(0, 4)
+                  }
+                  {
+                    user.userHours.flat().length > 4 &&
+                      <ButtonTime type="read">{("+" + (user.userHours.flat().length - 4))}</ButtonTime>
+                  }
+                </div>
+              </Panel.Rows>
+              <Panel.Rows>
+                <Link to={`/tecnicos/edicao/${user.id}`} ><UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} /></Link>
+              </Panel.Rows>
+            </Fragment>
+          ))
+        }
       </Panel.Root>
 
       {/* Mobile */}
@@ -54,21 +77,36 @@ export function Technical(){
         <Panel.Column>Disponibilidade</Panel.Column>
         <Panel.Column>{""}</Panel.Column>
 
-        <Panel.Rows>
-          <div className="flex gap-2 justify-center items-cente">
-            <img src={avatar} className="w-5 h-5" />
-            Carlos Silva
-          </div>
-        </Panel.Rows>
-        <Panel.Rows>
-          <div className="flex gap-1">
-            <ButtonTime type="read">08:00</ButtonTime>
-            <ButtonTime type="read">+4</ButtonTime>
-          </div>
-        </Panel.Rows>
-        <Panel.Rows>
-          <Link to="/tecnicos/edicao" ><UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} /></Link>
-        </Panel.Rows>
+        {
+          users && users.map(user => (
+            <Fragment key={user.id}>
+              <Panel.Rows>
+                <div className="flex gap-2 justify-center items-cente">
+                  <Avatar user={{ name: user.name, avatar: "default.svg" }} size="w-6 h-6" />
+                  <span className="truncate w-18 self-center">{user.name}</span>
+                </div>
+              </Panel.Rows>
+              <Panel.Rows>
+                <div className="flex gap-1">
+                  {
+                    user.userHours.flat().map((hour, index) => (
+                      <Fragment key={index}>
+                        <ButtonTime type="read">{hour}</ButtonTime>
+                      </Fragment>
+                    )).slice(0, 1)
+                  }
+                  {
+                    user.userHours.flat().length > 1 &&
+                      <ButtonTime type="read">{"+" + (user.userHours.flat().length - 1)}</ButtonTime>
+                  }
+                </div>
+              </Panel.Rows>
+              <Panel.Rows>
+                <Link to={`/tecnicos/edicao/${user.id}`} ><UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} /></Link>
+              </Panel.Rows>
+            </Fragment>
+          ))
+        }  
       </Panel.Root>
       {/* Mobile */}
     </>

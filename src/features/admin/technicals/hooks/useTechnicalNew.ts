@@ -44,12 +44,12 @@ export const useTechnicalNew = () => {
           email: data.email, 
           password: data.password, 
           role: "technical", 
-          hours: hours.filter(value => !(value.startTime === null && value.endTime === null)) 
+          userHours: hours.filter(value => !(value.startTime === null && value.endTime === null)) 
         })
 
       setMessageSucess(response.data.message)
       onCancel()
-      
+   
     } catch(error: any){
       if(error instanceof AxiosError) {
         return setError("root", {message: error.response?.data.message})

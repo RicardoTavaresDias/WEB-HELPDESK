@@ -17,7 +17,7 @@ export function Admin(){
           <Route path="/chamados/:id" element={<CallListdetails />} />
         <Route path="/tecnicos" element={<Technical />} />
           <Route path="/tecnicos/novo" element={<TechnicalNew />} />
-          <Route path="/tecnicos/edicao" element={<TechnicalEdition />} />
+          <Route path="/tecnicos/edicao/:id" element={<TechnicalEdition />} />
         <Route path="/clientes" element={<Customers />} />
         <Route path="/servicos" element={<Services />} />
       </Route>
