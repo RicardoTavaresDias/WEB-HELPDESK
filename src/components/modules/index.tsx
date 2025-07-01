@@ -5,7 +5,7 @@ import { ModuleTitle } from "./moduleTitle";
 
 export const Modules = {
   Root: ModuleRoot,
-  Previous: ModuleContainer,
+  Container: ModuleContainer,
   Title: ModuleTitle,
   Context: ModuleContext
 }
