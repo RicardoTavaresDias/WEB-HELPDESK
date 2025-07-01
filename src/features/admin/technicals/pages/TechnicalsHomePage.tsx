@@ -1,4 +1,3 @@
-import { Panel } from "@/components/table"
 import { Avatar } from "@/components/ui/avatar";
 import { IconPenLine } from "@/assets/icon/iconPenLine";
 
@@ -14,7 +13,7 @@ import { Loading } from "@/components/ui/loading";
 
 
 import { Table } from "@/components/table"
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Pagination } from "@/components/pagination"
 
 export function Technical(){
   const { 
@@ -26,7 +25,7 @@ export function Technical(){
     page
   } = useTechnicalHome()
 
-
+console.log(page)
   return ( 
     <>
       {/* {isLoading && <Loading />} */}
@@ -44,7 +43,7 @@ export function Technical(){
       <div className="border-1 border-gray-500 rounded-md max-sm:hidden">
       <Table.Root>
         <Table.Header>
-          <Table.Head >Nome</Table.Head>
+          <Table.Head ><div className="cursor-pointer" >Nome</div></Table.Head>
           <Table.Head >Email</Table.Head>
           <Table.Head >Disponibilidade</Table.Head>
           <Table.Head >{""}</Table.Head>
@@ -139,42 +138,18 @@ export function Technical(){
       {/* MOBILE */}
 
 
-
       {/* PAGINAÇÃO */}
-      <div className=" flex justify-end py-2 px-5 gap-2 mt-2 max-sm:justify-center">
-        <button className="hover:bg-gray-500/50 h-7.5 px-3 rounded-lg flex Text-Sm items-center justify-center cursor-pointer transition-colors" onClick={() => setPage(page - 1)} disabled={pagination?.previous ? false : true} >
-          <ChevronLeft className="w-4"/> Previus
-        </button>
-        
-        <div className="flex gap-2 items-center justify-center Text-Sm">
-          {pagination && pagination.previous &&
-            <div className="text-center cursor-pointer h-7.5  px-1.5 flex justify-center items-center" onClick={() => setPage(pagination.previous as number)} >
-              {pagination && pagination.previous}
-            </div>
-          }         
-          <div className="flex justify-center items-center h-7.5  px-1.5 border-1 rounded-lg w-8 border-gray-500 transition-colors">
-            {pagination && pagination.previous ? pagination.previous + 1 : 1 }
-          </div>
-
-          {pagination && pagination.next &&
-            <>
-              <div className="cursor-pointer h-7.5  px-1.5 flex justify-center items-center" onClick={() => setPage(pagination.next as number)}>
-                {pagination && pagination.next}
-              </div>
-              
-              <div className="cursor-pointer h-7.5  px-1.5 flex justify-center items-center" onClick={() => setPage(pagination.totalPage)}>
-                ...
-              </div>
-            </>
-          }
-        </div>
-
-        <button className="hover:bg-gray-500/50 h-7.5  px-3 rounded-lg flex Text-Sm items-center justify-center cursor-pointer transition-colors" onClick={() => setPage(page + 1)} disabled={pagination?.next ? false : true} >
-          Next <ChevronRight className="w-4"/> 
-        </button>
-      </div>
+      <Pagination.Root>
+        <Pagination.Previous previous={pagination?.previous} onClick={() => setPage(page - 1)} />
+          <Pagination.Body 
+            pagination={pagination} 
+            onClickPrevius={() => setPage(pagination?.previous as number)} 
+            onClickTotalPage={() => setPage(pagination?.totalPage as number)}
+            page={page}
+          />
+          <Pagination.Next next={pagination?.next} onClick={() => setPage(page + 1)} />
+      </Pagination.Root>
       {/* PAGINAÇÃO */}
-
     </>
   )
 }
