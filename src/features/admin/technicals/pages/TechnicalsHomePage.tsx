@@ -103,7 +103,7 @@ export function Technical(){
 
         <div className="flex gap-2 items-center justify-center Text-Sm">
           {pagination && pagination.previous &&
-            <div className="text-center cursor-pointer h-7.5  px-1.5 flex justify-center items-center">
+            <div className="text-center cursor-pointer h-7.5  px-1.5 flex justify-center items-center" onClick={() => setPage(pagination.previous as number)} >
               {pagination && pagination.previous}
             </div>
           }         
@@ -113,11 +113,11 @@ export function Technical(){
 
           {pagination && pagination.next &&
             <>
-              <div className="cursor-pointer h-7.5  px-1.5 flex justify-center items-center">
+              <div className="cursor-pointer h-7.5  px-1.5 flex justify-center items-center" onClick={() => setPage(pagination.next as number)}>
                 {pagination && pagination.next}
               </div>
               
-              <div className="cursor-pointer h-7.5  px-1.5 flex justify-center items-center">
+              <div className="cursor-pointer h-7.5  px-1.5 flex justify-center items-center" onClick={() => setPage(pagination.totalPage)}>
                 ...
               </div>
             </>
