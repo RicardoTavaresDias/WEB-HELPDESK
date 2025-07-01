@@ -20,7 +20,7 @@ export const useTechnicalHome = () => {
   const usersData = async () => {
     try {
       setIsLoading(true)
-      const response = await api.get(`user/list/technical?page=${page}&limit=2` ,{
+      const response = await api.get(`user/list/technical?page=${page}&limit=10` ,{
         
       })
 

@@ -95,19 +95,17 @@ export function Technical(){
 
 
       <div className=" flex justify-end py-2 px-5 gap-2 mt-2">
-        {pagination && pagination.previous &&
-          <button className="hover:bg-gray-500/50 h-7.5 px-3 rounded-lg flex Text-Sm items-center justify-center cursor-pointer transition-colors" onClick={() => setPage(page - 1)} >
-            <ChevronLeft className="w-4"/> Previus
-          </button>
-        }
-
+        <button className="hover:bg-gray-500/50 h-7.5 px-3 rounded-lg flex Text-Sm items-center justify-center cursor-pointer transition-colors" onClick={() => setPage(page - 1)} disabled={pagination?.previous ? false : true} >
+          <ChevronLeft className="w-4"/> Previus
+        </button>
+        
         <div className="flex gap-2 items-center justify-center Text-Sm">
           {pagination && pagination.previous &&
             <div className="text-center cursor-pointer h-7.5  px-1.5 flex justify-center items-center" onClick={() => setPage(pagination.previous as number)} >
               {pagination && pagination.previous}
             </div>
           }         
-          <div className="flex justify-center items-center h-7.5  px-1.5 border-1 rounded-lg w-8 border-gray-500 hover:bg-gray-500/35 transition-colors">
+          <div className="flex justify-center items-center h-7.5  px-1.5 border-1 rounded-lg w-8 border-gray-500 transition-colors">
             {pagination && pagination.previous ? pagination.previous + 1 : 1 }
           </div>
 
@@ -124,11 +122,9 @@ export function Technical(){
           }
         </div>
 
-        {pagination && pagination.next &&
-          <button className="hover:bg-gray-500/50 h-7.5  px-3 rounded-lg flex Text-Sm items-center justify-center cursor-pointer transition-colors" onClick={() => setPage(page + 1)} >
-            Next <ChevronRight className="w-4"/> 
-          </button>
-        }
+        <button className="hover:bg-gray-500/50 h-7.5  px-3 rounded-lg flex Text-Sm items-center justify-center cursor-pointer transition-colors" onClick={() => setPage(page + 1)} disabled={pagination?.next ? false : true} >
+          Next <ChevronRight className="w-4"/> 
+        </button>
       </div>
     
     </>
