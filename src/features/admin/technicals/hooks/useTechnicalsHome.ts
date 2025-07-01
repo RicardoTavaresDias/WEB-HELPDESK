@@ -3,17 +3,30 @@ import { api } from "@/services/api"
 import { AxiosError } from "axios"
 import { useEffect, useState } from "react"
 
+type PaginationType = {
+  page: number
+  totalPage: number
+  next?: number
+  previous?: number
+}
+
 export const useTechnicalHome = () => {
   const [users, setUsers] = useState<mappedUserType[] | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [messageError, setMessageError] = useState("")
+  const [pagination, setPagination] = useState<PaginationType | null>(null)
+  const [page, setPage] = useState(1)
 
   const usersData = async () => {
     try {
-      const response = await api.get("user/list/technical?page=1&limit=10")
+      setIsLoading(true)
+      const response = await api.get(`user/list/technical?page=${page}&limit=2` ,{
+        
+      })
 
       const data = hourFormatList(response.data.data)
       setUsers(data)
+      setPagination(response.data.result)
     }catch(error: any){
       if(error instanceof AxiosError) {
         return setMessageError(error.response?.data.message)
@@ -27,11 +40,14 @@ export const useTechnicalHome = () => {
 
   useEffect(() => {
     usersData()
-  },[])
+  },[page])
 
   return {
     users,
     isLoading, 
-    messageError
+    messageError,
+    pagination,
+    setPage,
+    page
   }
 }

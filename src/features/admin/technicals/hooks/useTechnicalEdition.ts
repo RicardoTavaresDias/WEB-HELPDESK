@@ -11,7 +11,7 @@ export const useTechnicalEdition = () => {
   const [hours, setHours ] = useState<string[]>([])
   const [messageSucess, setMessageSucess] = useState("")
   const [messageError, setMessageError] = useState("")
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [avatar, setAvatar] = useState<{ name: string, avatar: string } | null>(null)
   const { id } = useParams()
 
@@ -32,6 +32,7 @@ export const useTechnicalEdition = () => {
     }
 
     try {
+      setIsLoading(true)
       const response = await api.get(`/user/${id}`)
       const data = response.data
 
