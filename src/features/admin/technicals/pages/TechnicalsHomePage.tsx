@@ -144,7 +144,7 @@ console.log(page)
           <Pagination.Body 
             pagination={pagination} 
             onClickPrevius={() => setPage(pagination?.previous as number)} 
-            onClickTotalPage={() => setPage(pagination?.totalPage as number)}
+            onClickNext={() => setPage(pagination?.next as number)}
             page={page}
           />
           <Pagination.Next next={pagination?.next} onClick={() => setPage(page + 1)} />

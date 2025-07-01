@@ -3,11 +3,11 @@ import type { MouseEventHandler } from "react";
 
 type onClickType = {
   onClickPrevius: MouseEventHandler<HTMLButtonElement>
-  onClickTotalPage: MouseEventHandler<HTMLButtonElement>
+  onClickNext: MouseEventHandler<HTMLButtonElement>
   page: number
 } & PaginationType
 
-export function PaginationBody({pagination, onClickPrevius, onClickTotalPage, page}: onClickType){
+export function PaginationBody({pagination, onClickPrevius, onClickNext, page}: onClickType){
   return (
     <>
       <div className="flex gap-2 items-center justify-center Text-Sm">
@@ -22,7 +22,7 @@ export function PaginationBody({pagination, onClickPrevius, onClickTotalPage, pa
 
           {pagination && pagination.next &&
             <>
-              <button type="button" className="cursor-pointer h-7.5  px-1.5 flex justify-center items-center" onClick={onClickTotalPage} >
+              <button type="button" className="cursor-pointer h-7.5  px-1.5 flex justify-center items-center" onClick={onClickNext} >
                 {pagination && pagination.next}
               </button>
               {pagination.totalPage > page && (page + 1) < pagination.totalPage &&
