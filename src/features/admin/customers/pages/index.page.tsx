@@ -84,7 +84,7 @@ export function IndexAdminCustomerPage(){
           }}/>
           <Modal.Context>
             <div>
-              <Avatar user={{ name: userCustomerData.name, avatar: "default.svg" }} size="w-12 h-12"/>
+              <Avatar user={{ name: userCustomerData.name, avatar: userCustomerData.avatar }} size="w-12 h-12"/>
               <div className="pt-5">
                 <Input type="text" {...register("name")} label="nome"  />
 
@@ -122,7 +122,7 @@ export function IndexAdminCustomerPage(){
 
                 <Table.Cell clas="w-1/2">
                   <div className="flex gap-3 items-center">
-                    <Avatar user={{ name: user.name, avatar: "default.svg" }} size="w-7 h-7" sizeText="text-[11px]" />
+                    <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-7 h-7" sizeText="text-[11px]" />
                     <span className="truncate">{user.name}</span>
                   </div>
                 </Table.Cell>
@@ -171,7 +171,7 @@ export function IndexAdminCustomerPage(){
 
                   <Table.Cell internalSpacing="pl-3 pr-1 py-4.5">
                     <div className="flex gap-3 items-center w-30">
-                      <Avatar user={{ name: user.name, avatar: "default.svg" }} size="w-7 h-7" sizeText="text-[11px]" />
+                      <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-7 h-7" sizeText="text-[11px]" />
                       <span className="truncate ">{user.name}</span>
                     </div>
                   </Table.Cell>
@@ -184,9 +184,14 @@ export function IndexAdminCustomerPage(){
 
                   <Table.Cell internalSpacing="px-1 py-4.5">
                     <div className="flex gap-1.5 w-17">
-                      <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconTrash} onClick={() => setModalRemove(!modalRemove)} />
+                      <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconTrash} 
+                      onClick={() => {
+                        setuserCustomerData(user)
+                        setModalRemove(!modalRemove)
+                      }} />
                       <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} 
                       onClick={() => { 
+                        setuserCustomerData(user)
                         setModalEdition(!modalEdition);  
                       }} />
                     </div>

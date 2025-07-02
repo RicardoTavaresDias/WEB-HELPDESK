@@ -13,7 +13,8 @@ export const updateAdminCustomersAction = (onSuccessCallback?: () => void) => {
   const [userCustomerData, setuserCustomerData] = useState({
     id: "",
     name: "",
-    email: ""
+    email: "",
+    avatar: ""
   })
 
   const { register, reset, handleSubmit, setError, formState: {errors, isSubmitting} } = useForm<UserAdminCustomersType>({
