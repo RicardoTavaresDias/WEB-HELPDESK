@@ -1,7 +1,7 @@
 import type { mappedUserType } from "@/lib/formatHours"
 import { api } from "@/services/api"
 import { AxiosError } from "axios"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 
 type PaginationType = {
   page: number
@@ -17,7 +17,7 @@ export const IndexAdminCustomersAction = () => {
   const [pagination, setPagination] = useState<PaginationType | null>(null)
   const [page, setPage] = useState(1)
 
-  const userCustomerData = async () => {
+  const userCustomerLoad = useCallback(async () => {
     try {
       setIsLoading(true)
       const responseCustomer = await api.get(`user/list/customer?page=${page}&limit=2`)
@@ -33,11 +33,11 @@ export const IndexAdminCustomersAction = () => {
     }finally {
       setIsLoading(false)
     }
-  }
+  }, [page])
 
   useEffect(() => {
-    userCustomerData()
-  },[page])
+    userCustomerLoad()
+  }, [page])
 
   return {
     users,
@@ -45,6 +45,7 @@ export const IndexAdminCustomersAction = () => {
     messageError,
     pagination,
     setPage,
-    page
+    page,
+    userCustomerLoad
   }
 }

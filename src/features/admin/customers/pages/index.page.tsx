@@ -8,17 +8,14 @@ import { UiButton } from "@/components/ui/UiButton";
 import { Table } from "@/components/table"
 import { Avatar } from "@/components/ui/avatar";
 import { IndexAdminCustomersAction } from "../action/index.action"
+import { updateAdminCustomersAction } from "../action/update.action";
 import { Alert } from "@/components/ui/alert";
 import { Pagination } from "@/components/pagination";
+import { Loading } from "@/components/ui/loading";
 
 export function IndexAdminCustomerPage(){
   const [modalRemove, setModalRemove] = useState(false)
   const [modalEdition, setModalEdition] = useState(false)
-
-  const [editionUserData, setEditionUserData] = useState({
-    name: "",
-    email: ""
-  })
 
   const {
     isLoading,
@@ -26,13 +23,34 @@ export function IndexAdminCustomerPage(){
     page,
     pagination,
     setPage,
-    users
+    users,
+    userCustomerLoad
   } = IndexAdminCustomersAction()
+
+  const {
+    errors,
+    handleSubmit,
+    onSubmit,
+    register,
+    isSubmitting,
+    userCustomerData,
+    setuserCustomerData,
+    reset
+  } = updateAdminCustomersAction(userCustomerLoad)
 
   return (
     <>
-      {/* {isLoading && <Loading />} */}
+      {isLoading || isSubmitting && <Loading />}
         <Alert severity="error" open={!!messageError}>{messageError}</Alert>
+        <Alert severity="error" open={!!errors.root?.message}>
+          {errors.root?.message}
+        </Alert>
+        <Alert severity="success" open={!!errors.root?.success}>
+          {typeof errors.root?.success === "string" && errors.root.success}
+        </Alert>
+        <Alert severity="info" open={!!errors.root?.info}>
+          {typeof errors.root?.info === "string" && errors.root.info}
+        </Alert>
 
       <Modal.Root isActive={modalRemove}>
         <Modal.Title onClose={() => setModalRemove(!modalRemove)} title="Cliente" />
@@ -41,28 +59,36 @@ export function IndexAdminCustomerPage(){
           <p className="text-gray-200 Text-md mt-5 max-sm:w-75">Ao excluir, todos os chamados deste cliente serão removidos e esta ação não poderá ser desfeita.</p>
         </Modal.Context>
         <Modal.Actions>
-          <UiButton type="button" typeSize="lg" typeColor="gray" onClick={() => setModalRemove(!modalRemove)} >Cancelar</UiButton>
+          <UiButton type="button" typeSize="lg" typeColor="gray" onClick={() => setModalRemove(!modalRemove)} >
+            Cancelar
+          </UiButton>
           <UiButton type="button" typeSize="lg" typeColor="black" >Sim, excluir</UiButton>
         </Modal.Actions>
       </Modal.Root>
 
-      <form >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Root isActive={modalEdition} >
-          <Modal.Title title="Cliente" onClose={() => setModalEdition(!modalEdition)}/>
+          <Modal.Title title="Cliente" onClose={() => {
+            setModalEdition(!modalEdition)
+            reset()
+          }}/>
           <Modal.Context>
             <div>
-              <Avatar user={{ name: editionUserData.name, avatar: "default.svg" }} size="w-12 h-12"/>
+              <Avatar user={{ name: userCustomerData.name, avatar: "default.svg" }} size="w-12 h-12"/>
               <div className="pt-5">
-                <Input type="text" label="nome" value={editionUserData.name} onChange={(e) => 
-                  setEditionUserData((prev) => ({ ...prev, name: e.target.value }) )} />
+                <Input type="text" {...register("name")} label="nome"  />
 
-                <Input type="text" label="e-mail" value={editionUserData.email} onChange={(e) => 
-                  setEditionUserData((prev) => ({ ...prev, email: e.target.value }) )} />
+                <Input type="text" {...register("email")} label="e-mail" />
               </div>
             </div>  
           </Modal.Context>
           <Modal.Actions>
-            <UiButton type="submit" typeSize="xxl" typeColor="black" >Salvar</UiButton>
+            <UiButton type="submit" typeSize="xxl" typeColor="black" onClick={() => {
+              setModalEdition(!modalEdition)
+              // reflech pagina principal
+            }}>
+              Salvar
+            </UiButton>
           </Modal.Actions>
         </Modal.Root>
       </form>
@@ -100,7 +126,7 @@ export function IndexAdminCustomerPage(){
                     <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconTrash} onClick={() => setModalRemove(!modalRemove)} />
                     <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} 
                     onClick={() => { 
-                      setEditionUserData(user)
+                      setuserCustomerData(user)
                       setModalEdition(!modalEdition);  
                     }} />
                   </div>
@@ -147,7 +173,6 @@ export function IndexAdminCustomerPage(){
                       <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconTrash} onClick={() => setModalRemove(!modalRemove)} />
                       <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} 
                       onClick={() => { 
-                        setEditionUserData(user)
                         setModalEdition(!modalEdition);  
                       }} />
                     </div>
