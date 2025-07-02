@@ -25,7 +25,6 @@ export function IndexAdminTechnicalsPage(){
     page
   } = IndexAdminTechnicalsAction()
 
-console.log(page)
   return ( 
     <>
       {/* {isLoading && <Loading />} */}
@@ -43,7 +42,7 @@ console.log(page)
       <div className="border-1 border-gray-500 rounded-md max-sm:hidden">
       <Table.Root>
         <Table.Header>
-          <Table.Head ><div className="cursor-pointer" >Nome</div></Table.Head>
+          <Table.Head >Nome</Table.Head>
           <Table.Head >Email</Table.Head>
           <Table.Head >Disponibilidade</Table.Head>
           <Table.Head >{""}</Table.Head>
