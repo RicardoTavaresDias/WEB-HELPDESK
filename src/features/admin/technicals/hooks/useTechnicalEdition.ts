@@ -3,20 +3,29 @@ import { api } from "@/services/api"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { useForm } from 'react-hook-form'
-import { userTechnicalSchema, type UserTechnicalSchemaType } from "../schemas/AdminTechnicalSchema"
 import { AxiosError } from "axios"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { userSchema } from "../schemas/AdminTechnicalSchema"
+import type { UserTechnicalType } from "../schemas/AdminTechnicalSchema"
+
+type UserType = {
+  id: string
+  name: string
+  email: string
+  avatar: string
+  userHours: string[],
+}
 
 export const useTechnicalEdition = () => {
-  const [hours, setHours ] = useState<string[]>([])
-  const [messageSucess, setMessageSucess] = useState("")
-  const [messageError, setMessageError] = useState("")
+  const [user, setUser ] = useState<UserType>({
+    id: "",
+    name: "",
+    email: "",
+    avatar: "",
+    userHours: [],
+  })
   const [isLoading, setIsLoading] = useState(false)
-  const [avatar, setAvatar] = useState<{ name: string, avatar: string } | null>(null)
   const { id } = useParams()
-
-  type UserTechnicalType = Omit<UserTechnicalSchemaType, "password">
-  const userSchema = userTechnicalSchema.omit({ password: true })
 
   const { register, reset, handleSubmit, setError, formState: {errors, isSubmitting} } = useForm<UserTechnicalType>({
     criteriaMode: 'all',
@@ -26,26 +35,20 @@ export const useTechnicalEdition = () => {
 
 
   const fetchLoad = async () => {
-    if(messageError.length || messageSucess.length){
-      setMessageError("")
-      setMessageSucess("")
-    }
-
     try {
       setIsLoading(true)
       const response = await api.get(`/user/${id}`)
       const data = response.data
 
-      const [ user ] =  hourFormatList([data])
-      const  userHours  = user.userHours.flat()
-      setHours(userHours)
-     
+      const [ userData ] =  hourFormatList([data])
+      const userHoursData = userData.userHours.flat()
+      setUser({...userData,  userHours: userHoursData})
+
       reset({
-        name: user.name,
-        email: user.email
+        name: userData.name,
+        email: userData.email
       })
 
-      setAvatar({ name: data.name, avatar: data.avatar })
     }catch (error: any){
       if(error instanceof AxiosError) {
         return setError("root", {message: error.response?.data.message})
@@ -58,15 +61,11 @@ export const useTechnicalEdition = () => {
   }
   
   const onSubmit = async (data: UserTechnicalType) => {
-    if(messageSucess.length > 0){
-      setMessageSucess("")
+    if(!user.userHours.length){
+      return setError("root", { info: "Informe os horários de disponibilidade do técnico"} as object)
     }
 
-    if(!hours.length){
-      return setMessageError("Informe os horários de disponibilidade do técnico")
-    }
-
-    const userHours = formatHours(hours)
+    const userHours = formatHours(user.userHours)
 
     const formData = new FormData();
     formData.append("data", JSON.stringify(
@@ -79,10 +78,7 @@ export const useTechnicalEdition = () => {
 
     try{
       const response = await api.patch(`/user/${id}`, formData)
-        
-      setMessageError("")
-      setMessageSucess(response.data.message)
-  
+      setError("root", { sucess: response.data.message } as object)  
       
     } catch(error: any){
       if(error instanceof AxiosError) {
@@ -98,17 +94,14 @@ export const useTechnicalEdition = () => {
   },[])
 
   return {
-    hours,
-    setHours,
+    user,
+    setUser,
     handleSubmit,
     register,
     onSubmit,
     errors, 
     isSubmitting,
-    messageError,
-    messageSucess,
     isLoading,
-    avatar,
     fetchLoad
   }
 }
