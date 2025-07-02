@@ -29,8 +29,8 @@ export const useTechnicalEdition = () => {
 
   const { register, reset, handleSubmit, setError, formState: {errors, isSubmitting} } = useForm<UserTechnicalType>({
     criteriaMode: 'all',
-      mode: 'all',
-      resolver: zodResolver(userSchema)
+    mode: 'all',
+    resolver: zodResolver(userSchema)
   })
 
 
@@ -89,19 +89,38 @@ export const useTechnicalEdition = () => {
     }
   }
 
+  const removeUserHours = (value: string) => {
+    setUser(prev => (
+      {
+        ...prev,
+        userHours: prev.userHours.filter(hours => hours !== value)
+      }
+    ))
+  }
+
+  const addUserHours = (value: string) => {
+    setUser(prev => (
+      {
+        ...prev,
+        userHours: [value, ...prev.userHours]
+      }
+    ))
+  }
+
    useEffect(() => {
     fetchLoad()    
   },[])
 
   return {
     user,
-    setUser,
     handleSubmit,
     register,
     onSubmit,
     errors, 
     isSubmitting,
     isLoading,
-    fetchLoad
+    fetchLoad,
+    addUserHours,
+    removeUserHours
   }
 }

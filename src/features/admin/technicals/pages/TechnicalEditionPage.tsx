@@ -13,7 +13,6 @@ import { Avatar } from "@/components/ui/avatar";
 export function TechnicalEdition() {
   const {
     user,
-    setUser,
     register,
     handleSubmit,
     onSubmit,
@@ -21,7 +20,9 @@ export function TechnicalEdition() {
     errors,
     isLoading,
     fetchLoad,
-  } = useTechnicalEdition();
+    addUserHours,
+    removeUserHours
+  } = useTechnicalEdition()
 
   return (
     <>
@@ -98,17 +99,7 @@ export function TechnicalEdition() {
                       if (user.userHours.includes(value)) {
                         return (
                           <div key={uuid()}>
-                            <ButtonTime
-                              onClick={() =>
-                                setUser((prev) => ({
-                                  ...prev,
-                                  userHours: prev.userHours.filter(
-                                    (hours) => hours !== value
-                                  ),
-                                }))
-                              }
-                              isActive
-                            >
+                            <ButtonTime onClick={() => removeUserHours(value)} isActive >
                               {value}
                             </ButtonTime>
                           </div>
@@ -117,14 +108,7 @@ export function TechnicalEdition() {
 
                       return (
                         <div key={uuid()}>
-                          <ButtonTime
-                            onClick={() =>
-                              setUser((prev) => ({
-                                ...prev,
-                                userHours: [value, ...prev.userHours],
-                              }))
-                            }
-                          >
+                          <ButtonTime onClick={() => addUserHours(value)} >
                             {value}
                           </ButtonTime>
                         </div>
@@ -143,17 +127,7 @@ export function TechnicalEdition() {
                       if (user.userHours.includes(value)) {
                         return (
                           <div key={uuid()}>
-                            <ButtonTime
-                              onClick={() =>
-                                setUser((prev) => ({
-                                  ...prev,
-                                  userHours: prev.userHours.filter(
-                                    (hours) => hours !== value
-                                  ),
-                                }))
-                              }
-                              isActive
-                            >
+                            <ButtonTime onClick={() => removeUserHours(value)} isActive >
                               {value}
                             </ButtonTime>
                           </div>
@@ -162,14 +136,7 @@ export function TechnicalEdition() {
 
                       return (
                         <div key={uuid()}>
-                          <ButtonTime
-                            onClick={() =>
-                              setUser((prev) => ({
-                                ...prev,
-                                userHours: [value, ...prev.userHours],
-                              }))
-                            }
-                          >
+                          <ButtonTime onClick={() => addUserHours(value)} >
                             {value}
                           </ButtonTime>
                         </div>
@@ -188,17 +155,7 @@ export function TechnicalEdition() {
                       if (user.userHours.includes(value)) {
                         return (
                           <div key={uuid()}>
-                            <ButtonTime
-                              onClick={() =>
-                                setUser((prev) => ({
-                                  ...prev,
-                                  userHours: prev.userHours.filter(
-                                    (hours) => hours !== value
-                                  ),
-                                }))
-                              }
-                              isActive
-                            >
+                            <ButtonTime onClick={() => removeUserHours(value)} isActive >
                               {value}
                             </ButtonTime>
                           </div>
@@ -207,14 +164,7 @@ export function TechnicalEdition() {
 
                       return (
                         <div key={uuid()}>
-                          <ButtonTime
-                            onClick={() =>
-                              setUser((prev) => ({
-                                ...prev,
-                                userHours: [value, ...prev.userHours],
-                              }))
-                            }
-                          >
+                          <ButtonTime onClick={() => addUserHours(value)} >
                             {value}
                           </ButtonTime>
                         </div>
