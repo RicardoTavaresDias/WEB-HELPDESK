@@ -1,24 +1,33 @@
 import { api } from "@/services/api"
+import { AxiosError } from "axios"
 import { useState } from "react"
 
 export const removeAdminCustomersAction = (onSuccessCallback?: () => void) => {
-  const [sucess, setsucess] = useState("")
+  const [sucessRemove, setsucessRemove] = useState("")
+  const [errorRemove, setErrorRemove]= useState("")
  
   const removeUser = async (id: string) => {
-    setsucess("")
+    setErrorRemove("")
+    setsucessRemove("")
     try {
       const responseRemove = await api.delete(`/user/${id}`)
-      setsucess(responseRemove.data.message)
+      setsucessRemove(responseRemove.data.message)
       if(onSuccessCallback){
         onSuccessCallback()
       }
-    } catch (error) {
-      console.log(error)
+    } catch (error: any) {
+      setsucessRemove("")
+
+      if(error instanceof AxiosError) {
+        return setErrorRemove(error.response?.data.message)
+      }
+      setErrorRemove(error.message)
     }
   }
 
   return {
     removeUser,
-    sucess
+    sucessRemove,
+    errorRemove
   }
 }

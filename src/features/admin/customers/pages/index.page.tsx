@@ -41,19 +41,23 @@ export function IndexAdminCustomerPage(){
 
   const {
     removeUser,
-    sucess
+    sucessRemove,
+    errorRemove
   } = removeAdminCustomersAction(userCustomerLoad)
 
   return (
     <>
       {isLoading || isSubmitting && <Loading />}
-        <Alert severity="error" open={!!messageError}>{messageError}</Alert>
+        <Alert severity="error" open={!!messageError || !!errorRemove}>
+          {messageError && messageError} 
+          {errorRemove && errorRemove}
+        </Alert>
         <Alert severity="error" open={!!errors.root?.message}>
           {errors.root?.message}
         </Alert>
-        <Alert severity="success" open={!!errors.root?.success || !!sucess}>
+        <Alert severity="success" open={!!errors.root?.success || !!sucessRemove}>
           {typeof errors.root?.success === "string" && errors.root.success}
-          {sucess && sucess}
+          {sucessRemove && sucessRemove}
         </Alert>
         <Alert severity="info" open={!!errors.root?.info}>
           {typeof errors.root?.info === "string" && errors.root.info}
