@@ -54,7 +54,7 @@ export function IndexAdminTechnicalsPage(){
               <tr className="border-t border-gray-500 text-left" key={user.id} >
                 <Table.Cell>
                   <div className="flex gap-2">
-                    <Avatar user={{ name: user.name, avatar: "default.svg" }} size="w-7 h-7" sizeText="text-[11px]" />
+                    <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-7 h-7" sizeText="text-[11px]" />
                     {user.name}
                   </div>
                 </Table.Cell>

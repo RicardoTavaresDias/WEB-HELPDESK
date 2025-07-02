@@ -84,10 +84,9 @@ export function IndexAdminCustomerPage(){
           }}/>
           <Modal.Context>
             <div>
-              <Avatar user={{ name: userCustomerData.name, avatar: userCustomerData.avatar }} size="w-12 h-12"/>
-              <div className="pt-5">
+              <Avatar user={{ name: userCustomerData.name, avatar: userCustomerData.avatar }} size="w-16 h-16" sizeText="text-xl"/>
+              <div className="pt-3">
                 <Input type="text" {...register("name")} label="nome"  />
-
                 <Input type="text" {...register("email")} label="e-mail" />
               </div>
             </div>  

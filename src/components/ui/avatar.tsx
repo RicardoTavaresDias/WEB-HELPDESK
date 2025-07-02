@@ -29,7 +29,7 @@ export function Avatar({ user, size = "w-10 h-10", sizeText, onClick }: AvatarTy
   return (
     <>
       <img 
-        src={`/public/${user?.avatar}`} 
+        src={`https://pics.craiyon.com/2023-06-27/287f2a60c2e74386b5a89c517eb527dc.webp`} 
         alt="foto do usuario" 
         className={`${size} rounded-full cursor-pointer`}
         onClick={onClick}

@@ -71,7 +71,7 @@ export function UpdateAdminTechnicalsPage() {
                   </span>
                 </div>
                 <div className="my-6">
-                  {user && <Avatar user={user} size="w-12 h-12" /> }
+                  {user && <Avatar user={user} size="w-18 h-18" sizeText="text-[22px]" /> }
                 </div>
                 <Input type="text" {...register("name")} label="nome" error={errors.name?.message} />
                 <Input type="text" {...register("email")} label="e-mail" error={errors.email?.message} />
