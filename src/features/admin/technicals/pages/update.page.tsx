@@ -5,12 +5,12 @@ import { UiButton } from "@/components/ui/UiButton";
 import { day } from "@/lib/day";
 
 import { v4 as uuid } from "uuid";
-import { useTechnicalEdition } from "../hooks/useTechnicalEdition";
+import { updateAdminTechnicalAction } from "../action/update.action";
 import { Alert } from "@/components/ui/alert";
 import { Loading } from "@/components/ui/loading";
 import { Avatar } from "@/components/ui/avatar";
 
-export function TechnicalEdition() {
+export function UpdateAdminTechnicalsPage() {
   const {
     user,
     register,
@@ -22,7 +22,7 @@ export function TechnicalEdition() {
     fetchLoad,
     addUserHours,
     removeUserHours
-  } = useTechnicalEdition()
+  } = updateAdminTechnicalAction()
 
   return (
     <>
@@ -30,8 +30,8 @@ export function TechnicalEdition() {
       <Alert severity="error" open={!!errors.root?.message}>
         {errors.root?.message}
       </Alert>
-      <Alert severity="success" open={!!errors.root?.sucess}>
-        {typeof errors.root?.sucess === "string" && errors.root.sucess}
+      <Alert severity="success" open={!!errors.root?.success}>
+        {typeof errors.root?.success === "string" && errors.root.success}
       </Alert>
       <Alert severity="info" open={!!errors.root?.info}>
         {typeof errors.root?.info === "string" && errors.root.info}

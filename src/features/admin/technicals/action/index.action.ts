@@ -10,7 +10,7 @@ type PaginationType = {
   previous?: number
 }
 
-export const useTechnicalHome = () => {
+export const IndexAdminTechnicalsAction = () => {
   const [users, setUsers] = useState<mappedUserType[] | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [messageError, setMessageError] = useState("")
@@ -20,9 +20,7 @@ export const useTechnicalHome = () => {
   const usersData = async () => {
     try {
       setIsLoading(true)
-      const response = await api.get(`user/list/technical?page=${page}&limit=10` ,{
-        
-      })
+      const response = await api.get(`user/list/technical?page=${page}&limit=10`)
 
       const data = hourFormatList(response.data.data)
       setUsers(data)
@@ -32,7 +30,7 @@ export const useTechnicalHome = () => {
         return setMessageError(error.response?.data.message)
       }
 
-      setMessageError(error.message)
+      return setMessageError(error.message)
     }finally{
       setIsLoading(false)
     }

@@ -1,22 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { api } from "@/services/api"
 import { useForm } from 'react-hook-form'
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { AxiosError } from "axios"
-import { userTechnicalSchema } from "@/features/admin/technicals/schemas/AdminTechnicalSchema"
-import type { UserTechnicalSchemaType } from "@/features/admin/technicals/schemas/AdminTechnicalSchema"
+import { userTechnicalSchema } from "@/features/admin/technicals/schemas/technical.schema"
+import type { UserTechnicalSchemaType } from "@/features/admin/technicals/schemas/technical.schema"
 import { formatHours } from "@/lib/formatHours"
 
 
-export const useTechnicalNew = () => {
-  const [user, setUser] = useState<string[]>([])
-  const [messageSucess, setMessageSucess] = useState("")
-  const [messageError, setMessageError] = useState("")
-  
-
-  useEffect(() => {
-    if(messageError.length) setMessageError("")
-  }, [user])
+export const CreateAdminTechnicalsAction = () => {
+  const [user, setUser] = useState<string[]>([])  
 
   const { register, handleSubmit, reset, setError, formState: {errors, isSubmitting} } = useForm<UserTechnicalSchemaType>({
     criteriaMode: 'all',
@@ -32,7 +25,7 @@ export const useTechnicalNew = () => {
 
   const onSubmit = async (data: UserTechnicalSchemaType) => {
     if(!user.length){
-      return setMessageError("Informe os horários de disponibilidade do técnico ")
+      return setError("root", { info: "Informe os horários de disponibilidade do técnico "} as object)
     }
 
     const hours = formatHours(user)
@@ -47,22 +40,21 @@ export const useTechnicalNew = () => {
           userHours: hours.filter(value => !(value.startTime === null && value.endTime === null)) 
         })
 
-      setMessageSucess(response.data.message)
       onCancel()
-   
+      return setError("root", {success: response.data.message } as object)
+
     } catch(error: any){
       if(error instanceof AxiosError) {
         return setError("root", {message: error.response?.data.message})
       }
 
-      setError("root", {message: error.message})
+      return setError("root", {message: error.message})
     }
   }
 
   const onCancel = () => {
     reset()
     setUser([])
-    setMessageError("")
   }
 
   return {
@@ -72,9 +64,6 @@ export const useTechnicalNew = () => {
     setUser,
     user,
     onSubmit,
-    messageSucess,
-    messageError,
-    setMessageSucess,
     onCancel,
     isSubmitting
   }

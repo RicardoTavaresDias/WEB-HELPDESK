@@ -4,31 +4,34 @@ import { Input } from "@/components/ui/input"
 import { UiButton } from "@/components/ui/UiButton"
 import { v4 as uuid } from 'uuid'
 import { day } from "@/lib/day"
-import { useTechnicalNew } from "@/features/admin/technicals/hooks/useTechnicalNew"
+import { CreateAdminTechnicalsAction } from "@/features/admin/technicals/action/create.action"
 import { Alert } from "@/components/ui/alert"
 import { Loading } from "@/components/ui/loading"
 
-export function TechnicalNew(){
+export function CreateAdminTechnicalsPage(){
   const { 
     errors, 
     handleSubmit, 
     register, 
     user, 
     setUser, 
-    onSubmit, 
-    messageSucess, 
-    messageError, 
-    setMessageSucess, 
+    onSubmit,
     onCancel,
     isSubmitting
-  } = useTechnicalNew()
+  } = CreateAdminTechnicalsAction()
   
   return (
     <>
       {isSubmitting && <Loading />}
-      <Alert severity="error" open={!!errors.root?.message} >{errors.root?.message}</Alert>
-      <Alert severity="error" open={!!messageError}>{messageError}</Alert>
-      <Alert severity="success" open={!!messageSucess}>{messageSucess}</Alert>
+      <Alert severity="error" open={!!errors.root?.message}>
+        {errors.root?.message}
+      </Alert>
+      <Alert severity="success" open={!!errors.root?.success}>
+        {typeof errors.root?.success === "string" && errors.root.success}
+      </Alert>
+      <Alert severity="info" open={!!errors.root?.info}>
+        {typeof errors.root?.info === "string" && errors.root.info}
+      </Alert>
 
       <form onSubmit={handleSubmit(onSubmit)} >
         <Modules.Root>
@@ -50,8 +53,7 @@ export function TechnicalNew(){
                   type="text" 
                   label="nome" 
                   placeholder="Nome completo" 
-                  error={errors.name && errors.name.message} 
-                  onFocus={() => setMessageSucess("")} 
+                  error={errors.name && errors.name.message}
                 />
                 
                 <Input 
@@ -59,8 +61,7 @@ export function TechnicalNew(){
                   type="text" 
                   label="e-mail" 
                   placeholder="exemplo@mail.com" 
-                  error={errors.email && errors.email.message} 
-                  onFocus={() => setMessageSucess("")} 
+                  error={errors.email && errors.email.message}
                 />
 
                 <Input 
@@ -69,8 +70,7 @@ export function TechnicalNew(){
                   label="senha" 
                   placeholder="Defina a senha de acesso" 
                   textLabel={errors.password ? "" : "Mínimo de 6 dígitos"} 
-                  error={errors.password && errors.password.message} 
-                  onFocus={() => setMessageSucess("")} 
+                  error={errors.password && errors.password.message}
                 />
               </div> 
             </Modules.Context>

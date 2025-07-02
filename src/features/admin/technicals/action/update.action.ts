@@ -5,8 +5,8 @@ import { useParams } from "react-router"
 import { useForm } from 'react-hook-form'
 import { AxiosError } from "axios"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { userSchema } from "../schemas/AdminTechnicalSchema"
-import type { UserTechnicalType } from "../schemas/AdminTechnicalSchema"
+import { userSchema } from "../schemas/technical.schema"
+import type { UserTechnicalType } from "../schemas/technical.schema"
 
 type UserType = {
   id: string
@@ -16,7 +16,7 @@ type UserType = {
   userHours: string[],
 }
 
-export const useTechnicalEdition = () => {
+export const updateAdminTechnicalAction = () => {
   const [user, setUser ] = useState<UserType>({
     id: "",
     name: "",
@@ -78,7 +78,7 @@ export const useTechnicalEdition = () => {
 
     try{
       const response = await api.patch(`/user/${id}`, formData)
-      setError("root", { sucess: response.data.message } as object)  
+      setError("root", { success: response.data.message } as object)  
       
     } catch(error: any){
       if(error instanceof AxiosError) {

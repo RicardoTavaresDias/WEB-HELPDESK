@@ -7,7 +7,7 @@ import { Link } from "react-router";
 import { UiButton } from "@/components/ui/UiButton";
 import { IconPlus } from "@/assets/icon/iconPlus";
 import { Fragment } from "react";
-import { useTechnicalHome } from "../hooks/useTechnicalsHome"
+import { IndexAdminTechnicalsAction } from "../action/index.action"
 import { Alert } from "@/components/ui/alert";
 import { Loading } from "@/components/ui/loading";
 
@@ -15,7 +15,7 @@ import { Loading } from "@/components/ui/loading";
 import { Table } from "@/components/table"
 import { Pagination } from "@/components/pagination"
 
-export function Technical(){
+export function IndexAdminTechnicalsPage(){
   const { 
     users, 
     isLoading, 
@@ -23,7 +23,7 @@ export function Technical(){
     pagination,
     setPage,
     page
-  } = useTechnicalHome()
+  } = IndexAdminTechnicalsAction()
 
 console.log(page)
   return ( 
