@@ -20,7 +20,7 @@ export const IndexAdminCustomersAction = () => {
   const userCustomerLoad = useCallback(async () => {
     try {
       setIsLoading(true)
-      const responseCustomer = await api.get(`user/list/customer?page=${page}&limit=2`)
+      const responseCustomer = await api.get(`user/list/customer?page=${page}&limit=10`)
 
       setUsers(responseCustomer.data.data)
       setPagination(responseCustomer.data.result)

@@ -9,6 +9,7 @@ import { Table } from "@/components/table"
 import { Avatar } from "@/components/ui/avatar";
 import { IndexAdminCustomersAction } from "../action/index.action"
 import { updateAdminCustomersAction } from "../action/update.action";
+import { removeAdminCustomersAction } from "../action/remove.action"
 import { Alert } from "@/components/ui/alert";
 import { Pagination } from "@/components/pagination";
 import { Loading } from "@/components/ui/loading";
@@ -38,6 +39,11 @@ export function IndexAdminCustomerPage(){
     reset
   } = updateAdminCustomersAction(userCustomerLoad)
 
+  const {
+    removeUser,
+    sucess
+  } = removeAdminCustomersAction(userCustomerLoad)
+
   return (
     <>
       {isLoading || isSubmitting && <Loading />}
@@ -45,8 +51,9 @@ export function IndexAdminCustomerPage(){
         <Alert severity="error" open={!!errors.root?.message}>
           {errors.root?.message}
         </Alert>
-        <Alert severity="success" open={!!errors.root?.success}>
+        <Alert severity="success" open={!!errors.root?.success || !!sucess}>
           {typeof errors.root?.success === "string" && errors.root.success}
+          {sucess && sucess}
         </Alert>
         <Alert severity="info" open={!!errors.root?.info}>
           {typeof errors.root?.info === "string" && errors.root.info}
@@ -62,7 +69,10 @@ export function IndexAdminCustomerPage(){
           <UiButton type="button" typeSize="lg" typeColor="gray" onClick={() => setModalRemove(!modalRemove)} >
             Cancelar
           </UiButton>
-          <UiButton type="button" typeSize="lg" typeColor="black" >Sim, excluir</UiButton>
+          <UiButton type="button" typeSize="lg" typeColor="black" onClick={() => {
+            removeUser(userCustomerData.id) 
+            setModalRemove(!modalRemove)
+          }}>Sim, excluir</UiButton>
         </Modal.Actions>
       </Modal.Root>
 
@@ -123,7 +133,11 @@ export function IndexAdminCustomerPage(){
 
                 <Table.Cell clas="flex justify-end w-[95px]" >
                   <div className="flex gap-1.5">
-                    <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconTrash} onClick={() => setModalRemove(!modalRemove)} />
+                    <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconTrash} 
+                    onClick={() => {
+                      setuserCustomerData(user)
+                      setModalRemove(!modalRemove)
+                    }} />
                     <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} 
                     onClick={() => { 
                       setuserCustomerData(user)
