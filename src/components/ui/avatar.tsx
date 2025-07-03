@@ -25,7 +25,7 @@ export function Avatar({ user, size = "w-10 h-10", sizeText, onClick }: AvatarTy
       </>
     )
   }
-console.log(user.avatar)
+
   return (
     <>
       <img 

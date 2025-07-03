@@ -53,9 +53,9 @@ export function IndexAdminTechnicalsPage(){
             users && users.map(user => (
               <tr className="border-t border-gray-500 text-left" key={user.id} >
                 <Table.Cell>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 w-full">
                     <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-7 h-7" sizeText="text-[11px]" />
-                    {user.name}
+                    <span className="truncate">{user.name}</span>
                   </div>
                 </Table.Cell>
                 <Table.Cell>
@@ -105,7 +105,7 @@ export function IndexAdminTechnicalsPage(){
                 <tr className="border-t border-gray-500 text-left" key={user.id} >
                   <Table.Cell>
                     <div className="flex gap-2">
-                      <Avatar user={{ name: user.name, avatar: "default.svg" }} size="w-7 h-7" sizeText="text-[11px]" />
+                      <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-7 h-7" sizeText="text-[11px]" />
                       <span className="text-sm truncate w-19">{user.name}</span>
                     </div>
                   </Table.Cell>

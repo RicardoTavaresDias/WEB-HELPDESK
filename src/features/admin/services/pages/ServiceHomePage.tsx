@@ -68,7 +68,7 @@ export function Services(){
       </form>
 
       <div className="mb-7">
-        <Modules.Title title="Técnicos" isButton={true} >
+        <Modules.Title title="Serviços" isButton={true} >
           <UiButton type="button" icon={IconPlus} typeColor="black" typeSize="xs" color="#F9FAFA" onClick={() => setModalNew(!modalNew)} >{<span className="max-sm:hidden">Novo</span>}</UiButton>
         </Modules.Title>
       </div>
