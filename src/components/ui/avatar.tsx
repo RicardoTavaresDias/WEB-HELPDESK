@@ -25,11 +25,11 @@ export function Avatar({ user, size = "w-10 h-10", sizeText, onClick }: AvatarTy
       </>
     )
   }
-
+console.log(user.avatar)
   return (
     <>
       <img 
-        src={`https://pics.craiyon.com/2023-06-27/287f2a60c2e74386b5a89c517eb527dc.webp`} 
+        src={`http://localhost:3333/user/avatar/${user.avatar}`} 
         alt="foto do usuario" 
         className={`${size} rounded-full cursor-pointer`}
         onClick={onClick}

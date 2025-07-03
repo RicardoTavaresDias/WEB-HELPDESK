@@ -1,8 +1,6 @@
 import { IconPenLine } from "@/assets/icon/iconPenLine";
 import { IconTrash } from "@/assets/icon/iconTrash";
 import { useState } from "react";
-import { Modal } from "@/components/modal/";
-import { Input } from "@/components/ui/input";
 import { Modules } from "@/components/modules";
 import { UiButton } from "@/components/ui/UiButton";
 import { Table } from "@/components/table"
@@ -13,6 +11,9 @@ import { removeAdminCustomersAction } from "../action/remove.action"
 import { Alert } from "@/components/ui/alert";
 import { Pagination } from "@/components/pagination";
 import { Loading } from "@/components/ui/loading";
+
+import { ModalUpdateCustomersPage } from "../pages/update.page"
+import { ModalRemoveCustomersPage } from "../pages/remove.page"
 
 export function IndexAdminCustomerPage(){
   const [modalRemove, setModalRemove] = useState(false)
@@ -35,8 +36,7 @@ export function IndexAdminCustomerPage(){
     register,
     isSubmitting,
     userCustomerData,
-    setuserCustomerData,
-    reset
+    setuserCustomerData
   } = updateAdminCustomersAction(userCustomerLoad)
 
   const {
@@ -63,48 +63,27 @@ export function IndexAdminCustomerPage(){
           {typeof errors.root?.info === "string" && errors.root.info}
         </Alert>
 
-      <Modal.Root isActive={modalRemove}>
-        <Modal.Title onClose={() => setModalRemove(!modalRemove)} title="Cliente" />
-        <Modal.Context>
-          <span className="Text-md text-gray-200">Deseja realmente excluir <b>André Costa?</b></span>
-          <p className="text-gray-200 Text-md mt-5 max-sm:w-75">Ao excluir, todos os chamados deste cliente serão removidos e esta ação não poderá ser desfeita.</p>
-        </Modal.Context>
-        <Modal.Actions>
-          <UiButton type="button" typeSize="lg" typeColor="gray" onClick={() => setModalRemove(!modalRemove)} >
-            Cancelar
-          </UiButton>
-          <UiButton type="button" typeSize="lg" typeColor="black" onClick={() => {
-            removeUser(userCustomerData.id) 
-            setModalRemove(!modalRemove)
-          }}>Sim, excluir</UiButton>
-        </Modal.Actions>
-      </Modal.Root>
+      {/* Modal Remove */}
+      <ModalRemoveCustomersPage 
+        isOpen={modalRemove}
+        onClose={() => setModalRemove(!modalRemove)}
+        onSalve={() => {
+          removeUser(userCustomerData.id) 
+          setModalRemove(!modalRemove)
+        }}
+      />
+      {/* Modal Remove */}
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Modal.Root isActive={modalEdition} >
-          <Modal.Title title="Cliente" onClose={() => {
-            setModalEdition(!modalEdition)
-            reset()
-          }}/>
-          <Modal.Context>
-            <div>
-              <Avatar user={{ name: userCustomerData.name, avatar: userCustomerData.avatar }} size="w-16 h-16" sizeText="text-xl"/>
-              <div className="pt-3">
-                <Input type="text" {...register("name")} label="nome"  />
-                <Input type="text" {...register("email")} label="e-mail" />
-              </div>
-            </div>  
-          </Modal.Context>
-          <Modal.Actions>
-            <UiButton type="submit" typeSize="xxl" typeColor="black" onClick={() => {
-              setModalEdition(!modalEdition)
-              // reflech pagina principal
-            }}>
-              Salvar
-            </UiButton>
-          </Modal.Actions>
-        </Modal.Root>
-      </form>
+      {/* Modal Update */}
+      <ModalUpdateCustomersPage 
+        form={{ register, handleSubmit, onSubmit }}
+        isOpen={modalEdition}
+        onClose={() => {
+          setModalEdition(!modalEdition)
+        }}
+        user={{ name: userCustomerData.name, avatar: userCustomerData.avatar }}
+      />
+      {/* Modal Update */}
 
       <div className="mb-7">
         <Modules.Title title="Clientes" isButton={true} />
