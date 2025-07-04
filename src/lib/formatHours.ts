@@ -58,6 +58,8 @@ export type mappedUserType = Omit<usersType, "userHours"> & {
 }
 
 export const hourFormatList = (users: usersType[]): mappedUserType[] => {
+  if(users === null) return []
+
     const userMap = users.map(user => {
     const userHours = user.userHours.map(hour => {
 

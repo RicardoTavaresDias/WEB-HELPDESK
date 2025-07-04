@@ -5,15 +5,18 @@ import { Modules } from "@/components/modules";
 import { UiButton } from "@/components/ui/UiButton";
 import { Table } from "@/components/table"
 import { Avatar } from "@/components/ui/avatar";
-import { IndexAdminCustomersAction } from "../action/index.action"
-import { updateAdminCustomersAction } from "../action/update.action";
-import { removeAdminCustomersAction } from "../action/remove.action"
+
+//import { removeAdminCustomersAction } from "../action/remove.action"
 import { Alert } from "@/components/ui/alert";
 import { Pagination } from "@/components/pagination";
 import { Loading } from "@/components/ui/loading";
 
 import { ModalUpdateCustomersPage } from "../pages/update.page"
 import { ModalRemoveCustomersPage } from "../pages/remove.page"
+
+import  { index } from "../action/index.action"
+import { updateCustomer } from "../action/update.action"
+import { removeCustomer } from "../action/remove.action"
 
 export function IndexAdminCustomerPage(){
   const [modalRemove, setModalRemove] = useState(false)
@@ -26,8 +29,8 @@ export function IndexAdminCustomerPage(){
     pagination,
     setPage,
     users,
-    userCustomerLoad
-  } = IndexAdminCustomersAction()
+    fethLoad
+  } = index() // ok
 
   const {
     errors,
@@ -35,29 +38,28 @@ export function IndexAdminCustomerPage(){
     onSubmit,
     register,
     isSubmitting,
-    userCustomerData,
-    setuserCustomerData
-  } = updateAdminCustomersAction(userCustomerLoad)
+    userData,
+    setUserData
+  } = updateCustomer(fethLoad) // ok
 
   const {
     removeUser,
-    sucessRemove,
-    errorRemove
-  } = removeAdminCustomersAction(userCustomerLoad)
+    message
+  } = removeCustomer (fethLoad) // ok
 
   return (
     <>
       {isLoading || isSubmitting && <Loading />}
-        <Alert severity="error" open={!!messageError || !!errorRemove}>
+        <Alert severity="error" open={!!messageError || !!message.error}>
           {messageError && messageError} 
-          {errorRemove && errorRemove}
+          {message.error && message.error}
         </Alert>
         <Alert severity="error" open={!!errors.root?.message}>
           {errors.root?.message}
         </Alert>
-        <Alert severity="success" open={!!errors.root?.success || !!sucessRemove}>
+        <Alert severity="success" open={!!errors.root?.success || !!message.sucess}>
           {typeof errors.root?.success === "string" && errors.root.success}
-          {sucessRemove && sucessRemove}
+          {message.sucess && message.sucess}
         </Alert>
         <Alert severity="info" open={!!errors.root?.info}>
           {typeof errors.root?.info === "string" && errors.root.info}
@@ -68,7 +70,7 @@ export function IndexAdminCustomerPage(){
         isOpen={modalRemove}
         onClose={() => setModalRemove(!modalRemove)}
         onSalve={() => {
-          removeUser(userCustomerData.id) 
+          removeUser(userData.id) 
           setModalRemove(!modalRemove)
         }}
       />
@@ -81,7 +83,7 @@ export function IndexAdminCustomerPage(){
         onClose={() => {
           setModalEdition(!modalEdition)
         }}
-        user={{ name: userCustomerData.name, avatar: userCustomerData.avatar }}
+        user={{ name: userData.name, avatar: userData.avatar }}
       />
       {/* Modal Update */}
 
@@ -117,12 +119,12 @@ export function IndexAdminCustomerPage(){
                   <div className="flex gap-1.5">
                     <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconTrash} 
                     onClick={() => {
-                      setuserCustomerData(user)
+                      setUserData(user)
                       setModalRemove(!modalRemove)
                     }} />
                     <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} 
                     onClick={() => { 
-                      setuserCustomerData(user)
+                      setUserData(user)
                       setModalEdition(!modalEdition);  
                     }} />
                   </div>
@@ -168,12 +170,12 @@ export function IndexAdminCustomerPage(){
                     <div className="flex gap-1.5 w-17">
                       <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconTrash} 
                       onClick={() => {
-                        setuserCustomerData(user)
+                        setUserData(user)
                         setModalRemove(!modalRemove)
                       }} />
                       <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} 
                       onClick={() => { 
-                        setuserCustomerData(user)
+                        setUserData(user)
                         setModalEdition(!modalEdition);  
                       }} />
                     </div>

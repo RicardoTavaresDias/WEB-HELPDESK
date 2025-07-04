@@ -1,33 +1,13 @@
-import { api } from "@/services/api"
-import { AxiosError } from "axios"
-import { useState } from "react"
+import { apiCustomer } from "../api/customer.api"
+import { Remove } from "@/services/remove.services"
 
-export const removeAdminCustomersAction = (onSuccessCallback?: () => void) => {
-  const [sucessRemove, setsucessRemove] = useState("")
-  const [errorRemove, setErrorRemove]= useState("")
- 
-  const removeUser = async (id: string) => {
-    setErrorRemove("")
-    setsucessRemove("")
-    try {
-      const responseRemove = await api.delete(`/user/${id}`)
-      setsucessRemove(responseRemove.data.message)
-      if(onSuccessCallback){
-        onSuccessCallback()
-      }
-    } catch (error: any) {
-      setsucessRemove("")
-
-      if(error instanceof AxiosError) {
-        return setErrorRemove(error.response?.data.message)
-      }
-      setErrorRemove(error.message)
-    }
-  }
+const removeCustomer = (onSuccessCallback: () => any) => {
+  const response = Remove({ onSuccessCallback, endpoint: apiCustomer.remove })
 
   return {
-    removeUser,
-    sucessRemove,
-    errorRemove
+    removeUser: response.removeUser,
+    message: response.message
   }
 }
+
+export { removeCustomer }
