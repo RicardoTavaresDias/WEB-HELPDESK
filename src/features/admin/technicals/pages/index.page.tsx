@@ -1,19 +1,17 @@
 import { Avatar } from "@/components/ui/avatar";
 import { IconPenLine } from "@/assets/icon/iconPenLine";
-
 import { ButtonTime } from "@/components/ui/buttonTime";
 import { Modules } from "@/components/modules";
 import { Link } from "react-router";
 import { UiButton } from "@/components/ui/UiButton";
 import { IconPlus } from "@/assets/icon/iconPlus";
 import { Fragment } from "react";
-import { IndexAdminTechnicalsAction } from "../action/index.action"
 import { Alert } from "@/components/ui/alert";
 import { Loading } from "@/components/ui/loading";
-
-
 import { Table } from "@/components/table"
+
 import { Pagination } from "@/components/pagination"
+import { index } from "../action/index.action"
 
 export function IndexAdminTechnicalsPage(){
   const { 
@@ -23,7 +21,7 @@ export function IndexAdminTechnicalsPage(){
     pagination,
     setPage,
     page
-  } = IndexAdminTechnicalsAction()
+  } = index()
 
   return ( 
     <>
