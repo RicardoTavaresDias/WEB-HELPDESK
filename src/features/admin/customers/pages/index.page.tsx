@@ -79,7 +79,7 @@ export function IndexAdminCustomerPage(){
 
       {/* Modal Update */}
       <ModalUpdateCustomersPage 
-        form={{ register, handleSubmit, onSubmit }}
+        form={{ register, handleSubmit, onSubmit, errors }}
         isOpen={modalEdition}
         onClose={() => {
           setModalEdition(!modalEdition)

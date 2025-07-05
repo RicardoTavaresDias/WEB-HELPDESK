@@ -2,6 +2,7 @@ import { useDataForm } from "@/hooks/useDataForm"
 import { apiCustomer } from "../api/customer.api"
 import { Update } from "@/services/update.services"
 import { useEffect, useState } from "react"
+import { userSchema } from "@/features/admin/technicals/schemas/technical.schema"
 
 const updateCustomer = (onSuccessCallback: () => void) => {
   const [user, setUser] = useState({
@@ -10,7 +11,7 @@ const updateCustomer = (onSuccessCallback: () => void) => {
     email: "",
     avatar: ""
   })
-  const form = useDataForm({}) 
+  const form = useDataForm({ schema: userSchema }) 
   
   const {
     register,

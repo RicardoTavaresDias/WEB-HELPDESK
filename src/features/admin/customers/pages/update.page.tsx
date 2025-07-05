@@ -12,6 +12,7 @@ type ModalUpdateCustomerType = {
     onSubmit: any
     register: any
     handleSubmit: any
+    errors: any
   }
   user: {
     name: string
@@ -20,7 +21,7 @@ type ModalUpdateCustomerType = {
 } 
 
 export const ModalUpdateCustomersPage = ({isOpen, onClose, onCalcel, form, user}: ModalUpdateCustomerType) => {
-  const { handleSubmit, register, onSubmit } = form 
+  const { handleSubmit, register, onSubmit, errors } = form 
 
   return (
     <>
@@ -31,8 +32,8 @@ export const ModalUpdateCustomersPage = ({isOpen, onClose, onCalcel, form, user}
             <div>
               <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-16 h-16" sizeText="text-xl" />
               <div className="pt-3">
-                <Input type="text" {...register("name")} label="nome" />
-                <Input type="text" {...register("email")} label="e-mail" />
+                <Input type="text" {...register("name")} label="nome" error={errors.name?.message} />
+                <Input type="text" {...register("email")} label="e-mail" error={errors.email?.message} />
               </div>
             </div>  
           </Modal.Context>
