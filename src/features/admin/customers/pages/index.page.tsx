@@ -29,8 +29,8 @@ export function IndexAdminCustomerPage(){
     pagination,
     setPage,
     users,
-    fethLoad
-  } = index() // ok
+    fethLoad    
+  } = index()
 
   const {
     errors,
@@ -38,14 +38,15 @@ export function IndexAdminCustomerPage(){
     onSubmit,
     register,
     isSubmitting,
-    userData,
-    setUserData
-  } = updateCustomer(fethLoad) // ok
+    user,
+    setUser,
+    resetClose
+  } = updateCustomer(fethLoad)
 
   const {
     removeUser,
     message
-  } = removeCustomer (fethLoad) // ok
+  } = removeCustomer (fethLoad)
 
   return (
     <>
@@ -70,7 +71,7 @@ export function IndexAdminCustomerPage(){
         isOpen={modalRemove}
         onClose={() => setModalRemove(!modalRemove)}
         onSalve={() => {
-          removeUser(userData.id) 
+          removeUser(user.id) 
           setModalRemove(!modalRemove)
         }}
       />
@@ -81,9 +82,10 @@ export function IndexAdminCustomerPage(){
         form={{ register, handleSubmit, onSubmit }}
         isOpen={modalEdition}
         onClose={() => {
+          resetClose()
           setModalEdition(!modalEdition)
         }}
-        user={{ name: userData.name, avatar: userData.avatar }}
+        user={{ name: user.name, avatar: user.avatar }}
       />
       {/* Modal Update */}
 
@@ -119,12 +121,12 @@ export function IndexAdminCustomerPage(){
                   <div className="flex gap-1.5">
                     <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconTrash} 
                     onClick={() => {
-                      setUserData(user)
+                      setUser(user)
                       setModalRemove(!modalRemove)
                     }} />
                     <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} 
                     onClick={() => { 
-                      setUserData(user)
+                      setUser(user)
                       setModalEdition(!modalEdition);  
                     }} />
                   </div>
@@ -170,12 +172,12 @@ export function IndexAdminCustomerPage(){
                     <div className="flex gap-1.5 w-17">
                       <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconTrash} 
                       onClick={() => {
-                        setUserData(user)
+                        setUser(user)
                         setModalRemove(!modalRemove)
                       }} />
                       <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} 
                       onClick={() => { 
-                        setUserData(user)
+                        setUser(user)
                         setModalEdition(!modalEdition);  
                       }} />
                     </div>

@@ -24,15 +24,18 @@ export function UpdateAdminTechnicalsPage() {
     errors,
     addUserHours,
     removeUserHours,
-    fetchUser,
-  } = updateTechnicals({uuid: id})
+    messageError,
+    resetClose,
+    isLoading
+  } = updateTechnicals({uuid: id as string})
 
 
   return (
     <>
-      {/* {isSubmitting || isLoading && <Loading />} */}
-      <Alert severity="error" open={!!errors.root?.message}>
+      {isSubmitting || isLoading && <Loading />}
+      <Alert severity="error" open={!!errors.root?.message || !!messageError}>
         {errors.root?.message}
+        {messageError}
       </Alert>
       <Alert severity="success" open={!!errors.root?.success}>
         {typeof errors.root?.success === "string" && errors.root.success}
@@ -48,7 +51,7 @@ export function UpdateAdminTechnicalsPage() {
               type="button"
               typeColor="gray"
               typeSize="xl"
-              onClick={() => fetchUser()}
+              onClick={() => resetClose()}
               disabled={isSubmitting}
             >
               Cancelar

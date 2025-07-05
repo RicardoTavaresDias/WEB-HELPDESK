@@ -1,8 +1,20 @@
 import { hourFormatList } from "@/lib/formatHours";
+import { AxiosError, type AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
-export const IndexId = ({ endpoint, uuid }) => {
-  const [user, setUser] = useState<any>({
+type UserType = {
+  id: string
+  name: string
+  email: string
+  avatar: string
+  userHours: string[]
+}
+
+export const IndexUser = ({ endpoint, uuid }: {endpoint: (id: string) => Promise<AxiosResponse>, uuid: string}) => {
+  const [messageError, setMessageError] = useState("")
+  const [isLoading, setIsLoading] = useState(true)
+  const [user, setUser] = useState<UserType>({
+    id: "",
     name: "",
     email: "",
     avatar: "",
@@ -12,11 +24,17 @@ export const IndexId = ({ endpoint, uuid }) => {
   const fetchUser = async () => {
     try {
       const responseByUser = await endpoint(uuid);
+   
       const [ userData ] = hourFormatList(responseByUser.data);
       const userHoursData = userData.userHours.flat();
       setUser({ ...userData, userHours: userHoursData });
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      if(error instanceof AxiosError) {
+        return setMessageError(error.response?.data.message)
+      }
+      setMessageError(error.message)
+    }finally {
+      setIsLoading(false)
     }
   }
 
@@ -27,8 +45,8 @@ export const IndexId = ({ endpoint, uuid }) => {
   return {
     fetchUser,
     user,
-    setUser
+    setUser,
+    messageError,
+    isLoading
   }
 }
-
-// realizar tipagem 

@@ -1,53 +1,28 @@
-import { formatHours } from '@/lib/formatHours';
 import { AxiosError } from 'axios';
-import { useEffect, useState } from 'react';
 
 type UpdateType = {
   onSuccessCallback?: () => void
-  form: any
-  endpoint: (id: string, formdata: object) => any
-  uuid?: string
+  form?: any
+  endpoint: (id: string, formdata: object) => Promise<any>
+  uuid: string
   dataUpdate?: any
 }
 export const Update = ({ onSuccessCallback, form, endpoint, uuid, dataUpdate }: UpdateType) => {
+  const { setError } = form
   
-  const [userData, setUserData] = useState({
-    id: "",
-    name: "",
-    email: "",
-    avatar: ""
-  })
-
-  const {
-    register,
-    reset,
-    handleSubmit,
-    setError,
-    errors,
-    isSubmitting
-  } = form
-
-  useEffect(() => {
-    reset({
-      name: userData.name,
-      email: userData.email,
-      avatar: userData.avatar
-    })
-  }, [userData])
-
-  const onSubmit = async (data: UserAdminCustomersType & {avatar: string}) => {
+  const onSubmit = async (data: any) => {
     const formData = new FormData();
     formData.append("data", JSON.stringify(
       { 
         name: data.name, 
         email: data.email,
         avatar: data.avatar,
-        userHours: dataUpdate && formatHours(dataUpdate.userHours.flat()).filter(value => value.startTime !== null  && value.endTime !== null)
+        userHours: dataUpdate
       }
     ))
     
-    try {    
-      const response = await endpoint(uuid ? uuid : userData.id, formData)
+    try {  
+      const response = await endpoint(uuid, formData)
       setError("root", { success: response.data.message } as object) 
       if (onSuccessCallback) {
         onSuccessCallback() // Chama a função de recarregamento
@@ -62,13 +37,6 @@ export const Update = ({ onSuccessCallback, form, endpoint, uuid, dataUpdate }: 
   }
 
   return {
-    register,
-    handleSubmit,
-    errors,
-    isSubmitting,
-    onSubmit,
-    userData,
-    setUserData,
-    reset
+    onSubmit
   }
 }
