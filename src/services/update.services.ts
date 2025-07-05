@@ -1,13 +1,15 @@
+import { formatHours } from '@/lib/formatHours';
 import { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 
-type UserAdminCustomersType = {
-  id: string
-  name: string
-  email: string
+type UpdateType = {
+  onSuccessCallback?: () => void
+  form: any
+  endpoint: (id: string, formdata: object) => any
+  uuid?: string
+  dataUpdate?: any
 }
-
-export const Update = ({ onSuccessCallback, form, endpoint, uuid}: {onSuccessCallback?: () => void, form: any, endpoint: (id: string, formdata: object) => any, uuid?: string}) => {
+export const Update = ({ onSuccessCallback, form, endpoint, uuid, dataUpdate }: UpdateType) => {
   
   const [userData, setUserData] = useState({
     id: "",
@@ -39,11 +41,12 @@ export const Update = ({ onSuccessCallback, form, endpoint, uuid}: {onSuccessCal
       { 
         name: data.name, 
         email: data.email,
-        avatar: data.avatar
+        avatar: data.avatar,
+        userHours: dataUpdate && formatHours(dataUpdate.userHours.flat()).filter(value => value.startTime !== null  && value.endTime !== null)
       }
     ))
-
-    try {
+    
+    try {    
       const response = await endpoint(uuid ? uuid : userData.id, formData)
       setError("root", { success: response.data.message } as object) 
       if (onSuccessCallback) {

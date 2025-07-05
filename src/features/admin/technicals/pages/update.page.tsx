@@ -5,12 +5,16 @@ import { UiButton } from "@/components/ui/UiButton";
 import { day } from "@/lib/day";
 
 import { v4 as uuid } from "uuid";
-import { updateAdminTechnicalAction } from "../action/update.action";
 import { Alert } from "@/components/ui/alert";
 import { Loading } from "@/components/ui/loading";
 import { Avatar } from "@/components/ui/avatar";
 
+import { updateTechnicals } from "../action/update.action"
+import { useParams } from "react-router";
+
 export function UpdateAdminTechnicalsPage() {
+  const { id } = useParams()
+
   const {
     user,
     register,
@@ -18,15 +22,15 @@ export function UpdateAdminTechnicalsPage() {
     onSubmit,
     isSubmitting,
     errors,
-    isLoading,
-    fetchLoad,
     addUserHours,
-    removeUserHours
-  } = updateAdminTechnicalAction()
+    removeUserHours,
+    fetchUser,
+  } = updateTechnicals({uuid: id})
+
 
   return (
     <>
-      {isSubmitting || isLoading && <Loading />}
+      {/* {isSubmitting || isLoading && <Loading />} */}
       <Alert severity="error" open={!!errors.root?.message}>
         {errors.root?.message}
       </Alert>
@@ -44,7 +48,7 @@ export function UpdateAdminTechnicalsPage() {
               type="button"
               typeColor="gray"
               typeSize="xl"
-              onClick={() => fetchLoad()}
+              onClick={() => fetchUser()}
               disabled={isSubmitting}
             >
               Cancelar
