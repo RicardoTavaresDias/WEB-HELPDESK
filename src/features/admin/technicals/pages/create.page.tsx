@@ -4,21 +4,21 @@ import { Input } from "@/components/ui/input"
 import { UiButton } from "@/components/ui/UiButton"
 import { v4 as uuid } from 'uuid'
 import { day } from "@/lib/day"
-import { CreateAdminTechnicalsAction } from "@/features/admin/technicals/action/create.action"
+import { CreateAdminTechnical } from "@/features/admin/technicals/action/create.action"
 import { Alert } from "@/components/ui/alert"
 import { Loading } from "@/components/ui/loading"
 
 export function CreateAdminTechnicalsPage(){
   const { 
-    errors, 
-    handleSubmit, 
-    register, 
-    user, 
-    setUser, 
     onSubmit,
-    onCancel,
-    isSubmitting
-  } = CreateAdminTechnicalsAction()
+    errors,
+    handleSubmit,
+    isSubmitting,
+    register,
+    user,
+    setUser,
+    onCancel
+  } = CreateAdminTechnical()
   
   return (
     <>
