@@ -5,7 +5,7 @@ const removeCustomer = (onSuccessCallback: () => any) => {
   const response = Remove({ onSuccessCallback, endpoint: apiCustomer.remove })
 
   return {
-    removeUser: response.removeUser,
+    removeUser: response.remove,
     message: response.message
   }
 }

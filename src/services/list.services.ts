@@ -10,7 +10,7 @@ type PaginationType = {
 }
 
 export const Index = (endpoint: (page: number) => any) => {
-  const [users, setUsers] = useState<mappedUserType[] | null>(null)
+  const [data, setData] = useState<mappedUserType[] | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [messageError, setMessageError] = useState("")
   const [pagination, setPagination] = useState<PaginationType | null>(null)
@@ -21,7 +21,7 @@ export const Index = (endpoint: (page: number) => any) => {
       setIsLoading(true)
       const responseCustomer = await endpoint(page)
 
-      setUsers(responseCustomer.data.data)
+      setData(responseCustomer.data.data)
       setPagination(responseCustomer.data.result)
     } catch (error: any) {
       if(error instanceof AxiosError) {
@@ -39,7 +39,7 @@ export const Index = (endpoint: (page: number) => any) => {
   }, [page])
 
   return {
-    users,
+    data,
     isLoading,
     messageError,
     pagination,

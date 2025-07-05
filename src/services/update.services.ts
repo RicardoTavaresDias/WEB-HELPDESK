@@ -14,10 +14,8 @@ export const Update = ({ onSuccessCallback, form, endpoint, uuid, dataUpdate }: 
     const formData = new FormData();
     formData.append("data", JSON.stringify(
       { 
-        name: data.name, 
-        email: data.email,
-        avatar: data.avatar,
-        userHours: dataUpdate
+        ...data,
+        ...dataUpdate
       }
     ))
     

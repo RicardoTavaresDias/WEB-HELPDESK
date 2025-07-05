@@ -7,7 +7,7 @@ export const Remove = ({ onSuccessCallback, endpoint }: any) => {
     sucess: ""
   })
  
-  const removeUser = async (id: string) => {
+  const remove = async (id: string) => {
     setMessage({ error: "", sucess: "" })
 
     try {
@@ -27,7 +27,7 @@ export const Remove = ({ onSuccessCallback, endpoint }: any) => {
   }
 
   return {
-    removeUser,
+    remove,
     message
   }
 }

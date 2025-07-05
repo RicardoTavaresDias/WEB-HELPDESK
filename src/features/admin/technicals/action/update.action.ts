@@ -66,7 +66,7 @@ const updateTechnicals = ({
     form,
     endpoint: apiTechnicals.update,
     uuid,
-    dataUpdate: userHoursFormatObject
+    dataUpdate: { userHours: userHoursFormatObject }
   });
 
   return {

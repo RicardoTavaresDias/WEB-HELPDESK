@@ -4,7 +4,7 @@ import { hourFormatList, type mappedUserType } from "@/lib/formatHours"
 
 const index = () => {
   const response = Index(apiTechnicals.list)
-  const formatUserHours = hourFormatList(response.users as any) 
+  const formatUserHours = hourFormatList(response.data as any) 
 
   return {
     isLoading: response.isLoading,

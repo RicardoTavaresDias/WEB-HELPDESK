@@ -10,7 +10,7 @@ const index = () => {
     page: response.page,
     pagination: response.pagination,
     setPage: response.setPage,
-    users: response.users,
+    users: response.data,
     fethLoad: response.fethLoad
   }
 }
