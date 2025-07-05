@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 type ModalUpdateCustomerType = {
   isOpen: boolean
   onClose: () => void
+  onCalcel: () => void,
   form: {
     onSubmit: any
     register: any
@@ -18,14 +19,14 @@ type ModalUpdateCustomerType = {
   }
 } 
 
-export const ModalUpdateCustomersPage = ({isOpen, onClose, form, user}: ModalUpdateCustomerType) => {
+export const ModalUpdateCustomersPage = ({isOpen, onClose, onCalcel, form, user}: ModalUpdateCustomerType) => {
   const { handleSubmit, register, onSubmit } = form 
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Root isActive={isOpen} >
-          <Modal.Title title="Cliente" onClose={onClose} />
+          <Modal.Title title="Cliente" onClose={onCalcel} />
           <Modal.Context>
             <div>
               <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-16 h-16" sizeText="text-xl" />

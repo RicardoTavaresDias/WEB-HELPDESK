@@ -82,6 +82,9 @@ export function IndexAdminCustomerPage(){
         form={{ register, handleSubmit, onSubmit }}
         isOpen={modalEdition}
         onClose={() => {
+          setModalEdition(!modalEdition)
+        }}
+        onCalcel={() => {
           resetClose()
           setModalEdition(!modalEdition)
         }}
