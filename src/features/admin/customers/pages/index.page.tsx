@@ -5,8 +5,6 @@ import { Modules } from "@/components/modules";
 import { UiButton } from "@/components/ui/UiButton";
 import { Table } from "@/components/table"
 import { Avatar } from "@/components/ui/avatar";
-
-//import { removeAdminCustomersAction } from "../action/remove.action"
 import { Alert } from "@/components/ui/alert";
 import { Pagination } from "@/components/pagination";
 import { Loading } from "@/components/ui/loading";
@@ -45,12 +43,13 @@ export function IndexAdminCustomerPage(){
 
   const {
     removeUser,
-    message
+    message,
+    isLoadingRemove
   } = removeCustomer (fethLoad)
 
   return (
     <>
-      {isLoading || isSubmitting && <Loading />}
+      {isSubmitting && <Loading /> || isLoading && <Loading/> || isLoadingRemove && <Loading/>}
         <Alert severity="error" open={!!messageError || !!message.error}>
           {messageError && messageError} 
           {message.error && message.error}

@@ -1,6 +1,6 @@
 import { Index } from "@/services/list.services"
 import { apiTechnicals } from "../api/technicals.api"
-import { hourFormatList, type mappedUserType } from "@/lib/formatHours"
+import { hourFormatList } from "@/lib/formatHours"
 
 const index = () => {
   const response = Index(apiTechnicals.list)
@@ -18,5 +18,3 @@ const index = () => {
 }
 
 export { index }
-
-// arrumar a tipagem, remover any

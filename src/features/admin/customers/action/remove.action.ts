@@ -6,7 +6,8 @@ const removeCustomer = (onSuccessCallback: () => any) => {
 
   return {
     removeUser: response.remove,
-    message: response.message
+    message: response.message,
+    isLoadingRemove: response.isLoading
   }
 }
 

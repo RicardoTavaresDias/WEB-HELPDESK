@@ -25,7 +25,7 @@ export function IndexAdminTechnicalsPage(){
 
   return ( 
     <>
-      {/* {isLoading && <Loading />} */}
+      {isLoading && <Loading />}
         <Alert severity="error" open={!!messageError}>{messageError}</Alert>
       
       <div className="mb-7">

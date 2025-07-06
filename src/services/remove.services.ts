@@ -2,6 +2,7 @@ import { AxiosError } from "axios"
 import { useState } from "react"
 
 export const Remove = ({ onSuccessCallback, endpoint }: any) => {
+  const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState<{ error?: string, sucess?: string }>({
     error: "",
     sucess: ""
@@ -11,6 +12,7 @@ export const Remove = ({ onSuccessCallback, endpoint }: any) => {
     setMessage({ error: "", sucess: "" })
 
     try {
+      setIsLoading(true)
       const responseRemove = await endpoint(id)
       setMessage({ sucess: responseRemove.data.message })
       if(onSuccessCallback){
@@ -23,11 +25,14 @@ export const Remove = ({ onSuccessCallback, endpoint }: any) => {
         return setMessage({ error: error.response?.data.message })
       }
       setMessage({ error: error.message })
+    }finally{
+      setIsLoading(false)
     }
   }
 
   return {
     remove,
-    message
+    message,
+    isLoading
   }
 }

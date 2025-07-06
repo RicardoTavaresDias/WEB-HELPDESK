@@ -32,7 +32,7 @@ export function UpdateAdminTechnicalsPage() {
 
   return (
     <>
-      {isSubmitting || isLoading && <Loading />}
+      {isSubmitting && <Loading /> || isLoading && <Loading/>}
       <Alert severity="error" open={!!errors.root?.message || !!messageError}>
         {errors.root?.message}
         {messageError}
