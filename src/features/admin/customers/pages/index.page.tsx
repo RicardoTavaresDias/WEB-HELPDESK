@@ -9,8 +9,8 @@ import { Alert } from "@/components/ui/alert";
 import { Pagination } from "@/components/pagination";
 import { Loading } from "@/components/ui/loading";
 
-import { ModalUpdateCustomersPage } from "../components/update.page"
-import { ModalRemoveCustomersPage } from "../components/remove.page"
+import { ModalUpdateCustomersPage } from "../components/updateModal"
+import { ModalRemoveCustomersPage } from "../components/removeModal"
 import  { index } from "../hooks"
 import { updateCustomer } from "../hooks/update";
 
