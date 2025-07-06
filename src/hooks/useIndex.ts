@@ -9,7 +9,7 @@ type PaginationType = {
   previous?: number
 }
 
-export const Index = (endpoint: (page: number) => any) => {
+export const useIndex = (endpoint: (page: number) => any) => {
   const [data, setData] = useState<mappedUserType[] | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [messageError, setMessageError] = useState("")

@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { UiButton } from "@/components/ui/UiButton"
 import { v4 as uuid } from 'uuid'
 import { day } from "@/lib/day"
-import { CreateAdminTechnical } from "@/features/admin/technicals/action/create.action"
+import { CreateAdminTechnical } from "@/features/admin/technicals/hooks/create"
 import { Alert } from "@/components/ui/alert"
 import { Loading } from "@/components/ui/loading"
 
@@ -54,6 +54,7 @@ export function CreateAdminTechnicalsPage(){
                   label="nome" 
                   placeholder="Nome completo" 
                   error={errors.name && errors.name.message}
+                  autoComplete="current-name"
                 />
                 
                 <Input 
@@ -62,6 +63,7 @@ export function CreateAdminTechnicalsPage(){
                   label="e-mail" 
                   placeholder="exemplo@mail.com" 
                   error={errors.email && errors.email.message}
+                  autoComplete="current-email"
                 />
 
                 <Input 
@@ -71,6 +73,7 @@ export function CreateAdminTechnicalsPage(){
                   placeholder="Defina a senha de acesso" 
                   textLabel={errors.password ? "" : "Mínimo de 6 dígitos"} 
                   error={errors.password && errors.password.message}
+                  autoComplete="current-password"
                 />
               </div> 
             </Modules.Context>

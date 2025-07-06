@@ -1,6 +1,6 @@
 import { useDataForm } from "@/hooks/useDataForm"
 import { apiCustomer } from "../api/customer.api"
-import { Update } from "@/services/update.services"
+import { useUpdate } from "@/hooks/useUpdate"
 import { useEffect, useState } from "react"
 import { userSchema } from "@/features/admin/technicals/schemas/technical.schema"
 
@@ -33,7 +33,7 @@ const updateCustomer = (onSuccessCallback: () => void) => {
     })
   }
 
-  const response = Update({ onSuccessCallback, form, endpoint: apiCustomer.update, uuid: user.id })
+  const response = useUpdate({ onSuccessCallback, form, endpoint: apiCustomer.update, uuid: user.id })
 
   return {
     errors,

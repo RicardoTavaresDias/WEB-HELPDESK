@@ -1,7 +1,7 @@
 import { AxiosError } from "axios"
 import { useState } from "react"
 
-export const Remove = ({ onSuccessCallback, endpoint }: any) => {
+export const useRemove = ({ onSuccessCallback, endpoint }: any) => {
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState<{ error?: string, sucess?: string }>({
     error: "",

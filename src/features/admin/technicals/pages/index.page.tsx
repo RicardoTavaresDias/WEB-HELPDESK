@@ -11,7 +11,7 @@ import { Loading } from "@/components/ui/loading";
 import { Table } from "@/components/table"
 
 import { Pagination } from "@/components/pagination"
-import { index } from "../action/index.action"
+import { index } from "../hooks"
 
 export function IndexAdminTechnicalsPage(){
   const { 
@@ -101,12 +101,11 @@ export function IndexAdminTechnicalsPage(){
             {
               users && users.map(user => (
                 <tr className="border-t border-gray-500 text-left" key={user.id} >
-                  <Table.Cell>
-                    <div className="flex gap-2">
-                      <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-7 h-7" sizeText="text-[11px]" />
-                      <span className="text-sm truncate w-19">{user.name}</span>
-                    </div>
+                  <Table.Cell internalSpacing="pl-3 pr-1 py-4.5 flex gap-3 items-center">
+                    <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-7 h-7" sizeText="text-[11px]" />
+                    <span className="truncate w-18 text-sm">{user.name}</span>
                   </Table.Cell>
+
                   <Table.Cell clas="w-55">
                     <div className="flex gap-2  w-fit">
                        {

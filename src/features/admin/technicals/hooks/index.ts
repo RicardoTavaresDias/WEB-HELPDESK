@@ -1,9 +1,9 @@
-import { Index } from "@/services/list.services"
+import { useIndex } from "@/hooks/useIndex"
 import { apiTechnicals } from "../api/technicals.api"
 import { hourFormatList } from "@/lib/formatHours"
 
 const index = () => {
-  const response = Index(apiTechnicals.list)
+  const response = useIndex(apiTechnicals.list)
   const formatUserHours = hourFormatList(response.data as any) 
 
   return {

@@ -2,7 +2,7 @@ import { LogoAuth } from "@/components/auth/logoAuth"
 import { Form } from "@/components/ui/form"
 import { Account } from "@/components/auth/account"
 import { Input } from "@/components/ui/input"
-import { useSignin } from "../hooks/useSignIn"
+import { useSignin } from "../hooks/useSignin"
 import { Alert } from "@/components/ui/alert"
 import { Loading } from "@/components/ui/loading"
 
@@ -20,8 +20,8 @@ export function Signin(){
             <LogoAuth />
             <form onSubmit={handleSubmit(onSubmit)} >
               <Form textTitle="Acesse o portal" subtitle="Entre usando seu e-mail e senha cadastrados" textButton="Entrar" isLoading={isSubmitting} >
-                <Input {...register('email')} type= "text"  label="e-mail" placeholder="exemplo@mail.com" error={errors.email && errors.email.message} />
-                <Input {...register('password')} type= "password" label="senha" placeholder="Digite sua senha" error={errors.password && errors.password.message} />
+                <Input {...register('email')} type="text"  label="e-mail" placeholder="exemplo@mail.com" error={errors.email && errors.email.message}  autoComplete="current-email"/>
+                <Input {...register('password')} type="password" label="senha" placeholder="Digite sua senha" error={errors.password && errors.password.message} autoComplete="current-password" />
               </Form>
             </form>
             <Account texttitle="Ainda não tem uma conta?" subTitle="Cadastre agora mesmo" textButton="Criar conta" to="/signup"/>

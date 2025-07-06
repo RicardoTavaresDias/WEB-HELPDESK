@@ -9,7 +9,7 @@ import { Alert } from "@/components/ui/alert";
 import { Loading } from "@/components/ui/loading";
 import { Avatar } from "@/components/ui/avatar";
 
-import { updateTechnicals } from "../action/update.action"
+import { updateTechnicals } from "../hooks/update"
 import { useParams } from "react-router";
 
 export function UpdateAdminTechnicalsPage() {

@@ -10,7 +10,7 @@ type UserType = {
   userHours: string[]
 }
 
-export const IndexUser = ({ endpoint, uuid }: {endpoint: (id: string) => Promise<AxiosResponse>, uuid: string}) => {
+export const useIndexUser = ({ endpoint, uuid }: {endpoint: (id: string) => Promise<AxiosResponse>, uuid: string}) => {
   const [messageError, setMessageError] = useState("")
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState<UserType>({

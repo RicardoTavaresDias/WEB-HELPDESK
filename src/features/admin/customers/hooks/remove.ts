@@ -1,8 +1,8 @@
 import { apiCustomer } from "../api/customer.api"
-import { Remove } from "@/services/remove.services"
+import { useRemove } from "@/hooks/useRemove"
 
 const removeCustomer = (onSuccessCallback: () => any) => {
-  const response = Remove({ onSuccessCallback, endpoint: apiCustomer.remove })
+  const response = useRemove({ onSuccessCallback, endpoint: apiCustomer.remove })
 
   return {
     removeUser: response.remove,

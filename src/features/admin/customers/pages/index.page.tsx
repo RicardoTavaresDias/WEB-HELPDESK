@@ -11,10 +11,8 @@ import { Loading } from "@/components/ui/loading";
 
 import { ModalUpdateCustomersPage } from "../pages/update.page"
 import { ModalRemoveCustomersPage } from "../pages/remove.page"
-
-import  { index } from "../action/index.action"
-import { updateCustomer } from "../action/update.action"
-import { removeCustomer } from "../action/remove.action"
+import  { index } from "../hooks"
+import { updateCustomer } from "../hooks/update";
 
 export function IndexAdminCustomerPage(){
   const [modalRemove, setModalRemove] = useState(false)
@@ -30,63 +28,38 @@ export function IndexAdminCustomerPage(){
     fethLoad    
   } = index()
 
-  const {
-    errors,
-    handleSubmit,
-    onSubmit,
-    register,
-    isSubmitting,
-    user,
-    setUser,
-    resetClose
+   const {
+      user,
+      setUser,
+      resetClose,
+      errors,
+      handleSubmit,
+      onSubmit,
+      register,
+      isSubmitting
   } = updateCustomer(fethLoad)
-
-  const {
-    removeUser,
-    message,
-    isLoadingRemove
-  } = removeCustomer (fethLoad)
 
   return (
     <>
-      {isSubmitting && <Loading /> || isLoading && <Loading/> || isLoadingRemove && <Loading/>}
-        <Alert severity="error" open={!!messageError || !!message.error}>
-          {messageError && messageError} 
-          {message.error && message.error}
-        </Alert>
-        <Alert severity="error" open={!!errors.root?.message}>
-          {errors.root?.message}
-        </Alert>
-        <Alert severity="success" open={!!errors.root?.success || !!message.sucess}>
-          {typeof errors.root?.success === "string" && errors.root.success}
-          {message.sucess && message.sucess}
-        </Alert>
-        <Alert severity="info" open={!!errors.root?.info}>
-          {typeof errors.root?.info === "string" && errors.root.info}
-        </Alert>
+      {isLoading && <Loading/>}
+      <Alert severity="error" open={!!messageError}>
+        {messageError && messageError} 
+      </Alert>
 
       {/* Modal Remove */}
       <ModalRemoveCustomersPage 
-        isOpen={modalRemove}
-        onClose={() => setModalRemove(!modalRemove)}
-        onSalve={() => {
-          removeUser(user.id) 
-          setModalRemove(!modalRemove)
-        }}
+        fethLoad={fethLoad}
+        userId={user.id}
+        modalRemove={modalRemove}
+        setModalRemove={setModalRemove}
       />
       {/* Modal Remove */}
 
       {/* Modal Update */}
       <ModalUpdateCustomersPage 
-        form={{ register, handleSubmit, onSubmit, errors }}
-        isOpen={modalEdition}
-        onClose={() => {
-          setModalEdition(!modalEdition)
-        }}
-        onCalcel={() => {
-          resetClose()
-          setModalEdition(!modalEdition)
-        }}
+        form={{ register, handleSubmit, onSubmit, errors, isSubmitting, resetClose }}
+        setModalEdition={setModalEdition}
+        modalEdition={modalEdition}
         user={{ name: user.name, avatar: user.avatar }}
       />
       {/* Modal Update */}
@@ -157,11 +130,9 @@ export function IndexAdminCustomerPage(){
               users && users.map(user => (
                 <tr className="border-t border-gray-500 text-left text-sm" key={user.id} >
 
-                  <Table.Cell internalSpacing="pl-3 pr-1 py-4.5">
-                    <div className="flex gap-3 items-center w-30">
-                      <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-7 h-7" sizeText="text-[11px]" />
-                      <span className="truncate ">{user.name}</span>
-                    </div>
+                  <Table.Cell internalSpacing="pl-3 pr-1 py-4.5 flex gap-3 items-center">
+                    <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-7 h-7" sizeText="text-[11px]" />
+                    <span className="truncate w-18">{user.name}</span>
                   </Table.Cell>
 
                   <Table.Cell internalSpacing="px-1.5 py-4.5">

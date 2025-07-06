@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDataForm } from "@/hooks/useDataForm";
 import { userTechnicalSchema } from "../schemas/technical.schema";
 import { formatHours } from "@/lib/formatHours";
 import { apiTechnicals } from "../api/technicals.api";
-import { create } from "@/services/create.services"
+import { useCreate } from "@/hooks/useCreate"
 
 export const CreateAdminTechnical = () => {
   const [user, setUser] = useState<string[]>([])
@@ -36,11 +36,16 @@ export const CreateAdminTechnical = () => {
       userHours: hours.filter(value => !(value.startTime === null && value.endTime === null)) 
     }
 
-    const responseCreate = create({ endpoint: apiTechnicals.create, dataCreate: data, form: { setError, reset, setUser } })
-    const { onSubmit } = responseCreate
+    const responseCreate = useCreate({ endpoint: apiTechnicals.create, dataCreate: data, form: { setError, reset } })
+
+    useEffect(() => {
+      if(responseCreate.data !== null){
+        setUser([])
+      }
+    },[responseCreate.data])
 
     return {
-      onSubmit,
+      onSubmit: responseCreate.onSubmit,
       errors,
       handleSubmit,
       isSubmitting,

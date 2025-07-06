@@ -7,7 +7,8 @@ type UpdateType = {
   uuid: string
   dataUpdate?: any
 }
-export const Update = ({ onSuccessCallback, form, endpoint, uuid, dataUpdate }: UpdateType) => {
+
+export const useUpdate = ({ onSuccessCallback, form, endpoint, uuid, dataUpdate }: UpdateType) => {
   const { setError } = form
   
   const onSubmit = async (data: any) => {

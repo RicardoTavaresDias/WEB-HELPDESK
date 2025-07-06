@@ -1,9 +1,9 @@
 import { useDataForm } from "@/hooks/useDataForm";
 import { apiTechnicals } from "../api/technicals.api";
-import { Update } from "@/services/update.services";
+import { useUpdate } from "@/hooks/useUpdate";
 import { useEffect } from "react";
 import { formatHours } from "@/lib/formatHours";
-import { IndexUser } from "@/services/indexId.services";
+import { useIndexUser } from "@/hooks/useIndexUser";
 import { userSchema } from "../schemas/technical.schema"
 
 const updateTechnicals = ({
@@ -22,7 +22,7 @@ const updateTechnicals = ({
     reset
   } = form
 
-  const responseByUser = IndexUser({ endpoint: apiTechnicals.byUser, uuid})
+  const responseByUser = useIndexUser({ endpoint: apiTechnicals.byUser, uuid})
   const { user, fetchUser, messageError, isLoading } = responseByUser
   
   const removeUserHours = (value: string) => {
@@ -61,7 +61,7 @@ const updateTechnicals = ({
   const userHoursFormatObject = formatHours(user.userHours.flat())
     .filter(value => value.startTime !== null  && value.endTime !== null)
 
-  const response = Update({
+  const response = useUpdate({
     onSuccessCallback,
     form,
     endpoint: apiTechnicals.update,
