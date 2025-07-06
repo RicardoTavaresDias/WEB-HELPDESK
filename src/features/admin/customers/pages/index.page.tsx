@@ -9,8 +9,8 @@ import { Alert } from "@/components/ui/alert";
 import { Pagination } from "@/components/pagination";
 import { Loading } from "@/components/ui/loading";
 
-import { ModalUpdateCustomersPage } from "../pages/update.page"
-import { ModalRemoveCustomersPage } from "../pages/remove.page"
+import { ModalUpdateCustomersPage } from "../components/update.page"
+import { ModalRemoveCustomersPage } from "../components/remove.page"
 import  { index } from "../hooks"
 import { updateCustomer } from "../hooks/update";
 
@@ -84,12 +84,12 @@ export function IndexAdminCustomerPage(){
                 <Table.Cell clas="w-1/2">
                   <div className="flex gap-3 items-center">
                     <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-7 h-7" sizeText="text-[11px]" />
-                    <span className="truncate">{user.name}</span>
+                    <span className="truncate tracking-wide ">{user.name}</span>
                   </div>
                 </Table.Cell>
 
                 <Table.Cell clas="w-1/2">
-                  <span className="truncate">{user.email}</span>
+                  <span className="truncate tracking-wide">{user.email}</span>
                 </Table.Cell>
 
                 <Table.Cell clas="flex justify-end w-[95px]" >
