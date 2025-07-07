@@ -33,14 +33,25 @@ const updateCustomer = (onSuccessCallback: () => void) => {
     })
   }
 
-  const response = useUpdate({ onSuccessCallback, form, endpoint: apiCustomer.update, uuid: user.id })
+  const onSubmit = (data: any) => {
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(
+      { 
+        ...data
+      } 
+    ))
 
+    const response = useUpdate({ onSuccessCallback, form, endpoint: apiCustomer.update, uuid: user.id })
+    response.onUpdate(formData)
+  }
+
+  
   return {
     errors,
     register,
     handleSubmit,
     isSubmitting,
-    onSubmit: response.onSubmit,
+    onSubmit,
     user,
     setUser,
     resetClose 

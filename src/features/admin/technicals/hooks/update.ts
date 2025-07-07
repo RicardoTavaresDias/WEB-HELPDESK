@@ -2,17 +2,11 @@ import { useDataForm } from "@/hooks/useDataForm";
 import { apiTechnicals } from "../api/technicals.api";
 import { useUpdate } from "@/hooks/useUpdate";
 import { useEffect } from "react";
-import { formatHours } from "@/lib/formatHours";
 import { useIndexUser } from "@/hooks/useIndexUser";
 import { userSchema } from "../schemas/technical.schema"
+import { UserHours } from "../hooks/userHours"
 
-const updateTechnicals = ({
-  onSuccessCallback,
-  uuid,
-}: {
-  onSuccessCallback?: () => void;
-  uuid: string;
-}) => {
+const updateTechnicals = ({ onSuccessCallback, uuid, }: { onSuccessCallback?: () => void, uuid: string }) => {
   const form = useDataForm({ schema: userSchema })
   const {
     errors,
@@ -25,26 +19,6 @@ const updateTechnicals = ({
   const responseByUser = useIndexUser({ endpoint: apiTechnicals.byUser, uuid})
   const { user, fetchUser, messageError, isLoading } = responseByUser
   
-  const removeUserHours = (value: string) => {
-    responseByUser.setUser((prev) => {
-      if(!prev) return prev
-      return {
-        ...prev,
-        userHours: prev.userHours.filter((hours) => hours !== value),
-      }
-  });
-  };
-
-  const addUserHours = (value: string) => {
-    responseByUser.setUser((prev) => {
-      if(!prev) return prev
-      return {
-        ...prev,
-        userHours: [value, ...prev.userHours],
-      }
-    });
-  };
-
   useEffect(() => {
     resetClose()
   }, [user.name, user.email])
@@ -58,16 +32,25 @@ const updateTechnicals = ({
     fetchUser()
   }
 
-  const userHoursFormatObject = formatHours(user.userHours.flat())
-    .filter(value => value.startTime !== null  && value.endTime !== null)
+  const userHours = new UserHours(responseByUser as any)
 
-  const response = useUpdate({
-    onSuccessCallback,
-    form,
-    endpoint: apiTechnicals.update,
-    uuid,
-    dataUpdate: { userHours: userHoursFormatObject }
-  });
+  const onSubmit = (data: any) => {
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(
+      { 
+        ...data,
+        userHours: userHours.result(user as any)
+      } 
+    ))
+
+    const response = useUpdate({
+      onSuccessCallback,
+      form,
+      endpoint: apiTechnicals.update,
+      uuid
+    })
+    response.onUpdate(formData)
+  }
 
   return {
     user,
@@ -75,9 +58,9 @@ const updateTechnicals = ({
     register,
     handleSubmit,
     isSubmitting,
-    onSubmit: response.onSubmit,
-    removeUserHours,
-    addUserHours,
+    onSubmit,
+    removeUserHours: userHours.removeUserHours,
+    addUserHours: userHours.addUserHours,
     messageError,
     resetClose,
     isLoading
