@@ -13,15 +13,46 @@ import { IconPlus } from "@/assets/icon/iconPlus"
 
 import { CreateModal } from "../components/createModal"
 import { UpdateModal } from "../components/updateModal"
+
+import { IndexServices } from "../hooks/index"
 import { Pagination } from "@/components/pagination"
+import { currency } from "@/lib/currency"
+import { Alert } from "@/components/ui/alert"
+import { Loading } from "@/components/ui/loading"
+import { UpdateServices } from "../hooks/update"
+
 
 export function Services(){
   const [modalNew, setModalNew] = useState(false)
   const [modalEdition, setModalEdition] = useState(false)
-  const [status, setStatus] = useState(true)
+
+  const {
+    data,
+    fethLoad,
+    isLoading,
+    messageError,
+    page,
+    pagination,
+    setPage
+  } = IndexServices()
+
+  const {
+    errors,
+    onSubmit
+  } = UpdateServices(fethLoad)
+
 
   return (
     <>
+      {isLoading && <Loading />}
+      <Alert severity="error" open={!!messageError}>{messageError}</Alert>
+      <Alert severity="error" open={!!errors.root?.message}>
+        {errors.root?.message}
+      </Alert>
+      <Alert severity="success" open={!!errors.root?.success}>
+        {typeof errors.root?.success === "string" && errors.root.success}
+      </Alert>
+
       <CreateModal 
         modalNew={modalNew}
         setModalNew={setModalNew}
@@ -38,7 +69,6 @@ export function Services(){
         </Modules.Title>
       </div>
 
-   
         <div className="border-1 border-gray-500 rounded-md">
           <Table.Root>
             <Table.Header>
@@ -50,35 +80,39 @@ export function Services(){
     
             <Table.Body>
 
-              {Array.from({ length: 10 }).map((_, i) => (
+              {data && data.map(item => (
                 <>
-                  <tr className="border-t border-gray-500 text-left" key={i} >
+                  <tr className="border-t border-gray-500 text-left" key={item.id} >
                     <Table.Cell clas="lg:w-1/2 " internalSpacing="px-2 py-3 lg:px-4 lg:py-3">
                       <div className="max-sm:w-20 truncate ">
-                        Instalação de Rede
+                        {item.titleService}
                       </div>
                         
                       </Table.Cell>
 
                       <Table.Cell clas=" lg:w-full" internalSpacing="px-1 py-3 lg:px-4 lg:py-3">
                         <div className="max-sm:w-22">
-                          <span  >R$ 180,00</span>
+                          <span >{currency(item.value)}</span>
                         </div>
                       </Table.Cell>
 
                       <Table.Cell internalSpacing="py-3 lg:px-4 lg:py-3">
-                        <div className="max-sm:hidden w-35"><Status type={status ? "active" : "inactive"} isButton={true} /></div>
-                        <div className="lg:hidden flex justify-center"><Status type={status ? "active" : "inactive"} isButton={false} /></div>
+                        <div className="max-sm:hidden w-35">
+                          <Status type={item.serviceStatus} isButton={true} />
+                        </div>
+                        <div className="lg:hidden flex justify-center">
+                          <Status type={item.serviceStatus} isButton={false} />
+                        </div>
                       </Table.Cell>
 
                       <Table.Cell clas="flex justify-end" internalSpacing="px-2.5 py-3 lg:px-4 lg:py-3">
                         <div className="flex items-center gap-1 mr-2.5 max-sm:hidden">
-                          {status && <><IconBan className="w-4 h-4 cursor-pointer" onClick={() => setStatus(!status)} />Desativar</>}
-                          {!status && <><IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => setStatus(!status)} />Reativar</>}
+                          {item.serviceStatus === "active" && <><IconBan className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />Desativar</>}
+                          {item.serviceStatus === "inactive" && <><IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />Reativar</>}
                         </div>
                         <div className="flex items-center gap-1 mr-2.5 lg:hidden">
-                          {status && <IconBan className="w-4 h-4 cursor-pointer" onClick={() => setStatus(!status)} />}
-                          {!status && <IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => setStatus(!status)} />}
+                          {item.serviceStatus === "active" && <IconBan className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />}
+                          {item.serviceStatus === "inactive" && <IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />}
                         </div>
                         <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
                       </Table.Cell>
@@ -92,7 +126,7 @@ export function Services(){
         </div>
       
       {/* PAGINAÇÃO */}
-      {/* <Pagination.Root>
+      <Pagination.Root>
         <Pagination.Previous previous={pagination?.previous} onClick={() => setPage(page - 1)} />
           <Pagination.Body 
             pagination={pagination} 
@@ -101,7 +135,7 @@ export function Services(){
             page={page}
           />
           <Pagination.Next next={pagination?.next} onClick={() => setPage(page + 1)} />
-      </Pagination.Root> */}
+      </Pagination.Root>
       {/* PAGINAÇÃO */}
     </>
   )

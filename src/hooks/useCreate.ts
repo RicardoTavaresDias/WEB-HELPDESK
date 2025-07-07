@@ -31,5 +31,4 @@ export const useCreate = ({ onSuccessCallback, endpoint, form, dataCreate}: any)
     onSubmit,
     data
   }
-
 }
