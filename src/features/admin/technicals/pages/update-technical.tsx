@@ -9,7 +9,7 @@ import { Alert } from "@/components/ui/alert";
 import { Loading } from "@/components/ui/loading";
 import { Avatar } from "@/components/ui/avatar";
 
-import { updateTechnicals } from "../hooks/update"
+import { updateTechnicals } from "../http/use-update-technicals"
 import { useParams } from "react-router";
 
 export function UpdateAdminTechnicalsPage() {
@@ -24,18 +24,16 @@ export function UpdateAdminTechnicalsPage() {
     errors,
     addUserHours,
     removeUserHours,
-    messageError,
     resetClose,
     isLoading
-  } = updateTechnicals({uuid: id as string})
+  } = updateTechnicals(id as string)
 
 
   return (
     <>
       {isSubmitting && <Loading /> || isLoading && <Loading/>}
-      <Alert severity="error" open={!!errors.root?.message || !!messageError}>
+      <Alert severity="error" open={!!errors.root?.message}>
         {errors.root?.message}
-        {messageError}
       </Alert>
       <Alert severity="success" open={!!errors.root?.success}>
         {typeof errors.root?.success === "string" && errors.root.success}
@@ -45,7 +43,7 @@ export function UpdateAdminTechnicalsPage() {
       </Alert>
 
       <Modules.Root>
-        <form onSubmit={handleSubmit(onSubmit as any)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Modules.Title title="Perfil de técnico" to="/tecnicos">
             <UiButton
               type="button"

@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { UiButton } from "@/components/ui/UiButton"
 import { v4 as uuid } from 'uuid'
 import { day } from "@/lib/day"
-import { CreateAdminTechnical } from "@/features/admin/technicals/hooks/create"
+import { createTechnicals } from "@/features/admin/technicals/http/use-create-technicals"
 import { Alert } from "@/components/ui/alert"
 import { Loading } from "@/components/ui/loading"
 
@@ -18,7 +18,7 @@ export function CreateAdminTechnicalsPage(){
     user,
     setUser,
     onCancel
-  } = CreateAdminTechnical()
+  } = createTechnicals()
   
   return (
     <>

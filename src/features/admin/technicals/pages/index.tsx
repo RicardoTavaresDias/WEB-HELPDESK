@@ -11,17 +11,17 @@ import { Loading } from "@/components/ui/loading";
 import { Table } from "@/components/table"
 
 import { Pagination } from "@/components/pagination"
-import { index } from "../hooks"
+import { indexTechnicals } from "../http/use-technicals"
 
 export function IndexAdminTechnicalsPage(){
   const { 
-    users, 
+    dataUsers, 
     isLoading, 
     messageError,
     pagination,
     setPage,
     page
-  } = index()
+  } = indexTechnicals()
 
   return ( 
     <>
@@ -48,7 +48,7 @@ export function IndexAdminTechnicalsPage(){
 
         <Table.Body>
           {
-            users && users.map(user => (
+            dataUsers && dataUsers.map(user => (
               <tr className="border-t border-gray-500 text-left" key={user.id} >
                 <Table.Cell>
                   <div className="flex gap-3 w-full">
@@ -99,7 +99,7 @@ export function IndexAdminTechnicalsPage(){
 
           <Table.Body>
             {
-              users && users.map(user => (
+              dataUsers && dataUsers.map(user => (
                 <tr className="border-t border-gray-500 text-left" key={user.id} >
                   <Table.Cell internalSpacing="pl-3 pr-1 py-4.5 flex gap-3 items-center">
                     <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-7 h-7" sizeText="text-[11px]" />

@@ -1,15 +1,11 @@
 import { AxiosError } from "axios"
-import { useEffect, useState, useCallback } from "react"
+import { useCallback, useEffect, useState } from "react"
+import type { PaginationType } from "@/types/pagination"
+import { api } from "@/services/api"
+import type { DataServicesType } from "../types/data-services"
 
-type PaginationType = {
-  page: number
-  totalPage: number
-  next?: number
-  previous?: number
-}
-
-export const useIndex = (endpoint: (page: number) => any) => {
-  const [data, setData] = useState(null)
+const IndexServices = () => {
+  const [data, setData] = useState<DataServicesType[] | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [messageError, setMessageError] = useState("")
   const [pagination, setPagination] = useState<PaginationType | null>(null)
@@ -18,7 +14,7 @@ export const useIndex = (endpoint: (page: number) => any) => {
   const fethLoad = useCallback(async () => {
     try {
       setIsLoading(true)
-      const responseCustomer = await endpoint(page)
+      const responseCustomer = await api.get(`/services?page=${page}&limit=10`)
 
       setData(responseCustomer.data.data)
       setPagination(responseCustomer.data.result)
@@ -47,3 +43,5 @@ export const useIndex = (endpoint: (page: number) => any) => {
     fethLoad
   }
 }
+
+export { IndexServices }

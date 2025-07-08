@@ -1,27 +1,20 @@
 import { Modules } from "@/components/modules"
 import { Table } from "@/components/table/index"
-
 import { IconPenLine } from "@/assets/icon/iconPenLine"
 import { IconBan } from "@/assets/icon/iconBan"
 import { IconCicloCheck } from "@/assets/icon/iconCicloCheck"
-
 import { Status } from "@/components/ui/status"
-
 import { useState } from "react";
 import { UiButton } from "@/components/ui/UiButton"
 import { IconPlus } from "@/assets/icon/iconPlus"
-
 import { CreateModal } from "../components/createModal"
 import { UpdateModal } from "../components/updateModal"
-
-import { IndexServices } from "../hooks/index"
+import { IndexServices } from "../http/use-services"
 import { Pagination } from "@/components/pagination"
 import { currency } from "@/lib/currency"
 import { Alert } from "@/components/ui/alert"
 import { Loading } from "@/components/ui/loading"
-import { UpdateServices } from "../hooks/updateStatus"
-
-
+import { UpdateStatus } from "../http/updateStatus"
 
 export function Services(){
   const [modalNew, setModalNew] = useState(false)
@@ -40,7 +33,7 @@ export function Services(){
   const {
     errors,
     onSubmit
-  } = UpdateServices(fethLoad)
+  } = UpdateStatus(fethLoad)
 
 
   return (

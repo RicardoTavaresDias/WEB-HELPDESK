@@ -2,8 +2,7 @@ import { LogoAuth } from "@/components/auth/logoAuth"
 import { Form } from "@/components/ui/form"
 import { Account } from "@/components/auth/account"
 import { Input } from "@/components/ui/input"
-
-import { useSignup } from "@/features/auth/hooks/useSignUp"
+import { useSignup } from "@/features/auth/http/create-signUp"
 import { Alert } from "@/components/ui/alert"
 import { Loading } from "@/components/ui/loading"
 
