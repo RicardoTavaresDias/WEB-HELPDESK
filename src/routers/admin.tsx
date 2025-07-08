@@ -5,7 +5,7 @@ import { CallListdetails } from "@/features/admin/called/pages/CalledListPage"
 import { IndexAdminTechnicalsPage } from "@/features/admin/technicals/pages/index.page"
 import { CreateAdminTechnicalsPage } from "@/features/admin/technicals/pages/create.page"
 import { UpdateAdminTechnicalsPage } from "@/features/admin/technicals/pages/update.page"
-import { IndexAdminCustomerPage } from "@/features/admin/customers/pages/index.page"
+import { IndexAdminCustomerPage } from "@/features/admin/customers/pages"
 import { Services } from "@/features/admin/services/pages/ServiceHomePage"
 import { NotFound } from "@/features/notFound"
 

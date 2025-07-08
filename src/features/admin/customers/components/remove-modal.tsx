@@ -1,6 +1,6 @@
 import { Modal } from "@/components/modal"
 import { UiButton } from "@/components/ui/UiButton"
-import { removeCustomer } from "../hooks/remove"
+import { removeCustomer } from "../http/use-remove-customers"
 import { Loading } from "@/components/ui/loading"
 import { Alert } from "@/components/ui/alert"
 
@@ -13,7 +13,7 @@ type ModalUpdateCustomerType = {
 
 export const ModalRemoveCustomersPage = ({ userId, fethLoad, modalRemove, setModalRemove }: ModalUpdateCustomerType) => {
    const {
-      removeUser,
+      onRemove,
       message,
       isLoadingRemove
     } = removeCustomer (fethLoad)
@@ -39,7 +39,7 @@ export const ModalRemoveCustomersPage = ({ userId, fethLoad, modalRemove, setMod
             Cancelar
           </UiButton>
           <UiButton type="button" typeSize="lg" typeColor="black" onClick={() => {
-            removeUser(userId) 
+            onRemove(userId) 
             setModalRemove(!modalRemove)
           }}>Sim, excluir</UiButton>
         </Modal.Actions>

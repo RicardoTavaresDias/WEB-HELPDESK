@@ -9,10 +9,10 @@ import { Alert } from "@/components/ui/alert";
 import { Pagination } from "@/components/pagination";
 import { Loading } from "@/components/ui/loading";
 
-import { ModalUpdateCustomersPage } from "../components/updateModal"
-import { ModalRemoveCustomersPage } from "../components/removeModal"
-import  { index } from "../hooks"
-import { updateCustomer } from "../hooks/update";
+import { ModalUpdateCustomersPage } from "../components/update-modal"
+import { ModalRemoveCustomersPage } from "../components/remove-modal"
+import  { indexCustomers } from "../http/use-customers"
+import { updateCustomer } from "../http/use-update-customers";
 
 export function IndexAdminCustomerPage(){
   const [modalRemove, setModalRemove] = useState(false)
@@ -26,7 +26,7 @@ export function IndexAdminCustomerPage(){
     setPage,
     users,
     fethLoad    
-  } = index()
+  } = indexCustomers()
 
    const {
       user,
@@ -78,7 +78,7 @@ export function IndexAdminCustomerPage(){
           </Table.Header>
           <Table.Body>
           {
-            users && users.map(user => (
+            users && users.map((user) => (
               <tr className="border-t border-gray-500 text-left" key={user.id}>
 
                 <Table.Cell clas="w-1/2">
