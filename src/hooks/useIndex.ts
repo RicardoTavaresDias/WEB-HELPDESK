@@ -1,4 +1,3 @@
-import type { mappedUserType } from "@/lib/formatHours"
 import { AxiosError } from "axios"
 import { useEffect, useState, useCallback } from "react"
 
@@ -10,7 +9,7 @@ type PaginationType = {
 }
 
 export const useIndex = (endpoint: (page: number) => any) => {
-  const [data, setData] = useState<mappedUserType[] | null>(null)
+  const [data, setData] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [messageError, setMessageError] = useState("")
   const [pagination, setPagination] = useState<PaginationType | null>(null)

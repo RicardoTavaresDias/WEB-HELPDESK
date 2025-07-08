@@ -10,9 +10,9 @@ type DataType = {
 
 const IndexServices = () => {
   const response = useIndex(apiServices.list)
+  const data: DataType[]  = response.data || []
 
   const { 
-    data,
     fethLoad, 
     isLoading, 
     messageError, 

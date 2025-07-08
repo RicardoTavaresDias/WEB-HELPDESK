@@ -19,7 +19,8 @@ import { Pagination } from "@/components/pagination"
 import { currency } from "@/lib/currency"
 import { Alert } from "@/components/ui/alert"
 import { Loading } from "@/components/ui/loading"
-import { UpdateServices } from "../hooks/update"
+import { UpdateServices } from "../hooks/updateStatus"
+
 
 
 export function Services(){
@@ -80,7 +81,7 @@ export function Services(){
     
             <Table.Body>
 
-              {data && data.map(item => (
+              {data && data.map((item) => (
                 <>
                   <tr className="border-t border-gray-500 text-left" key={item.id} >
                     <Table.Cell clas="lg:w-1/2 " internalSpacing="px-2 py-3 lg:px-4 lg:py-3">
