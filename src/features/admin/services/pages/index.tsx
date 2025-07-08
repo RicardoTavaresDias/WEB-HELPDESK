@@ -73,48 +73,44 @@ export function Services(){
             </Table.Header>
     
             <Table.Body>
-
               {data && data.map((item) => (
-                <>
-                  <tr className="border-t border-gray-500 text-left" key={item.id} >
-                    <Table.Cell clas="lg:w-1/2 " internalSpacing="px-2 py-3 lg:px-4 lg:py-3">
-                      <div className="max-sm:w-20 truncate ">
-                        {item.titleService}
+                <tr className="border-t border-gray-500 text-left" key={item.id} >
+                  <Table.Cell clas="lg:w-1/2 " internalSpacing="px-2 py-3 lg:px-4 lg:py-3">
+                    <div className="max-sm:w-20 truncate ">
+                      {item.titleService}
+                    </div>
+                      
+                    </Table.Cell>
+
+                    <Table.Cell clas=" lg:w-full" internalSpacing="px-1 py-3 lg:px-4 lg:py-3">
+                      <div className="max-sm:w-22">
+                        <span >{currency(item.value)}</span>
                       </div>
-                        
-                      </Table.Cell>
+                    </Table.Cell>
 
-                      <Table.Cell clas=" lg:w-full" internalSpacing="px-1 py-3 lg:px-4 lg:py-3">
-                        <div className="max-sm:w-22">
-                          <span >{currency(item.value)}</span>
-                        </div>
-                      </Table.Cell>
+                    <Table.Cell internalSpacing="py-3 lg:px-4 lg:py-3">
+                      <div className="max-sm:hidden w-35">
+                        <Status type={item.serviceStatus} isButton={true} />
+                      </div>
+                      <div className="lg:hidden flex justify-center">
+                        <Status type={item.serviceStatus} isButton={false} />
+                      </div>
+                    </Table.Cell>
 
-                      <Table.Cell internalSpacing="py-3 lg:px-4 lg:py-3">
-                        <div className="max-sm:hidden w-35">
-                          <Status type={item.serviceStatus} isButton={true} />
-                        </div>
-                        <div className="lg:hidden flex justify-center">
-                          <Status type={item.serviceStatus} isButton={false} />
-                        </div>
-                      </Table.Cell>
-
-                      <Table.Cell clas="flex justify-end" internalSpacing="px-2.5 py-3 lg:px-4 lg:py-3">
-                        <div className="flex items-center gap-1 mr-2.5 max-sm:hidden">
-                          {item.serviceStatus === "active" && <><IconBan className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />Desativar</>}
-                          {item.serviceStatus === "inactive" && <><IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />Reativar</>}
-                        </div>
-                        <div className="flex items-center gap-1 mr-2.5 lg:hidden">
-                          {item.serviceStatus === "active" && <IconBan className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />}
-                          {item.serviceStatus === "inactive" && <IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />}
-                        </div>
-                        <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
-                      </Table.Cell>
-                    </tr>
-                </>
+                    <Table.Cell clas="flex justify-end" internalSpacing="px-2.5 py-3 lg:px-4 lg:py-3">
+                      <div className="flex items-center gap-1 mr-2.5 max-sm:hidden">
+                        {item.serviceStatus === "active" && <><IconBan className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />Desativar</>}
+                        {item.serviceStatus === "inactive" && <><IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />Reativar</>}
+                      </div>
+                      <div className="flex items-center gap-1 mr-2.5 lg:hidden">
+                        {item.serviceStatus === "active" && <IconBan className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />}
+                        {item.serviceStatus === "inactive" && <IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />}
+                      </div>
+                      <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
+                    </Table.Cell>
+                  </tr>
                ))
               }
-
             </Table.Body>
           </Table.Root>
         </div>
