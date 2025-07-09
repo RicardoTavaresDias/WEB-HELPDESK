@@ -17,7 +17,7 @@ import { Loading } from "@/components/ui/loading"
 import { UpdateStatus } from "../http/use-update-status"
 import { updateServices } from "../http/use-update-services"
 
-export function Services(){
+export function AdminServices(){
   const [modalNew, setModalNew] = useState(false)
   const [modalEdition, setModalEdition] = useState(false)
   const [serviceId, setServicesId] = useState("")
@@ -45,9 +45,6 @@ export function Services(){
       <Alert severity="error" open={!!messageError}>{messageError}</Alert>
       <Alert severity="error" open={!!errors.root?.message}>
         {errors.root?.message}
-      </Alert>
-      <Alert severity="success" open={!!errors.root?.success}>
-        {typeof errors.root?.success === "string" && errors.root.success}
       </Alert>
 
       <CreateModal 

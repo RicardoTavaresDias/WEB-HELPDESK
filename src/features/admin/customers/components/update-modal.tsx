@@ -14,7 +14,7 @@ type ModalUpdateCustomerType = {
     handleSubmit: any
     errors: any
     isSubmitting: any
-    resetClose: any
+    reset: any
   }
   user: {
     name: string
@@ -22,7 +22,7 @@ type ModalUpdateCustomerType = {
   }
 } 
 
-export const ModalUpdateCustomersPage = ({modalEdition, setModalEdition, form, user}: ModalUpdateCustomerType) => {
+export const ModalUpdateCustomers = ({modalEdition, setModalEdition, form, user}: ModalUpdateCustomerType) => {
 
    const {
       errors,
@@ -30,7 +30,7 @@ export const ModalUpdateCustomersPage = ({modalEdition, setModalEdition, form, u
       onSubmit,
       register,
       isSubmitting,
-      resetClose
+      reset
     } = form
 
   return (
@@ -49,7 +49,7 @@ export const ModalUpdateCustomersPage = ({modalEdition, setModalEdition, form, u
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Root isActive={modalEdition} >
           <Modal.Title title="Cliente" onClose={() => {
-            resetClose()
+            reset()
             setModalEdition(!modalEdition)
           }} />
           <Modal.Context>

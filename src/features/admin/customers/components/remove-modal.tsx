@@ -11,7 +11,7 @@ type ModalUpdateCustomerType = {
   setModalRemove: (value: boolean) => void
 } 
 
-export const ModalRemoveCustomersPage = ({ userId, fethLoad, modalRemove, setModalRemove }: ModalUpdateCustomerType) => {
+export const ModalRemoveCustomers = ({ userId, fethLoad, modalRemove, setModalRemove }: ModalUpdateCustomerType) => {
    const {
       onRemove,
       message,

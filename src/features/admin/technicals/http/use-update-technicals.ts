@@ -27,15 +27,15 @@ const updateTechnicals = (uuid: string) => {
     searchUserUIID({ form, setUser, uuid})
   }, [])
 
+  form.setValue("name", user.name)
+  form.setValue("email", user.email)
+
    useEffect(() => {
     resetClose()
   }, [user.name, user.email])
 
   const resetClose = () => {
-    form.reset({
-      name: user.name,
-      email: user.email
-    })
+    form.reset()
     searchUserUIID({ form, setUser, uuid})
   }
 

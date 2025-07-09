@@ -12,7 +12,7 @@ import { Avatar } from "@/components/ui/avatar";
 import { updateTechnicals } from "../http/use-update-technicals"
 import { useParams } from "react-router";
 
-export function UpdateAdminTechnicalsPage() {
+export function UpdateAdminTechnicals() {
   const { id } = useParams()
 
   const {

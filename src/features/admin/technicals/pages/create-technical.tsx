@@ -8,7 +8,7 @@ import { createTechnicals } from "@/features/admin/technicals/http/use-create-te
 import { Alert } from "@/components/ui/alert"
 import { Loading } from "@/components/ui/loading"
 
-export function CreateAdminTechnicalsPage(){
+export function CreateAdminTechnicals(){
   const { 
     onSubmit,
     errors,

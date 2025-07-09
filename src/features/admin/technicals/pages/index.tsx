@@ -13,7 +13,7 @@ import { Table } from "@/components/table"
 import { Pagination } from "@/components/pagination"
 import { indexTechnicals } from "../http/use-technicals"
 
-export function IndexAdminTechnicalsPage(){
+export function IndexAdminTechnicals(){
   const { 
     dataUsers, 
     isLoading, 

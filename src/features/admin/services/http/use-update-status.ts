@@ -10,11 +10,10 @@ const UpdateStatus = (onSuccessCallback: () => void) => {
 
   const onSubmit = async (uuid: string, status: string) => {
     try {  
-      const response = await api.patch(`/services/${uuid}`, { 
+      await api.patch(`/services/${uuid}`, { 
         status: status === "inactive" ? "active" : "inactive" 
       })
 
-      setError("root", { success: response.data.message } as object) 
       if (onSuccessCallback) {
         onSuccessCallback() // Chama a função de recarregamento
       }

@@ -9,12 +9,12 @@ import { Alert } from "@/components/ui/alert";
 import { Pagination } from "@/components/pagination";
 import { Loading } from "@/components/ui/loading";
 
-import { ModalUpdateCustomersPage } from "../components/update-modal"
-import { ModalRemoveCustomersPage } from "../components/remove-modal"
+import { ModalUpdateCustomers } from "../components/update-modal"
+import { ModalRemoveCustomers } from "../components/remove-modal"
 import  { indexCustomers } from "../http/use-customers"
 import { updateCustomer } from "../http/use-update-customers";
 
-export function IndexAdminCustomerPage(){
+export function IndexAdminCustomer(){
   const [modalRemove, setModalRemove] = useState(false)
   const [modalEdition, setModalEdition] = useState(false)
 
@@ -31,7 +31,7 @@ export function IndexAdminCustomerPage(){
    const {
       user,
       setUser,
-      resetClose,
+      reset,
       errors,
       handleSubmit,
       onSubmit,
@@ -47,7 +47,7 @@ export function IndexAdminCustomerPage(){
       </Alert>
 
       {/* Modal Remove */}
-      <ModalRemoveCustomersPage 
+      <ModalRemoveCustomers
         fethLoad={fethLoad}
         userId={user.id}
         modalRemove={modalRemove}
@@ -56,8 +56,8 @@ export function IndexAdminCustomerPage(){
       {/* Modal Remove */}
 
       {/* Modal Update */}
-      <ModalUpdateCustomersPage 
-        form={{ register, handleSubmit, onSubmit, errors, isSubmitting, resetClose }}
+      <ModalUpdateCustomers
+        form={{ register, handleSubmit, onSubmit, errors, isSubmitting, reset }}
         setModalEdition={setModalEdition}
         modalEdition={modalEdition}
         user={{ name: user.name, avatar: user.avatar }}

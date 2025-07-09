@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { userSchema } from "@/features/admin/technicals/schemas/technical.schema"
 import { useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -24,16 +24,8 @@ const updateCustomer = (onSuccessCallback: () => void) => {
     resolver: zodResolver(userSchema)  // refazer schema para Customer
   })
 
-  useEffect(() => {
-    resetClose()
-  }, [user])
-
-  const resetClose = () => {
-    form.reset({
-      name: user.name,
-      email: user.email
-    })
-  }
+  form.setValue("name", user.name)
+  form.setValue("email", user.email)
 
   const onSubmit = async (data: any) => {
     const formData = new FormData();
@@ -62,7 +54,7 @@ const updateCustomer = (onSuccessCallback: () => void) => {
     onSubmit,
     user,
     setUser,
-    resetClose 
+    reset: form.reset
   }
 }
 
