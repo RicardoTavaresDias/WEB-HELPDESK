@@ -15,10 +15,12 @@ import { currency } from "@/lib/currency"
 import { Alert } from "@/components/ui/alert"
 import { Loading } from "@/components/ui/loading"
 import { UpdateStatus } from "../http/use-update-status"
+import { updateServices } from "../http/use-update-services"
 
 export function Services(){
   const [modalNew, setModalNew] = useState(false)
   const [modalEdition, setModalEdition] = useState(false)
+  const [serviceId, setServicesId] = useState("")
 
   const {
     data,
@@ -34,6 +36,8 @@ export function Services(){
     errors,
     onSubmit
   } = UpdateStatus(fethLoad)
+
+  const form = updateServices({ onSuccessCallback: fethLoad, id: serviceId })
 
   return (
     <>
@@ -55,6 +59,7 @@ export function Services(){
       <UpdateModal 
         modalEdition={modalEdition}
         setModalEdition={setModalEdition}
+        form={form}
       />
 
       <div className="mb-7">
@@ -106,7 +111,12 @@ export function Services(){
                         {item.serviceStatus === "active" && <IconBan className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />}
                         {item.serviceStatus === "inactive" && <IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />}
                       </div>
-                      <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} onClick={() => setModalEdition(!modalEdition)} />
+                      <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} onClick={() => {
+                        setModalEdition(!modalEdition)
+                        form.setValue("title", item.titleService)
+                        form.setValue("value", currency({ price: item.value }))
+                        setServicesId(item.id)
+                      }} />
                     </Table.Cell>
                   </tr>
                ))
