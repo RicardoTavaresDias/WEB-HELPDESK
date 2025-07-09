@@ -14,7 +14,7 @@ import { Pagination } from "@/components/pagination"
 import { currency } from "@/lib/currency"
 import { Alert } from "@/components/ui/alert"
 import { Loading } from "@/components/ui/loading"
-import { UpdateStatus } from "../http/updateStatus"
+import { UpdateStatus } from "../http/use-update-status"
 
 export function Services(){
   const [modalNew, setModalNew] = useState(false)

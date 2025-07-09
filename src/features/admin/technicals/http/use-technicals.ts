@@ -3,14 +3,7 @@ import { AxiosError } from "axios"
 import { useEffect, useState, useCallback } from "react"
 import type { PaginationType } from "@/types/pagination"
 import { api } from "@/services/api"
-
-type UserTechnicalType = {
-  id: string,
-  name: string,
-  email: string
-  avatar: string
-  userHours: string[]
-}
+import type { UserTechnicalType } from "../types/technical-user-response"
 
 export const indexTechnicals = () => {
   const [data, setData] = useState<UserTechnicalType[] | null>(null)

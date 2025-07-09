@@ -37,25 +37,3 @@ export const removeCustomer = (onSuccessCallback: () => void) => {
     isLoadingRemove: isLoading
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-// const removeCustomer = (onSuccessCallback: () => any) => {
-//   const response = useRemove({ onSuccessCallback, endpoint: apiCustomer.remove })
-
-//   return {
-//     removeUser: response.remove,
-//     message: response.message,
-//     isLoadingRemove: response.isLoading
-//   }
-// }
-
-// export { removeCustomer }
