@@ -27,7 +27,7 @@ const CreateModal = ({ modalNew, setModalNew }: CreateModalType) => {
           <Modal.Title title="Cadastro de serviço" onClose={() => setModalNew(!modalNew)} />
           <Modal.Context>
             <Input type="text" name="title" label="Título" placeholder="Nome do serviço"/>
-            <Input type="text" name="value" label="Valor" placeholder="R$ 0,00" value={valueNew} onChange={(e) => setValueNew( currency(e.target.value) )} />
+            <Input type="text" name="value" label="Valor" placeholder="R$ 0,00" value={valueNew} onChange={(e) => setValueNew( currency({ formatPrice: e.target.value }) )} />
           </Modal.Context>
           <Modal.Actions>
             <UiButton type="submit" typeSize="xxl" typeColor="black">Salvar</UiButton>

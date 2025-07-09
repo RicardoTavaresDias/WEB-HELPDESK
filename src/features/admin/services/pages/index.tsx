@@ -84,7 +84,7 @@ export function Services(){
 
                     <Table.Cell clas=" lg:w-full" internalSpacing="px-1 py-3 lg:px-4 lg:py-3">
                       <div className="max-sm:w-22">
-                        <span >{currency(item.value)}</span>
+                        <span >{currency({ price: item.value })}</span>
                       </div>
                     </Table.Cell>
 
