@@ -1,5 +1,5 @@
 import { Modules } from "@/components/modules";
-import { IsProfile } from "@/components/profile";
+import { IsProfile } from "@/layout/profile";
 import { UiButton } from "@/components/ui/UiButton";
 
 import { useState } from "react";

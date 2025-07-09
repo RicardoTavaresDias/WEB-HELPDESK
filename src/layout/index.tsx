@@ -1,9 +1,9 @@
 import Vector from "@/assets/img/Vector.svg"
 
 import { Outlet } from 'react-router'
-import { Menu } from "./menu"
-import { MenuMobile } from "./menuMobile"
-import { MenuLogOut } from "./menuLogOut"
+import { Menu } from "./components/menu"
+import { MenuMobile } from "./components/menuMobile"
+import { MenuLogOut } from "./components/menuLogOut"
 import { useAuth } from "@/hooks/useAuth"
 
 type LayoutProps = {
