@@ -7,8 +7,8 @@ import { Status } from "@/components/ui/status"
 import { useState } from "react";
 import { UiButton } from "@/components/ui/UiButton"
 import { IconPlus } from "@/assets/icon/iconPlus"
-import { CreateModal } from "../components/createModal"
-import { UpdateModal } from "../components/updateModal"
+import { CreateModal } from "../components/create-modal"
+import { UpdateModal } from "../components/update-modal"
 import { IndexServices } from "../http/use-services"
 import { Pagination } from "@/components/pagination"
 import { currency } from "@/lib/currency"
@@ -35,7 +35,6 @@ export function Services(){
     onSubmit
   } = UpdateStatus(fethLoad)
 
-
   return (
     <>
       {isLoading && <Loading />}
@@ -50,6 +49,7 @@ export function Services(){
       <CreateModal 
         modalNew={modalNew}
         setModalNew={setModalNew}
+        fethLoad={fethLoad}
       />
 
       <UpdateModal 
