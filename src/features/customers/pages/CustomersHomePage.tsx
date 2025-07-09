@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Modules } from "@/components/modules"
-import { IsProfile } from "@/layout/profile"
+import { IsProfile } from "@/features/layout/profile"
 import { Panel } from "@/components/table"
 import avatar from "@/assets/img/Avatar.svg";
 

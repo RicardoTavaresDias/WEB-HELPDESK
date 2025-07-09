@@ -10,7 +10,7 @@ import { useState } from "react"
 import { useParams } from "react-router" 
 import { IconPlus } from "@/assets/icon/iconPlus";
 import { IconTrash } from "@/assets/icon/iconTrash";
-import { IsProfile } from "@/layout/profile";
+import { IsProfile } from "@/features/layout/profile";
 import { Modal } from "@/components/modal";
 import { Input } from "@/components/ui/input";
 import { currency } from "@/lib/currency";

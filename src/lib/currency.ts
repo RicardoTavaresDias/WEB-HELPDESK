@@ -3,7 +3,7 @@ type currency = {
   formatPrice?: string
 }
 
-export function currency({ price, formatPrice}: currency): string{
+export function currency({ price, formatPrice }: currency): string{
 
   // Remove tudo que não for número
   const numeric = price ? price.replace(/\D/g, "") : formatPrice?.replace(/\D/g, "")

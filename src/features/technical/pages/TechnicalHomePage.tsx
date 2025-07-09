@@ -7,7 +7,7 @@ import { IconPenLine } from "@/assets/icon/iconPenLine";
 import { IconCicloCheckBig } from "@/assets/icon/iconCicloCheckBig";
 import { Link } from "react-router";
 import { IconClock } from "@/assets/icon/iconClock";
-import { IsProfile } from "@/layout/profile";
+import { IsProfile } from "@/features/layout/profile";
 
 export function Called(){
   

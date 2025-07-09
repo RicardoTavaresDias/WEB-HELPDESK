@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router"
-import { Layout } from "@/layout"
+import { Layout } from "@/features/layout"
 import { Called } from "@/features/customers/pages/CustomersHomePage"
 import { CreateCall } from "@/features/customers/pages/CreateCustomerCalledPage"
 import { CallDetails } from "@/features/customers/pages/CustomerCalledDetailsPage"
