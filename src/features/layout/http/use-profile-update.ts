@@ -22,19 +22,20 @@ const profileUpdate = () => {
       const formData = new FormData()
       formData.append("file", file[0])
       formData.append("data", JSON.stringify({
-        ...session?.user,
         name,
         email
       }))
-
+       
       try {  
         const response = await api.patch(`/user/${session?.user.id}`, formData)
-        
+
+        if(!response){
+          return form.setError("root", {message: "Erro a atualizar no banco"})
+        }
+    
         localStorage.removeItem("@helpDesk:user")
         localStorage.setItem("@helpDesk:user", JSON.stringify({
-          ...session?.user,
-          name,
-          email
+          ...response.data
         }))
 
         loadUser()

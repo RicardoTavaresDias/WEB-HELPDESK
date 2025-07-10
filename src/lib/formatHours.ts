@@ -58,29 +58,29 @@ export type mappedUserType = Omit<usersType, "userHours"> & {
 }
 
 export const hourFormatList = (user: usersType[]): mappedUserType[] => {
-    if(user === null) return []
-    const users = Array.isArray(user) ? user : [user]
+  if(user === null) return []
+  const users = Array.isArray(user) ? user : [user]
 
-    const userMap = users.map(user => {
-      const userHours = user.userHours.map(hour => {
+  const userMap = users.map(user => {
+    const userHours = user.userHours.map(hour => {
 
-        const morning = day.morning.filter(morning => 
-          morning >= dayjs(hour.startTime).format("HH:mm") && 
-          morning <= dayjs(hour.endTime).format("HH:mm"))
-        if(morning.length > 0) return morning
+      const morning = day.morning.filter(morning => 
+        morning >= dayjs(hour.startTime).format("HH:mm") && 
+        morning <= dayjs(hour.endTime).format("HH:mm"))
+      if(morning.length > 0) return morning
 
-        const afternoon = day.afternoon.filter(afternoon => 
-          afternoon >= dayjs(hour.startTime).format("HH:mm") && 
-          afternoon <= dayjs(hour.endTime).format("HH:mm"))
-        if(afternoon.length > 0) return afternoon
+      const afternoon = day.afternoon.filter(afternoon => 
+        afternoon >= dayjs(hour.startTime).format("HH:mm") && 
+        afternoon <= dayjs(hour.endTime).format("HH:mm"))
+      if(afternoon.length > 0) return afternoon
 
-        const night = day.night.filter(night => 
-          night >= dayjs(hour.startTime).format("HH:mm") && 
-          night <= dayjs(hour.endTime).format("HH:mm"))
-        if(night.length > 0) return night
+      const night = day.night.filter(night => 
+        night >= dayjs(hour.startTime).format("HH:mm") && 
+        night <= dayjs(hour.endTime).format("HH:mm"))
+      if(night.length > 0) return night
 
-        return []
-      })
+      return []
+    })
     
     return {
       ...user,

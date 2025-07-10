@@ -24,11 +24,21 @@ export function IsProfile({myProfile}: IsProfileProps){
   const { menuRef, open, setOpen } = useOpenModal()
   const [modalPassword, setModalPassword] = useState(false)
   const { profileModal, isModal }: any = useProfile()
+  const [imagePreview, setImagePreview] = useState()
 
   const { session } = useAuth()
   const data = hourFormatList(session.user)
  
   const { onSubmit, form } = profileUpdate()
+
+  function handleImageChange(event: React.ChangeEvent<HTMLInputElement>){
+    const file = event.target.files?.[0]
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setImagePreview(url as any)
+      form.setValue("file", file)
+    }
+  }
   
   return (
     <>
@@ -52,7 +62,15 @@ export function IsProfile({myProfile}: IsProfileProps){
               {/* Avatar */}
               <div className="flex items-center w-fit" ref={menuRef}>
                 <Avatar user={session.user} size="w-20 h-20" sizeText="text-[22px]" />
-              
+
+                {imagePreview && (
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    className="absolute top-0 left-0 w-20 h-20 object-cover rounded-full border-2 border-none"
+                  />
+                )}
+                              
                 <div className="absolute ml-15 mt-11 z-40 cursor-pointer" onClick={() => setOpen(!open)}>
                   <div className="bg-gray-500 rounded-full w-6.5 h-6.5 flex justify-center items-center" >
                     <IconCamera className="w-5 h-5 fill-gray-400 hover:fill-gray-200" />
@@ -67,7 +85,7 @@ export function IsProfile({myProfile}: IsProfileProps){
                       <li className="hover:bg-gray-400/8 cursor-pointer p-1.5 flex items-center gap-2 rounded" onClick={() => setOpen(!open)}>
                         <IconCamera className="w-5.5 fill-gray-400/70 stroke-gray-600" />
                         Escolher foto
-                        <input type="file" {...form.register("file")} className="absolute w-42 opacity-0" />
+                        <input type="file" {...form.register("file")} className="absolute w-42 opacity-0" onChange={handleImageChange}/>
                       </li>
                       <li className="hover:bg-gray-400/8 cursor-pointer p-1.5 flex items-center gap-2 rounded" onClick={() => setOpen(!open)}>
                         <IconTrash className="w-4 ml-1" />
