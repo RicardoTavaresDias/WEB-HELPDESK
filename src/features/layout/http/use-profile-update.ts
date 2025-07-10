@@ -3,9 +3,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { api } from "@/services/api"
 import { AxiosError } from "axios"
 import { useAuth } from "@/hooks/useAuth"
+import { useRef } from "react"
 
 const profileUpdate = () => {
-  const { session, save, loadUser } = useAuth()
+  const { session, loadUser } = useAuth()
+  const fileRef = useRef<File | null>(null)
 
    const form = useForm({
       defaultValues: {
@@ -18,9 +20,9 @@ const profileUpdate = () => {
       //resolver: zodResolver(userSchema) 
     })
   
-    const onSubmit = async ({ name, email, file }: any) => {  
+    const onSubmit = async ({ name, email }: any) => {  
       const formData = new FormData()
-      formData.append("file", file[0])
+      fileRef.current && formData.append("file", fileRef.current)
       formData.append("data", JSON.stringify({
         name,
         email
@@ -51,7 +53,8 @@ const profileUpdate = () => {
 
     return {
       onSubmit,
-      form
+      form,
+      fileRef
     }
 }
 
