@@ -32,7 +32,7 @@ const profileUpdate = () => {
       const dataLocalStorage  = localStorage.getItem("@helpDesk:user") || ""
       const resultLocalStorage = JSON.parse(dataLocalStorage)
       if(resultLocalStorage.name === name && resultLocalStorage.email === email && !fileRef.current){
-        return form.setError("root", { info: "Nenhum dados para atualizar." } as any) 
+        return form.setError("root", { info: "Nenhum dados para atualizar." } as object) 
       }
 
       const response = await api.patch(`/user/${session?.user.id}`, formData)
