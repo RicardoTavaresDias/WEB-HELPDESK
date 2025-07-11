@@ -2,7 +2,9 @@ import { Menu } from "./menu"
 import { useOpenModal } from "@/hooks/useOpenModal"
 import { IconMobile } from "@/assets/icon/iconMobile"
 
-export function MenuMobile({ element }: any){
+type MenuMobileType = { element: "admin" | "técnico" | "cliente" }
+
+export function MenuMobile({ element }: MenuMobileType){
   const { open, menuRef, setOpen } = useOpenModal()
 
   return (
@@ -15,7 +17,7 @@ export function MenuMobile({ element }: any){
         <div className="flex"> 
           <span className="Text-Xxs text-gray-400">Menu</span>
         </div>
-        <Menu element={element} /> 
+        <Menu element={element} setOpen={setOpen} open={open} /> 
       </div>
     </div>
   )

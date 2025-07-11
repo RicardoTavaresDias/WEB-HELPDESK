@@ -9,7 +9,7 @@ import { Avatar } from "@/components/ui/avatar"
 type MenuLogOutProps = {
   classmobile?: string
   classLg?: string
-  identification?: string
+  identification?: "admin" | "técnico" | "cliente"
 }
 
 export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutProps){

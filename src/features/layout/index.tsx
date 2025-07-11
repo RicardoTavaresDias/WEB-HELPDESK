@@ -7,10 +7,10 @@ import { MenuLogOut } from "./components/menuLogOut"
 import { useAuth } from "@/hooks/useAuth"
 
 type LayoutProps = {
-  identification?: string
+  identification: "admin" | "técnico" | "cliente"
 }
 
-export function Layout({identification}: LayoutProps){
+export function Layout({ identification }: LayoutProps){
   const { session } = useAuth()
 
   return (
