@@ -29,19 +29,23 @@ const profileUpdate = () => {
       }))
        
       try {  
-        const response = await api.patch(`/user/${session?.user.id}`, formData)
-
-        if(!response){
-          return form.setError("root", {message: "Erro a atualizar no banco"})
+        const dataLocalStorage  = localStorage.getItem("@helpDesk:user") || ""
+        const resultLocalStorage = JSON.parse(dataLocalStorage)
+        if(resultLocalStorage.name === name && resultLocalStorage.email === email && !fileRef.current){
+          return form.setError("root", { info: "Nenhum dados para atualizar." } as any)
         }
-    
+
+        const response = await api.patch(`/user/${session?.user.id}`, formData)
+        if(!response){
+          return form.setError("root", { message: "Erro a atualizar no banco" })
+        }
+        
         localStorage.removeItem("@helpDesk:user")
         localStorage.setItem("@helpDesk:user", JSON.stringify({
           ...response.data
         }))
 
         loadUser()
-        form.setError("root", { success: response.data.message } as object) 
       } catch (error: any) {
         if(error instanceof AxiosError) {
           return form.setError("root", {message: error.response?.data.message})

@@ -3,7 +3,7 @@ import { Modal } from "@/components/modal";
 import { useProfile } from "@/hooks/useProfile";
 import { profileUpdate } from "../http/use-profile-update"
 import { Alert } from "@/components/ui/alert";
-import { Loading } from "@/components/ui/loading";
+import { Loading, Loader } from "@/components/ui/loading";
 import { FormPassword } from "./components/form-password";
 import { FormHoursTechnical } from "./components/form-hours-technical";
 import { FormChooseAvatar } from "./components/form-choose-avatar";
@@ -24,17 +24,16 @@ type FormDataUserType = {
 export function IsProfile({myProfile}: IsProfileProps){
   const [modalPassword, setModalPassword] = useState(false)
   const { profileModal, isModal } = useProfile()
-   const [imagePreview, setImagePreview] = useState<string | null>(null)
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
   const { onSubmit, form, fileRef } = profileUpdate()
+
+  console.log("foi")
 
   return (
     <>
-      {form.formState.isSubmitting && <Loading /> || form.formState.isLoading && <Loading/>}
+      {form.formState.isSubmitting && <Loading />}
         <Alert severity="error" open={!!form.formState.errors.root?.message}>
           {form.formState.errors.root?.message}
-        </Alert>
-        <Alert severity="success" open={!!form.formState.errors.root?.success}>
-          {typeof form.formState.errors.root?.success === "string" && form.formState.errors.root.success}
         </Alert>
         <Alert severity="info" open={!!form.formState.errors.root?.info}>
           {typeof form.formState.errors.root?.info === "string" && form.formState.errors.root.info}
@@ -49,7 +48,7 @@ export function IsProfile({myProfile}: IsProfileProps){
             isModal()
           }} />
 
-          <Modal.Context className={myProfile !== "technical" ? "" : "mb-0 border-t"}>
+          <Modal.Context className={myProfile !== "technical" ? "" : "mb-0 border-t"} >
             <div className="lg:w-full relative">
               {/* Avatar */}
               <FormChooseAvatar 
@@ -75,9 +74,9 @@ export function IsProfile({myProfile}: IsProfileProps){
           }
 
           <div className="m-auto mb-5">
-            <UiButton typeSize="xxl" typeColor="black" disabled={form.formState.isSubmitting} onClick={() => {
-              isModal()
-            }} >Salvar</UiButton>
+            <UiButton typeSize="xxl" typeColor="black" disabled={form.formState.isSubmitting} >
+              { form.formState.isSubmitting ? <Loader /> : "Salvar" }
+            </UiButton>
           </div>
         </Modal.Root>
       </form>
