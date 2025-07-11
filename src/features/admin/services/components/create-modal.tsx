@@ -12,39 +12,32 @@ type CreateModalType ={
 }
 
 const CreateModal = ({ modalNew, setModalNew, fethLoad }: CreateModalType) => {
-  const {
-    errors,
-    handleSubmit,
-    isSubmitting,
-    onSubmit,
-    register,
-    reset
-  } = createServices(fethLoad)
+  const { form, onSubmit } = createServices(fethLoad)
 
   return (
     <>
-      {isSubmitting && <Loading />}
-      <Alert severity="error" open={!!errors.root?.message}>
-        {errors.root?.message}
+      {form.formState.isSubmitting && <Loading />}
+      <Alert severity="error" open={!!form.formState.errors.root?.message}>
+        {form.formState.errors.root?.message}
       </Alert>
-      <Alert severity="success" open={!!errors.root?.success}>
-        {typeof errors.root?.success === "string" && errors.root.success}
+      <Alert severity="success" open={!!form.formState.errors.root?.success}>
+        {typeof form.formState.errors.root?.success === "string" && form.formState.errors.root.success}
       </Alert>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <Modal.Root isActive={modalNew} >
           <Modal.Title title="Cadastro de serviço" onClose={() => {
             setModalNew(!modalNew)
-            reset()
+            form.reset()
           }} />
           <Modal.Context>
-            <Input type="text" {...register("title")} label="Título" placeholder="Nome do serviço" error={errors.title && errors.title.message}/>
-            <Input type="text" {...register("value")} label="Valor" placeholder="R$ 0,00" error={errors.value && errors.value.message} />
+            <Input type="text" {...form.register("title")} label="Título" placeholder="Nome do serviço" error={form.formState.errors.title && form.formState.errors.title.message}/>
+            <Input type="text" {...form.register("value")} label="Valor" placeholder="R$ 0,00" error={form.formState.errors.value && form.formState.errors.value.message} />
           </Modal.Context>
           <Modal.Actions>
-            <UiButton type="submit" typeSize="xxl" typeColor="black" disabled={isSubmitting} 
+            <UiButton type="submit" typeSize="xxl" typeColor="black" disabled={form.formState.isSubmitting} 
             onClick={() => {
-              if(!errors.title && !errors.value){
+              if(!form.formState.errors.title && !form.formState.errors.value){
                 setModalNew(!modalNew)
               }
             }} >Salvar</UiButton>

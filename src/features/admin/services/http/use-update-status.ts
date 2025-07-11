@@ -27,8 +27,8 @@ const UpdateStatus = (onSuccessCallback: () => void) => {
   }
 
   return {
-    onSubmit,
-    errors
+    onSubmitStatus: onSubmit,
+    errorsStatus: errors
   }
 }
 

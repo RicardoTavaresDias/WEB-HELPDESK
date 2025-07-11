@@ -3,46 +3,44 @@ import { Input } from "@/components/ui/input"
 import { UiButton } from "@/components/ui/UiButton"
 import { Loading } from "@/components/ui/loading"
 import { Alert } from "@/components/ui/alert"
+import type { ServicesSchemaType } from "../schemas/services-schema"
+import type { UseFormReturn } from "react-hook-form";
 
 type UpdateMOdalType = {
   modalEdition: boolean
   setModalEdition: (value: boolean) => void
-  form: any
+  form: { 
+    formUpdate:  UseFormReturn<ServicesSchemaType>
+    onSubmitUpdate: (data: ServicesSchemaType) => void
+  }
 }
 
 const UpdateModal = ({ modalEdition, setModalEdition, form }: UpdateMOdalType) => {
-    const {
-      handleSubmit,
-      onSubmit,
-      register,
-      errors,
-      isSubmitting,
-      reset
-    } = form
+    const { formUpdate, onSubmitUpdate } = form
 
   return (
     <>
-      {isSubmitting && <Loading />}
-      <Alert severity="error" open={!!errors.root?.message}>
-        {errors.root?.message}
+      {formUpdate.formState.isSubmitting && <Loading />}
+      <Alert severity="error" open={!!formUpdate.formState.errors.root?.message}>
+        {formUpdate.formState.errors.root?.message}
       </Alert>
-      <Alert severity="success" open={!!errors.root?.success}>
-        {typeof errors.root?.success === "string" && errors.root.success}
+      <Alert severity="success" open={!!formUpdate.formState.errors.root?.success}>
+        {typeof formUpdate.formState.errors.root?.success === "string" && formUpdate.formState.errors.root.success}
       </Alert>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={formUpdate.handleSubmit(onSubmitUpdate)}>
         <Modal.Root isActive={modalEdition}>
           <Modal.Title title="Cadastro de serviço" onClose={() => {
             setModalEdition(!modalEdition)
-            reset()
+            formUpdate.reset()
           }} />
           <Modal.Context>
-            <Input type="text" {...register("title")} label="Título" error={errors.title && errors.title.message} />
-            <Input type="text" {...register("value")} label="Valor"  error={errors.value && errors.value.message} />
+            <Input type="text" {...formUpdate.register("title")} label="Título" error={formUpdate.formState.errors.title && formUpdate.formState.errors.title.message} />
+            <Input type="text" {...formUpdate.register("value")} label="Valor"  error={formUpdate.formState.errors.value && formUpdate.formState.errors.value.message} />
           </Modal.Context>
           <Modal.Actions>
-            <UiButton type="submit" typeSize="xxl" typeColor="black" disabled={isSubmitting} onClick={() => {
-              if(!errors.title && !errors.value){
+            <UiButton type="submit" typeSize="xxl" typeColor="black" disabled={formUpdate.formState.isSubmitting} onClick={() => {
+              if(!formUpdate.formState.errors.title && !formUpdate.formState.errors.value){
                 setModalEdition(!modalEdition)
               }
             }} >Salvar</UiButton>

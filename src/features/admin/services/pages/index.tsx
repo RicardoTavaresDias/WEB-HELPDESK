@@ -22,41 +22,28 @@ export function AdminServices(){
   const [modalEdition, setModalEdition] = useState(false)
   const [serviceId, setServicesId] = useState("")
 
-  const {
-    data,
-    fethLoad,
-    isLoading,
-    messageError,
-    page,
-    pagination,
-    setPage
-  } = IndexServices()
-
-  const {
-    errors,
-    onSubmit
-  } = UpdateStatus(fethLoad)
-
-  const form = updateServices({ onSuccessCallback: fethLoad, id: serviceId })
+  const formIndex = IndexServices()
+  const { errorsStatus, onSubmitStatus} = UpdateStatus(formIndex.fethLoad)
+  const { formUpdate, onSubmitUpdate } = updateServices({ onSuccessCallback: formIndex.fethLoad, id: serviceId })
 
   return (
     <>
-      {isLoading && <Loading />}
-      <Alert severity="error" open={!!messageError}>{messageError}</Alert>
-      <Alert severity="error" open={!!errors.root?.message}>
-        {errors.root?.message}
+      {formIndex.isLoading && <Loading />}
+      <Alert severity="error" open={!!formIndex.messageError}>{formIndex.messageError}</Alert>
+      <Alert severity="error" open={!!errorsStatus.root?.message}>
+        {errorsStatus.root?.message}
       </Alert>
 
       <CreateModal 
         modalNew={modalNew}
         setModalNew={setModalNew}
-        fethLoad={fethLoad}
+        fethLoad={formIndex.fethLoad}
       />
 
       <UpdateModal 
         modalEdition={modalEdition}
         setModalEdition={setModalEdition}
-        form={form}
+        form={{ formUpdate, onSubmitUpdate }}
       />
 
       <div className="mb-7">
@@ -75,7 +62,7 @@ export function AdminServices(){
             </Table.Header>
     
             <Table.Body>
-              {data && data.map((item) => (
+              {formIndex.data && formIndex.data.map((item) => (
                 <tr className="border-t border-gray-500 text-left" key={item.id} >
                   <Table.Cell clas="lg:w-1/2 " internalSpacing="px-2 py-3 lg:px-4 lg:py-3">
                     <div className="max-sm:w-20 truncate ">
@@ -101,17 +88,17 @@ export function AdminServices(){
 
                     <Table.Cell clas="flex justify-end" internalSpacing="px-2.5 py-3 lg:px-4 lg:py-3">
                       <div className="flex items-center gap-1 mr-2.5 max-sm:hidden">
-                        {item.serviceStatus === "active" && <><IconBan className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />Desativar</>}
-                        {item.serviceStatus === "inactive" && <><IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />Reativar</>}
+                        {item.serviceStatus === "active" && <><IconBan className="w-4 h-4 cursor-pointer" onClick={() => onSubmitStatus(item.id, item.serviceStatus)} />Desativar</>}
+                        {item.serviceStatus === "inactive" && <><IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => onSubmitStatus(item.id, item.serviceStatus)} />Reativar</>}
                       </div>
                       <div className="flex items-center gap-1 mr-2.5 lg:hidden">
-                        {item.serviceStatus === "active" && <IconBan className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />}
-                        {item.serviceStatus === "inactive" && <IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => onSubmit(item.id, item.serviceStatus)} />}
+                        {item.serviceStatus === "active" && <IconBan className="w-4 h-4 cursor-pointer" onClick={() => onSubmitStatus(item.id, item.serviceStatus)} />}
+                        {item.serviceStatus === "inactive" && <IconCicloCheck className="w-4 h-4 cursor-pointer" onClick={() => onSubmitStatus(item.id, item.serviceStatus)} />}
                       </div>
                       <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} onClick={() => {
                         setModalEdition(!modalEdition)
-                        form.setValue("title", item.titleService)
-                        form.setValue("value", currency({ price: item.value }))
+                        formUpdate.setValue("title", item.titleService)
+                        formUpdate.setValue("value", currency({ price: item.value }))
                         setServicesId(item.id)
                       }} />
                     </Table.Cell>
@@ -124,14 +111,14 @@ export function AdminServices(){
       
       {/* PAGINAÇÃO */}
       <Pagination.Root>
-        <Pagination.Previous previous={pagination?.previous} onClick={() => setPage(page - 1)} />
+        <Pagination.Previous previous={formIndex.pagination?.previous} onClick={() => formIndex.setPage(formIndex.page - 1)} />
           <Pagination.Body 
-            pagination={pagination} 
-            onClickPrevius={() => setPage(pagination?.previous as number)} 
-            onClickNext={() => setPage(pagination?.next as number)}
-            page={page}
+            pagination={formIndex.pagination} 
+            onClickPrevius={() => formIndex.setPage(formIndex.pagination?.previous as number)} 
+            onClickNext={() => formIndex.setPage(formIndex.pagination?.next as number)}
+            page={formIndex.page}
           />
-          <Pagination.Next next={pagination?.next} onClick={() => setPage(page + 1)} />
+          <Pagination.Next next={formIndex.pagination?.next} onClick={() => formIndex.setPage(formIndex.page + 1)} />
       </Pagination.Root>
       {/* PAGINAÇÃO */}
     </>

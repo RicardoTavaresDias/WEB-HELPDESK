@@ -21,7 +21,7 @@ const updateServices = ({ onSuccessCallback, id }: { onSuccessCallback: () => vo
     form.setValue("value", currency({ formatPrice: form.watch("value") }))
   },[form.watch("value")])
 
-  const onSubmit = async ({ title, value }: any) => {
+  const onSubmit = async ({ title, value }: ServicesSchemaType) => {
     try{
       const response = await api.patch(`/services/${id}`, {
         title, 
@@ -42,13 +42,8 @@ const updateServices = ({ onSuccessCallback, id }: { onSuccessCallback: () => vo
   }
 
   return {
-    onSubmit,
-    errors: form.formState.errors,
-    handleSubmit: form.handleSubmit,
-    isSubmitting: form.formState.isSubmitting,
-    register: form.register,
-    reset: form.reset,
-    setValue: form.setValue
+    onSubmitUpdate: onSubmit,
+    formUpdate: form
   }
 }
 

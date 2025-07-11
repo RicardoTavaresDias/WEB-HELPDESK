@@ -21,7 +21,7 @@ const createServices = (onSuccessCallback: () => void) => {
     form.setValue("value", currency({ formatPrice: form.watch("value") }))
   },[form.watch("value")])
 
-  const onSubmit = async ({ title, value }: any) => {
+  const onSubmit = async ({ title, value }: ServicesSchemaType) => {
     try{
       const response = await api.post(`/services`, {
         title, 
@@ -44,11 +44,7 @@ const createServices = (onSuccessCallback: () => void) => {
 
   return {
     onSubmit,
-    errors: form.formState.errors,
-    handleSubmit: form.handleSubmit,
-    isSubmitting: form.formState.isSubmitting,
-    register: form.register,
-    reset: form.reset
+    form
   }
 }
 
