@@ -3,28 +3,16 @@ import { ButtonTime } from "@/components/ui/buttonTime"
 import { useAuth } from "@/hooks/useAuth"
 import { hourFormatList } from "@/lib/formatHours"
 
-type SessionUser = {
-  id: string
-  name: string
-  avatar: string
-  useHours: {
-    startTime: string; // pode virar Date depois
-    endTime: string;
-  }[]
-}
-
 type FormattedHour = {
   id: string;
   name: string
   avatar: string
-  userHours: string[][]; // ou string[][]
+  userHours: string[][]
 };
-
 
 export const FormHoursTechnical = () => {
    const { session } = useAuth()
-
-  
+   
   const data: FormattedHour[] = hourFormatList(session?.user as any)
 
   return (

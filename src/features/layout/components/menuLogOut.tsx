@@ -14,9 +14,8 @@ type MenuLogOutProps = {
 
 export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutProps){
   const { menuRef, open, setOpen } = useOpenModal()
-  const { isModal }: any = useProfile()
+  const { isModal } = useProfile()
   const { remove, session } = useAuth()
-
 
   return (
     <div ref={menuRef}>

@@ -20,7 +20,7 @@ export function Menu({ element, open, setOpen }: MenuType ) {
   const button = {
     active: "text-gray-600 bg-blue-dark",
     notActive: "text-gray-400 hover:bg-gray-200 hover:text-gray-600 ",
-  };
+  }
 
   return (
     <>

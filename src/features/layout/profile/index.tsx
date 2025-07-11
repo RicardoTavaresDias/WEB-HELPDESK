@@ -9,19 +9,12 @@ import { FormHoursTechnical } from "./components/form-hours-technical";
 import { FormChooseAvatar } from "./components/form-choose-avatar";
 import { FormProfile } from "./components/form-profile";
 import { UiButton } from "@/components/ui/UiButton";
-import type { UseFormReturn } from "react-hook-form";
 
 type IsProfileProps = {
   myProfile: "technical" | "customers"
 }
 
-type FormDataUserType = {
-  name: string;
-  email: string;
-  password: string;
-}
-
-export function IsProfile({myProfile}: IsProfileProps){
+export function IsProfile({ myProfile }: IsProfileProps){
   const [modalPassword, setModalPassword] = useState(false)
   const { profileModal, isModal } = useProfile()
   const [imagePreview, setImagePreview] = useState<string | null>(null)
@@ -61,7 +54,7 @@ export function IsProfile({myProfile}: IsProfileProps){
                 isModal={isModal}
                 modalPassword={modalPassword}
                 setModalPassword={setModalPassword}
-                form={form as UseFormReturn<FormDataUserType>}
+                form={form}
               />
               {/* Formulario */}
             </div>
