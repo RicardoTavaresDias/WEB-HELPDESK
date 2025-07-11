@@ -8,7 +8,6 @@ import { Avatar } from "@/components/ui/avatar";
 import { Alert } from "@/components/ui/alert";
 import { Pagination } from "@/components/pagination";
 import { Loading } from "@/components/ui/loading";
-
 import { ModalUpdateCustomers } from "../components/update-modal"
 import { ModalRemoveCustomers } from "../components/remove-modal"
 import  { indexCustomers } from "../http/use-customers"
@@ -17,27 +16,8 @@ import { updateCustomer } from "../http/use-update-customers";
 export function IndexAdminCustomer(){
   const [modalRemove, setModalRemove] = useState(false)
   const [modalEdition, setModalEdition] = useState(false)
-
-  const {
-    isLoading,
-    messageError,
-    page,
-    pagination,
-    setPage,
-    users,
-    fethLoad    
-  } = indexCustomers()
-
-   const {
-      user,
-      setUser,
-      reset,
-      errors,
-      handleSubmit,
-      onSubmit,
-      register,
-      isSubmitting
-  } = updateCustomer(fethLoad)
+  const { isLoading, messageError, page, pagination, setPage, users, fethLoad } = indexCustomers()
+  const { user, setUser, formUpdate, onSubmit } = updateCustomer(fethLoad)
 
   return (
     <>
@@ -57,7 +37,7 @@ export function IndexAdminCustomer(){
 
       {/* Modal Update */}
       <ModalUpdateCustomers
-        form={{ register, handleSubmit, onSubmit, errors, isSubmitting, reset }}
+        form={{ onSubmit, formUpdate }}
         setModalEdition={setModalEdition}
         modalEdition={modalEdition}
         user={{ name: user.name, avatar: user.avatar }}

@@ -12,11 +12,7 @@ type ModalUpdateCustomerType = {
 } 
 
 export const ModalRemoveCustomers = ({ userId, fethLoad, modalRemove, setModalRemove }: ModalUpdateCustomerType) => {
-   const {
-      onRemove,
-      message,
-      isLoadingRemove
-    } = removeCustomer (fethLoad)
+   const { onRemove, message, isLoadingRemove } = removeCustomer (fethLoad)
 
   return (
     <>

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { userSchema } from "@/features/admin/technicals/schemas/technical.schema"
+import { userSchema as UserCustomerSchema, type UserTechnicalType as UserCustomerSchemaType } from "@/features/admin/technicals/schemas/technical.schema"
 import { useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod'
 import { api } from "@/services/api"
@@ -14,20 +14,20 @@ const updateCustomer = (onSuccessCallback: () => void) => {
     avatar: ""
   })
 
-  const form = useForm({
+  const form = useForm<UserCustomerSchemaType>({
     defaultValues: {
       name: "",
       email: ""
     },
     criteriaMode: 'all',
     mode: 'all',
-    resolver: zodResolver(userSchema)  // refazer schema para Customer
+    resolver: zodResolver(UserCustomerSchema)
   })
 
   form.setValue("name", user.name)
   form.setValue("email", user.email)
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: UserCustomerSchemaType) => {
     const formData = new FormData();
     formData.append("data", JSON.stringify({ ...data }))
 
@@ -47,14 +47,10 @@ const updateCustomer = (onSuccessCallback: () => void) => {
   }
   
   return {
-    errors: form.formState.errors,
-    register: form.register,
-    handleSubmit: form.handleSubmit,
-    isSubmitting: form.formState.isSubmitting,
+    formUpdate: form,
     onSubmit,
     user,
-    setUser,
-    reset: form.reset
+    setUser
   }
 }
 
