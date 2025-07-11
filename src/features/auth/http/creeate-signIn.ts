@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router"
 import { useAuth } from "@/hooks/useAuth"
-import { signinSchema } from "@/features/auth/schemas/AuthSchema"
+import { signinSchema, type signinSchemaType } from "@/features/auth/schemas/AuthSchema"
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { AxiosError } from "axios"
@@ -10,7 +10,7 @@ const useSignin = () => {
   const navigate = useNavigate()
   const { save } = useAuth()
 
-  const form = useForm({
+  const form = useForm<signinSchemaType>({
     defaultValues: {
       email: "",
       password: ''
@@ -20,7 +20,7 @@ const useSignin = () => {
     resolver: zodResolver(signinSchema)
   })
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: signinSchemaType) => {
     try{
       const response = await api.post("/", { 
         ...data
@@ -42,11 +42,8 @@ const useSignin = () => {
   }
 
   return {
-    register: form.register,
-    handleSubmit: form.handleSubmit,
+    form,
     onSubmit,
-    isSubmitting: form.formState.isSubmitting,
-    errors: form.formState.errors
   }
 }
 
