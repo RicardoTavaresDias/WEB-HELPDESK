@@ -1,4 +1,4 @@
-import { userTechnicalSchema } from "../schemas/technical.schema";
+import { userTechnicalSchema, type UserTechnicalSchemaType } from "../schemas/technical.schema";
 import { formatHours } from "@/lib/formatHours";
 import { AxiosError } from "axios"
 import { useState } from "react"
@@ -9,7 +9,7 @@ import { api } from "@/services/api";
 const createTechnicals = () => {
   const [user, setUser] = useState<string[]>([])
 
-  const form = useForm({
+  const form = useForm<UserTechnicalSchemaType>({
     defaultValues: {
       name: "",
       email: "",
@@ -17,7 +17,7 @@ const createTechnicals = () => {
     },
     criteriaMode: 'all',
     mode: 'all',
-    resolver: zodResolver(userTechnicalSchema )
+    resolver: zodResolver(userTechnicalSchema)
   })
 
   const onCancel = () => {
@@ -25,7 +25,7 @@ const createTechnicals = () => {
     setUser([])
   }
   
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: UserTechnicalSchemaType) => {
     const hours = formatHours(user)
     const dataUserHours = { 
       role: "technical", 
@@ -52,10 +52,7 @@ const createTechnicals = () => {
 
   return {
     onSubmit,
-    errors: form.formState.errors,
-    handleSubmit: form.handleSubmit,
-    isSubmitting: form.formState.isSubmitting,
-    register: form.register,
+    form,
     user,
     setUser,
     onCancel

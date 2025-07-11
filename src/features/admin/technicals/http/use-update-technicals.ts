@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { userSchema } from "../schemas/technical.schema"
+import { userSchema, type UserTechnicalType as UserTechnicalTypeSchema } from "../schemas/technical.schema"
 import { UserHours } from "./use-hours"
 import { AxiosError } from 'axios';
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -17,7 +17,7 @@ const updateTechnicals = (uuid: string) => {
     userHours: [],
   });
 
-  const form = useForm({
+  const form = useForm<UserTechnicalTypeSchema>({
     criteriaMode: 'all',
     mode: 'all',
     resolver: zodResolver(userSchema)
@@ -41,7 +41,7 @@ const updateTechnicals = (uuid: string) => {
 
   const userHours = new UserHours(setUser as any)
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: UserTechnicalTypeSchema) => {
     const formData = new FormData();
     formData.append("data", JSON.stringify({ ...data, userHours: userHours.result(user as any) }))
 
@@ -59,15 +59,12 @@ const updateTechnicals = (uuid: string) => {
 
   return {
     user,
-    errors: form.formState.errors,
-    register: form.register,
-    handleSubmit: form.handleSubmit,
-    isSubmitting: form.formState.isSubmitting,
+    form,
     onSubmit,
     removeUserHours: userHours.removeUserHours,
     addUserHours: userHours.addUserHours,
     resetClose,
-    isLoading: form.formState.isLoading
+    
   }
 }
 

@@ -9,31 +9,22 @@ import { Alert } from "@/components/ui/alert"
 import { Loading } from "@/components/ui/loading"
 
 export function CreateAdminTechnicals(){
-  const { 
-    onSubmit,
-    errors,
-    handleSubmit,
-    isSubmitting,
-    register,
-    user,
-    setUser,
-    onCancel
-  } = createTechnicals()
+  const { onSubmit, form, user, setUser, onCancel } = createTechnicals()
   
   return (
     <>
-      {isSubmitting && <Loading />}
-      <Alert severity="error" open={!!errors.root?.message}>
-        {errors.root?.message}
+      {form.formState.isSubmitting && <Loading />}
+      <Alert severity="error" open={!!form.formState.errors.root?.message}>
+        {form.formState.errors.root?.message}
       </Alert>
-      <Alert severity="success" open={!!errors.root?.success}>
-        {typeof errors.root?.success === "string" && errors.root.success}
+      <Alert severity="success" open={!!form.formState.errors.root?.success}>
+        {typeof form.formState.errors.root?.success === "string" && form.formState.errors.root.success}
       </Alert>
-      <Alert severity="info" open={!!errors.root?.info}>
-        {typeof errors.root?.info === "string" && errors.root.info}
+      <Alert severity="info" open={!!form.formState.errors.root?.info}>
+        {typeof form.formState.errors.root?.info === "string" && form.formState.errors.root.info}
       </Alert>
 
-      <form onSubmit={handleSubmit(onSubmit)} >
+      <form onSubmit={form.handleSubmit(onSubmit)} >
         <Modules.Root>
           <Modules.Title title="Perfil de técnico" to="/tecnicos">
             <UiButton type="button" typeColor="gray" typeSize="xl" onClick={() => onCancel()}>Cancelar</UiButton>
@@ -49,30 +40,30 @@ export function CreateAdminTechnicals(){
                 </div>
             
                 <Input 
-                  {...register("name")} 
+                  {...form.register("name")} 
                   type="text" 
                   label="nome" 
                   placeholder="Nome completo" 
-                  error={errors.name && errors.name.message}
+                  error={form.formState.errors.name?.message}
                   autoComplete="current-name"
                 />
                 
                 <Input 
-                  {...register("email")} 
+                  {...form.register("email")} 
                   type="text" 
                   label="e-mail" 
                   placeholder="exemplo@mail.com" 
-                  error={errors.email && errors.email.message}
+                  error={form.formState.errors.email?.message}
                   autoComplete="current-email"
                 />
 
                 <Input 
-                  {...register("password")} 
+                  {...form.register("password")} 
                   type="password" 
                   label="senha" 
                   placeholder="Defina a senha de acesso" 
-                  textLabel={errors.password ? "" : "Mínimo de 6 dígitos"} 
-                  error={errors.password && errors.password.message}
+                  textLabel={form.formState.errors.password ? "" : "Mínimo de 6 dígitos"} 
+                  error={form.formState.errors.password?.message}
                   autoComplete="current-password"
                 />
               </div> 

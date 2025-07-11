@@ -3,54 +3,39 @@ import { ButtonTime } from "@/components/ui/buttonTime";
 import { Modules } from "@/components/modules";
 import { UiButton } from "@/components/ui/UiButton";
 import { day } from "@/lib/day";
-
 import { v4 as uuid } from "uuid";
 import { Alert } from "@/components/ui/alert";
 import { Loading } from "@/components/ui/loading";
 import { Avatar } from "@/components/ui/avatar";
-
 import { updateTechnicals } from "../http/use-update-technicals"
 import { useParams } from "react-router";
 
 export function UpdateAdminTechnicals() {
   const { id } = useParams()
-
-  const {
-    user,
-    register,
-    handleSubmit,
-    onSubmit,
-    isSubmitting,
-    errors,
-    addUserHours,
-    removeUserHours,
-    resetClose,
-    isLoading
-  } = updateTechnicals(id as string)
-
+  const { user, form, onSubmit, addUserHours, removeUserHours, resetClose, } = updateTechnicals(id as string)
 
   return (
     <>
-      {isSubmitting && <Loading /> || isLoading && <Loading/>}
-      <Alert severity="error" open={!!errors.root?.message}>
-        {errors.root?.message}
+      {form.formState.isSubmitting && <Loading /> || form.formState.isLoading && <Loading/>}
+      <Alert severity="error" open={!!form.formState.errors.root?.message}>
+        {form.formState.errors.root?.message}
       </Alert>
-      <Alert severity="success" open={!!errors.root?.success}>
-        {typeof errors.root?.success === "string" && errors.root.success}
+      <Alert severity="success" open={!!form.formState.errors.root?.success}>
+        {typeof form.formState.errors.root?.success === "string" && form.formState.errors.root.success}
       </Alert>
-      <Alert severity="info" open={!!errors.root?.info}>
-        {typeof errors.root?.info === "string" && errors.root.info}
+      <Alert severity="info" open={!!form.formState.errors.root?.info}>
+        {typeof form.formState.errors.root?.info === "string" && form.formState.errors.root.info}
       </Alert>
 
       <Modules.Root>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
           <Modules.Title title="Perfil de técnico" to="/tecnicos">
             <UiButton
               type="button"
               typeColor="gray"
               typeSize="xl"
               onClick={() => resetClose()}
-              disabled={isSubmitting}
+              disabled={form.formState.isSubmitting}
             >
               Cancelar
             </UiButton>
@@ -58,7 +43,7 @@ export function UpdateAdminTechnicals() {
               type="submit"
               typeColor="black"
               typeSize="xl"
-              disabled={isSubmitting}
+              disabled={form.formState.isSubmitting}
             >
               Salvar
             </UiButton>
@@ -78,8 +63,8 @@ export function UpdateAdminTechnicals() {
                 <div className="my-6">
                   {user && <Avatar user={user} size="w-18 h-18" sizeText="text-[22px]" /> }
                 </div>
-                <Input type="text" {...register("name")} label="nome" error={errors.name?.message} />
-                <Input type="text" {...register("email")} label="e-mail" error={errors.email?.message} />
+                <Input type="text" {...form.register("name")} label="nome" error={form.formState.errors.name?.message} />
+                <Input type="text" {...form.register("email")} label="e-mail" error={form.formState.errors.email?.message} />
               </div>
             </Modules.Context>
 

@@ -9,7 +9,6 @@ import { Fragment } from "react";
 import { Alert } from "@/components/ui/alert";
 import { Loading } from "@/components/ui/loading";
 import { Table } from "@/components/table"
-
 import { Pagination } from "@/components/pagination"
 import { indexTechnicals } from "../http/use-technicals"
 
