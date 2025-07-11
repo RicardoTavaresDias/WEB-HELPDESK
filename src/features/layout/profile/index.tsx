@@ -27,8 +27,6 @@ export function IsProfile({myProfile}: IsProfileProps){
   const [imagePreview, setImagePreview] = useState<string | null>(null)
   const { onSubmit, form, fileRef } = profileUpdate()
 
-  console.log("foi")
-
   return (
     <>
       {form.formState.isSubmitting && <Loading />}

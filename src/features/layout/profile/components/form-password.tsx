@@ -25,7 +25,18 @@ export const FormPassword = ({ isModal, modalPassword, setModalPassword }: FormP
    
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <Modal.Root isActive={modalPassword}>
-          <Modal.Title title="Alterar senha" onClose={() => {setModalPassword(!modalPassword)}} onClick={() => {isModal(); setModalPassword(!modalPassword)}} />
+          <Modal.Title title="Alterar senha" 
+            onClose={() => {
+              setModalPassword(!modalPassword)
+              form.reset()
+            }
+          } 
+            onClick={() => {
+              isModal()
+              form.reset()
+              setModalPassword(!modalPassword)
+            }
+          } />
           <Modal.Context >
             <div>
               <Input type="password" {...form.register("oldPassword")} label="Senha atual" placeholder="Digite sua senha atual" autoComplete="oldPassword" />
