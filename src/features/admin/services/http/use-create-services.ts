@@ -18,7 +18,7 @@ const createServices = (onSuccessCallback: () => void) => {
   })
 
   useEffect(() => {
-    form.setValue("value", currency({ formatPrice: form.watch("value") }))
+    form.setValue("value", currency({ formatPriceInput: form.watch("value") }))
   },[form.watch("value")])
 
   const onSubmit = async ({ title, value }: ServicesSchemaType) => {

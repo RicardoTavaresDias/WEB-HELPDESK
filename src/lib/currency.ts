@@ -1,15 +1,24 @@
 type currency = {
-  price?: string
-  formatPrice?: string
+  coinFormatCents?: string 
+  formatPriceInput?: string 
 }
 
-export function currency({ price, formatPrice }: currency): string{
+export function currency({ coinFormatCents, formatPriceInput }: currency): string{
+
+  if(coinFormatCents) {
+    const format = new Intl.NumberFormat("pt-BR", {
+      style: 'currency',
+      currency: "BRL"
+    }).format(Number(coinFormatCents))
+
+    return format
+  }
 
   // Remove tudo que não for número
-  const numeric = price ? price.replace(/\D/g, "") : formatPrice?.replace(/\D/g, "")
+  const numeric = formatPriceInput?.replace(/\D/g, "")
 
   // Divide por 100 para ter centavos Number(numeric) / 100
-  const iscurrency = price ? Number(numeric) : Number(numeric) / 100
+  const iscurrency =  Number(numeric) / 100
 
   const convert = iscurrency.toLocaleString("pt-BR", {
     style: "currency",

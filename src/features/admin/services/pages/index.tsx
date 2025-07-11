@@ -73,7 +73,7 @@ export function AdminServices(){
 
                     <Table.Cell clas=" lg:w-full" internalSpacing="px-1 py-3 lg:px-4 lg:py-3">
                       <div className="max-sm:w-22">
-                        <span >{currency({ price: item.value })}</span>
+                        <span >{currency({ coinFormatCents: item.value })}</span>
                       </div>
                     </Table.Cell>
 
@@ -98,7 +98,7 @@ export function AdminServices(){
                       <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} onClick={() => {
                         setModalEdition(!modalEdition)
                         formUpdate.setValue("title", item.titleService)
-                        formUpdate.setValue("value", currency({ price: item.value }))
+                        formUpdate.setValue("value", currency({ coinFormatCents: item.value }))
                         setServicesId(item.id)
                       }} />
                     </Table.Cell>
