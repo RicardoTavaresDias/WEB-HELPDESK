@@ -36,11 +36,11 @@ const UpdateModal = ({ modalEdition, setModalEdition, form }: UpdateMOdalType) =
           }} />
           <Modal.Context>
             <Input type="text" {...formUpdate.register("title")} label="Título" error={formUpdate.formState.errors.title && formUpdate.formState.errors.title.message} />
-            <Input type="text" {...formUpdate.register("value")} label="Valor"  error={formUpdate.formState.errors.value && formUpdate.formState.errors.value.message} />
+            <Input type="text" {...formUpdate.register("price")} label="Valor"  error={formUpdate.formState.errors.price && formUpdate.formState.errors.price.message} />
           </Modal.Context>
           <Modal.Actions>
             <UiButton type="submit" typeSize="xxl" typeColor="black" disabled={formUpdate.formState.isSubmitting} onClick={() => {
-              if(!formUpdate.formState.errors.title && !formUpdate.formState.errors.value){
+              if(!formUpdate.formState.errors.title && !formUpdate.formState.errors.price){
                 setModalEdition(!modalEdition)
               }
             }} >Salvar</UiButton>

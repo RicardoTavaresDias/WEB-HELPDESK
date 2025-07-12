@@ -10,7 +10,7 @@ const createServices = (onSuccessCallback: () => void) => {
   const form = useForm<ServicesSchemaType>({
     defaultValues: {
       title: "",
-      value: ""
+      price: ""
     },
     criteriaMode: 'all',
     mode: 'all',
@@ -18,14 +18,14 @@ const createServices = (onSuccessCallback: () => void) => {
   })
 
   useEffect(() => {
-    form.setValue("value", currency({ formatPriceInput: form.watch("value") }))
-  },[form.watch("value")])
+    form.setValue("price", currency({ formatPriceInput: form.watch("price") }))
+  },[form.watch("price")])
 
-  const onSubmit = async ({ title, value }: ServicesSchemaType) => {
+  const onSubmit = async ({ title, price }: ServicesSchemaType) => {
     try{
       const response = await api.post(`/services`, {
         title, 
-        value: value.replace("R$", "").trim()
+        price: price.replace("R$", "").trim()
       })
 
       form.reset()

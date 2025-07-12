@@ -1,6 +1,6 @@
 export type DataServicesType = {
   id: string
   titleService: string
-  value: string
+  price: string
   serviceStatus: "inactive" | "active"
 }
