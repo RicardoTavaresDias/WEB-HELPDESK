@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { userSchema as UserCustomerSchema, type UserTechnicalType as UserCustomerSchemaType } from "@/features/admin/technicals/schemas/technical.schema"
 import { useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -24,16 +24,20 @@ const updateCustomer = (onSuccessCallback: () => void) => {
     resolver: zodResolver(UserCustomerSchema)
   })
 
-  form.setValue("name", user.name)
-  form.setValue("email", user.email)
+  useEffect(() => {
+    form.reset({
+      name: user.name,
+      email: user.email
+    })
+  },[user])
 
   const onSubmit = async (data: UserCustomerSchemaType) => {
     const formData = new FormData();
     formData.append("data", JSON.stringify({ ...data }))
 
     try {  
-      const response = await api.patch(`/user/${user.id}`, formData)
-      form.setError("root", { success: response.data.message } as object) 
+      await api.patch(`/user/${user.id}`, formData)
+      form.setError("root", { success: "Dados atuliazado com sucesso." } as object) 
       if (onSuccessCallback) {
         onSuccessCallback() // Chama a função de recarregamento
       }

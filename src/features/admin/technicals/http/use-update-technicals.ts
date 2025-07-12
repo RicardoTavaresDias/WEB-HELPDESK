@@ -27,8 +27,12 @@ const updateTechnicals = (uuid: string) => {
     searchUserUIID({ form, setUser, uuid})
   }, [])
 
-  form.setValue("name", user.name)
-  form.setValue("email", user.email)
+  useEffect(() => {
+    form.reset({
+      name: user.name,
+      email: user.email
+    })
+  }, [user.name, user.email])
 
    useEffect(() => {
     resetClose()
@@ -46,8 +50,8 @@ const updateTechnicals = (uuid: string) => {
     formData.append("data", JSON.stringify({ ...data, userHours: userHours.result(user as any) }))
 
     try {  
-      const response = await api.patch(`/user/${uuid}`, formData)
-      form.setError("root", { success: response.data.message } as object) 
+      await api.patch(`/user/${uuid}`, formData)
+      form.setError("root", { success: "Dados atualizado com sucesso." } as object) 
     } catch (error: any) {
       if(error instanceof AxiosError) {
         return form.setError("root", {info: error.response?.data.message} as any)
@@ -63,8 +67,7 @@ const updateTechnicals = (uuid: string) => {
     onSubmit,
     removeUserHours: userHours.removeUserHours,
     addUserHours: userHours.addUserHours,
-    resetClose,
-    
+    resetClose
   }
 }
 
