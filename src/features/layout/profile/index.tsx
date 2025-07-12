@@ -23,10 +23,10 @@ export function IsProfile({ myProfile }: IsProfileProps){
   return (
     <>
       {form.formState.isSubmitting && <Loading />}
-        <Alert severity="error" open={!!form.formState.errors.root?.message}>
+        <Alert severity="error" open={{status: !!form.formState.errors.root?.message, id: new Date().toISOString()}}>
           {form.formState.errors.root?.message}
         </Alert>
-        <Alert severity="info" open={!!form.formState.errors.root?.info} >
+        <Alert severity="info" open={{status: !!form.formState.errors.root?.info, id: new Date().toISOString()}} >
           {typeof form.formState.errors.root?.info === "string" && form.formState.errors.root.info}
         </Alert>
 

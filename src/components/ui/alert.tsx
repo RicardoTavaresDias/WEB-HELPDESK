@@ -1,11 +1,13 @@
 import { CircleAlert, TriangleAlert, Info, CircleCheckBig, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type AlertType = {
   severity: "success" | "info" | "warning" | "error"
   children: React.ReactNode, 
-  open: boolean
-  onClose?: () => void
+  open: {
+    id: string
+    status: boolean
+  }
 }
 
 const backGraund = {
@@ -15,11 +17,18 @@ const backGraund = {
   error: [" stroke-[#d32f2f]", "bg-error"]
 }
 
-export function Alert({ severity, open, onClose, children }: AlertType) {
-  const [active, setActive] = useState(open)
+export function Alert({ severity, open, children }: AlertType) {
+  const [active, setActive] = useState(open.status)
+  const timeRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
-    setActive(open)
+    setActive(open.status)
+    if(active) {
+      timeRef.current = setTimeout(() => {
+        setActive(false)
+        timeRef.current = null
+      }, 7000)
+    }
   }, [open])
 
   return (
@@ -46,9 +55,14 @@ export function Alert({ severity, open, onClose, children }: AlertType) {
             </div>
           </div>
           <X className="stroke-gray-400 w-4 h-4 cursor-pointer flex-shrink-0" 
-            onClick={
-              typeof onClose === "function" ? onClose : () => setActive(!active)
-            } 
+            onClick={() => {
+              if (timeRef.current) {
+                clearTimeout(timeRef.current);
+                timeRef.current = null;
+              }
+                          
+              setActive(!active)
+            }} 
           />
         </div>
       </div>
