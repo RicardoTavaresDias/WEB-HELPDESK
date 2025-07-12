@@ -11,7 +11,7 @@ export function Signin() {
 
   return (
     <>
-      <Alert severity="error" open={!!form.formState.errors.root?.message}>
+      <Alert severity="error" open={!!form.formState.errors.root?.message} onClose={form.clearErrors} >
         {form.formState.errors.root?.message}
       </Alert>
       {form.formState.isSubmitting && <Loading />}

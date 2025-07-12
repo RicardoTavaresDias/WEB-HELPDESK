@@ -23,15 +23,15 @@ export function AdminServices(){
   const [serviceId, setServicesId] = useState("")
 
   const formIndex = IndexServices()
-  const { errorsStatus, onSubmitStatus} = UpdateStatus(formIndex.fethLoad)
+  const { formStatus, onSubmitStatus} = UpdateStatus(formIndex.fethLoad)
   const { formUpdate, onSubmitUpdate } = updateServices({ onSuccessCallback: formIndex.fethLoad, id: serviceId })
 
   return (
     <>
       {formIndex.isLoading && <Loading />}
       <Alert severity="error" open={!!formIndex.messageError}>{formIndex.messageError}</Alert>
-      <Alert severity="error" open={!!errorsStatus.root?.message}>
-        {errorsStatus.root?.message}
+      <Alert severity="error" open={!!formStatus.formState.errors.root?.message} onClose={formStatus.clearErrors} >
+        {formStatus.formState.errors.root?.message}
       </Alert>
 
       <CreateModal 

@@ -17,10 +17,10 @@ const CreateModal = ({ modalNew, setModalNew, fethLoad }: CreateModalType) => {
   return (
     <>
       {form.formState.isSubmitting && <Loading />}
-      <Alert severity="error" open={!!form.formState.errors.root?.message}>
+      <Alert severity="error" open={!!form.formState.errors.root?.message} onClose={form.clearErrors} >
         {form.formState.errors.root?.message}
       </Alert>
-      <Alert severity="success" open={!!form.formState.errors.root?.success}>
+      <Alert severity="success" open={!!form.formState.errors.root?.success} onClose={form.clearErrors} >
         {typeof form.formState.errors.root?.success === "string" && form.formState.errors.root.success}
       </Alert>
 

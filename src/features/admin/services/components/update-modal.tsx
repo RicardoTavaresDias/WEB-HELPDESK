@@ -21,10 +21,10 @@ const UpdateModal = ({ modalEdition, setModalEdition, form }: UpdateMOdalType) =
   return (
     <>
       {formUpdate.formState.isSubmitting && <Loading />}
-      <Alert severity="error" open={!!formUpdate.formState.errors.root?.message}>
+      <Alert severity="error" open={!!formUpdate.formState.errors.root?.message} onClose={formUpdate.clearErrors} >
         {formUpdate.formState.errors.root?.message}
       </Alert>
-      <Alert severity="success" open={!!formUpdate.formState.errors.root?.success}>
+      <Alert severity="success" open={!!formUpdate.formState.errors.root?.success} onClose={formUpdate.clearErrors}>
         {typeof formUpdate.formState.errors.root?.success === "string" && formUpdate.formState.errors.root.success}
       </Alert>
 
