@@ -26,7 +26,7 @@ export function IsProfile({ myProfile }: IsProfileProps){
         <Alert severity="error" open={!!form.formState.errors.root?.message}>
           {form.formState.errors.root?.message}
         </Alert>
-        <Alert severity="info" open={!!form.formState.errors.root?.info} onClose={() => form.reset()}>
+        <Alert severity="info" open={!!form.formState.errors.root?.info} >
           {typeof form.formState.errors.root?.info === "string" && form.formState.errors.root.info}
         </Alert>
 
