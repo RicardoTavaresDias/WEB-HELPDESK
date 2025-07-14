@@ -39,47 +39,47 @@ export function IndexCalleds() {
               <Table.Head>{""}</Table.Head>
             </Table.Header>
             <Table.Body>
-              {calleds && calleds.map((item) => (
-                <tr className="border-t border-gray-500 text-left" key={item.id}>
+              {calleds && calleds.map((called) => (
+                <tr className="border-t border-gray-500 text-left" key={called.id}>
                   <Table.Cell internalSpacing="px-2 py-3" clas="w-36 text-sm">
-                    {dayjs(item.updatedAt).format("DD/MM/YYYY HH:MM")}
+                    {dayjs(called.updatedAt).format("DD/MM/YYYY HH:MM")}
                   </Table.Cell>
-                  <Table.Cell clas="text-sm">{item.id > 0 && item.id < 10 ? `00${item.id}` : item.id }</Table.Cell>
+                  <Table.Cell clas="text-sm">{called.id > 0 && called.id < 10 ? `00${called.id}` : called.id }</Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-1">
                      <div>
                       <span className="flex flex-col Text-Sm ">
-                        {item.titleCalled}
+                        {called.titleCalled}
                       </span>
-                      {item.services.titleServices}
+                      <span className="text-sm">{called.services[0].titleService}</span>
                     </div>
                   </Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-3 text-sm">
-                    {currency({ coinFormatCents: item.priceTotal.toString() })}
+                    {currency({ coinFormatCents: called.priceTotal.toString()})}
                   </Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-3">
                     <div className="flex gap-2 items-center w-37 truncate ml-1.5">
-                      <Avatar user={{ name: item.UserCustomer.name, avatar: item.UserCustomer.avatar }} size="w-8" sizeText="text-[10px]" />
+                      <Avatar user={{ name: called.UserCustomer.name, avatar: called.UserCustomer.avatar }} size="w-8" sizeText="text-[10px]" />
                       <div className="w-37 truncate">
-                        {item.UserCustomer.name}
+                        {called.UserCustomer.name}
                       </div>
                     </div>
                   </Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-3">
-                    {item.UserTechnical && 
+                    {called.UserTechnical && 
                       <div className="flex gap-2 items-center w-37 truncate ml-1.5">
-                        <Avatar user={{ name: item.UserTechnical.name, avatar: item.UserTechnical.avatar }} size="w-8" sizeText="text-[10px]" />
+                        <Avatar user={{ name: called.UserTechnical.name, avatar: called.UserTechnical.avatar }} size="w-8" sizeText="text-[10px]" />
                         <div className="w-37 truncate">
-                          {item.UserTechnical.name}
+                          {called.UserTechnical.name}
                         </div>
                       </div>
                     }
                   </Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-3">
-                    <Status type={item.callStatus as "open" | "in_progress" | "close"} />
+                    <Status type={called.callStatus as "open" | "in_progress" | "close"} />
                   </Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-3">
                     <div className="flex justify-end pr-1.5">
-                      <Link to={`/chamados/${item.id}`}>
+                      <Link to={`/chamados/${called.id}`}>
                         <UiButton icon={IconPenLine} typeSize="xxs" typeColor="gray" />
                       </Link>
                     </div>
@@ -119,7 +119,7 @@ export function IndexCalleds() {
                             {called.titleCalled}
                           </span>
                           <span className="truncate">
-                            {called.services.titleServices}
+                            {called.services[0].titleService}
                           </span>
                         </div>
                       </Table.Cell>

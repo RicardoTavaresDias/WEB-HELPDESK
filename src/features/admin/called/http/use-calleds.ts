@@ -1,11 +1,11 @@
 import { AxiosError } from "axios"
 import { useEffect, useState, useCallback } from "react"
 import { api } from "@/services/api"
-import type { CalledsMapType, CalledsType } from "../types/calleds-response"
+import type { CalledsType } from "../types/calleds-response"
 import type { PaginationType } from "@/types/pagination"
 
 const indexCalleds = () => {
-  const [data, setData] = useState<CalledsMapType[] | null>(null)
+  const [data, setData] = useState<CalledsType[] | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [messageError, setMessageError] = useState("")
   const [pagination, setPagination] = useState<PaginationType | null>(null)
@@ -20,9 +20,9 @@ const indexCalleds = () => {
       const descriptionServiceCalled = data.map((called: CalledsType) => {
         return {
         ...called,
-          services: { 
-            titleServices: called.services[0].services.titleService 
-          }
+          services: [{ 
+            titleService: called.services[0].titleService 
+          }]
         }
       })
 

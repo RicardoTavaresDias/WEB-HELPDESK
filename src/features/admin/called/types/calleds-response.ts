@@ -1,5 +1,4 @@
-type ServicesType = {
-  id: string
+export type ServicesType = {
   titleService: string
   price: number
 }
@@ -13,23 +12,10 @@ type UserType = {
 
 export type CalledsType = {
   updatedAt: Date
+  createAt: Date
   id: number
   titleCalled: string
-  services: { services: ServicesType }[]
-  UserCustomer: UserType
-  UserTechnical: UserType
-  callStatus: "open" | "in_progess" | "close"
-  priceTotal: number
-  description: string
-}
-
-export type CalledsMapType = {
-  updatedAt: Date
-  id: number
-  titleCalled: string
-  services: {
-    titleServices: string 
-  }
+  services:  ServicesType[]
   UserCustomer: UserType
   UserTechnical: UserType
   callStatus: "open" | "in_progess" | "close"
