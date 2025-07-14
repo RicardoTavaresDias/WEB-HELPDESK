@@ -1,6 +1,6 @@
 const called = [
   {
-    id: "00001",
+    id: "1",
     date: "13/04/25 20:56",
     service: { title: "Rede lenta	", description: "Instalação de Rede	" },
     value: "R$ 180,00",
@@ -30,7 +30,7 @@ const called = [
     value: "R$ 150,00",
     customer: { avatar: "avatar", name: "Aline Souza" },
     technical: { avatar: "avatar", name: "Carlos Silva	" },
-    status: "progress",
+    status: "in_progress",
   },
   {
     id: "00004",
@@ -42,7 +42,7 @@ const called = [
     value: "R$ 200,00",
     customer: { avatar: "avatar", name: "Julia Maria" },
     technical: { avatar: "avatar", name: "Ana Oliveira" },
-    status: "progress",
+    status: "in_progress",
   },
   {
     id: "00005",
@@ -87,7 +87,7 @@ const called = [
     value: "R$ 150,00",
     customer: { avatar: "avatar", name: "Aline Souza" },
     technical: { avatar: "avatar", name: "Carlos Silva	" },
-    status: "progress",
+    status: "in_progress",
   },
   {
     id: "00009",
@@ -99,7 +99,7 @@ const called = [
     value: "R$ 200,00",
     customer: { avatar: "avatar", name: "Julia Maria" },
     technical: { avatar: "avatar", name: "Ana Oliveira" },
-    status: "progress",
+    status: "in_progress",
   },
   {
     id: "000010",
@@ -144,7 +144,7 @@ const called = [
     value: "R$ 150,00",
     customer: { avatar: "avatar", name: "Aline Souza" },
     technical: { avatar: "avatar", name: "Carlos Silva	" },
-    status: "progress",
+    status: "in_progress",
   },
   {
     id: "000014",
@@ -156,7 +156,7 @@ const called = [
     value: "R$ 200,00",
     customer: { avatar: "avatar", name: "Julia Maria" },
     technical: { avatar: "avatar", name: "Ana Oliveira" },
-    status: "progress",
+    status: "in_progress",
   },
   {
     id: "000015",

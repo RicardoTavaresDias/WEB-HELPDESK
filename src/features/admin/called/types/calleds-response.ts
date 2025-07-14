@@ -7,7 +7,8 @@ type ServicesType = {
 type UserType = {
   id: string
   name: string
-  role: "customer" | "technical" | null
+  email: string
+  avatar: string
 }
 
 export type CalledsType = {
@@ -19,6 +20,7 @@ export type CalledsType = {
   UserTechnical: UserType
   callStatus: "open" | "in_progess" | "close"
   priceTotal: number
+  description: string
 }
 
 export type CalledsMapType = {
@@ -32,4 +34,5 @@ export type CalledsMapType = {
   UserTechnical: UserType
   callStatus: "open" | "in_progess" | "close"
   priceTotal: number
+  description: string
 }

@@ -1,4 +1,3 @@
-import avatar from "@/assets/img/Avatar.svg";
 import { IconPenLine } from "@/assets/icon/iconPenLine";
 import { Status } from "@/components/ui/status";
 import { Table } from "@/components/table";
@@ -10,8 +9,9 @@ import { Alert } from "@/components/ui/alert";
 import { currency } from "@/lib/currency";
 import dayjs from "dayjs";
 import { Pagination } from "@/components/pagination";
+import { Avatar } from "@/components/ui/avatar";
 
-export function Called() {
+export function IndexCalleds() {
   const { isLoading, messageError, calleds, pagination, page, setPage } = indexCalleds()
 
   return (
@@ -41,10 +41,10 @@ export function Called() {
             <Table.Body>
               {calleds && calleds.map((item) => (
                 <tr className="border-t border-gray-500 text-left" key={item.id}>
-                  <Table.Cell internalSpacing="px-2 py-3" clas="w-36">
+                  <Table.Cell internalSpacing="px-2 py-3" clas="w-36 text-sm">
                     {dayjs(item.updatedAt).format("DD/MM/YYYY HH:MM")}
                   </Table.Cell>
-                  <Table.Cell>{item.id > 0 && item.id < 10 ? `00${item.id}` : item.id }</Table.Cell>
+                  <Table.Cell clas="text-sm">{item.id > 0 && item.id < 10 ? `00${item.id}` : item.id }</Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-1">
                      <div>
                       <span className="flex flex-col Text-Sm ">
@@ -53,12 +53,12 @@ export function Called() {
                       {item.services.titleServices}
                     </div>
                   </Table.Cell>
-                  <Table.Cell internalSpacing="px-2 py-3">
+                  <Table.Cell internalSpacing="px-2 py-3 text-sm">
                     {currency({ coinFormatCents: item.priceTotal.toString() })}
                   </Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-3">
                     <div className="flex gap-2 items-center w-37 truncate ml-1.5">
-                      <img src={avatar} className="w-5 h-5" />
+                      <Avatar user={{ name: item.UserCustomer.name, avatar: item.UserCustomer.avatar }} size="w-8" sizeText="text-[10px]" />
                       <div className="w-37 truncate">
                         {item.UserCustomer.name}
                       </div>
@@ -67,7 +67,7 @@ export function Called() {
                   <Table.Cell internalSpacing="px-2 py-3">
                     {item.UserTechnical && 
                       <div className="flex gap-2 items-center w-37 truncate ml-1.5">
-                        <img src={avatar} className="w-5 h-5" />
+                        <Avatar user={{ name: item.UserTechnical.name, avatar: item.UserTechnical.avatar }} size="w-8" sizeText="text-[10px]" />
                         <div className="w-37 truncate">
                           {item.UserTechnical.name}
                         </div>
@@ -75,7 +75,7 @@ export function Called() {
                     }
                   </Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-3">
-                    <Status type={item.callStatus as "open" | "progress" | "close"} />
+                    <Status type={item.callStatus as "open" | "in_progress" | "close"} />
                   </Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-3">
                     <div className="flex justify-end pr-1.5">
@@ -124,7 +124,7 @@ export function Called() {
                         </div>
                       </Table.Cell>
                       <Table.Cell internalSpacing="px-2 py-3" clas=" flex justify-center item-center">
-                        <Status type={called.callStatus as "open" | "progress" | "close"} />
+                        <Status type={called.callStatus as "open" | "in_progress" | "close"} />
                       </Table.Cell>
                       <Table.Cell internalSpacing="px-2 py-3">
                         <div className="flex justify-end pr-1.5">

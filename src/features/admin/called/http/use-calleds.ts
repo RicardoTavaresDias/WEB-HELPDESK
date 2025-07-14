@@ -49,8 +49,7 @@ const indexCalleds = () => {
     messageError,
     pagination,
     setPage,
-    page,
-    fethLoad
+    page
   }
 }
 

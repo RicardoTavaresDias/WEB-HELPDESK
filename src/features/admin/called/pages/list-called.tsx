@@ -25,11 +25,11 @@ export function CallListdetails(){
         <Modules.Title title="Chamado detalhado" to="/" >
           {details.status === "open" &&
             <>
-              <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => setDetails({...details, status: "progress"})} >Em Atendimento</UiButton>
+              <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => setDetails({...details, status: "in_progress"})} >Em Atendimento</UiButton>
               <UiButton typeColor="gray" typeSize="md" icon={IconCicloCheckBig} onClick={() => setDetails({...details, status: "close"})} >Encerrado</UiButton>
             </>
           }
-          {details.status === "progress" &&
+          {details.status === "in_progress" &&
             <>
               <UiButton typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => setDetails({...details, status: "open"})} >Aberto</UiButton>
               <UiButton typeColor="gray" typeSize="md" icon={IconCicloCheckBig} onClick={() => setDetails({...details, status: "close"})} >Encerrado</UiButton>
@@ -38,7 +38,7 @@ export function CallListdetails(){
           {details.status === "close" &&
             <>
               <UiButton typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => setDetails({...details, status: "open"})} >Aberto</UiButton>
-              <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => setDetails({...details, status: "progress"})} >Em Atendimento</UiButton>
+              <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => setDetails({...details, status: "in_progress"})} >Em Atendimento</UiButton>
             </>
           }
         </Modules.Title>
@@ -47,8 +47,8 @@ export function CallListdetails(){
           {/* <Conteudo Left> */}
           <Modules.Context isType="50">
             <div className="flex justify-between items-center mb-1">
-              <span className="Text-Xs text-gray-300">{details.id}</span>
-              <Status type={details.status as "open" | "progress" | "close"} isText />
+              <span className="Text-Xs text-gray-300">{details.id > 0 && details.id < 10 ? `00${details.id}` : details.id }</span>
+              <Status type={details.status as "open" | "in_progress" | "close"} isText />
             </div>
   
             <span className="text-gray-200 text-base font-medium">Backup não está funcionando	</span>
