@@ -5,7 +5,7 @@ import { IconCicloCheckBig } from "@/assets/icon/iconCicloCheckBig"
 import { IconBan } from "@/assets/icon/iconBan"
 
 type StatusProps = {
-  type: "open" | "progress" | "close" | "active" | "inactive"
+  type: "open" | "in_progress" | "close" | "active" | "inactive" 
   isIcon?: boolean
   isButton?: boolean // true só icon e false com text
   isText?: boolean
@@ -13,7 +13,7 @@ type StatusProps = {
 
 const status = {
   open: {color:"bg-feedback-open/20 text-feedback-open", Icon: IconCicleHelp , state: "Aberto", fill: "fill-feedback-open"},
-  progress: {color: "bg-feedback-progress/20 text-feedback-progress", Icon: IconClock, state: "Em atendimento", fill: "fill-feedback-progress"},
+  in_progress: {color: "bg-feedback-progress/20 text-feedback-progress", Icon: IconClock, state: "Em atendimento", fill: "fill-feedback-progress"},
   close: {color: "bg-feedback-done/20 text-feedback-done", Icon: IconCicloCheckBig, state: "Encerrado", fill: "fill-feedback-done"},
   active: {color: "bg-feedback-done/20 text-feedback-done", Icon: IconCheck, state:"Ativo", fill: "fill-feedback-done"},
   inactive: {color: "bg-feedback-open/20 text-feedback-open", Icon: IconBan, state: "Inativo", fill: "fill-feedback-open"}

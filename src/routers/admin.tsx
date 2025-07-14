@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router"
 import { Layout } from "@/features/layout"
-import { CallList } from "@/features/admin/called/pages/CalledHomePage"
-import { CallListdetails } from "@/features/admin/called/pages/CalledListPage"
+import { Called } from "@/features/admin/called/pages"
+import { CallListdetails } from "@/features/admin/called/pages/called-list"
 import { IndexAdminTechnicals } from "@/features/admin/technicals/pages"
 import { CreateAdminTechnicals } from "@/features/admin/technicals/pages/create-technical"
 import { UpdateAdminTechnicals } from "@/features/admin/technicals/pages/update-technical"
@@ -13,7 +13,7 @@ export function Admin(){
   return (
     <Routes>
       <Route element={<Layout identification="admin"/>} >
-        <Route path="/" element={<CallList />} />
+        <Route path="/" element={<Called />} />
           <Route path="/chamados/:id" element={<CallListdetails />} />
         <Route path="/tecnicos" element={<IndexAdminTechnicals />} />
           <Route path="/tecnicos/novo" element={<CreateAdminTechnicals />} />
