@@ -42,7 +42,7 @@ export function IndexCalleds() {
               {calleds && calleds.map((called) => (
                 <tr className="border-t border-gray-500 text-left" key={called.id}>
                   <Table.Cell internalSpacing="px-2 py-3" clas="w-36 text-sm">
-                    {dayjs(called.updatedAt).format("DD/MM/YYYY HH:MM")}
+                    {dayjs(called.updatedAt).format("DD/MM/YYYY HH:mm")}
                   </Table.Cell>
                   <Table.Cell clas="text-sm">{called.id > 0 && called.id < 10 ? `00${called.id}` : called.id }</Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-1">
@@ -110,7 +110,7 @@ export function IndexCalleds() {
                     <tr className="border-t border-gray-500 text-left" key={called.id} >
                       <Table.Cell internalSpacing="px-2 py-1" clas="w-17">
                         <div className="text-xs w-17">
-                          {dayjs(called.updatedAt).format("DD/MM/YYYY HH:MM")}
+                          {dayjs(called.updatedAt).format("DD/MM/YYYY HH:mm")}
                         </div>
                       </Table.Cell>
                       <Table.Cell internalSpacing="px-2 py-1" clas="">
