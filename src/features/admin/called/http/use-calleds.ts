@@ -21,7 +21,7 @@ const indexCalleds = () => {
         return {
         ...called,
           services: [{ 
-            titleService: called.services[0].titleService 
+            titleService: called.services[0]?.titleService
           }]
         }
       })
