@@ -83,11 +83,11 @@ export function CallListdetails(){
                   <span className="text-gray-400 Text-Xs">Categoria</span>
                   <p className="text-sm font-normal text-gray-200">{called.services[0]?.titleService}</p>
                 </div>
-              
+             
                 <div className="mt-5 flex justify-between">
                   <div>
                     <span className="text-gray-400 Text-Xs">Criado em</span>
-                    <p className="text-sm font-normal text-gray-200">{dayjs(called.createAt).format("DD/MM/YYYY HH:mm")}</p>
+                    <p className="text-sm font-normal text-gray-200">{dayjs(called.createdAt).format("DD/MM/YYYY HH:mm")}</p>
                   </div>
                   <div className="w-50">
                     <span className="text-gray-400 Text-Xs">Atualizado em</span>

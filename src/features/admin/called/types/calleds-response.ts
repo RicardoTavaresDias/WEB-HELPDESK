@@ -12,7 +12,7 @@ type UserType = {
 
 export type CalledsType = {
   updatedAt: Date
-  createAt: Date
+  createdAt: Date
   id: number
   titleCalled: string
   services:  ServicesType[]
