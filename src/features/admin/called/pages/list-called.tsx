@@ -1,7 +1,4 @@
 import { useParams } from "react-router" 
-import avatar from "@/assets/img/Avatar.svg"
-import { called } from "@/database/admCallList"
-import { useState } from "react" 
 import { Modules } from "@/components/modules"
 import { Status } from "@/components/ui/status"
 import { ModuleContext } from "@/components/modules/moduleContext"
@@ -14,37 +11,52 @@ import { listCalled } from "../http/use-list-called"
 import dayjs from "dayjs"
 import { Avatar } from "@/components/ui/avatar"
 import { currency } from "@/lib/currency"
+import { updateStatus } from "../http/use-update-status"
+import { Loading } from "@/components/ui/loading"
+import { Alert } from "@/components/ui/alert"
 
 export function CallListdetails(){
   const { id } = useParams()
-  const { calleds } = listCalled()
-
-  // exemplo backEnd
-  const [itemCalled] = called.filter(item => item.id === id)
-  const [details, setDetails ] = useState(itemCalled)
-
+  const { calleds, fethLoad, isLoading, messageError } = listCalled(Number(id))
+  const { onSubmitStatus, isLoadingUpdate, messageErrorUpdate } = updateStatus(fethLoad)
+ 
   return (
     <>
-      <Modules.Root>
+    {isLoading || isLoadingUpdate && <Loading />}
+        <Alert severity="error" open={!!messageError || !!messageErrorUpdate}>
+          {messageError && messageError}
+          {messageErrorUpdate && messageErrorUpdate}
+        </Alert>
+        
+    <Modules.Root>
         <Modules.Title title="Chamado detalhado" to="/" >
-          {/* {details.status === "open" &&
-            <>
-              <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => setDetails({...details, status: "in_progress"})} >Em Atendimento</UiButton>
-              <UiButton typeColor="gray" typeSize="md" icon={IconCicloCheckBig} onClick={() => setDetails({...details, status: "close"})} >Encerrado</UiButton>
-            </>
-          }
-          {details.status === "in_progress" &&
-            <>
-              <UiButton typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => setDetails({...details, status: "open"})} >Aberto</UiButton>
-              <UiButton typeColor="gray" typeSize="md" icon={IconCicloCheckBig} onClick={() => setDetails({...details, status: "close"})} >Encerrado</UiButton>
-            </>
-          }
-          {details.status === "close" &&
-            <>
-              <UiButton typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => setDetails({...details, status: "open"})} >Aberto</UiButton>
-              <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => setDetails({...details, status: "in_progress"})} >Em Atendimento</UiButton>
-            </>
-          } */}
+          {calleds && calleds.map((called) => {
+            if(called.callStatus === "open"){
+              return (
+                <>
+                  <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => onSubmitStatus({id: called.id, status: "in_progress"})} >Em Atendimento</UiButton>
+                  <UiButton typeColor="gray" typeSize="md" icon={IconCicloCheckBig} onClick={() => onSubmitStatus({id: called.id, status: "close"})} >Encerrado</UiButton>
+                </>
+              )
+            }
+              
+            if(called.callStatus === "in_progess") {
+              return (
+                <>
+                  <UiButton typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => onSubmitStatus({id: called.id, status: "open"})} >Aberto</UiButton>
+                  <UiButton typeColor="gray" typeSize="md" icon={IconCicloCheckBig} onClick={() => onSubmitStatus({id: called.id, status: "close"})} >Encerrado</UiButton>
+                </>
+              )
+            }
+              
+            return (
+              <>
+                <UiButton typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => onSubmitStatus({id: called.id, status: "open"})} >Aberto</UiButton>
+                <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => onSubmitStatus({id: called.id, status: "in_progress"})} >Em Atendimento</UiButton>
+              </>
+            )
+          })}
+         
         </Modules.Title>
 
         <Modules.Container>

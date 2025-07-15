@@ -1,18 +1,18 @@
 import { AxiosError } from "axios"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { api } from "@/services/api"
 import type { CalledsType } from "../types/calleds-response"
 
-const listCalled = () => {
+const listCalled = (id: number) => {
   const [data, setData] = useState<CalledsType[] | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [messageError, setMessageError] = useState("")
 
-  const fethLoad = async () => {
+  const fethLoad = useCallback(async () => {
     try {
       setIsLoading(true)
-      const responseCalleds = await api.get(`/calleds?page=1&limit=10`)
-      const { result, data } = responseCalleds.data
+      const responseCalleds = await api.get(`/calleds/called/${id}`)
+      const data = responseCalleds.data
 
       setData(data)
     } catch (error: any) {
@@ -24,13 +24,14 @@ const listCalled = () => {
     }finally {
       setIsLoading(false)
     }
-  }
+  }, [])
 
   useEffect(() => {
     fethLoad()
   }, [])
 
   return {
+    fethLoad,
     calleds: data,
     isLoading,
     messageError
