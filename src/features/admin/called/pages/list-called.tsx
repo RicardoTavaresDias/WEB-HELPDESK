@@ -2,7 +2,6 @@ import { useParams } from "react-router"
 import { Modules } from "@/components/modules"
 import { Status } from "@/components/ui/status"
 import { ModuleContext } from "@/components/modules/moduleContext"
-
 import { IconCicleHelp } from "@/assets/icon/iconCicleHelp";
 import { IconCicloCheckBig } from "@/assets/icon/iconCicloCheckBig";
 import { IconClock } from "@/assets/icon/iconClock";
@@ -14,12 +13,14 @@ import { currency } from "@/lib/currency"
 import { updateStatus } from "../http/use-update-status"
 import { Loading } from "@/components/ui/loading"
 import { Alert } from "@/components/ui/alert"
+import { Fragment } from "react/jsx-runtime"
+import { v4 as uuid } from 'uuid'
 
 export function CallListdetails(){
   const { id } = useParams()
   const { calleds, fethLoad, isLoading, messageError } = listCalled(Number(id))
   const { onSubmitStatus, isLoadingUpdate, messageErrorUpdate } = updateStatus(fethLoad)
- 
+
   return (
     <>
     {isLoading || isLoadingUpdate && <Loading />}
@@ -33,27 +34,27 @@ export function CallListdetails(){
           {calleds && calleds.map((called) => {
             if(called.callStatus === "open"){
               return (
-                <>
+                <Fragment key={called.id}>
                   <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => onSubmitStatus({id: called.id, status: "in_progress"})} >Em Atendimento</UiButton>
                   <UiButton typeColor="gray" typeSize="md" icon={IconCicloCheckBig} onClick={() => onSubmitStatus({id: called.id, status: "close"})} >Encerrado</UiButton>
-                </>
+                </Fragment>
               )
             }
               
             if(called.callStatus === "in_progess") {
               return (
-                <>
+                <Fragment key={called.id}>
                   <UiButton typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => onSubmitStatus({id: called.id, status: "open"})} >Aberto</UiButton>
                   <UiButton typeColor="gray" typeSize="md" icon={IconCicloCheckBig} onClick={() => onSubmitStatus({id: called.id, status: "close"})} >Encerrado</UiButton>
-                </>
+                </Fragment>
               )
             }
               
             return (
-              <>
+              <Fragment key={called.id}>
                 <UiButton typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => onSubmitStatus({id: called.id, status: "open"})} >Aberto</UiButton>
                 <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => onSubmitStatus({id: called.id, status: "in_progress"})} >Em Atendimento</UiButton>
-              </>
+              </Fragment>
             )
           })}
          
@@ -62,8 +63,8 @@ export function CallListdetails(){
         <Modules.Container>
           {/* <Conteudo Left> */}
           {calleds && calleds.map((called) => (
-            <>
-              <Modules.Context isType="50">
+            <Fragment key={called.id} >
+              <Modules.Context isType="50" key={called.id}>
                 <div className="flex justify-between items-center mb-1">
                   <span className="Text-Xs text-gray-300">{called.id > 0 && called.id < 10 ? `00${called.id}` : called.id }</span>
                   <Status type={called.callStatus as "open" | "in_progress" | "close"} isText />
@@ -128,7 +129,7 @@ export function CallListdetails(){
                   <span className="text-gray-400 Text-Xs">Adicionais</span>
                   {/* Parei aqui */}
                   {called.services.map((service) => (
-                    <div className="flex justify-between items-center mb-0.5">
+                    <div className="flex justify-between items-center mb-0.5" key={uuid()} >
                       <p className="text-sm font-normal text-gray-200">{service.titleService}</p>
                       <span className="Text-Xs text-gray-200">{currency({ coinFormatCents: service.price.toString()})}</span>
                     </div>
@@ -140,7 +141,7 @@ export function CallListdetails(){
                   <span className="Text-Sm text-gray-200">{currency({ coinFormatCents: (called.priceTotal + 200).toString()})}</span>
                 </div>
               </ModuleContext>
-            </>
+            </Fragment>
           ))}
           {/* </Conteudo Right>  */}
         </Modules.Container>
