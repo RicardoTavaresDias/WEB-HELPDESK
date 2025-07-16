@@ -102,7 +102,7 @@ export function IndexAdminTechnicals(){
                 <tr className="border-t border-gray-500 text-left" key={user.id} >
                   <Table.Cell internalSpacing="pl-3 pr-1 py-4.5 flex gap-3 items-center">
                     <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-7 h-7" sizeText="text-[11px]" />
-                    <span className="truncate w-18 text-sm">{user.name}</span>
+                    <span className="truncate w-28 text-sm">{user.name}</span>
                   </Table.Cell>
 
                   <Table.Cell clas="w-55">
