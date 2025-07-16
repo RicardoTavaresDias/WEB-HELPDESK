@@ -16,7 +16,7 @@ const useUpdate = async ({ onSuccessCallback, form, data, formDataUpdate, httpAp
   console.log({ onSuccessCallback, form, data, formDataUpdate, httpApi })
 
   try {  
-    await api.patch((httpApi+4), formDataUpdate ? formData : data)
+    await api.patch((httpApi), formDataUpdate ? formData : data)
     form.setError("root", { success: "Dados atuliazado com sucesso." } as object) 
     if (onSuccessCallback) {
       onSuccessCallback() // Chama a função de recarregamento
