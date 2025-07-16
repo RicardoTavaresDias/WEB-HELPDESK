@@ -1,7 +1,7 @@
 import { AxiosError } from "axios"
 import { useEffect, useState, useCallback } from "react"
 import { api } from "@/services/api"
-import { type PaginationType } from "@/types/pagination"
+import type { PaginationType } from "@/types/pagination"
 
 const useFethLoad = <T>(httpApi: string) => {
   const [data, setData] = useState<T | null>(null)
