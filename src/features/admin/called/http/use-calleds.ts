@@ -1,55 +1,25 @@
-import { AxiosError } from "axios"
-import { useEffect, useState, useCallback } from "react"
-import { api } from "@/services/api"
-import type { CalledsType } from "../types/calleds-response"
-import type { PaginationType } from "@/types/pagination"
+import { type CalledsType } from "../types/calleds-response"
+import { useFethLoad } from "@/hooks/useFethLoad"
 
 const indexCalleds = () => {
-  const [data, setData] = useState<CalledsType[] | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [messageError, setMessageError] = useState("")
-  const [pagination, setPagination] = useState<PaginationType | null>(null)
-  const [page, setPage] = useState(1)
-
-  const fethLoad = useCallback(async () => {
-    try {
-      setIsLoading(true)
-      const responseCalleds = await api.get(`/calleds?page=${page}&limit=10`)
-      const { result, data } = responseCalleds.data
-      
-      const descriptionServiceCalled = data.map((called: CalledsType) => {
-        return {
-        ...called,
-          services: [{ 
-            titleService: called.services[0]?.titleService
-          }]
-        }
-      })
-
-      setData(descriptionServiceCalled)
-      setPagination(result)
-    } catch (error: any) {
-      if(error instanceof AxiosError) {
-          return setMessageError(error.response?.data.message)
-        }
+  const response = useFethLoad<CalledsType[]>("/calleds")
   
-      return setMessageError(error.message)
-    }finally {
-      setIsLoading(false)
+  const descriptionServiceCalled = response.data?.map((called: CalledsType) => {
+    return {
+    ...called,
+      services: [{ 
+        titleService: called.services[0]?.titleService
+      }]
     }
-  }, [page])
-
-  useEffect(() => {
-    fethLoad()
-  }, [page])
+  }) ?? []
 
   return {
-    calleds: data,
-    isLoading,
-    messageError,
-    pagination,
-    setPage,
-    page
+    calleds: descriptionServiceCalled,
+    isLoading: response.isLoading,
+    messageError: response.messageError,
+    pagination: response.pagination,
+    setPage: response.setPage,
+    page: response.page
   }
 }
 

@@ -33,7 +33,7 @@ export const formatHours = (userHours: string[]): userHoursReturn => {
 }
 
 
-type usersType = {
+export type UsersType = {
   id: string
   name: string
   email: string
@@ -53,11 +53,11 @@ type hoursType = {
   updatedAt: Date
 }
 
-export type mappedUserType = Omit<usersType, "userHours"> & {
+export type mappedUserType = Omit<UsersType, "userHours"> & {
   userHours: string[][]
 }
 
-export const hourFormatList = (user: usersType[]): mappedUserType[] => {
+export const hourFormatList = (user: UsersType[]): mappedUserType[] => {
   if(user === null) return []
   const users = Array.isArray(user) ? user : [user]
 

@@ -1,46 +1,17 @@
-import { AxiosError } from "axios"
-import { useEffect, useState, useCallback } from "react"
-import { api } from "@/services/api"
-import type { UserCustomerType } from "../types/customers-response"
-import type { PaginationType } from "@/types/pagination"
+import { useFethLoad } from "@/hooks/useFethLoad"
+import { type UserCustomerType } from "../types/customers-response"
 
 const indexCustomers = () => {
-  const [data, setData] = useState<UserCustomerType[] | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [messageError, setMessageError] = useState("")
-  const [pagination, setPagination] = useState<PaginationType | null>(null)
-  const [page, setPage] = useState(1)
-
-  const fethLoad = useCallback(async () => {
-    try {
-      setIsLoading(true)
-      const responseCustomer = await api.get(`/user/list/customer?page=${page}&limit=10`)
-
-      setData(responseCustomer.data.data)
-      setPagination(responseCustomer.data.result)
-    } catch (error: any) {
-      if(error instanceof AxiosError) {
-          return setMessageError(error.response?.data.message)
-        }
-  
-      return setMessageError(error.message)
-    }finally {
-      setIsLoading(false)
-    }
-  }, [page])
-
-  useEffect(() => {
-    fethLoad()
-  }, [page])
+  const response = useFethLoad<UserCustomerType[]>("/user/list/customer")
 
   return {
-    users: data,
-    isLoading,
-    messageError,
-    pagination,
-    setPage,
-    page,
-    fethLoad
+    users: response.data,
+    isLoading: response.isLoading,
+    messageError: response.messageError,
+    pagination: response.pagination,
+    setPage: response.setPage,
+    page: response.page,
+    fethLoad: response.fethLoad
   }
 }
 
