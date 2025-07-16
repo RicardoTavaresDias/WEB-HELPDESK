@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { userSchema, type UserTechnicalType as UserTechnicalTypeSchema } from "../schemas/technical.schema"
 import { UserHours } from "./use-hours"
-import { AxiosError } from 'axios';
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { api } from "@/services/api";
 import type { UserTechnicalType } from "../types/technical-update-response";
 import { searchUserUIID } from "./use-search-user-uuid"
+import { useUpdate } from "@/hooks/useUpdate";
 
 const updateTechnicals = (uuid: string) => {
   const [user, setUser] = useState<UserTechnicalType>({
@@ -32,10 +31,7 @@ const updateTechnicals = (uuid: string) => {
       name: user.name,
       email: user.email
     })
-  }, [user.name, user.email])
-
-   useEffect(() => {
-    resetClose()
+     resetClose()
   }, [user.name, user.email])
 
   const resetClose = () => {
@@ -43,23 +39,13 @@ const updateTechnicals = (uuid: string) => {
     searchUserUIID({ form, setUser, uuid})
   }
 
-  const userHours = new UserHours(setUser as any)
-
-  const onSubmit = async (data: UserTechnicalTypeSchema) => {
-    const formData = new FormData();
-    formData.append("data", JSON.stringify({ ...data, userHours: userHours.result(user as any) }))
-
-    try {  
-      await api.patch(`/user/${uuid}`, formData)
-      form.setError("root", { success: "Dados atualizado com sucesso." } as object) 
-    } catch (error: any) {
-      if(error instanceof AxiosError) {
-        return form.setError("root", {info: error.response?.data.message} as any)
-      }
-
-      form.setError("root", {message: error.message})
-    }
-  }
+  const userHours = new UserHours(setUser)
+  const onSubmit = (data: UserTechnicalTypeSchema) => 
+    useUpdate({ 
+      form, 
+      httpApi: `/user/${uuid}`,
+      formDataUpdate: { ...data, userHours: userHours.result(user) } 
+    })
 
   return {
     user,

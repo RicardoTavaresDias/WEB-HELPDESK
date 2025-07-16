@@ -1,10 +1,9 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AxiosError } from 'axios'
-import { api } from '@/services/api'
 import { type ServicesSchemaType, servicesSchema } from "../schemas/services-schema"
 import { currency } from '@/lib/currency'
 import { useEffect } from 'react'
+import { useUpdate } from '@/hooks/useUpdate'
 
 const updateServices = ({ onSuccessCallback, id }: { onSuccessCallback: () => void, id: string}) => {
   const form = useForm<ServicesSchemaType>({
@@ -21,25 +20,17 @@ const updateServices = ({ onSuccessCallback, id }: { onSuccessCallback: () => vo
     form.setValue("price", currency({ formatPriceInput: form.watch("price") }))
   },[form.watch("price")])
 
-  const onSubmit = async ({ title, price }: ServicesSchemaType) => {
-    try{
-      const response = await api.patch(`/services/${id}`, {
+  const onSubmit = ({ title, price }: ServicesSchemaType) => 
+    useUpdate({ 
+      onSuccessCallback, 
+      form: form, 
+      data: 
+      { 
         title, 
-        price: price.replace("R$", "").trim()
-      })
-
-      form.setError("root", {success: response.data.message } as object)
-      if (onSuccessCallback) {
-        onSuccessCallback() // Chama a função de recarregamento
-      }
-    } catch(error: any){
-      if(error instanceof AxiosError) {
-        return form.setError("root", {message: error.response?.data.message})
-      }
-
-      return form.setError("root", {message: error.message})
-    }
-  }
+        price: price.replace("R$", "").trim() 
+      }, 
+      httpApi: `/services/${id}` 
+    })
 
   return {
     onSubmitUpdate: onSubmit,

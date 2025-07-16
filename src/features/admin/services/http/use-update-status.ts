@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form'
-import { api } from "@/services/api"
-import { AxiosError } from "axios"
+import { useUpdate } from '@/hooks/useUpdate'
 
 const UpdateStatus = (onSuccessCallback: () => void) => {
   const formStatus = useForm({
@@ -8,23 +7,10 @@ const UpdateStatus = (onSuccessCallback: () => void) => {
     mode: 'all',
   })
 
-  const onSubmit = async (uuid: string, status: string) => {
-    try {  
-      await api.patch(`/services/${uuid}`, { 
-        status: status === "inactive" ? "active" : "inactive" 
-      })
-
-      if (onSuccessCallback) {
-        onSuccessCallback() // Chama a função de recarregamento
-      }
-    } catch (error: any) {
-      if(error instanceof AxiosError) {
-        return formStatus.setError("root", {message: error.response?.data.message})
-      }
-
-      formStatus.setError("root", {message: error.message})
-    }
-  }
+  const onSubmit = (uuid: string, status: string) => 
+    useUpdate({ onSuccessCallback, form: formStatus, httpApi: `/services/${uuid}`, data: { 
+      status: status === "inactive" ? "active" : "inactive" 
+    }})
 
   return {
     onSubmitStatus: onSubmit,

@@ -1,15 +1,16 @@
 import { formatHours } from "@/lib/formatHours";
 import type { UserTechnicalsHoursType } from "../types/technicals-hours";
+import type { UserTechnicalType } from "../types/technical-update-response";
 
 export class UserHours {
-  setUser: React.Dispatch<React.SetStateAction<UserTechnicalsHoursType>>;
+  setUser: React.Dispatch<React.SetStateAction<UserTechnicalType>>;
 
-  constructor(setUser:  React.Dispatch<React.SetStateAction<UserTechnicalsHoursType>>) {
+  constructor(setUser:  React.Dispatch<React.SetStateAction<UserTechnicalType>>) {
     this.setUser = setUser
   }
 
   removeUserHours = (value: string) => {
-    this.setUser((prev: UserTechnicalsHoursType) => {
+    this.setUser((prev: UserTechnicalType) => {
       if(!prev) return prev
       return {
         ...prev,
@@ -19,7 +20,7 @@ export class UserHours {
   };
   
   addUserHours = (value: string) => {
-    this.setUser((prev: UserTechnicalsHoursType) => {
+    this.setUser((prev: UserTechnicalType) => {
       if(!prev) return prev
       return {
         ...prev,
