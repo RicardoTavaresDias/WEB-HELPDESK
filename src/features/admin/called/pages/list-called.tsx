@@ -119,15 +119,15 @@ export function CallListdetails(){
                 <div className="mt-5">
                   <span className="text-gray-400 Text-Xs">Valores</span>
                   <div className="flex justify-between items-center">
-                    <p className="text-sm font-normal text-gray-200">Preço base</p>
-                    <span className="Text-Xs text-gray-200">R$ 200,00</span>
+                    <p className="text-sm font-normal text-gray-200">{called.basePrice.description}</p>
+                    <span className="Text-Xs text-gray-200">{currency({ coinFormatCents: called.basePrice.price.toString() })}</span>
                   </div>
                 </div>
 
 
                 <div className="mt-5">
                   <span className="text-gray-400 Text-Xs">Adicionais</span>
-                  {/* Parei aqui */}
+                  
                   {called.services.map((service) => (
                     <div className="flex justify-between items-center mb-0.5" key={uuid()} >
                       <p className="text-sm font-normal text-gray-200">{service.titleService}</p>

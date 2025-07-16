@@ -54,7 +54,7 @@ export function IndexCalleds() {
                     </div>
                   </Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-3 text-sm">
-                    {currency({ coinFormatCents: called.priceTotal.toString()})}
+                    {(currency({ coinFormatCents: (called.priceTotal + called.basePrice.price).toString() }))}
                   </Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-3">
                     <div className="flex gap-2 items-center w-37 truncate ml-1.5">
@@ -154,7 +154,7 @@ export function IndexCalleds() {
         </Pagination.Root>
         {/* PAGINAÇÃO */}
         </div>
-      
+    
     </>
   )
 }

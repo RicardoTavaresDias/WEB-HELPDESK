@@ -10,6 +10,11 @@ type UserType = {
   avatar: string
 }
 
+type BasePriceType = {
+  description: string
+  price: number
+}
+
 export type CalledsType = {
   updatedAt: Date
   createdAt: Date
@@ -21,4 +26,5 @@ export type CalledsType = {
   callStatus: "open" | "in_progess" | "close"
   priceTotal: number
   description: string
+  basePrice: BasePriceType
 }
