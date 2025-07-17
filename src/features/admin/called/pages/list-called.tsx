@@ -6,7 +6,7 @@ import { IconCicleHelp } from "@/assets/icon/iconCicleHelp";
 import { IconCicloCheckBig } from "@/assets/icon/iconCicloCheckBig";
 import { IconClock } from "@/assets/icon/iconClock";
 import { UiButton } from "@/components/ui/UiButton"
-import { listCalled } from "../http/use-list-called"
+import { useListCalled } from "../http/use-list-called"
 import dayjs from "dayjs"
 import { Avatar } from "@/components/ui/avatar"
 import { currency } from "@/lib/currency"
@@ -18,15 +18,15 @@ import { v4 as uuid } from 'uuid'
 
 export function CallListdetails(){
   const { id } = useParams()
-  const { calleds, fethLoad, isLoading, messageError } = listCalled(Number(id))
-  const { onSubmitStatus, isLoadingUpdate, messageErrorUpdate } = updateStatus(fethLoad)
+  const { data: calleds, isLoading, error} = useListCalled(Number(id))
+  const { error: errorUpdate, mutateAsync: onSubmitStatus } = updateStatus()
 
   return (
     <>
-    {isLoading || isLoadingUpdate && <Loading />}
-        <Alert severity="error" open={!!messageError || !!messageErrorUpdate}>
-          {messageError && messageError}
-          {messageErrorUpdate && messageErrorUpdate}
+    {isLoading && <Loading />}
+        <Alert severity="error" open={!!error || !!errorUpdate}>
+          {error?.message}
+          {errorUpdate?.message}
         </Alert>
         
     <Modules.Root>
@@ -109,10 +109,10 @@ export function CallListdetails(){
               <ModuleContext isType="50">
                 <span className="text-gray-400 Text-Xs">Técnico responsável</span>
                 <div className="flex items-center gap-2 mt-2">
-                  <Avatar user={{ name: called.UserTechnical.name, avatar: called.UserTechnical.avatar }} />
+                  <Avatar user={{ name: called.UserTechnical?.name, avatar: called.UserTechnical?.avatar }} />
                   <div className="flex flex-col justify-center">
-                    <span className="text-gray-200 Text-Sm">{called.UserTechnical.name}</span>
-                    <span className="Text-Xs text-gray-300">{called.UserTechnical.email}</span>
+                    <span className="text-gray-200 Text-Sm">{called.UserTechnical?.name}</span>
+                    <span className="Text-Xs text-gray-300">{called.UserTechnical?.email}</span>
                   </div>
                 </div>
                 

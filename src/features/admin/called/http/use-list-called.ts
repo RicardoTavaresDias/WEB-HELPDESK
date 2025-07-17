@@ -1,41 +1,26 @@
 import { AxiosError } from "axios"
-import { useCallback, useEffect, useState } from "react"
 import { api } from "@/services/api"
+import { useQuery } from "@tanstack/react-query"
 import type { CalledsType } from "../types/calleds-response"
 
-const listCalled = (id: number) => {
-  const [data, setData] = useState<CalledsType[] | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [messageError, setMessageError] = useState("")
+function useListCalled(id: number) {
+  return useQuery<CalledsType[]>({
+    queryKey: ['get_list'],
+    queryFn: async () => {
+      try {
+        const response = await api.get(`/calleds/called/${id}`)
+        const result = response.data
 
-  const fethLoad = useCallback(async () => {
-    try {
-      setIsLoading(true)
-      const responseCalleds = await api.get(`/calleds/called/${id}`)
-      const data = responseCalleds.data
-
-      setData(data)
-    } catch (error: any) {
-      if(error instanceof AxiosError) {
-          return setMessageError(error.response?.data.message)
+        return result
+      } catch (error: any) {
+        if(error instanceof AxiosError) {
+          throw new Error(error.response?.data.message)
         }
   
-      return setMessageError(error.message)
-    }finally {
-      setIsLoading(false)
+        throw new Error(error.message)
+      }
     }
-  }, [])
-
-  useEffect(() => {
-    fethLoad()
-  }, [])
-
-  return {
-    fethLoad,
-    calleds: data,
-    isLoading,
-    messageError
-  }
+  })
 }
 
-export { listCalled }
+export { useListCalled }

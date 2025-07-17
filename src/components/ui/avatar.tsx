@@ -10,7 +10,7 @@ type AvatarType = {
 }
 
 export function Avatar({ user, size = "w-10 h-10", sizeText, onClick }: AvatarType) {
-  if(!user) return null
+  if(!user.name) return null
   const firstName = user.name.split(" ")[0]
   const secondName = user.name.split(" ")[1] || null
 

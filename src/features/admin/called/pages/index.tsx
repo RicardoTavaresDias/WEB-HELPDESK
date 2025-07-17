@@ -3,22 +3,25 @@ import { Status } from "@/components/ui/status";
 import { Table } from "@/components/table";
 import { Link } from "react-router";
 import { UiButton } from "@/components/ui/UiButton";
-import { indexCalleds } from "../http/use-calleds"
+import { useCalleds } from "../http/use-calleds"
 import { Loading } from "@/components/ui/loading";
 import { Alert } from "@/components/ui/alert";
 import { currency } from "@/lib/currency";
 import dayjs from "dayjs";
 import { Pagination } from "@/components/pagination";
 import { Avatar } from "@/components/ui/avatar";
+import { useState } from "react";
 
 export function IndexCalleds() {
-  const { isLoading, messageError, calleds, pagination, page, setPage } = indexCalleds()
-
+  const [page, setPage] = useState(1)
+  const { data, isLoading, error } = useCalleds(page)
+  const pagination = data?.result || null
+  
   return (
     <>
       {isLoading && <Loading/>}
-      <Alert severity="error" open={!!messageError}>
-        {messageError && messageError} 
+      <Alert severity="error" open={!!error}>
+        {error?.message} 
       </Alert>
       
       <div className="w-full m-auto ">
@@ -39,7 +42,7 @@ export function IndexCalleds() {
               <Table.Head>{""}</Table.Head>
             </Table.Header>
             <Table.Body>
-              {calleds && calleds.map((called) => (
+              {data && data.data.map((called) => (
                 <tr className="border-t border-gray-500 text-left" key={called.id}>
                   <Table.Cell internalSpacing="px-2 py-3" clas="w-36 text-sm">
                     {dayjs(called.updatedAt).format("DD/MM/YYYY HH:mm")}
@@ -106,7 +109,7 @@ export function IndexCalleds() {
 
             <Table.Body>
                {
-                  calleds && calleds.map(called => (
+                  data && data.data.map(called => (
                     <tr className="border-t border-gray-500 text-left" key={called.id} >
                       <Table.Cell internalSpacing="px-2 py-1" clas="w-17">
                         <div className="text-xs w-17">

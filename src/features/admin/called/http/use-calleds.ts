@@ -1,26 +1,33 @@
 import { type CalledsType } from "../types/calleds-response"
-import { useFethLoad } from "@/hooks/useFethLoad"
+import { api } from "@/services/api"
+import type { PaginationType } from "@/types/pagination"
+import { useQuery } from "@tanstack/react-query"
+import { AxiosError } from "axios"
 
-const indexCalleds = () => {
-  const response = useFethLoad<CalledsType[]>("/calleds")
-  
-  const descriptionServiceCalled = response.data?.map((called: CalledsType) => {
-    return {
-    ...called,
-      services: [{ 
-        titleService: called.services[0]?.titleService
-      }]
-    }
-  }) ?? []
-
-  return {
-    calleds: descriptionServiceCalled,
-    isLoading: response.isLoading,
-    messageError: response.messageError,
-    pagination: response.pagination,
-    setPage: response.setPage,
-    page: response.page
-  }
+type DataCalledsType = {
+  result: PaginationType
+  data: CalledsType[]
 }
 
-export { indexCalleds }
+function useCalleds (page?: number) {
+  return useQuery<DataCalledsType>({
+    queryKey: ["get_calleds", page],
+    queryFn: async () => {
+      try {
+        const response = await api.get(`/calleds?page=${page}&limit=10`)
+        const result = response.data
+
+        return result
+      }catch(error: any) {
+        if(error instanceof AxiosError) {
+          throw new Error(error.response?.data.message)
+        }
+  
+        throw new Error(error.message)
+      }
+    },
+    retry: 1,
+  })
+}
+
+export { useCalleds }
