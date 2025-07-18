@@ -1,41 +1,33 @@
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { type ServicesSchemaType, servicesSchema } from "../schemas/services-schema"
-import { currency } from '@/lib/currency'
-import { useEffect } from 'react'
-import { useUpdate } from '@/hooks/useUpdate'
+import { type ServicesSchemaType } from "../schemas/services-schema"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { AxiosError } from 'axios'
+import { api } from '@/services/api'
 
-const updateServices = ({ onSuccessCallback, id }: { onSuccessCallback: () => void, id: string}) => {
-  const form = useForm<ServicesSchemaType>({
-    defaultValues: {
-      title: "",
-      price: ""
+function useUpdateServices (id: string) {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async ({ title, price }: ServicesSchemaType) => {
+      try {
+        await api.patch(`/services/${id}`, {
+          title,
+          price: price.replace("R$", "").trim() 
+        })
+        return { sucess: "Dados atualizado com sucesso." }
+
+      } catch (error: any) {
+        if(error instanceof AxiosError) {
+          throw new Error(error.response?.data.message)
+        }
+  
+        throw new Error(error.message)
+      }
     },
-    criteriaMode: 'all',
-    mode: 'all',
-    resolver: zodResolver(servicesSchema)
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['get_services'] })
+    }
   })
-
-  useEffect(() => {
-    form.setValue("price", currency({ formatPriceInput: form.watch("price") }))
-  },[form.watch("price")])
-
-  const onSubmit = ({ title, price }: ServicesSchemaType) => 
-    useUpdate({ 
-      onSuccessCallback, 
-      form: form, 
-      data: 
-      { 
-        title, 
-        price: price.replace("R$", "").trim() 
-      }, 
-      httpApi: `/services/${id}` 
-    })
-
-  return {
-    onSubmitUpdate: onSubmit,
-    formUpdate: form
-  }
 }
 
-export { updateServices }
+export { useUpdateServices }

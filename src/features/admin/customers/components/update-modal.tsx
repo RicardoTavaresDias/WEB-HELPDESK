@@ -18,7 +18,7 @@ type ModalUpdateCustomerType = {
 } 
 
 export const ModalUpdateCustomers = ({modalEdition, setModalEdition, user}: ModalUpdateCustomerType) => {
-  const { mutateAsync: updateCustomer, error, isSuccess, data, isError } = useUpdateCustomer(user.id)
+  const { mutateAsync: updateCustomer, error, isSuccess, data, isError, isPending } = useUpdateCustomer(user.id)
 
   const form = useForm<UserCustomerSchemaType>({
       defaultValues: {
@@ -43,7 +43,7 @@ export const ModalUpdateCustomers = ({modalEdition, setModalEdition, user}: Moda
 
   return (
     <>
-    {form.formState.isSubmitting && <Loading />}
+    {isPending && <Loading />}
       <Alert severity="error" open={isError} >
         {error?.message}
       </Alert>

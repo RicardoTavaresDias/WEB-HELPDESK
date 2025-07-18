@@ -1,27 +1,51 @@
 import { Modal } from "@/components/modal"
 import { Input } from "@/components/ui/input"
 import { UiButton } from "@/components/ui/UiButton"
-import { createServices } from "../http/use-create-services"
+import { useCreateServices } from "../http/use-create-services"
 import { Alert } from "@/components/ui/alert"
 import { Loading } from "@/components/ui/loading"
+import { servicesSchema, type ServicesSchemaType } from "../schemas/services-schema"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useEffect } from "react"
+import { currency } from "@/lib/currency"
 
 type CreateModalType ={
   modalNew: boolean
   setModalNew : (value: boolean) => void
-  fethLoad: () => void
 }
 
-const CreateModal = ({ modalNew, setModalNew, fethLoad }: CreateModalType) => {
-  const { form, onSubmit } = createServices(fethLoad)
+const CreateModal = ({ modalNew, setModalNew }: CreateModalType) => {
+  const { data, isSuccess, isError, error, isPending, mutateAsync: onCreateServices } = useCreateServices()
+console.log(data)
+  const form = useForm<ServicesSchemaType>({
+      defaultValues: {
+        title: "",
+        price: ""
+      },
+      criteriaMode: 'all',
+      mode: 'all',
+      resolver: zodResolver(servicesSchema)
+    })
+  
+    useEffect(() => {
+      form.setValue("price", currency({ formatPriceInput: form.watch("price") }))
+    },[form.watch("price")])
+
+    const onSubmit = (data: ServicesSchemaType) => {
+      onCreateServices(data)
+      form.reset()
+      setModalNew(!modalNew)
+    }
 
   return (
     <>
-      {form.formState.isSubmitting && <Loading />}
-      <Alert severity="error" open={!!form.formState.errors.root?.message} onClose={form.clearErrors} >
-        {form.formState.errors.root?.message}
+      {isPending && <Loading />}
+      <Alert severity="error" open={isError} >
+        {error?.message}
       </Alert>
-      <Alert severity="success" open={!!form.formState.errors.root?.success} onClose={form.clearErrors} >
-        {typeof form.formState.errors.root?.success === "string" && form.formState.errors.root.success}
+      <Alert severity="success" open={isSuccess} >
+        {data?.message}
       </Alert>
 
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -31,16 +55,25 @@ const CreateModal = ({ modalNew, setModalNew, fethLoad }: CreateModalType) => {
             form.reset()
           }} />
           <Modal.Context>
-            <Input type="text" {...form.register("title")} label="Título" placeholder="Nome do serviço" error={form.formState.errors.title && form.formState.errors.title.message}/>
-            <Input type="text" {...form.register("price")} label="Valor" placeholder="R$ 0,00" error={form.formState.errors.price && form.formState.errors.price.message} />
+            <Input 
+              type="text" 
+              {...form.register("title")} 
+              label="Título" 
+              placeholder="Nome do serviço" 
+              error={form.formState.errors.title && form.formState.errors.title.message}
+            />
+            <Input 
+              type="text" 
+              {...form.register("price")} 
+              label="Valor" 
+              placeholder="R$ 0,00" 
+              error={form.formState.errors.price && form.formState.errors.price.message} 
+            />
           </Modal.Context>
           <Modal.Actions>
-            <UiButton type="submit" typeSize="xxl" typeColor="black" disabled={form.formState.isSubmitting} 
-            onClick={() => {
-              if(!form.formState.errors.title && !form.formState.errors.price){
-                setModalNew(!modalNew)
-              }
-            }} >Salvar</UiButton>
+            <UiButton type="submit" typeSize="xxl" typeColor="black" disabled={form.formState.isSubmitting} >
+              Salvar
+            </UiButton>
           </Modal.Actions>
         </Modal.Root>
       </form>

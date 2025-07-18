@@ -11,11 +11,11 @@ type ModalUpdateCustomerType = {
 } 
 
 export const ModalRemoveCustomers = ({ userId, modalRemove, setModalRemove }: ModalUpdateCustomerType) => {
-  const { data, error, isSuccess, isError, mutateAsync: onRemove } = removeCustomer()
+  const { data, error, isSuccess, isError, mutateAsync: onRemove, isPending } = removeCustomer()
 
   return (
     <>
-      {/* {isLoading && <Loading />} */}
+      {isPending && <Loading />}
       <Alert severity="error" open={isError} >
         {error?.message}
       </Alert>

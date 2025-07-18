@@ -14,7 +14,7 @@ function useCustomer () {
   const [page, setPage] = useState(1)
 
   const { data, error, isLoading } = useQuery<DataCalledsType>({
-    queryKey: ["get_Customer"],
+    queryKey: ["get_Customer", page],
     queryFn: async () => {
       try {
         const response = await api.get(`/user/list/customer?page=${page}&limit=10`)
