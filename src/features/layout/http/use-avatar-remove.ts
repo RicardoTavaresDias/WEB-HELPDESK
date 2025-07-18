@@ -1,48 +1,33 @@
 import { api } from "@/services/api"
 import { AxiosError } from "axios"
-import { useState } from "react"
 import { useAuth } from "@/hooks/useAuth"
+import { useMutation } from "@tanstack/react-query"
 
-export const removeAvatar = () => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [message, setMessage] = useState<{ error?: string, sucess?: string }>({
-    error: "",
-    sucess: ""
-  })
-  const { session, loadUser } = useAuth()
+function useRemoveAvatar () {
+    const { session, loadUser } = useAuth()
 
-  const onRemove = async () => {
-    setMessage({ error: "", sucess: "" })
+  return useMutation({
+    mutationFn: async () => {
+      try {
+        const response = await api.delete(`/user/avatar/${session?.user.id}`)
+        const result = response.data
 
-    try {
-      setIsLoading(true)
-      const responseRemove = await api.delete(`/user/avatar/${session?.user.id}`)
-      if(!responseRemove){
-        return setMessage({ error: "Erro a atualizar no banco"})
+        localStorage.removeItem("@helpDesk:user")
+        localStorage.setItem("@helpDesk:user", JSON.stringify({
+          ...result
+        }))
+
+        loadUser()
+        return ({ sucess: "Avatar Removido com sucess" })
+      } catch (error: any) {
+        if(error instanceof AxiosError) {
+          throw new Error(error.response?.data.message)
+        }
+  
+        throw new Error(error.message)
       }
-      
-      localStorage.removeItem("@helpDesk:user")
-      localStorage.setItem("@helpDesk:user", JSON.stringify({
-        ...responseRemove.data
-      }))
-
-      loadUser()
-      setMessage({ sucess: "Avatar Removido com sucess" })
-    } catch (error: any) {
-      setMessage({ error: "", sucess: "" })
-
-      if(error instanceof AxiosError) {
-        return setMessage({ error: error.response?.data.message })
-      }
-      setMessage({ error: error.message })
-    }finally{
-      setIsLoading(false)
     }
-  }
-
-  return {
-    onRemove,
-    isLoading,
-    message,
-  }
+  })
 }
+
+export { useRemoveAvatar }

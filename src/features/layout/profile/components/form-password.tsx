@@ -1,9 +1,12 @@
 import { Modal } from "@/components/modal";
 import { Input } from "@/components/ui/input";
 import { UiButton } from "@/components/ui/UiButton";
-import { changePassword } from "../../http/use-change-password";
+import { useChangePassword } from "../../http/use-change-password";
 import { Alert } from "@/components/ui/alert";
 import { Loader } from "@/components/ui/loading";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { profileChangePasswordSchema, type ProfileChangePasswordSchemaType } from "../../schemas/profileSchema";
+import { useForm } from "react-hook-form";
 
 type FormPasswordType = {
   modalPassword: boolean;
@@ -16,16 +19,30 @@ export const FormPassword = ({
   modalPassword,
   setModalPassword,
 }: FormPasswordType) => {
-  const { form, onSubmit } = changePassword();
+  const { data, isError, error, isSuccess, mutateAsync: onCreateNewPassword, isPending } = useChangePassword()
+
+  const form = useForm({
+    defaultValues: {
+      oldPassword: '',
+      newPassword: ''
+    },
+    criteriaMode: 'all',
+    mode: 'all',
+    resolver: zodResolver(profileChangePasswordSchema)
+  })
+
+  const onSubmit = (data: ProfileChangePasswordSchemaType) => {
+    onCreateNewPassword(data)
+    form.reset()
+  }
 
   return (
     <>
-      <Alert severity="error" open={!!form.formState.errors.root?.message} onClose={form.clearErrors} >
-        {form.formState.errors.root?.message}
+      <Alert severity="error" open={isError} >
+        {error?.message}
       </Alert>
-      <Alert severity="success" open={!!form.formState.errors.root?.success} onClose={form.clearErrors} >
-        {typeof form.formState.errors.root?.success === "string" &&
-          form.formState.errors.root.success}
+      <Alert severity="success" open={isSuccess} >
+        {data?.message}
       </Alert>
 
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -68,9 +85,9 @@ export const FormPassword = ({
               type="submit"
               typeSize="xxl"
               typeColor="black"
-              disabled={form.formState.isSubmitting}
+              disabled={isPending}
             >
-              {form.formState.isSubmitting ? <Loader /> : "Salvar"}
+              {isPending ? <Loader /> : "Salvar"}
             </UiButton>
           </div>
         </Modal.Root>

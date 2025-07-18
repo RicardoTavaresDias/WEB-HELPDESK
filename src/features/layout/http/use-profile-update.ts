@@ -1,65 +1,59 @@
-import { useForm } from "react-hook-form"
-import { zodResolver } from '@hookform/resolvers/zod'
 import { api } from "@/services/api"
 import { AxiosError } from "axios"
 import { useAuth } from "@/hooks/useAuth"
 import { useRef } from "react"
-import { profileUpdateSchema, type ProfileUpdateSchemType } from "../schemas/profileSchema"
+import { useMutation } from "@tanstack/react-query"
 
-const profileUpdate = () => {
+function useProfileUpdate () {
   const { session, loadUser } = useAuth()
   const fileRef = useRef<File | null>(null)
 
-  const form = useForm<ProfileUpdateSchemType>({
-    defaultValues: {
-      name: session?.user.name,
-      email: session?.user?.email
-    },
-    criteriaMode: 'all',
-    mode: 'all',
-    resolver: zodResolver(profileUpdateSchema) 
-  })
+  const { data, error, isError, mutateAsync, isPending } = useMutation({
+    mutationFn: async ({ name, email }: { name?: string, email?: string }) => {
+      try {
+        const formData = new FormData()
+        fileRef.current && formData.append("file", fileRef.current)
+        formData.append("data", JSON.stringify({
+          name,
+          email
+        }))
+
+        const dataLocalStorage  = localStorage.getItem("@helpDesk:user") || ""
+        const resultLocalStorage = JSON.parse(dataLocalStorage)
+        if(resultLocalStorage.name === name && resultLocalStorage.email === email && !fileRef.current){
+          return { info: "Nenhum dados para atualizar." }
+        }
+
+        const response = await api.patch(`/user/${session?.user.id}`, formData)
+        const result = response.data
+
+        localStorage.removeItem("@helpDesk:user")
+        localStorage.setItem("@helpDesk:user", JSON.stringify({
+          ...result
+        }))
+
+        loadUser()
+        return { sucess: "Cadastro atualizado com sucesso." }
+      } catch (error: any) {
+        if(error instanceof AxiosError) {
+          throw new Error(error.response?.data.message)
+        }
   
-  const onSubmit = async ({ name, email }: { name?: string, email?: string }): Promise<void> => {  
-    const formData = new FormData()
-    fileRef.current && formData.append("file", fileRef.current)
-    formData.append("data", JSON.stringify({
-      name,
-      email
-    }))
-      
-    try {  
-      const dataLocalStorage  = localStorage.getItem("@helpDesk:user") || ""
-      const resultLocalStorage = JSON.parse(dataLocalStorage)
-      if(resultLocalStorage.name === name && resultLocalStorage.email === email && !fileRef.current){
-        return form.setError("root", { info: "Nenhum dados para atualizar." } as object) 
+        throw new Error(error.message)
       }
-
-      const response = await api.patch(`/user/${session?.user.id}`, formData)
-      if(!response){
-        return form.setError("root", { message: "Erro a atualizar no banco" })
-      }
-      
-      localStorage.removeItem("@helpDesk:user")
-      localStorage.setItem("@helpDesk:user", JSON.stringify({
-        ...response.data
-      }))
-
-      loadUser()
-    } catch (error: any) {
-      if(error instanceof AxiosError) {
-        return form.setError("root", {message: error.response?.data.message})
-      }
-
-      form.setError("root", {message: error.message})
     }
-  }
+  })
 
   return {
-    onSubmit,
-    form,
-    fileRef
+    data,
+    useMutation,
+    fileRef,
+    error,
+    isError,
+    mutateAsync,
+    isPending,
+    session
   }
 }
 
-export { profileUpdate }
+export { useProfileUpdate }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Modal } from "@/components/modal";
 import { useProfile } from "@/hooks/useProfile";
-import { profileUpdate } from "../http/use-profile-update"
+import { useProfileUpdate } from "../http/use-profile-update"
 import { Alert } from "@/components/ui/alert";
 import { Loading, Loader } from "@/components/ui/loading";
 import { FormPassword } from "./components/form-password";
@@ -9,6 +9,9 @@ import { FormHoursTechnical } from "./components/form-hours-technical";
 import { FormChooseAvatar } from "./components/form-choose-avatar";
 import { FormProfile } from "./components/form-profile";
 import { UiButton } from "@/components/ui/UiButton";
+import { useForm } from "react-hook-form";
+import { profileUpdateSchema, type ProfileUpdateSchemType } from "../schemas/profileSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 type IsProfileProps = {
   myProfile: "technical" | "customers"
@@ -18,16 +21,34 @@ export function IsProfile({ myProfile }: IsProfileProps){
   const [modalPassword, setModalPassword] = useState(false)
   const { profileModal, isModal } = useProfile()
   const [imagePreview, setImagePreview] = useState<string | null>(null)
-  const { onSubmit, form, fileRef } = profileUpdate()
+
+  const { data, session, fileRef, error, isError, mutateAsync: onUpdateProfile, isPending } = useProfileUpdate()
+
+  const form = useForm<ProfileUpdateSchemType>({
+    defaultValues: {
+      name: session?.user.name,
+      email: session?.user?.email
+    },
+    criteriaMode: 'all',
+    mode: 'all',
+    resolver: zodResolver(profileUpdateSchema) 
+  })
+
+  const onSubmit = async (data: ProfileUpdateSchemType) => {
+    onUpdateProfile(data)
+  }
 
   return (
     <>
-      {form.formState.isSubmitting && <Loading />}
-        <Alert severity="error" open={!!form.formState.errors.root?.message} onClose={form.clearErrors} >
-          {form.formState.errors.root?.message}
+      {isPending && <Loading />}
+        <Alert severity="error" open={isError} >
+          {error?.message}
         </Alert>
-        <Alert severity="info" open={!!form.formState.errors.root?.info} onClose={form.clearErrors} >
-          {typeof form.formState.errors.root?.info === "string" && form.formState.errors.root.info}
+        <Alert severity="info" open={!!data?.info} >
+          {data?.info}
+        </Alert>
+        <Alert severity="success" open={!!data?.sucess} >
+          {data?.sucess}
         </Alert>
 
       {/* Perfil */}
@@ -65,8 +86,8 @@ export function IsProfile({ myProfile }: IsProfileProps){
           }
 
           <div className="m-auto mb-5">
-            <UiButton typeSize="xxl" typeColor="black" disabled={form.formState.isSubmitting} >
-              { form.formState.isSubmitting ? <Loader /> : "Salvar" }
+            <UiButton typeSize="xxl" typeColor="black" disabled={isPending} >
+              { isPending ? <Loader /> : "Salvar" }
             </UiButton>
           </div>
         </Modal.Root>

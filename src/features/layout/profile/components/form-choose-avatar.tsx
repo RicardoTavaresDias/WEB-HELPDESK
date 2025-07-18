@@ -5,7 +5,7 @@ import { Avatar } from "@/components/ui/avatar"
 import { useOpenModal } from "@/hooks/useOpenModal"
 import { useAuth } from "@/hooks/useAuth"
 import type { MutableRefObject } from "react";
-import { removeAvatar } from "../../http/use-avatar-remove"
+import { useRemoveAvatar } from "../../http/use-avatar-remove"
 import { Loading } from "@/components/ui/loading"
 import { Alert } from "@/components/ui/alert"
 
@@ -23,7 +23,7 @@ type SessionUser = {
 export const FormChooseAvatar = ({ imagePreview, setImagePreview, fileRef }: FormChooseAvatarType) => {
    const { menuRef, open, setOpen } = useOpenModal()
    const { session } = useAuth()
-   const { onRemove, isLoading, message } = removeAvatar()
+   const { mutateAsync: onRemove, isPending, isError, error, isSuccess, data } = useRemoveAvatar()
 
   function handleImageChange(event: React.ChangeEvent<HTMLInputElement>){
     fileRef.current = event.target.files?.[0] ?? null
@@ -36,13 +36,13 @@ export const FormChooseAvatar = ({ imagePreview, setImagePreview, fileRef }: For
 
   return (
     <>
-      {isLoading && <Loading/>}
-      <Alert severity="error" open={!!message.error}>
-        {message.error}
+      {isPending && <Loading/>}
+      {/* <Alert severity="error" open={isError}>
+        {error?.message}
       </Alert>
-      <Alert severity="success" open={!!message.sucess}>
-        {message.sucess}
-      </Alert>
+      <Alert severity="success" open={isSuccess}>
+        {data?.sucess}
+      </Alert> */}
   
       <div className="flex items-center w-fit" ref={menuRef}>
 
