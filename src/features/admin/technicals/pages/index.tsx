@@ -10,22 +10,15 @@ import { Alert } from "@/components/ui/alert";
 import { Loading } from "@/components/ui/loading";
 import { Table } from "@/components/table"
 import { Pagination } from "@/components/pagination"
-import { indexTechnicals } from "../http/use-technicals"
+import { useTechnicals } from "../http/use-technicals"
 
 export function IndexAdminTechnicals(){
-  const { 
-    dataUsers, 
-    isLoading, 
-    messageError,
-    pagination,
-    setPage,
-    page
-  } = indexTechnicals()
+  const { data: dataUsers, isLoading, error, isError, pagination, page, setPage } = useTechnicals()
 
   return ( 
     <>
       {isLoading && <Loading />}
-        <Alert severity="error" open={!!messageError}>{messageError}</Alert>
+        <Alert severity="error" open={isError}>{error?.message}</Alert>
       
       <div className="mb-7">
         <Modules.Title title="Técnicos" isButton={true} >

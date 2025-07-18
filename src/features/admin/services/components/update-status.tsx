@@ -1,7 +1,6 @@
 import { IconBan } from "@/assets/icon/iconBan";
 import { IconCicloCheck } from "@/assets/icon/iconCicloCheck";
 import { IconPenLine } from "@/assets/icon/iconPenLine";
-import { Table } from "@/components/table";
 import { UiButton } from "@/components/ui/UiButton";
 import { type DataServicesType } from "../types/data-services";
 import { useUpdateStatus } from "../http/use-update-status";
@@ -32,43 +31,10 @@ export const UpdateStatus = ({
     <>
       {isPending && <Loading />}
       <Alert severity="error" open={isError}>{error?.message}</Alert>
-
-      <Table.Cell
-        clas="flex justify-end"
-        internalSpacing="px-2.5 py-3 lg:px-4 lg:py-3"
-      >
-        <div className="flex items-center gap-1 mr-2.5 max-sm:hidden">
-          {service.serviceStatus === "active" && (
-            <>
-              <IconBan
-                className="w-4 h-4 cursor-pointer"
-                onClick={() =>
-                  onUpdateStatus({
-                    id: service.id,
-                    status: service.serviceStatus,
-                  })
-                }
-              />
-              Desativar
-            </>
-          )}
-          {service.serviceStatus === "inactive" && (
-            <>
-              <IconCicloCheck
-                className="w-4 h-4 cursor-pointer"
-                onClick={() =>
-                  onUpdateStatus({
-                    id: service.id,
-                    status: service.serviceStatus,
-                  })
-                }
-              />
-              Reativar
-            </>
-          )}
-        </div>
-        <div className="flex items-center gap-1 mr-2.5 lg:hidden">
-          {service.serviceStatus === "active" && (
+    
+      <div className="flex items-center gap-1 mr-2.5 max-sm:hidden">
+        {service.serviceStatus === "active" && (
+          <>
             <IconBan
               className="w-4 h-4 cursor-pointer"
               onClick={() =>
@@ -78,8 +44,11 @@ export const UpdateStatus = ({
                 })
               }
             />
-          )}
-          {service.serviceStatus === "inactive" && (
+            Desativar
+          </>
+        )}
+        {service.serviceStatus === "inactive" && (
+          <>
             <IconCicloCheck
               className="w-4 h-4 cursor-pointer"
               onClick={() =>
@@ -89,19 +58,46 @@ export const UpdateStatus = ({
                 })
               }
             />
-          )}
-        </div>
-        <UiButton
-          type="button"
-          typeColor="gray"
-          typeSize="xxs"
-          icon={IconPenLine}
-          onClick={() => {
-            setModalEdition(!modalEdition);
-            setServices(service);
-          }}
-        />
-      </Table.Cell>
+            Reativar
+          </>
+        )}
+      </div>
+
+      <div className="flex items-center gap-1 mr-2.5 lg:hidden">
+        {service.serviceStatus === "active" && (
+          <IconBan
+            className="w-4 h-4 cursor-pointer"
+            onClick={() =>
+              onUpdateStatus({
+                id: service.id,
+                status: service.serviceStatus,
+              })
+            }
+          />
+        )}
+        {service.serviceStatus === "inactive" && (
+          <IconCicloCheck
+            className="w-4 h-4 cursor-pointer"
+            onClick={() =>
+              onUpdateStatus({
+                id: service.id,
+                status: service.serviceStatus,
+              })
+            }
+          />
+        )}
+      </div>
+
+      <UiButton
+        type="button"
+        typeColor="gray"
+        typeSize="xxs"
+        icon={IconPenLine}
+        onClick={() => {
+          setModalEdition(!modalEdition);
+          setServices(service);
+        }}
+      />
     </>
   );
 };

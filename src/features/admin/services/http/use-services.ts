@@ -5,7 +5,7 @@ import { api } from "@/services/api"
 import { AxiosError } from "axios"
 import type { PaginationType } from "@/types/pagination"
 
-type DataCalledsType = {
+type ServicesType = {
   result: PaginationType
   data: DataServicesType[]
 }
@@ -13,7 +13,7 @@ type DataCalledsType = {
 function useServices () {
   const [page, setPage] = useState(1)
 
-  const { data, error, isLoading, isError } = useQuery<DataCalledsType>({
+  const { data, error, isLoading, isError } = useQuery<ServicesType>({
     queryKey: ['get_services', page],
     queryFn: async () => {
       try {

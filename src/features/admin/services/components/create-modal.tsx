@@ -17,7 +17,7 @@ type CreateModalType ={
 
 const CreateModal = ({ modalNew, setModalNew }: CreateModalType) => {
   const { data, isSuccess, isError, error, isPending, mutateAsync: onCreateServices } = useCreateServices()
-console.log(data)
+
   const form = useForm<ServicesSchemaType>({
       defaultValues: {
         title: "",

@@ -1,42 +1,27 @@
-import { signupSchema, type signupSchemaType } from "@/features/auth/schemas/AuthSchema"
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { type signupSchemaType } from "@/features/auth/schemas/AuthSchema"
 import { api } from "@/services/api"
 import { AxiosError } from "axios"
+import { useMutation } from "@tanstack/react-query"
 
-const useSignup = () => {
-  const form = useForm<signupSchemaType>({
-    defaultValues: {
-      name: "",
-      email: "",
-      password: ''
-    },
-    criteriaMode: 'all',
-    mode: 'all',
-    resolver: zodResolver(signupSchema)
-  })
+function useSignup () {
+  return useMutation({
+    mutationFn: async (data: signupSchemaType) => {
+      try {
+        const response = await api.post("/user/customer", {
+          ...data
+        })
 
-  const onSubmit = async (data: signupSchemaType) => {
-    try{
-      const response = await api.post("/user/customer", { 
-        ...data
-      })
-
-      form.reset()
-      form.setError("root", { success: response.data.message } as object)
-    } catch(error: any){
-      if(error instanceof AxiosError) {
-        return form.setError("root", {message: error.response?.data.message})
+        const result = response.data
+        return result
+      } catch (error: any) {
+        if(error instanceof AxiosError) {
+          throw new Error(error.response?.data.message)
+        }
+  
+        throw new Error(error.message)
       }
-
-      return form.setError("root", {message: error.message})
     }
-  }
-
-   return {
-    form,
-    onSubmit,
-  }
+  })
 }
 
 export { useSignup }

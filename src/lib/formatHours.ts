@@ -58,7 +58,7 @@ export type mappedUserType = Omit<UsersType, "userHours"> & {
 }
 
 export const hourFormatList = (user: UsersType[]): mappedUserType[] => {
-  if(user === null) return []
+  if(!user) return []
   const users = Array.isArray(user) ? user : [user]
 
   const userMap = users.map(user => {

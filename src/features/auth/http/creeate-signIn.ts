@@ -1,50 +1,38 @@
 import { useNavigate } from "react-router"
 import { useAuth } from "@/hooks/useAuth"
-import { signinSchema, type signinSchemaType } from "@/features/auth/schemas/AuthSchema"
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { type signinSchemaType } from "@/features/auth/schemas/AuthSchema"
 import { AxiosError } from "axios"
 import { api } from "@/services/api"
+import { useMutation } from "@tanstack/react-query"
 
-const useSignin = () => {
+function useSignin () {
   const navigate = useNavigate()
   const { save } = useAuth()
 
-  const form = useForm<signinSchemaType>({
-    defaultValues: {
-      email: "",
-      password: ''
-    },
-    criteriaMode: 'all',
-    mode: 'all',
-    resolver: zodResolver(signinSchema)
-  })
+  return useMutation({
+    mutationFn: async (data: signinSchemaType) => {
+      try {
+        const response = await api.post("/", {
+          ...data
+        })
 
-  const onSubmit = async (data: signinSchemaType) => {
-    try{
-      const response = await api.post("/", { 
-        ...data
-      })
+        const result = response.data
 
-      save({
-        token: response.data.token,
-        user: response.data.user
-      })
+        save({
+          token: result.token,
+          user: result.user
+        })
 
-      navigate("/")
-    } catch(error: any){
-      if(error instanceof AxiosError) {
-        return form.setError("root", {message: error.response?.data.message})
+        navigate("/")
+      } catch (error: any) {
+        if(error instanceof AxiosError) {
+          throw new Error(error.response?.data.message)
+        }
+  
+        throw new Error(error.message)
       }
-
-      return form.setError("root", {message: error.message})
     }
-  }
-
-  return {
-    form,
-    onSubmit,
-  }
+  })
 }
 
 export { useSignin }

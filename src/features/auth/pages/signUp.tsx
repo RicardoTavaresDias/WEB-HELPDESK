@@ -5,18 +5,37 @@ import { Input } from "@/components/ui/input";
 import { useSignup } from "@/features/auth/http/create-signUp";
 import { Alert } from "@/components/ui/alert";
 import { Loading } from "@/components/ui/loading";
+import { signupSchema, type signupSchemaType } from "../schemas/AuthSchema";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export function Signup() {
-  const { onSubmit, form } = useSignup();
+  const { data, error, isError, isSuccess, isPending, mutateAsync: onCreateSignup } = useSignup();
+
+  const form = useForm<signupSchemaType>({
+    defaultValues: {
+      name: "",
+      email: "",
+      password: ''
+    },
+    criteriaMode: 'all',
+    mode: 'all',
+    resolver: zodResolver(signupSchema)
+  })
+
+  const onSubmit = (data: signupSchemaType) => {
+    onCreateSignup(data)
+    form.reset()
+  }
 
   return (
     <>
-      {form.formState.isSubmitting && <Loading />}
-      <Alert severity="error" open={!!form.formState.errors.root?.message} onClose={form.clearErrors} >
-        {form.formState.errors.root?.message}
+      {isPending && <Loading />}
+      <Alert severity="error" open={isError} >
+        {error?.message}
       </Alert>
-      <Alert severity="success" open={!!form.formState.errors.root?.success} onClose={form.clearErrors} >
-        {form.formState.errors.root?.success as string}
+      <Alert severity="success" open={isSuccess} >
+        {data?.message}
       </Alert>
 
       <main className="pt-3 max-sm:pt-8">

@@ -1,21 +1,47 @@
 import { hourFormatList, type mappedUserType, type UsersType } from "@/lib/formatHours"
-import { useFethLoad } from "@/hooks/useFethLoad"
 import { type UserTechnicalType } from "../schemas/technical.schema"
+import { useState } from "react"
+import { useQuery } from "@tanstack/react-query"
+import type { PaginationType } from "@/types/pagination"
+import { api } from "@/services/api"
+import { AxiosError } from "axios"
 
-const indexTechnicals = () => {
-  const response = useFethLoad<UserTechnicalType[]>("/user/list/technical")
-  const formatUserHours = hourFormatList(response.data as UsersType[]) as mappedUserType[]
+type DataTechnicalType = {
+  result: PaginationType
+  data: UserTechnicalType[]
+}
 
-  console.log(formatUserHours)
+function useTechnicals () {
+  const [page, setPage] = useState(1)
+
+  const { data, error, isLoading, isError } = useQuery<DataTechnicalType>({
+    queryKey: ['get_technical', page],
+    queryFn: async () => {
+      try {
+        const response = await api.get(`/user/list/technical?page=${page}&limit=10`)
+        const result = response.data as DataTechnicalType
+        
+        return result 
+      } catch (error: any) {
+        if(error instanceof AxiosError) {
+          throw new Error(error.response?.data.message)
+        }
+  
+        throw new Error(error.message)
+      }
+    },
+    retry: 1,
+  })
 
   return {
-    dataUsers: formatUserHours,
-    isLoading: response.isLoading,
-    messageError: response.messageError,
-    pagination: response.pagination,
-    setPage: response.setPage,
-    page: response.page
+    data: hourFormatList(data?.data as UsersType[]) as mappedUserType[], 
+    error,
+    isLoading,
+    page,
+    setPage,
+    pagination: data?.result || null,
+    isError
   }
 }
 
-export { indexTechnicals }
+export { useTechnicals }

@@ -76,12 +76,15 @@ export function AdminServices(){
                       </div>
                     </Table.Cell>
 
-                    <UpdateStatus 
-                      service={item}
-                      modalEdition={modalEdition}
-                      setModalEdition={setModalEdition}
-                      setServices={setServices}
-                    />
+                    <Table.Cell clas="flex justify-end" internalSpacing="px-2.5 py-3 lg:px-4 lg:py-3" >
+                      <UpdateStatus 
+                        service={item}
+                        modalEdition={modalEdition}
+                        setModalEdition={setModalEdition}
+                        setServices={setServices}
+                      />
+                    </Table.Cell>
+                    
                   </tr>
                ))
               }
