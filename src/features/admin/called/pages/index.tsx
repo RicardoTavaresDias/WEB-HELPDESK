@@ -10,17 +10,14 @@ import { currency } from "@/lib/currency";
 import dayjs from "dayjs";
 import { Pagination } from "@/components/pagination";
 import { Avatar } from "@/components/ui/avatar";
-import { useState } from "react";
 
 export function IndexCalleds() {
-  const [page, setPage] = useState(1)
-  const { data, isLoading, error } = useCalleds(page)
-  const pagination = data?.result || null
-  
+  const { data, isLoading, error, page, setPage, pagination, isError} = useCalleds()
+
   return (
     <>
       {isLoading && <Loading/>}
-      <Alert severity="error" open={!!error}>
+      <Alert severity="error" open={isError}>
         {error?.message} 
       </Alert>
       

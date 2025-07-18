@@ -4,55 +4,70 @@ import { UiButton } from "@/components/ui/UiButton";
 import { Input } from "@/components/ui/input";
 import { Loading } from "@/components/ui/loading";
 import { Alert } from "@/components/ui/alert";
-import type { UseFormReturn } from "react-hook-form";
-import type { UserTechnicalType } from "@/features/admin/technicals/schemas/technical.schema"
+import { useForm } from "react-hook-form"
+import { userSchema as UserCustomerSchema, type UserTechnicalType as UserCustomerSchemaType } from "@/features/admin/technicals/schemas/technical.schema"
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect } from "react";
+import { useUpdateCustomer } from "../http/use-update-customers";
+import type { UserCustomerType } from "../types/customers-response";
 
 type ModalUpdateCustomerType = {
   modalEdition: boolean
   setModalEdition: (value: boolean) => void
-  form: {
-    onSubmit: (data: UserTechnicalType) => void
-    formUpdate: UseFormReturn<UserTechnicalType> 
-  }
-  user: {
-    name: string
-    avatar: string
-  }
+  user: UserCustomerType
 } 
 
-export const ModalUpdateCustomers = ({modalEdition, setModalEdition, form, user}: ModalUpdateCustomerType) => {
-  const { formUpdate, onSubmit } = form
+export const ModalUpdateCustomers = ({modalEdition, setModalEdition, user}: ModalUpdateCustomerType) => {
+  const { mutateAsync: updateCustomer, error, isSuccess, data, isError } = useUpdateCustomer(user.id)
+
+  const form = useForm<UserCustomerSchemaType>({
+      defaultValues: {
+        name: "",
+        email: ""
+      },
+      criteriaMode: 'all',
+      mode: 'all',
+      resolver: zodResolver(UserCustomerSchema)
+    })
+
+    useEffect(() => {
+      form.reset({
+        name: user?.name,
+        email: user?.email
+      })
+    },[user])
+
+    const onUpdate = (data: UserCustomerSchemaType) => {
+      updateCustomer(data)
+    }
 
   return (
     <>
-    {formUpdate.formState.isSubmitting && <Loading />}
-      <Alert severity="error" open={!!formUpdate.formState.errors.root?.message} onClose={formUpdate.clearErrors} >
-        {formUpdate.formState.errors.root?.message}
+    {form.formState.isSubmitting && <Loading />}
+      <Alert severity="error" open={isError} >
+        {error?.message}
       </Alert>
-      <Alert severity="success" open={!!formUpdate.formState.errors.root?.success} onClose={formUpdate.clearErrors} >
-        {typeof formUpdate.formState.errors.root?.success === "string" && formUpdate.formState.errors.root.success}
-      </Alert>
-      <Alert severity="info" open={!!formUpdate.formState.errors.root?.info} onClose={formUpdate.clearErrors} >
-        {typeof formUpdate.formState.errors.root?.info === "string" && formUpdate.formState.errors.root.info}
+      <Alert severity="success" open={isSuccess}  >
+        {data?.sucess}
       </Alert>
 
-      <form onSubmit={formUpdate.handleSubmit(onSubmit)}>
+      <form onSubmit={form.handleSubmit(onUpdate)}>
         <Modal.Root isActive={modalEdition} >
           <Modal.Title title="Cliente" onClose={() => {
-            formUpdate.reset()
+            form.reset()
             setModalEdition(!modalEdition)
           }} />
           <Modal.Context>
             <div>
               <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-16 h-16" sizeText="text-xl" />
               <div className="pt-3">
-                <Input type="text" {...formUpdate.register("name")} label="nome" error={formUpdate.formState.errors.name?.message} />
-                <Input type="text" {...formUpdate.register("email")} label="e-mail" error={formUpdate.formState.errors.email?.message} />
+                <Input type="text" {...form.register("name")} label="nome" error={form.formState.errors.name?.message} />
+                <Input type="text" {...form.register("email")} label="e-mail" error={form.formState.errors.email?.message} />
               </div>
             </div>  
           </Modal.Context>
           <Modal.Actions>
-            <UiButton type="submit" typeSize="xxl" typeColor="black" disabled={formUpdate.formState.isSubmitting}
+            <UiButton type="submit" typeSize="xxl" typeColor="black" disabled={form.formState.isSubmitting}
               onClick={() => {
                 setModalEdition(!modalEdition)
               }

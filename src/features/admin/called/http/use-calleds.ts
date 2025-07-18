@@ -3,14 +3,17 @@ import { api } from "@/services/api"
 import type { PaginationType } from "@/types/pagination"
 import { useQuery } from "@tanstack/react-query"
 import { AxiosError } from "axios"
+import { useState } from "react"
 
 type DataCalledsType = {
   result: PaginationType
   data: CalledsType[]
 }
 
-function useCalleds (page?: number) {
-  return useQuery<DataCalledsType>({
+function useCalleds () {
+  const [page, setPage] = useState(1)
+
+  const { data, error, isLoading, isError } = useQuery<DataCalledsType>({
     queryKey: ["get_calleds", page],
     queryFn: async () => {
       try {
@@ -28,6 +31,16 @@ function useCalleds (page?: number) {
     },
     retry: 1,
   })
+
+  return {
+    data,
+    error,
+    isLoading,
+    pagination: data?.result || null,
+    page,
+    setPage,
+    isError
+  }
 }
 
 export { useCalleds }

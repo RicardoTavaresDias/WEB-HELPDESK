@@ -1,39 +1,28 @@
 import { api } from "@/services/api"
 import { AxiosError } from "axios"
-import { useState } from "react"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
-export const removeCustomer = (onSuccessCallback: () => void) => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [message, setMessage] = useState<{ error?: string, sucess?: string }>({
-    error: "",
-    sucess: ""
-  })
- 
-  const onRemove = async (uuid: string) => {
-    setMessage({ error: "", sucess: "" })
-
-    try {
-      setIsLoading(true)
-      const responseRemove = await api.delete(`/user/${uuid}`)
-      setMessage({ sucess: responseRemove.data.message })
-      if(onSuccessCallback){
-        onSuccessCallback()
+function removeCustomer() {
+  const queryClient = useQueryClient()
+  
+  return useMutation({
+    mutationFn: async (userId: string) => {
+      try {
+        await api.delete(`/user/${userId}`)
+        return { sucess: 'Usuário removido com sucesso.' }
+      } catch (error: any) {
+        if(error instanceof AxiosError) {
+          throw new Error(error.response?.data.message)
+        }
+  
+        throw new Error(error.message)
       }
-    } catch (error: any) {
-      setMessage({ error: "", sucess: "" })
+    },
 
-      if(error instanceof AxiosError) {
-        return setMessage({ error: error.response?.data.message })
-      }
-      setMessage({ error: error.message })
-    }finally{
-      setIsLoading(false)
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['get_Customer'] })
     }
-  }
-
-  return {
-    onRemove,
-    message,
-    isLoadingRemove: isLoading
-  }
+  })
 }
+
+export { removeCustomer }

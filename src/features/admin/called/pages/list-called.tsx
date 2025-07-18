@@ -1,4 +1,4 @@
-import { useParams } from "react-router" 
+import { Navigate, useParams } from "react-router" 
 import { Modules } from "@/components/modules"
 import { Status } from "@/components/ui/status"
 import { ModuleContext } from "@/components/modules/moduleContext"
@@ -18,13 +18,18 @@ import { v4 as uuid } from 'uuid'
 
 export function CallListdetails(){
   const { id } = useParams()
-  const { data: calleds, isLoading, error} = useListCalled(Number(id))
-  const { error: errorUpdate, mutateAsync: onSubmitStatus } = updateStatus()
+
+   if (!id) {
+    return <Navigate replace to="/" />
+  }
+
+  const { data: calleds, isLoading, error, isError } = useListCalled(Number(id))
+  const { error: errorUpdate, mutateAsync: onSubmitStatus, isError: isErrorUpdate } = updateStatus()
 
   return (
     <>
     {isLoading && <Loading />}
-        <Alert severity="error" open={!!error || !!errorUpdate}>
+        <Alert severity="error" open={isError || isErrorUpdate}>
           {error?.message}
           {errorUpdate?.message}
         </Alert>

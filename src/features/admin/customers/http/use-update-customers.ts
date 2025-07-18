@@ -1,44 +1,33 @@
-import { useEffect, useState } from "react"
-import { userSchema as UserCustomerSchema, type UserTechnicalType as UserCustomerSchemaType } from "@/features/admin/technicals/schemas/technical.schema"
-import { useForm } from "react-hook-form"
-import { zodResolver } from '@hookform/resolvers/zod'
-import type { UserCustomerType } from "../types/customers-response"
-import { useUpdate } from "@/hooks/useUpdate"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { api } from "@/services/api"
+import { AxiosError } from "axios"
+import { type UserTechnicalType as UserCustomerSchemaType } from "@/features/admin/technicals/schemas/technical.schema"
 
-const updateCustomer = (onSuccessCallback: () => void) => {
-  const [user, setUser] = useState<UserCustomerType>({
-    id: "",
-    name: "",
-    email: "",
-    avatar: ""
-  })
+function useUpdateCustomer (id: string) {
+  const queryClient = useQueryClient()
 
-  const form = useForm<UserCustomerSchemaType>({
-    defaultValues: {
-      name: "",
-      email: ""
-    },
-    criteriaMode: 'all',
-    mode: 'all',
-    resolver: zodResolver(UserCustomerSchema)
-  })
+  return useMutation({
+    mutationFn: async (data: UserCustomerSchemaType) => {
+      try {
+        const formData = new FormData()
+        formData.append("data", JSON.stringify(data))
 
-  useEffect(() => {
-    form.reset({
-      name: user.name,
-      email: user.email
-    })
-  },[user])
+        await api.patch(`/user/${id}`, formData)
+        return { sucess: "Dados atualizado com sucesso." }
 
-  const onSubmit = (data: UserCustomerSchemaType) => 
-    useUpdate({ onSuccessCallback, form, httpApi: `/user/${user.id}`, formDataUpdate: data })
+      } catch (error: any) {
+        if(error instanceof AxiosError) {
+          throw new Error(error.response?.data.message)
+        }
   
-  return {
-    formUpdate: form,
-    onSubmit,
-    user,
-    setUser
-  }
+        throw new Error(error.message)
+      }
+    },
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['get_Customer'] })
+    }
+  })
 }
 
-export { updateCustomer }
+export { useUpdateCustomer }

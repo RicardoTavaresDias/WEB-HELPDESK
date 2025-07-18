@@ -6,22 +6,21 @@ import { Alert } from "@/components/ui/alert"
 
 type ModalUpdateCustomerType = {
   userId: string
-  fethLoad: () => void
   modalRemove: boolean
   setModalRemove: (value: boolean) => void
 } 
 
-export const ModalRemoveCustomers = ({ userId, fethLoad, modalRemove, setModalRemove }: ModalUpdateCustomerType) => {
-   const { onRemove, message, isLoadingRemove } = removeCustomer (fethLoad)
+export const ModalRemoveCustomers = ({ userId, modalRemove, setModalRemove }: ModalUpdateCustomerType) => {
+  const { data, error, isSuccess, isError, mutateAsync: onRemove } = removeCustomer()
 
   return (
     <>
-      {isLoadingRemove && <Loading/>}
-      <Alert severity="error" open={!!message.error}>
-        {message.error && message.error}
+      {/* {isLoading && <Loading />} */}
+      <Alert severity="error" open={isError} >
+        {error?.message}
       </Alert>
-      <Alert severity="success" open={!!message.sucess}>
-        {message.sucess && message.sucess}
+      <Alert severity="success" open={isSuccess} >
+        {data?.sucess}
       </Alert>
 
       <Modal.Root isActive={modalRemove}>

@@ -10,25 +10,25 @@ import { Pagination } from "@/components/pagination";
 import { Loading } from "@/components/ui/loading";
 import { ModalUpdateCustomers } from "../components/update-modal"
 import { ModalRemoveCustomers } from "../components/remove-modal"
-import  { indexCustomers } from "../http/use-customers"
-import { updateCustomer } from "../http/use-update-customers";
+import  { useCustomer } from "../http/use-customers"
+import type { UserCustomerType } from "../types/customers-response";
 
 export function IndexAdminCustomer(){
   const [modalRemove, setModalRemove] = useState(false)
   const [modalEdition, setModalEdition] = useState(false)
-  const { isLoading, messageError, page, pagination, setPage, users, fethLoad } = indexCustomers()
-  const { user, setUser, formUpdate, onSubmit } = updateCustomer(fethLoad)
+  const [user, setUser] = useState<UserCustomerType>({ id: "", name: "", email: "", avatar: "" })
 
+  const { isLoading, error, page, pagination, setPage, data: dataCustomer } = useCustomer()
+  
   return (
     <>
       {isLoading && <Loading/>}
-      <Alert severity="error" open={!!messageError}>
-        {messageError && messageError} 
+      <Alert severity="error" open={!!error}>
+        {error?.message} 
       </Alert>
 
       {/* Modal Remove */}
       <ModalRemoveCustomers
-        fethLoad={fethLoad}
         userId={user.id}
         modalRemove={modalRemove}
         setModalRemove={setModalRemove}
@@ -37,10 +37,9 @@ export function IndexAdminCustomer(){
 
       {/* Modal Update */}
       <ModalUpdateCustomers
-        form={{ onSubmit, formUpdate }}
         setModalEdition={setModalEdition}
         modalEdition={modalEdition}
-        user={{ name: user.name, avatar: user.avatar }}
+        user={user}
       />
       {/* Modal Update */}
 
@@ -58,7 +57,7 @@ export function IndexAdminCustomer(){
           </Table.Header>
           <Table.Body>
           {
-            users && users.map((user) => (
+            dataCustomer && dataCustomer.data.map((user) => (
               <tr className="border-t border-gray-500 text-left" key={user.id}>
 
                 <Table.Cell clas="w-1/2">
@@ -107,7 +106,7 @@ export function IndexAdminCustomer(){
 
           <Table.Body>
             {
-              users && users.map(user => (
+              dataCustomer && dataCustomer.data.map(user => (
                 <tr className="border-t border-gray-500 text-left text-sm" key={user.id} >
 
                   <Table.Cell internalSpacing="pl-3 pr-1 py-4.5 flex gap-3 items-center">
