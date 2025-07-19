@@ -52,11 +52,11 @@ export function CallDetails(){
         <Modules.Title title="Chamado detalhado" to="/">
           {details.status === "open" &&
             <>
-              <UiButton type="button" typeColor="gray" typeSize="md" icon={IconClock} onClick={() => setDetails({...details, status: "progress"})} >Encerrar</UiButton>
+              <UiButton type="button" typeColor="gray" typeSize="md" icon={IconClock} onClick={() => setDetails({...details, status: "in_progress"})} >Encerrar</UiButton>
               <UiButton type="button" typeColor="black" typeSize="md" color="#F9FAFA" icon={IconCicloCheckBig} onClick={() => setDetails({...details, status: "close"})} >Iniciar atendimento</UiButton>
             </>
           }
-          {details.status === "progress" &&
+          {details.status === "in_progress" &&
             <>
               <UiButton type="button" typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => setDetails({...details, status: "open"})} >Abrir</UiButton>
               <UiButton type="button" typeColor="black" typeSize="md" icon={IconCicloCheckBig} color="#F9FAFA" onClick={() => setDetails({...details, status: "close"})} >Encerrar</UiButton>
@@ -65,7 +65,7 @@ export function CallDetails(){
           {details.status === "close" &&
             <>
               <UiButton type="button" typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => setDetails({...details, status: "open"})} >Abrir</UiButton>
-              <UiButton type="button" typeColor="black" typeSize="md" color="#F9FAFA" icon={IconClock} onClick={() => setDetails({...details, status: "progress"})} >Iniciar atendimento</UiButton>
+              <UiButton type="button" typeColor="black" typeSize="md" color="#F9FAFA" icon={IconClock} onClick={() => setDetails({...details, status: "in_progress"})} >Iniciar atendimento</UiButton>
             </>
           }
         </Modules.Title>
@@ -74,7 +74,7 @@ export function CallDetails(){
           <Modules.Context isType="60">
             <div className="flex justify-between items-center mb-1">
               <span className="Text-Xs text-gray-300">{details.id}</span>
-              <Status type={details.status as "open" | "progress" | "close"} isText />
+              <Status type={details.status as "open" | "in_progress" | "close"} isText />
             </div>
   
             <span className="text-gray-200 text-base font-medium">Backup não está funcionando	</span>

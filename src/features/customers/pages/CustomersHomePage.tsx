@@ -52,7 +52,7 @@ export function Called(){
                 {item.technical.name}
               </div>
             </Panel.Rows>
-             <Panel.Rows><Status type={item.status as "open" | "progress" | "close"} /></Panel.Rows>
+             <Panel.Rows><Status type={item.status as "open" | "in_progress" | "close"} /></Panel.Rows>
              <Panel.Rows>
               <Link to={`/chamados/${item.id}`}><UiButton type="button" icon={IconEye} typeSize="xxs" typeColor="gray" /></Link>
             </Panel.Rows>
@@ -76,7 +76,7 @@ export function Called(){
                 {item.service.title}
               </span>
             </Panel.Rows>
-            <Panel.Rows><Status type={item.status as "open" | "progress" | "close"}/></Panel.Rows>
+            <Panel.Rows><Status type={item.status as "open" | "in_progress" | "close"}/></Panel.Rows>
             <Panel.Rows>
               <Link to={`/chamados/${item.id}`}><UiButton type="button" icon={IconEye} typeSize="xxs" typeColor="gray" /></Link>
             </Panel.Rows>

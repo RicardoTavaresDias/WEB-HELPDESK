@@ -19,7 +19,7 @@ export function Called(){
 
         {/* Em atendimento */}
         <div className="mt-7 max-sm:mt-1">
-          <Status type="progress" isText />
+          <Status type="in_progress" isText />
           <Modules.Container>
             <Modules.Context isType="30" >
               <div className="lg:w-[346px]">
@@ -48,7 +48,7 @@ export function Called(){
                     <img src={avatar} className="w-5 h5" />
                     André Costa
                   </div>
-                  <Status type="progress" isIcon />
+                  <Status type="in_progress" isIcon />
                 </div>
               </div>
             </Modules.Context>

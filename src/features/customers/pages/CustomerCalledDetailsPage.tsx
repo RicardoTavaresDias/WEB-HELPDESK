@@ -23,7 +23,7 @@ export function CallDetails(){
           <Modules.Context isType="60">
             <div className="flex justify-between items-center mb-1">
               <span className="Text-Xs text-gray-300">{details.id}</span>
-              <Status type={details.status as "open" | "progress" | "close"} isText />
+              <Status type={details.status as "open" | "in_progress" | "close"} isText />
             </div>
   
             <span className="text-gray-200 text-base font-medium">Backup não está funcionando	</span>
