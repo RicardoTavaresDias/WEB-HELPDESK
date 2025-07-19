@@ -31,8 +31,8 @@ export const FormPassword = ({
     resolver: zodResolver(profileChangePasswordSchema)
   })
 
-  const onSubmit = (data: ProfileChangePasswordSchemaType) => {
-    onCreateNewPassword(data)
+  const onSubmit = async (data: ProfileChangePasswordSchemaType) => {
+    await onCreateNewPassword(data)
     form.reset()
   }
 

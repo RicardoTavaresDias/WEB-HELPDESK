@@ -22,8 +22,8 @@ export function Signin() {
     resolver: zodResolver(signinSchema)
   })
 
-  const onSubmit = (data: signinSchemaType) => {
-    onLogin(data)
+  const onSubmit = async (data: signinSchemaType) => {
+    await onLogin(data)
   }
   
   return (

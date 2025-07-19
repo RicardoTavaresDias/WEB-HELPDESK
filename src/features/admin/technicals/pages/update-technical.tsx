@@ -8,7 +8,7 @@ import { Alert } from "@/components/ui/alert";
 import { Loading } from "@/components/ui/loading";
 import { Avatar } from "@/components/ui/avatar";
 import { useUpdateTechnical } from "../http/use-update-technicals"
-import { useParams } from "react-router";
+import { Navigate, useParams } from "react-router";
 import { useSearchTechnical } from "../http/use-search-user-uuid";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema, type UserTechnicalType as UserTechnicalTypeSchema  } from "../schemas/technical.schema";
@@ -18,6 +18,11 @@ import { useEffect } from "react";
 
 export function UpdateAdminTechnicals() {
   const { id } = useParams()
+
+  if (!id) {
+    return <Navigate replace to="/" />
+  }
+  
   const { userTechnical, setUserTechnical, queery } = useSearchTechnical(id as string)
   const { refetch, isLoading } = queery
   const userHours = new UserHours(setUserTechnical as any)

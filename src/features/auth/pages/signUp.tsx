@@ -23,8 +23,8 @@ export function Signup() {
     resolver: zodResolver(signupSchema)
   })
 
-  const onSubmit = (data: signupSchemaType) => {
-    onCreateSignup(data)
+  const onSubmit = async (data: signupSchemaType) => {
+    await onCreateSignup(data)
     form.reset()
   }
 

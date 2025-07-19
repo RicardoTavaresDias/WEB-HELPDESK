@@ -32,8 +32,8 @@ const CreateModal = ({ modalNew, setModalNew }: CreateModalType) => {
       form.setValue("price", currency({ formatPriceInput: form.watch("price") }))
     },[form.watch("price")])
 
-    const onSubmit = (data: ServicesSchemaType) => {
-      onCreateServices(data)
+    const onSubmit = async (data: ServicesSchemaType) => {
+      await onCreateServices(data)
       form.reset()
       setModalNew(!modalNew)
     }

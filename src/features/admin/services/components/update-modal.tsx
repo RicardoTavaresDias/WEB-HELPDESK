@@ -42,8 +42,8 @@ const UpdateModal = ({ modalEdition, setModalEdition, service }: UpdateMOdalType
       form.setValue("price", currency({ formatPriceInput: form.watch("price") }))
     },[form.watch("price")])
 
-    const onSubmitUpdate = (data: ServicesSchemaType) => {
-      onUpdateService(data)
+    const onSubmitUpdate = async (data: ServicesSchemaType) => {
+      await onUpdateService(data)
     }
 
   return (

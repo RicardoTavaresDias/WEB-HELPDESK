@@ -21,25 +21,25 @@ export const ModalUpdateCustomers = ({modalEdition, setModalEdition, user}: Moda
   const { mutateAsync: updateCustomer, error, isSuccess, data, isError, isPending } = useUpdateCustomer(user.id)
 
   const form = useForm<UserCustomerSchemaType>({
-      defaultValues: {
-        name: "",
-        email: ""
-      },
-      criteriaMode: 'all',
-      mode: 'all',
-      resolver: zodResolver(UserCustomerSchema)
+    defaultValues: {
+      name: "",
+      email: ""
+    },
+    criteriaMode: 'all',
+    mode: 'all',
+    resolver: zodResolver(UserCustomerSchema)
+  })
+
+  useEffect(() => {
+    form.reset({
+      name: user?.name,
+      email: user?.email
     })
+  },[user])
 
-    useEffect(() => {
-      form.reset({
-        name: user?.name,
-        email: user?.email
-      })
-    },[user])
-
-    const onUpdate = (data: UserCustomerSchemaType) => {
-      updateCustomer(data)
-    }
+  const onUpdate = async (data: UserCustomerSchemaType) => {
+    await updateCustomer(data)
+  }
 
   return (
     <>

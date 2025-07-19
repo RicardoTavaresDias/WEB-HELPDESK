@@ -35,7 +35,7 @@ export function IsProfile({ myProfile }: IsProfileProps){
   })
 
   const onSubmit = async (data: ProfileUpdateSchemType) => {
-    onUpdateProfile(data)
+    await onUpdateProfile(data)
   }
 
   return (
