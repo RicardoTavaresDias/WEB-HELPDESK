@@ -1,60 +1,44 @@
-import { useEffect, useState } from "react";
-import { userSchema, type UserTechnicalType as UserTechnicalTypeSchema } from "../schemas/technical.schema"
-import { UserHours } from "./use-hours"
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import type { UserTechnicalType } from "../types/technical-update-response";
-import { searchUserUIID } from "./use-search-user-uuid"
-import { useUpdate } from "@/hooks/useUpdate";
+import { type UserTechnicalType as UserTechnicalTypeSchema } from "../schemas/technical.schema"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { AxiosError } from "axios";
+import { api } from "@/services/api";
+import type { SearchTechnicalType } from "./use-search-user-uuid";
 
-const updateTechnicals = (uuid: string) => {
-  const [user, setUser] = useState<UserTechnicalType>({
-    id: "",
-    name: "",
-    email: "",
-    avatar: "",
-    userHours: [],
-  });
-
-  const form = useForm<UserTechnicalTypeSchema>({
-    criteriaMode: 'all',
-    mode: 'all',
-    resolver: zodResolver(userSchema)
-  })
-
-  useEffect(() => {
-    searchUserUIID({ form, setUser, uuid})
-  }, [])
-
-  useEffect(() => {
-    form.reset({
-      name: user.name,
-      email: user.email
-    })
-     resetClose()
-  }, [user.name, user.email])
-
-  const resetClose = () => {
-    form.reset()
-    searchUserUIID({ form, setUser, uuid})
-  }
-
-  const userHours = new UserHours(setUser)
-  const onSubmit = (data: UserTechnicalTypeSchema) => 
-    useUpdate({ 
-      form, 
-      httpApi: `/user/${uuid}`,
-      formDataUpdate: { ...data, userHours: userHours.result(user) } 
-    })
-
-  return {
-    user,
-    form,
-    onSubmit,
-    removeUserHours: userHours.removeUserHours,
-    addUserHours: userHours.addUserHours,
-    resetClose
-  }
+export type UpdateTechnicalType = {
+  data: UserTechnicalTypeSchema
+  userTechnical: SearchTechnicalType
 }
 
-export { updateTechnicals }
+function useUpdateTechnical () {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async ({ data, userTechnical }: UpdateTechnicalType) => {
+      try {
+        if(!userTechnical.userHours.length){
+          return { info: "Informe os horários de disponibilidade do técnico "}
+        }
+
+        const formdata = new FormData()
+        formdata.append("data", JSON.stringify({ ...data, userHours: userTechnical.userHours }))
+
+        const response = await api.patch(`/user/${userTechnical.id}`, formdata)
+        const result = response.data
+
+        return { sucess: "Dados Atualizado com sucesso", data: result }
+      } catch (error: any) {
+        if(error instanceof AxiosError) {
+          throw new Error(error.response?.data.message)
+        }
+  
+        throw new Error(error.message)
+      }
+    },
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["get_technical"] })
+    }
+  })
+}
+
+export { useUpdateTechnical }

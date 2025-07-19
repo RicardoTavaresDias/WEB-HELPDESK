@@ -7,24 +7,57 @@ import { v4 as uuid } from "uuid";
 import { Alert } from "@/components/ui/alert";
 import { Loading } from "@/components/ui/loading";
 import { Avatar } from "@/components/ui/avatar";
-import { updateTechnicals } from "../http/use-update-technicals"
+import { useUpdateTechnical } from "../http/use-update-technicals"
 import { useParams } from "react-router";
+import { useSearchTechnical } from "../http/use-search-user-uuid";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { userSchema, type UserTechnicalType as UserTechnicalTypeSchema  } from "../schemas/technical.schema";
+import { useForm } from "react-hook-form";
+import { UserHours } from "../http/use-hours";
+import { useEffect } from "react";
 
 export function UpdateAdminTechnicals() {
   const { id } = useParams()
-  const { user, form, onSubmit, addUserHours, removeUserHours, resetClose, } = updateTechnicals(id as string)
+  const { userTechnical, setUserTechnical, queery } = useSearchTechnical(id as string)
+  const { refetch, isLoading } = queery
+  const userHours = new UserHours(setUserTechnical as any)
+  const { addUserHours, removeUserHours } = userHours
+
+  const form = useForm<UserTechnicalTypeSchema>({
+    criteriaMode: 'all',
+    mode: 'all',
+    resolver: zodResolver(userSchema)
+  })
+
+  useEffect(() => {
+    form.reset({
+      name: userTechnical?.name,
+      email: userTechnical?.email
+    })
+  }, [userTechnical?.name, userTechnical?.email])
+
+  const { isError, error, data, isPending, mutateAsync: onUpdateTechnical} = useUpdateTechnical()
+  const onSubmit = async (data: UserTechnicalTypeSchema) => {
+    const convertUseHoursTechnical = userHours.result(userTechnical!)
+    const result = await onUpdateTechnical({ 
+      data, 
+      userTechnical: {...userTechnical, userHours: convertUseHoursTechnical } as any
+    })
+
+    form.reset({ name: result.data.name, email: result.data.email })
+  }
 
   return (
     <>
-      {form.formState.isSubmitting && <Loading /> || form.formState.isLoading && <Loading/>}
-      <Alert severity="error" open={!!form.formState.errors.root?.message} onClose={form.clearErrors} >
-        {form.formState.errors.root?.message}
+      {isLoading && <Loading /> || isPending && <Loading/>}
+      <Alert severity="error" open={isError} >
+        {error?.message}
       </Alert>
-      <Alert severity="success" open={!!form.formState.errors.root?.success} onClose={form.clearErrors} >
-        {typeof form.formState.errors.root?.success === "string" && form.formState.errors.root.success}
+      <Alert severity="success" open={!!data?.sucess} >
+        {data?.sucess}
       </Alert>
-      <Alert severity="info" open={!!form.formState.errors.root?.info} onClose={form.clearErrors} >
-        {typeof form.formState.errors.root?.info === "string" && form.formState.errors.root.info}
+      <Alert severity="info" open={!!data?.info} >
+        {data?.info}
       </Alert>
 
       <Modules.Root>
@@ -34,8 +67,8 @@ export function UpdateAdminTechnicals() {
               type="button"
               typeColor="gray"
               typeSize="xl"
-              onClick={() => resetClose()}
-              disabled={form.formState.isSubmitting}
+              onClick={() => { form.reset(); refetch() }}
+              disabled={isPending}
             >
               Cancelar
             </UiButton>
@@ -43,7 +76,7 @@ export function UpdateAdminTechnicals() {
               type="submit"
               typeColor="black"
               typeSize="xl"
-              disabled={form.formState.isSubmitting}
+              disabled={isPending}
             >
               Salvar
             </UiButton>
@@ -61,7 +94,7 @@ export function UpdateAdminTechnicals() {
                   </span>
                 </div>
                 <div className="my-6">
-                  {user && <Avatar user={user} size="w-18 h-18" sizeText="text-[22px]" /> }
+                  {userTechnical && <Avatar user={userTechnical} size="w-18 h-18" sizeText="text-[22px]" /> }
                 </div>
                 <Input type="text" {...form.register("name")} label="nome" error={form.formState.errors.name?.message} />
                 <Input type="text" {...form.register("email")} label="e-mail" error={form.formState.errors.email?.message} />
@@ -84,9 +117,9 @@ export function UpdateAdminTechnicals() {
                   Manhã
                 </span>
                 <div className="flex gap-2 mt-2 flex-wrap">
-                  {user.userHours &&
+                  {userTechnical && userTechnical.userHours &&
                     day.morning.map((value) => {
-                      if (user.userHours.includes(value)) {
+                      if (userTechnical.userHours.includes(value)) {
                         return (
                           <div key={uuid()}>
                             <ButtonTime onClick={() => removeUserHours(value)} isActive >
@@ -112,9 +145,9 @@ export function UpdateAdminTechnicals() {
                   Tarde{" "}
                 </span>
                 <div className="flex gap-2 mt-2 flex-wrap">
-                  {user.userHours &&
+                  {userTechnical && userTechnical.userHours &&
                     day.afternoon.map((value) => {
-                      if (user.userHours.includes(value)) {
+                      if (userTechnical.userHours.includes(value)) {
                         return (
                           <div key={uuid()}>
                             <ButtonTime onClick={() => removeUserHours(value)} isActive >
@@ -140,9 +173,9 @@ export function UpdateAdminTechnicals() {
                   Noite
                 </span>
                 <div className="flex gap-2 mt-2 flex-wrap">
-                  {user.userHours &&
+                  {userTechnical && userTechnical.userHours &&
                     day.night.map((value) => {
-                      if (user.userHours.includes(value)) {
+                      if (userTechnical.userHours.includes(value)) {
                         return (
                           <div key={uuid()}>
                             <ButtonTime onClick={() => removeUserHours(value)} isActive >

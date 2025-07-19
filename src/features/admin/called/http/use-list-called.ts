@@ -1,6 +1,6 @@
 import { AxiosError } from "axios"
 import { api } from "@/services/api"
-import { useQuery } from "@tanstack/react-query"
+import { keepPreviousData, useQuery } from "@tanstack/react-query"
 import type { CalledsType } from "../types/calleds-response"
 
 function useListCalled(id: number) {
@@ -19,7 +19,9 @@ function useListCalled(id: number) {
   
         throw new Error(error.message)
       }
-    }
+    },
+    retry: 1,
+    placeholderData: keepPreviousData
   })
 }
 

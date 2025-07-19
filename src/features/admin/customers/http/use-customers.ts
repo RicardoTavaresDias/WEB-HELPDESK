@@ -1,5 +1,5 @@
 import { type UserCustomerType } from "../types/customers-response"
-import { useQuery } from "@tanstack/react-query"
+import { keepPreviousData, useQuery } from "@tanstack/react-query"
 import { AxiosError } from "axios"
 import { api } from "@/services/api"
 import type { PaginationType } from "@/types/pagination"
@@ -30,6 +30,7 @@ function useCustomer () {
       }
     },
     retry: 1,
+    placeholderData: keepPreviousData
   })
 
   return {

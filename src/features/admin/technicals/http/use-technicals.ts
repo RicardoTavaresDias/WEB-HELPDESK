@@ -1,7 +1,7 @@
 import { hourFormatList, type mappedUserType, type UsersType } from "@/lib/formatHours"
 import { type UserTechnicalType } from "../schemas/technical.schema"
 import { useState } from "react"
-import { useQuery } from "@tanstack/react-query"
+import { keepPreviousData, useQuery } from "@tanstack/react-query"
 import type { PaginationType } from "@/types/pagination"
 import { api } from "@/services/api"
 import { AxiosError } from "axios"
@@ -31,6 +31,7 @@ function useTechnicals () {
       }
     },
     retry: 1,
+    placeholderData: keepPreviousData
   })
 
   return {

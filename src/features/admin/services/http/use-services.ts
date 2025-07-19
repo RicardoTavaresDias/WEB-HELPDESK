@@ -1,5 +1,5 @@
 import { type DataServicesType } from "../types/data-services"
-import { useQuery } from "@tanstack/react-query"
+import { keepPreviousData, useQuery } from "@tanstack/react-query"
 import { useState } from "react"
 import { api } from "@/services/api"
 import { AxiosError } from "axios"
@@ -30,6 +30,7 @@ function useServices () {
       }
     },
     retry: 1,
+    placeholderData: keepPreviousData
   })
 
   return {
