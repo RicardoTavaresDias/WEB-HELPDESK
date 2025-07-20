@@ -12,7 +12,8 @@ import { Pagination } from "@/components/pagination";
 import { Avatar } from "@/components/ui/avatar";
 
 export function IndexCalleds() {
-  const { data, isLoading, error, page, setPage, pagination, isError} = useCalleds()
+  const { page, query, setPage, pagination } = useCalleds()
+  const { data, isLoading, error, isError } = query
 
   return (
     <>

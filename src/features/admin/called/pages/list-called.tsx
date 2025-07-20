@@ -23,16 +23,16 @@ export function CallListdetails(){
     return <Navigate replace to="/" />
   }
 
-  const { data: calleds, isLoading, error, isError } = useListCalled(Number(id))
+  const { data: calleds, isLoading, error, isError } = useListCalled(Number(id)).query
   const { error: errorUpdate, mutateAsync: onSubmitStatus, isError: isErrorUpdate } = updateStatus()
 
   return (
     <>
     {isLoading && <Loading />}
-        <Alert severity="error" open={isError || isErrorUpdate}>
-          {error?.message}
-          {errorUpdate?.message}
-        </Alert>
+      <Alert severity="error" open={isError || isErrorUpdate}>
+        {error?.message}
+        {errorUpdate?.message}
+      </Alert>
         
     <Modules.Root>
         <Modules.Title title="Chamado detalhado" to="/" >

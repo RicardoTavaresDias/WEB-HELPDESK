@@ -1,25 +1,16 @@
-import { AxiosError } from "axios"
 import { api } from "@/services/api"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useQueryMutation } from "@/http/use-mutation"
+
+export type UpdateStatusType = { 
+  id: number, 
+  status: "open" | "in_progress" | "close"  
+}
 
 function updateStatus() {
-  const queryClient = useQueryClient()
-  
-  return useMutation({
-    mutationFn: async (status: { id: number, status: "open" | "in_progress" | "close"  }) => {
-      try {
-        await api.patch(`/calleds/${status.id}`, { status: status.status })
-      } catch (error: any) {
-        if(error instanceof AxiosError) {
-          throw new Error(error.response?.data.message)
-        }
-  
-        throw new Error(error.message)
-      }
-    },
-
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['get_list'] })
+  return useQueryMutation<UpdateStatusType>({
+    queryKey: 'get_list',
+    fetch: async (statusData: UpdateStatusType) => {
+      await api.patch(`/calleds/${statusData.id}`, { status: statusData.status })
     }
   })
 }

@@ -1,27 +1,16 @@
-import { AxiosError } from "axios"
 import { api } from "@/services/api"
-import { keepPreviousData, useQuery } from "@tanstack/react-query"
 import type { CalledsType } from "../types/calleds-response"
+import { useQueryGet } from "@/http/use-query-get"
 
 function useListCalled(id: number) {
-  return useQuery<CalledsType[]>({
-    queryKey: ['get_list'],
-    queryFn: async () => {
-      try {
-        const response = await api.get(`/calleds/called/${id}`)
-        const result = response.data
+  return useQueryGet<CalledsType[]>({
+    queryKey: 'get_list',
+    fetchGet: async () => {
+      const response = await api.get(`/calleds/called/${id}`)
+      const result = response.data
 
-        return result
-      } catch (error: any) {
-        if(error instanceof AxiosError) {
-          throw new Error(error.response?.data.message)
-        }
-  
-        throw new Error(error.message)
-      }
-    },
-    retry: 1,
-    placeholderData: keepPreviousData
+      return result
+    }
   })
 }
 
