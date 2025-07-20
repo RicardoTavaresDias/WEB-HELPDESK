@@ -1,9 +1,7 @@
 import { type DataServicesType } from "../types/data-services"
-import { keepPreviousData, useQuery } from "@tanstack/react-query"
-import { useState } from "react"
 import { api } from "@/services/api"
-import { AxiosError } from "axios"
 import type { PaginationType } from "@/types/pagination"
+import { useQueryGet } from "@/http/use-query-get"
 
 type ServicesType = {
   result: PaginationType
@@ -11,36 +9,24 @@ type ServicesType = {
 }
 
 function useServices () {
-  const [page, setPage] = useState(1)
+  const result = useQueryGet<ServicesType>({
+    queryKey: 'get_services',
+    fetchGet: async (page) => {
+      const response = await api.get(`/services?page=${page}&limit=10`)
+      const result = response.data
 
-  const { data, error, isLoading, isError } = useQuery<ServicesType>({
-    queryKey: ['get_services', page],
-    queryFn: async () => {
-      try {
-        const response = await api.get(`/services?page=${page}&limit=10`)
-        const result = response.data
-
-        return result
-      } catch (error: any) {
-        if(error instanceof AxiosError) {
-          throw new Error(error.response?.data.message)
-        }
-  
-        throw new Error(error.message)
-      }
-    },
-    retry: 1,
-    placeholderData: keepPreviousData
+      return result
+    }
   })
-
+  
   return {
-    data, 
-    error,
-    isLoading,
-    page,
-    setPage,
-    pagination: data?.result || null,
-    isError
+    data: result.query.data, 
+    error: result.query.error,
+    isLoading: result.query.isLoading,
+    page: result.page,
+    setPage: result.setPage,
+    pagination: result.query.data?.result || null,
+    isError: result.query.isError
   }
 }
 

@@ -23,8 +23,8 @@ export function UpdateAdminTechnicals() {
     return <Navigate replace to="/" />
   }
   
-  const { userTechnical, setUserTechnical, queery } = useSearchTechnical(id as string)
-  const { refetch, isLoading } = queery
+  const { userTechnical, setUserTechnical, query } = useSearchTechnical(id as string)
+  const { refetch, isLoading } = query
   const userHours = new UserHours(setUserTechnical as any)
   const { addUserHours, removeUserHours } = userHours
 

@@ -2,8 +2,8 @@ import { AxiosError } from "axios"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 type QueryMutationType<TData> = {
-  queryKey: string 
-  fetch: (data: TData) => Promise<void>
+  queryKey?: string 
+  fetch: (data: TData) => Promise<void | any>
 }
 
 function useQueryMutation<TData>({ queryKey, fetch }: QueryMutationType<TData>) {
