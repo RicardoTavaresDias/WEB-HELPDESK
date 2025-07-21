@@ -1,7 +1,7 @@
 import { Modal } from "@/components/modal"
 import { Input } from "@/components/ui/input"
 import { UiButton } from "@/components/ui/UiButton"
-import { Loading } from "@/components/ui/loading"
+import { Loader } from "@/components/ui/loading"
 import { Alert } from "@/components/ui/alert"
 import { servicesSchema, type ServicesSchemaType } from "../schemas/services-schema"
 import { useForm } from "react-hook-form";
@@ -44,11 +44,11 @@ const UpdateModal = ({ modalEdition, setModalEdition, service }: UpdateMOdalType
 
     const onSubmitUpdate = async (data: ServicesSchemaType) => {
       await onUpdateService(data)
+      setModalEdition(!modalEdition)
     }
 
   return (
     <>
-      {form.formState.isSubmitting && <Loading />}
       <Alert severity="warning" open={!!form.formState.errors.root?.message} onClose={form.clearErrors} >
         {form.formState.errors.root?.message}
       </Alert>
@@ -83,11 +83,9 @@ const UpdateModal = ({ modalEdition, setModalEdition, service }: UpdateMOdalType
             />
           </Modal.Context>
           <Modal.Actions>
-            <UiButton type="submit" typeSize="xxl" typeColor="black" disabled={form.formState.isSubmitting} onClick={() => {
-              if(!form.formState.errors.title && !form.formState.errors.price){
-                setModalEdition(!modalEdition)
-              }
-            }} >Salvar</UiButton>
+            <UiButton type="submit" typeSize="xxl" typeColor="black" disabled={form.formState.isSubmitting} >
+              {form.formState.isSubmitting ? <Loader /> : "Salvar"}
+            </UiButton>
           </Modal.Actions>
         </Modal.Root>
       </form>

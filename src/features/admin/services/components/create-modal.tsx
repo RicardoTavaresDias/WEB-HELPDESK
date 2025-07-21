@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input"
 import { UiButton } from "@/components/ui/UiButton"
 import { useCreateServices } from "../http/use-create-services"
 import { Alert } from "@/components/ui/alert"
-import { Loading } from "@/components/ui/loading"
+import { Loader } from "@/components/ui/loading"
 import { servicesSchema, type ServicesSchemaType } from "../schemas/services-schema"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -40,7 +40,6 @@ const CreateModal = ({ modalNew, setModalNew }: CreateModalType) => {
 
   return (
     <>
-      {isPending && <Loading />}
       <Alert severity="error" open={isError} >
         {error?.message}
       </Alert>
@@ -72,7 +71,7 @@ const CreateModal = ({ modalNew, setModalNew }: CreateModalType) => {
           </Modal.Context>
           <Modal.Actions>
             <UiButton type="submit" typeSize="xxl" typeColor="black" disabled={form.formState.isSubmitting} >
-              Salvar
+              {isPending ? <Loader /> : "Salvar"}
             </UiButton>
           </Modal.Actions>
         </Modal.Root>

@@ -2,7 +2,7 @@ import { Avatar } from "@/components/ui/avatar";
 import { Modal } from "@/components/modal/";
 import { UiButton } from "@/components/ui/UiButton";
 import { Input } from "@/components/ui/input";
-import { Loading } from "@/components/ui/loading";
+import { Loader } from "@/components/ui/loading";
 import { Alert } from "@/components/ui/alert";
 import { useForm } from "react-hook-form"
 import { userSchema as UserCustomerSchema, type UserTechnicalType as UserCustomerSchemaType } from "@/features/admin/technicals/schemas/technical.schema"
@@ -18,7 +18,7 @@ type ModalUpdateCustomerType = {
 } 
 
 export const ModalUpdateCustomers = ({modalEdition, setModalEdition, user}: ModalUpdateCustomerType) => {
-  const { mutateAsync: updateCustomer, error, isSuccess, data, isError, isPending } = useUpdateCustomer(user.id)
+  const { mutateAsync: updateCustomer, error, isSuccess, data, isError } = useUpdateCustomer(user.id)
 
   const form = useForm<UserCustomerSchemaType>({
     defaultValues: {
@@ -39,11 +39,11 @@ export const ModalUpdateCustomers = ({modalEdition, setModalEdition, user}: Moda
 
   const onUpdate = async (data: UserCustomerSchemaType) => {
     await updateCustomer(data)
+    setModalEdition(!modalEdition)
   }
 
   return (
     <>
-    {isPending && <Loading />}
       <Alert severity="error" open={isError} >
         {error?.message}
       </Alert>
@@ -67,12 +67,8 @@ export const ModalUpdateCustomers = ({modalEdition, setModalEdition, user}: Moda
             </div>  
           </Modal.Context>
           <Modal.Actions>
-            <UiButton type="submit" typeSize="xxl" typeColor="black" disabled={form.formState.isSubmitting}
-              onClick={() => {
-                setModalEdition(!modalEdition)
-              }
-            } >
-              Salvar
+            <UiButton type="submit" typeSize="xxl" typeColor="black" disabled={form.formState.isSubmitting} >
+              {form.formState.isSubmitting ? <Loader /> : "Salvar"}
             </UiButton>
           </Modal.Actions>
         </Modal.Root>

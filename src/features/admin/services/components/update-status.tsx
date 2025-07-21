@@ -5,7 +5,7 @@ import { UiButton } from "@/components/ui/UiButton";
 import { type DataServicesType } from "../types/data-services";
 import { useUpdateStatus } from "../http/use-update-status";
 import { Alert } from "@/components/ui/alert";
-import { Loading } from "@/components/ui/loading";
+import { Loader } from "@/components/ui/loading";
 
 type UpdateServicesStatusType = {
   modalEdition: boolean;
@@ -29,35 +29,39 @@ export const UpdateStatus = ({
 
   return (
     <>
-      {isPending && <Loading />}
       <Alert severity="error" open={isError}>{error?.message}</Alert>
     
       <div className="flex items-center gap-1 mr-2.5 max-sm:hidden">
         {service.serviceStatus === "active" && (
           <>
-            <IconBan
-              className="w-4 h-4 cursor-pointer"
-              onClick={() =>
-                onUpdateStatus({
-                  id: service.id,
-                  status: service.serviceStatus,
-                })
-              }
-            />
+            {isPending ? <Loader loader="loaderSM" /> :
+              <IconBan
+                className="w-4 h-4 cursor-pointer"
+                onClick={() =>
+                  onUpdateStatus({
+                    id: service.id,
+                    status: service.serviceStatus,
+                  })
+                }
+              />
+            }
             Desativar
           </>
         )}
+        
         {service.serviceStatus === "inactive" && (
           <>
-            <IconCicloCheck
-              className="w-4 h-4 cursor-pointer"
-              onClick={() =>
-                onUpdateStatus({
-                  id: service.id,
-                  status: service.serviceStatus,
-                })
-              }
-            />
+            {isPending ? <Loader loader="loaderSM" /> :
+              <IconCicloCheck
+                className="w-4 h-4 cursor-pointer"
+                onClick={() =>
+                  onUpdateStatus({
+                    id: service.id,
+                    status: service.serviceStatus,
+                  })
+                }
+              />
+           }
             Reativar
           </>
         )}
