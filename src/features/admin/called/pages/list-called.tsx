@@ -71,7 +71,12 @@ export function CallListdetails(){
             <Fragment key={called.id} >
               <Modules.Context isType="50" key={called.id}>
                 <div className="flex justify-between items-center mb-1">
-                  <span className="Text-Xs text-gray-300">{called.id > 0 && called.id < 10 ? `00${called.id}` : called.id }</span>
+                  <span className="Text-Xs text-gray-300">
+                    {
+                      called.id > 0 && called.id < 10 ? `00${called.id}` :
+                        ( called.id > 9 && called.id < 100 ? `0${called.id}` : called.id )  
+                    }
+                  </span>
                   <Status type={called.callStatus as "open" | "in_progress" | "close"} isText />
                 </div>
       
