@@ -11,6 +11,7 @@ export interface Called {
   updatedAt: string
   id: number
   titleCalled: string
+  description: string
   createdAt: string
   services: Service[]
   UserCustomer: UserCustomer

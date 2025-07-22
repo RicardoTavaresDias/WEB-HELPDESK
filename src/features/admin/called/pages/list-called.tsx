@@ -19,7 +19,7 @@ import { v4 as uuid } from 'uuid'
 export function CallListdetails(){
   const { id } = useParams()
 
-   if (!id) {
+  if (!id) {
     return <Navigate replace to="/" />
   }
 

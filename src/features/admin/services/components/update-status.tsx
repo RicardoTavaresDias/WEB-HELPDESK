@@ -5,7 +5,7 @@ import { UiButton } from "@/components/ui/UiButton";
 import { type DataServicesType } from "../types/data-services";
 import { useUpdateStatus } from "../http/use-update-status";
 import { Alert } from "@/components/ui/alert";
-import { Loader } from "@/components/ui/loading";
+import { LoaderSM } from "@/components/ui/loading";
 
 type UpdateServicesStatusType = {
   modalEdition: boolean;
@@ -34,7 +34,7 @@ export const UpdateStatus = ({
       <div className="flex items-center gap-1 mr-2.5 max-sm:hidden">
         {service.serviceStatus === "active" && (
           <>
-            {isPending ? <Loader loader="loaderSM" /> :
+            {isPending ? <LoaderSM /> :
               <IconBan
                 className="w-4 h-4 cursor-pointer"
                 onClick={() =>
@@ -51,7 +51,7 @@ export const UpdateStatus = ({
         
         {service.serviceStatus === "inactive" && (
           <>
-            {isPending ? <Loader loader="loaderSM" /> :
+            {isPending ? <LoaderSM /> :
               <IconCicloCheck
                 className="w-4 h-4 cursor-pointer"
                 onClick={() =>

@@ -16,15 +16,21 @@ export function Loading(){
     )
 }
 
-type LoaderType = {
-  loader?: "loaderMD" | "loaderSM"
-}
-
-export function Loader({ loader = "loaderMD"}: LoaderType){
+export function Loader(){
   return (
     <>
       <div className="">
-        <div className ={`${loader} opacity-60`}></div>
+        <div className ="loader opacity-60" ></div>
+      </div>
+    </>
+  )
+}
+
+export function LoaderSM () {
+  return (
+    <>
+      <div className="">
+        <div className ="loaderSM opacity-60"></div>
       </div>
     </>
   )
