@@ -55,7 +55,7 @@ console.log();
                       <span>{currency({ coinFormatCents: InProgress.basePrice.price.toString()})}</span>
                     </div>
 
-                    <span className="text-sm tracking-wide">
+                    <span className="text-sm tracking-wide text-gray-400">
                       {dayjs().to(InProgress.createdAt)}
                     </span>
 
@@ -107,7 +107,7 @@ console.log();
                       <span>{currency({ coinFormatCents: open.basePrice.price.toString()})}</span>
                     </div>
 
-                    <span className="text-sm tracking-wide">
+                    <span className="text-sm tracking-wide text-gray-400">
                       {dayjs().to(open.createdAt)}
                     </span>
 
@@ -158,7 +158,7 @@ console.log();
                       <span>{currency({ coinFormatCents: close.basePrice.price.toString()})}</span>
                     </div>
 
-                    <span className="text-sm tracking-wide">
+                    <span className="text-sm tracking-wide text-gray-400">
                       {dayjs().to(close.createdAt)}
                     </span>
 
