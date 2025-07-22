@@ -35,6 +35,7 @@ export interface UserCustomer {
 export interface UserTechnical {
   id: string
   name: string
+  email: string
   avatar: string
 }
 
