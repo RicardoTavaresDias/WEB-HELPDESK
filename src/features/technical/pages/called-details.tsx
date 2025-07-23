@@ -13,7 +13,7 @@ import { ModuleTitleStatus } from "../components/module-titile-status";
 import { AddServices } from "../components/add-services";
 import { ModalCreateServices } from "../components/modal-create-services";
 
-export function CallDetails(){
+export function CalledDetails(){
   const [called, setCalled] = useState<Called | null>(null)
   const [modalServices, setModalServices] = useState(false)
   const { id } = useParams()
@@ -35,7 +35,7 @@ export function CallDetails(){
       {isLoading && <Loading />}
 
       <IsProfile myProfile="technical" />
-      <ModalCreateServices modalServices={modalServices} setModalServices={setModalServices} />
+      <ModalCreateServices modalServices={modalServices} setModalServices={setModalServices} idCalled={called?.id} />
       
       <Modules.Root>
         <ModuleTitleStatus data={called} />
@@ -112,7 +112,7 @@ export function CallDetails(){
 
             <div className="pt-3 mt-4 border-t border-gray-500 flex justify-between items-center">
               <span className="Text-Sm text-gray-200">Total</span>
-              <span className="Text-Sm text-gray-200">{called &&  currency({ coinFormatCents: String(called?.priceTotal + called?.basePrice.price) })}</span>
+              <span className="Text-Sm text-gray-200">{called && currency({ coinFormatCents: String(called?.priceTotal + called?.basePrice.price) })}</span>
             </div>
           </Modules.Context>
 

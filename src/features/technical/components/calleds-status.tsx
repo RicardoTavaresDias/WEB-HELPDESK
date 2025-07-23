@@ -56,7 +56,7 @@ export function CalledsStatus ({ dataCalleds }: { dataCalleds?: Called[] }) {
 
               <div className="flex justify-between mt-4.5 text-base">
                 <span>{dayjs(called.createdAt).format("DD/MM/YYYY HH:mm")}</span>
-                <span>{currency({ coinFormatCents: called.basePrice.price.toString()})}</span>
+                <span>{currency({ coinFormatCents: String(called?.priceTotal + called?.basePrice.price) })}</span>
               </div>
 
               <span className="text-sm tracking-wide text-gray-400">
