@@ -12,10 +12,10 @@ type AddServicesType = {
   setModalServices: (value: boolean) => void
   modalServices: boolean
   calledId?: number
-  calleddServices?: Service[] | null
+  calledServices?: Service[] | null
 }
 
-export function AddServices ({ setModalServices, modalServices, calleddServices, calledId }: AddServicesType) {
+export function AddServices ({ setModalServices, modalServices, calledServices, calledId }: AddServicesType) {
   const [remocveId, setRemoveId] = useState<string | null>(null)
   const { mutateAsync: onRemove, isPending } = useRemoveervices()
 
@@ -29,7 +29,7 @@ export function AddServices ({ setModalServices, modalServices, calleddServices,
 
         <div className="mt-4 flex flex-col gap-4">
 
-          {calleddServices?.map(service => (
+          {calledServices?.map(service => (
             <div className="flex items-center justify-between" key={service.id}>
               <p className="text-sm font-semibold text-gray-200">{service.titleService}</p>
               <div className="flex items-center gap-6">

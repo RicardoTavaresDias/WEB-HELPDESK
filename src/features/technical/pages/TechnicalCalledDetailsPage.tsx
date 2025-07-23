@@ -14,7 +14,7 @@ import { AddServices } from "../components/add-services";
 import { ModalCreateServices } from "../components/modal-create-services";
 
 export function CallDetails(){
-  const [calledd, setCalled] = useState<Called | null>(null)
+  const [called, setCalled] = useState<Called | null>(null)
   const [modalServices, setModalServices] = useState(false)
   const { id } = useParams()
 
@@ -38,50 +38,50 @@ export function CallDetails(){
       <ModalCreateServices modalServices={modalServices} setModalServices={setModalServices} />
       
       <Modules.Root>
-        <ModuleTitleStatus data={calledd} />
+        <ModuleTitleStatus data={called} />
 
         <Modules.Container>
           <Modules.Context isType="60">
             <div className="flex justify-between items-center mb-1">
               <span className="Text-Xs text-gray-300">
-                {calledd &&  (
-                  calledd?.id > 0 && calledd?.id < 10 ? `00${calledd?.id}` :
-                    ( calledd?.id > 9 && calledd?.id < 100 ? `0${calledd?.id}` : calledd?.id )  
+                {called &&  (
+                  called?.id > 0 && called?.id < 10 ? `00${called?.id}` :
+                    ( called?.id > 9 && called?.id < 100 ? `0${called?.id}` : called?.id )  
                 )}
               </span>
-              {calledd && <Status type={calledd?.callStatus as  "open" | "in_progress" | "close"} isText /> }
+              {called && <Status type={called?.callStatus as  "open" | "in_progress" | "close"} isText /> }
             </div>
   
-            <span className="text-gray-200 text-base font-medium">{calledd?.titleCalled}</span>
+            <span className="text-gray-200 text-base font-medium">{called?.titleCalled}</span>
 
             <div className="mt-5">
               <span className="text-gray-400 Text-Xs">Descrição</span>
               <p className="text-sm font-normal text-gray-200" >
-                {calledd?.description}
+                {called?.description}
               </p>
             </div>
 
             <div className="mt-5">
               <span className="text-gray-400 Text-Xs">Categoria</span>
-              <p className="text-sm font-normal text-gray-200">{calledd?.services[0]?.titleService}</p>
+              <p className="text-sm font-normal text-gray-200">{called?.services[0]?.titleService}</p>
             </div>
            
             <div className="mt-5 flex justify-between">
               <div>
                 <span className="text-gray-400 Text-Xs">Criado em</span>
-                <p className="text-sm font-normal text-gray-200">{dayjs(calledd?.createdAt).format("DD/MM/YYYY HH:mm")}</p>
+                <p className="text-sm font-normal text-gray-200">{dayjs(called?.createdAt).format("DD/MM/YYYY HH:mm")}</p>
               </div>
               <div className="w-50">
                 <span className="text-gray-400 Text-Xs">Atualizado em</span>
-                <p className="text-sm font-normal text-gray-200">{dayjs(calledd?.updatedAt).format("DD/MM/YYYY HH:mm")}</p>
+                <p className="text-sm font-normal text-gray-200">{dayjs(called?.updatedAt).format("DD/MM/YYYY HH:mm")}</p>
               </div>
             </div>
 
             <div className="mt-5">
               <span className="text-gray-400 Text-Xs">Cliente</span>
               <div className="flex gap-2 mt-2 items-center">
-                {calledd && <Avatar user={{ name: calledd?.UserCustomer.name, avatar: calledd?.UserCustomer.avatar }} size="w-6.5 h-6.5"/> }
-                <span className="text-gray-200 Text-Sm">{calledd?.UserCustomer.name}</span>
+                {called && <Avatar user={{ name: called?.UserCustomer.name, avatar: called?.UserCustomer.avatar }} size="w-8 h-8"/> }
+                <span className="text-gray-200 Text-Sm">{called?.UserCustomer.name}</span>
               </div>
             </div>
           </Modules.Context>
@@ -89,10 +89,10 @@ export function CallDetails(){
           <Modules.Context isType="40">
             <span className="text-gray-400 Text-Xs">Técnico responsável</span>
             <div className="flex items-center gap-2 mt-2">
-              {calledd && <Avatar user={{ name: calledd?.UserTechnical.name, avatar: calledd?.UserTechnical.avatar }} size="w-10 h-10" /> }
+              {called && <Avatar user={{ name: called?.UserTechnical.name, avatar: called?.UserTechnical.avatar }} size="w-10 h-10" /> }
               <div className="flex flex-col justify-center">
-                <span className="text-gray-200 Text-Sm">{calledd?.UserTechnical.name}</span>
-                <span className="Text-Xs text-gray-300">{calledd?.UserTechnical.email}</span>
+                <span className="text-gray-200 Text-Sm">{called?.UserTechnical.name}</span>
+                <span className="Text-Xs text-gray-300">{called?.UserTechnical.email}</span>
               </div>
             </div>
             
@@ -100,23 +100,23 @@ export function CallDetails(){
               <span className="text-gray-400 Text-Xs">Valores</span>
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between items-center">
-                  <p className="text-sm font-normal text-gray-200 mt-2">{calledd?.basePrice.description}</p>
-                  <span className="Text-Xs text-gray-200">{currency({ coinFormatCents: String(calledd?.basePrice.price) })}</span>
+                  <p className="text-sm font-normal text-gray-200 mt-2">{called?.basePrice.description}</p>
+                  <span className="Text-Xs text-gray-200">{currency({ coinFormatCents: String(called?.basePrice.price) })}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <p className="text-sm font-normal text-gray-200">Adicionais</p>
-                  <span className="Text-Xs text-gray-200">{currency({ coinFormatCents: String(calledd?.priceTotal) })}</span>
+                  <span className="Text-Xs text-gray-200">{currency({ coinFormatCents: String(called?.priceTotal) })}</span>
                 </div>
               </div>
             </div>
 
             <div className="pt-3 mt-4 border-t border-gray-500 flex justify-between items-center">
               <span className="Text-Sm text-gray-200">Total</span>
-              <span className="Text-Sm text-gray-200">{calledd &&  currency({ coinFormatCents: String(calledd?.priceTotal + calledd?.basePrice.price) })}</span>
+              <span className="Text-Sm text-gray-200">{called &&  currency({ coinFormatCents: String(called?.priceTotal + called?.basePrice.price) })}</span>
             </div>
           </Modules.Context>
 
-          <AddServices calleddServices={calledd?.services} modalServices={modalServices} setModalServices={setModalServices} calledId={calledd?.id}/>
+          <AddServices calledServices={called?.services} modalServices={modalServices} setModalServices={setModalServices} calledId={called?.id}/>
 
         </Modules.Container>
       </Modules.Root>
