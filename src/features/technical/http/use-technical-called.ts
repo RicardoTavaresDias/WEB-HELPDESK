@@ -9,7 +9,7 @@ function useTechicalCalled () {
       const response =  await api.get(`/calleds/user?page=${page}&limit=50`)
       const result = response.data
       const format = calledsCategory(result)
-
+   
       return { ...format }
     }
   })

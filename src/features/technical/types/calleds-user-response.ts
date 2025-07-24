@@ -18,7 +18,7 @@ export interface Called {
   UserTechnical: UserTechnical
   callStatus: string
   priceTotal: number
-  basePrice: BasePrice
+  basePrice: number
 }
 
 export interface Service {
@@ -40,7 +40,7 @@ export interface UserTechnical {
   avatar: string
 }
 
-export interface BasePrice {
-  description: string
-  price: number
-}
+// export interface BasePrice {
+//   description: string
+//   price: number
+// }

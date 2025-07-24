@@ -100,19 +100,19 @@ export function CalledDetails(){
               <span className="text-gray-400 Text-Xs">Valores</span>
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between items-center">
-                  <p className="text-sm font-normal text-gray-200 mt-2">{called?.basePrice.description}</p>
-                  <span className="Text-Xs text-gray-200">{currency({ coinFormatCents: String(called?.basePrice.price) })}</span>
+                  <p className="text-sm font-normal text-gray-200 mt-2">Preço base</p>
+                  <span className="Text-Xs text-gray-200">{currency({ coinFormatCents: called?.basePrice.toString() })}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <p className="text-sm font-normal text-gray-200">Adicionais</p>
-                  <span className="Text-Xs text-gray-200">{currency({ coinFormatCents: String(called?.priceTotal) })}</span>
+                  <span className="Text-Xs text-gray-200">{currency({ coinFormatCents: called?.priceTotal.toString() })}</span>
                 </div>
               </div>
             </div>
 
             <div className="pt-3 mt-4 border-t border-gray-500 flex justify-between items-center">
               <span className="Text-Sm text-gray-200">Total</span>
-              <span className="Text-Sm text-gray-200">{called && currency({ coinFormatCents: String(called?.priceTotal + called?.basePrice.price) })}</span>
+              <span className="Text-Sm text-gray-200">{called && currency({ coinFormatCents: String(called?.priceTotal + Number(called?.basePrice)) })}</span>
             </div>
           </Modules.Context>
 

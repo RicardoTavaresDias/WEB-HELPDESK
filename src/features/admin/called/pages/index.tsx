@@ -60,7 +60,7 @@ export function IndexCalleds() {
                     </div>
                   </Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-3 text-sm">
-                    {(currency({ coinFormatCents: (called.priceTotal + called.basePrice.price).toString() }))}
+                    {(currency({ coinFormatCents: (called.priceTotal + Number(called.basePrice)).toString() }))}
                   </Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-3">
                     <div className="flex gap-2 items-center w-37 truncate ml-1.5">

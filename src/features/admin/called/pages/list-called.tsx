@@ -129,8 +129,8 @@ export function CallListdetails(){
                 <div className="mt-5">
                   <span className="text-gray-400 Text-Xs">Valores</span>
                   <div className="flex justify-between items-center">
-                    <p className="text-sm font-normal text-gray-200">{called.basePrice.description}</p>
-                    <span className="Text-Xs text-gray-200">{currency({ coinFormatCents: called.basePrice.price.toString() })}</span>
+                    <p className="text-sm font-normal text-gray-200">Preço base</p>
+                    <span className="Text-Xs text-gray-200">{currency({ coinFormatCents: Number(called.basePrice).toString() })}</span>
                   </div>
                 </div>
 
