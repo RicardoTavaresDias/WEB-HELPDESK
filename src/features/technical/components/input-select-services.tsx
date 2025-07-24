@@ -43,7 +43,7 @@ function InputSelectServices({
           }`}
           onClick={() => {
             setOpen(!open);
-            // queryClient.removeQueries({ queryKey: ["add_services_tecnical"] });
+            queryClient.invalidateQueries({ queryKey: ["add_services_tecnical"] })
           }}
         />
 
@@ -74,7 +74,7 @@ function InputSelectServices({
                       <span className="group-hover:text-gray-200">
                         {value.titleService}
                       </span>
-                      {selectCategoryServices === value.titleService && (
+                      {selectCategoryServices === value && (
                         <IconCheck className="w-5 h-5 fill-blue-base" />
                       )}
                     </div>
