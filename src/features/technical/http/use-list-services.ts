@@ -1,5 +1,5 @@
 import { api } from "@/services/api"
-import { useInfiniteQuery } from "@tanstack/react-query"
+import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query"
 
 function useListServices () {
   return useInfiniteQuery({
@@ -14,6 +14,8 @@ function useListServices () {
     getNextPageParam: (lastPage, _allPage) => {
       return lastPage.result?.next ?? undefined
     },
+    retry: 1,
+    placeholderData: keepPreviousData
   })
 }
 

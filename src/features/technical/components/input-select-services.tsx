@@ -43,7 +43,7 @@ function InputSelectServices({
           }`}
           onClick={() => {
             setOpen(!open);
-            queryClient.removeQueries({ queryKey: ["add_services_tecnical"] });
+            // queryClient.removeQueries({ queryKey: ["add_services_tecnical"] });
           }}
         />
 
@@ -91,7 +91,7 @@ function InputSelectServices({
               ) : isFetchingNextPage ? (
                 <LoaderSM />
               ) : hasNextPage ? (
-                "Carregar mais"
+                data?.pages[0].data.length > 5 && "Carregar mais"
               ) : (
                 "Fim da lista"
               )}
