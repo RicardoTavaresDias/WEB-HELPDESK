@@ -20,7 +20,7 @@ export function MenuLogOut({ classLg, classmobile, identification }: MenuLogOutP
   return (
     <div ref={menuRef}>
 
-      {session?.user && <Avatar user={session?.user} onClick={() => setOpen(!open)} />}
+      {session?.user && <Avatar user={session?.user} onClick={() => setOpen(!open)} sizeText="text-[14px]"/>}
         <div className={`${classmobile} ${classLg} ${open ? "max-sm:scale-y-100 lg:scale-x-100" : "max-sm:scale-y-0 lg:scale-x-0" } origin-left max-sm:origin-top absolute z-20 duration-200 bg-gray-100 flex flex-col gap-3 rounded-xl p-4`}>
        
           <div className="flex"> 

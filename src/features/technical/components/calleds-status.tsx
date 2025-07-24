@@ -67,7 +67,7 @@ export function CalledsStatus ({ dataCalleds }: { dataCalleds?: Called[] }) {
 
               <div className="flex justify-between">
                 <div className="flex items-center gap-1.5">
-                  <Avatar user={{ name: called.UserTechnical.name, avatar: called.UserTechnical.avatar }} size="w-6.5 h-6.5" />
+                  <Avatar user={{ name: called.UserTechnical.name, avatar: called.UserTechnical.avatar }} size="w-6.5 h-6.5" sizeText="text-[9px]" />
                   {called.UserTechnical.name}
                 </div>
                 <Status type={called.callStatus as "open" | "in_progress" | "close"} isIcon />

@@ -80,7 +80,7 @@ export function CalledDetails(){
             <div className="mt-5">
               <span className="text-gray-400 Text-Xs">Cliente</span>
               <div className="flex gap-2 mt-2 items-center">
-                {called && <Avatar user={{ name: called?.UserCustomer.name, avatar: called?.UserCustomer.avatar }} size="w-8 h-8"/> }
+                {called && <Avatar user={{ name: called?.UserCustomer.name, avatar: called?.UserCustomer.avatar }} size="w-8 h-8" sizeText="text-[12px]" /> }
                 <span className="text-gray-200 Text-Sm">{called?.UserCustomer.name}</span>
               </div>
             </div>
@@ -89,7 +89,7 @@ export function CalledDetails(){
           <Modules.Context isType="40">
             <span className="text-gray-400 Text-Xs">Técnico responsável</span>
             <div className="flex items-center gap-2 mt-2">
-              {called && <Avatar user={{ name: called?.UserTechnical.name, avatar: called?.UserTechnical.avatar }} size="w-10 h-10" /> }
+              {called && <Avatar user={{ name: called?.UserTechnical.name, avatar: called?.UserTechnical.avatar }} size="w-10 h-10" sizeText="text-xs" /> }
               <div className="flex flex-col justify-center">
                 <span className="text-gray-200 Text-Sm">{called?.UserTechnical.name}</span>
                 <span className="Text-Xs text-gray-300">{called?.UserTechnical.email}</span>
