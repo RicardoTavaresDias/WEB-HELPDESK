@@ -1,17 +1,25 @@
 import { Modules } from "@/components/modules"
 import { IsProfile } from "@/features/layout/profile"
 import { Table } from "@/components/table"
-import { called } from "@/database/admCallList";
 import { Status } from "@/components/ui/status";
 import { Link } from "react-router";
 import { UiButton } from "@/components/ui/UiButton";
 import { IconEye } from "@/assets/icon/iconEye";
 import { Avatar } from "@/components/ui/avatar";
 import { PaginationIndex } from "@/components/ui/pagination";
+import { useCalledsCustomer } from "../http/use-calleds-customers";
+import { dayjs } from "@/lib/dayjs"
+import { currency } from "@/lib/currency";
+import { Loading } from "@/components/ui/loading";
+import { MobileCalledsIndex } from "../components/mobile-calleds-index";
 
 export function IndexCalledCustomers () {
+  const { page, pagination, setPage, query } = useCalledsCustomer()
+  const { data, isLoading } = query
+
   return (
     <>
+      {isLoading && <Loading />}
       <IsProfile myProfile="customers" /> 
       
       <div className="lg:mb-7">
@@ -35,40 +43,47 @@ export function IndexCalledCustomers () {
           </Table.Header>
 
           <Table.Body>
-            {called.map(item => (
-              <tr className="border-t border-gray-500 text-left" key={item.id}>
-                <Table.Cell internalSpacing="px-2 py-3" clas="w-36 text-sm" >{item.date}</Table.Cell>
+            {data?.data.map(called => (
+              <tr className="border-t border-gray-500 text-left" key={called.id}>
+                <Table.Cell internalSpacing="px-2 py-3" clas="w-36 text-sm" >{dayjs(called.updatedAt).format("DD/MM/YYYY HH:mm")}</Table.Cell>
 
-                <Table.Cell clas="text-sm"> {item.id} </Table.Cell>
+                <Table.Cell clas="text-sm">
+                   {
+                    called.id > 0 && called.id < 10 ? `00${called.id}` :
+                      ( called.id > 9 && called.id < 100 ? `0${called.id}` : called.id ) 
+                  }
+                </Table.Cell>
                 
                 <Table.Cell internalSpacing="px-2 py-1" >
                   <span className="flex flex-col Text-Sm ">
-                    {item.service.title}
+                    {called.titleCalled}
                   </span>
                 </Table.Cell>
 
                 <Table.Cell internalSpacing="px-2 py-1" >
                   <span className="flex flex-col text-sm ">
-                    {item.service.description}
+                    {called.services[0]?.titleService}
                   </span>
                 </Table.Cell>
 
-                <Table.Cell internalSpacing="px-2 py-3 text-sm" >{item.value}</Table.Cell>
+                <Table.Cell internalSpacing="px-2 py-3 text-sm" >{currency({ coinFormatCents: String(Number(called.priceTotal) + Number(called.basePrice)) })}</Table.Cell>
 
                 <Table.Cell internalSpacing="px-2 py-3">
-                  <div className="flex gap-2 items-center w-37 truncate ml-1.5">
-                    <Avatar user={{ name: item.technical.name, avatar: "default.svg" }} size="w-8" sizeText="text-[12px]" />
-                    {item.technical.name}
+                  <div className="flex gap-2 items-center w-38 ml-1.5">
+                    <Avatar user={{ name: called.UserTechnical?.name, avatar: called.UserTechnical?.avatar }} size="w-8" sizeText="text-[12px]" />
+                    <span className="truncate text-sm">
+                      {called.UserTechnical?.name}
+                    </span>
                   </div>
                 </Table.Cell>
 
                 <Table.Cell internalSpacing="px-2 py-3" >
-                  <Status type={item.status as "open" | "in_progress" | "close"} />
+                  <Status type={called.callStatus as "open" | "in_progress" | "close"} />
                 </Table.Cell>
 
                 <Table.Cell internalSpacing="px-2 py-3">
                   <div className="flex justify-end pr-1.5">
-                    <Link to={`/chamados/${item.id}`}>
+                    <Link to={`/chamados/${called.id}`}>
                       <UiButton type="button" icon={IconEye} typeSize="xxs" typeColor="gray" />
                     </Link>
                   </div>
@@ -78,52 +93,9 @@ export function IndexCalledCustomers () {
           </Table.Body>
         </Table.Root>
       </div>
-      {/* DESKTOP */}
 
-    
-      {/* Mobile */}
-      <div className="border-1 border-gray-500 rounded-md lg:hidden mt-4">
-        <Table.Root>
-          <Table.Header>
-            <Table.Head internalSpacing="px-2 py-1" ><div className="w-17 truncate">Atualizado em</div></Table.Head>
-            <Table.Head>Título</Table.Head>
-            <Table.Head internalSpacing="">Status</Table.Head>
-            <Table.Head>{""}</Table.Head>
-          </Table.Header>
-
-          <Table.Body>
-            {called?.map(item => (
-              <tr className="border-t border-gray-500 text-left" key={item.id} >
-                <Table.Cell internalSpacing="px-2 py-1" clas="w-17">
-                  <div className="text-xs w-17">
-                    {item.date}
-                  </div>
-                </Table.Cell>
-                <Table.Cell internalSpacing="px-2 py-1" clas="">
-                  <div className="flex flex-col text-xs w-30 ">            
-                    <span className="text-sx font-bold">
-                      {item.service.title}
-                    </span>
-                  </div>
-                </Table.Cell>
-                <Table.Cell internalSpacing="px-2 py-3" clas=" flex justify-center item-center">
-                  <Status type={item.status as "open" | "in_progress" | "close"} />
-                </Table.Cell>
-                <Table.Cell internalSpacing="px-2 py-3">
-                  <div className="flex justify-end pr-1.5">
-                    <Link to={`/chamados/${item.id}`}>
-                      <UiButton type="button" icon={IconEye} typeSize="xxs" typeColor="gray" />
-                    </Link>
-                  </div>
-                </Table.Cell>
-              </tr>
-            ))}
-          </Table.Body>
-        </Table.Root>
-      </div>
-      {/* Mobile */}
-
-      {/* <PaginationIndex pagination={pagination} page={page} setPage={setPage} /> */}
+      <MobileCalledsIndex data={data} />
+      <PaginationIndex pagination={pagination} page={page} setPage={setPage} />
     </>
   )
 }

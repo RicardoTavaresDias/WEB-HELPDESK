@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router"
 import { Layout } from "@/features/layout"
 import { IndexCalledCustomers } from "@/features/customers/pages"
-import { CreateCall } from "@/features/customers/pages/CreateCustomerCalledPage"
-import { CallDetails } from "@/features/customers/pages/CustomerCalledDetailsPage"
+import { CreateCalled } from "@/features/customers/pages/create-called"
+import { CallDetails } from "@/features/customers/pages/details-called"
 import { NotFound } from "@/features/notFound"
 
 export function Customers(){
@@ -11,7 +11,7 @@ export function Customers(){
       <Route element={<Layout identification="cliente"/>} >
         <Route path="/" element={<IndexCalledCustomers />} />
           <Route path="/chamados/:id" element={<CallDetails />} />
-        <Route path="/criar_chamado" element={<CreateCall />} />
+        <Route path="/criar_chamado" element={<CreateCalled />} />
 
       </Route>
 

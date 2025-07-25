@@ -39,3 +39,12 @@ export interface UserTechnical {
   email: string
   avatar: string
 }
+
+export interface SelectServicesCategoryType {
+  id: string;
+  titleService: string;
+  price: string;
+  serviceStatus: string;
+  createdAt: string;
+  updatedAt: string;
+}
