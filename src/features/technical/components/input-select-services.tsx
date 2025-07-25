@@ -2,7 +2,6 @@ import { useOpenModal } from "@/hooks/useOpenModal";
 import { useListServices } from "../http/use-list-services";
 import { Input } from "@/components/ui/input";
 import { IconChevronDown } from "@/assets/icon/iconChevronDown";
-import { useQueryClient } from "@tanstack/react-query";
 import { IconCheck } from "@/assets/icon/iconCheck";
 import { LoaderSM } from "@/components/ui/loading";
 import type { SelectServicesCategoryType } from "./modal-create-services";
@@ -19,9 +18,15 @@ function InputSelectServices({
   setSelectCategoryServices,
 }: InputSelectServicesProps) {
   const { menuRef, setOpen, open } = useOpenModal();
-  const queryClient = useQueryClient();
-
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending } = useListServices();
+
+  const onScrollSelect = (event: React.UIEvent<HTMLDivElement>) => {
+    const target = event.currentTarget
+    const isButtom = target.scrollHeight - target.scrollTop <= target.clientHeight
+    if(isButtom){
+      fetchNextPage()
+    }
+  }
 
   return (
     <>
@@ -43,14 +48,13 @@ function InputSelectServices({
           }`}
           onClick={() => {
             setOpen(!open);
-            queryClient.invalidateQueries({ queryKey: ["add_services_tecnical"] })
           }}
         />
 
         {open && (
           <div
             className="w-full h-60 overflow-y-auto bg-gray-600 border border-gray-400/15 rounded-lg shadow-xl px-5 py-4 text-gray-400 Text-Md"
-            onScrollEndCapture={() => fetchNextPage()}
+            onScroll={(e) => onScrollSelect(e)}
           >
             <span className="Text-Xxs text-gray-400">opções</span>
 

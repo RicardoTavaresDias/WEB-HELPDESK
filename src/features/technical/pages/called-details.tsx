@@ -22,8 +22,7 @@ export function CalledDetails(){
     return <Navigate replace to="/" />
   }
 
-  const { data, isFetching } = useCalledById(id).query
-  console.log(isFetching)
+  const { data, isLoading } = useCalledById(id).query
   
   useEffect(() => {
     if (data) {
@@ -33,7 +32,7 @@ export function CalledDetails(){
 
   return (
     <>
-      {isFetching && <Loading />}
+      {isLoading && <Loading />}
 
       <IsProfile myProfile="technical" />
       <ModalCreateServices modalServices={modalServices} setModalServices={setModalServices} idCalled={called?.id} />
