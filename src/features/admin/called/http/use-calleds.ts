@@ -3,7 +3,7 @@ import { api } from "@/services/api"
 import type { PaginationType } from "@/types/pagination"
 import { useQueryGet } from "@/http/use-query-get"
 
-type DataCalledsType = {
+export type DataCalledsType = {
   result: PaginationType
   data: CalledsType[]
 }

@@ -7,6 +7,7 @@ import { Link } from "react-router";
 import { UiButton } from "@/components/ui/UiButton";
 import { IconEye } from "@/assets/icon/iconEye";
 import { Avatar } from "@/components/ui/avatar";
+import { PaginationIndex } from "@/components/ui/pagination";
 
 export function IndexCalledCustomers () {
   return (
@@ -122,18 +123,7 @@ export function IndexCalledCustomers () {
       </div>
       {/* Mobile */}
 
-      {/* PAGINAÇÃO */}
-      {/* <Pagination.Root>
-        <Pagination.Previous previous={pagination?.previous} onClick={() => setPage(page - 1)} />
-          <Pagination.Body 
-            pagination={pagination} 
-            onClickPrevius={() => setPage(pagination?.previous as number)} 
-            onClickNext={() => setPage(pagination?.next as number)}
-            page={page}
-          />
-          <Pagination.Next next={pagination?.next} onClick={() => setPage(page + 1)} />
-      </Pagination.Root> */}
-      {/* PAGINAÇÃO */}
+      {/* <PaginationIndex pagination={pagination} page={page} setPage={setPage} /> */}
     </>
   )
 }

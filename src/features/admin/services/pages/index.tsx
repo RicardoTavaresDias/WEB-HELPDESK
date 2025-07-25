@@ -7,12 +7,12 @@ import { IconPlus } from "@/assets/icon/iconPlus"
 import { CreateModal } from "../components/create-modal"
 import { UpdateModal } from "../components/update-modal"
 import { useServices } from "../http/use-services"
-import { Pagination } from "@/components/pagination"
 import { currency } from "@/lib/currency"
 import { Alert } from "@/components/ui/alert"
 import { Loading } from "@/components/ui/loading"
 import { UpdateStatus } from "../components/update-status"
 import type { DataServicesType } from "../types/data-services"
+import { PaginationIndex } from "@/components/ui/pagination";
 
 export function AdminServices(){
   const [modalNew, setModalNew] = useState(false)
@@ -92,18 +92,7 @@ export function AdminServices(){
           </Table.Root>
         </div>
       
-      {/* PAGINAÇÃO */}
-      <Pagination.Root>
-        <Pagination.Previous previous={pagination?.previous} onClick={() => setPage(page - 1)} />
-          <Pagination.Body 
-            pagination={pagination} 
-            onClickPrevius={() => setPage(pagination?.previous as number)} 
-            onClickNext={() => setPage(pagination?.next as number)}
-            page={page}
-          />
-          <Pagination.Next next={pagination?.next} onClick={() => setPage(page + 1)} />
-      </Pagination.Root>
-      {/* PAGINAÇÃO */}
+      <PaginationIndex pagination={pagination} page={page} setPage={setPage} />
     </>
   )
 }

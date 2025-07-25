@@ -9,8 +9,8 @@ import { Fragment } from "react";
 import { Alert } from "@/components/ui/alert";
 import { Loading } from "@/components/ui/loading";
 import { Table } from "@/components/table"
-import { Pagination } from "@/components/pagination"
 import { useTechnicals } from "../http/use-technicals"
+import { PaginationIndex } from "@/components/ui/pagination";
 
 export function IndexAdminTechnicals(){
   const { data: dataUsers, isLoading, error, isError, pagination, page, setPage } = useTechnicals()
@@ -125,19 +125,7 @@ export function IndexAdminTechnicals(){
       </div>
       {/* MOBILE */}
 
-
-      {/* PAGINAÇÃO */}
-      <Pagination.Root>
-        <Pagination.Previous previous={pagination?.previous} onClick={() => setPage(page - 1)} />
-          <Pagination.Body 
-            pagination={pagination} 
-            onClickPrevius={() => setPage(pagination?.previous as number)} 
-            onClickNext={() => setPage(pagination?.next as number)}
-            page={page}
-          />
-          <Pagination.Next next={pagination?.next} onClick={() => setPage(page + 1)} />
-      </Pagination.Root>
-      {/* PAGINAÇÃO */}
+      <PaginationIndex pagination={pagination} page={page} setPage={setPage} />
     </>
   )
 }
