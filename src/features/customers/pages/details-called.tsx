@@ -69,7 +69,7 @@ export function CallDetails(){
           <Modules.Context isType="40">
             <span className="text-gray-400 Text-Xs">Técnico responsável</span>
             <div className="flex items-center gap-2 mt-2">
-              <Avatar user={{ name: dataDetails.UserTechnical?.name, avatar: dataDetails.UserTechnical?.avatar }} size="w-8 h-8" />
+              <Avatar user={{ name: dataDetails.UserTechnical?.name, avatar: dataDetails.UserTechnical?.avatar }} size="w-10 h-10" sizeText="text-xs" />
               <div className="flex flex-col justify-center">
                 <span className="text-gray-200 Text-Sm">{dataDetails.UserTechnical?.name}</span>
                 <span className="Text-Xs text-gray-300">{dataDetails.UserTechnical?.email}</span>

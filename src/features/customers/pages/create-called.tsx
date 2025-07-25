@@ -16,7 +16,7 @@ import { InputTextarea } from "../components/input-textarea";
 
 export function CreateCalled(){
   const { session } = useAuth()
-  const { data, isSuccess, isError, error, mutateAsync: onCreateCalled } = useCreateCalled()
+  const { data, isSuccess, isError, error, isPending, mutateAsync: onCreateCalled } = useCreateCalled()
  
   const form = useForm<CalledSchemaType>({
     defaultValues: {
@@ -102,7 +102,7 @@ export function CreateCalled(){
                 <p className="Text-Xs my-6 text-gray-300">O chamado será automaticamente atribuído a um técnico disponível</p>
 
                 <UiButton type="submit" typeColor="black" typeSize="base" disabled={form.formState.isSubmitting} >
-                  {form.formState.isSubmitting ? <LoaderSM /> : "Criar chamado"}
+                  {isPending ? <LoaderSM /> : "Criar chamado"}
                 </UiButton>
             </Modules.Context>
           </Modules.Container>
