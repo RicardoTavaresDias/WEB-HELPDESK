@@ -107,7 +107,7 @@ export function IndexCalleds() {
               <Table.Head internalSpacing="px-2 py-1" ><div className="w-17 truncate">Atualizado em</div></Table.Head>
               <Table.Head>Título e Serviço</Table.Head>
               <Table.Head internalSpacing="">Status</Table.Head>
-              <Table.Head>Icon</Table.Head>
+              <Table.Head>{""}</Table.Head>
             </Table.Header>
 
             <Table.Body>
