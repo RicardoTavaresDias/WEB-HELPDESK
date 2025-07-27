@@ -19,7 +19,7 @@ function InputHour ({ value, onChange, error }: InputSelectHourProps) {
         <Input
           type="text"
           placeholder="Selecione horário"
-          label="categoria de serviço"
+          label="horário"
           isScren
           defaultValue={value ?? ""}
           border={open}
