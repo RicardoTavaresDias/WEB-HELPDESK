@@ -21,7 +21,7 @@ function ModuleCreateCalledLeft ({ form }: ModuleCreateCalledLeftProps) {
 
           <div className="lg:flex justify-between">
             <div className="w-60">
-              <Input type="date" {...form.register("date")} label="Date" error={form.formState.errors.date?.message} />
+              <Input type="date" {...form.register("date")} label="Data" error={form.formState.errors.date?.message} />
             </div>
             
               <div className="w-60">
