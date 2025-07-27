@@ -17,6 +17,8 @@ function ModuleCreateCalledLeft ({ form }: ModuleCreateCalledLeftProps) {
           <div className="flex flex-col gap-1">
             <span className="Text-Md text-gray-200 font-semibold">Informações</span>
             <span className="text-gray-300 Text-Xs">Configure os dias e horários em que você está disponível para atender chamados</span>
+            <Input type="date" {...form.register("date")} label="Date" error={form.formState.errors.date?.message} />
+            <Input type="time" {...form.register("hour")} label="Hora" error={form.formState.errors.hour?.message} min="08:00" max="23:00" step="3600"/>
           </div>
 
           <div className="mt-6">

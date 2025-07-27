@@ -17,6 +17,8 @@ export function CreateCalled(){
     defaultValues: {
       title: "",
       description: "",
+      date: "",
+      hour: "",
       category: undefined,
     },
     criteriaMode: 'all',
@@ -25,6 +27,7 @@ export function CreateCalled(){
   })
 
   const onSubmit = (data: CalledSchemaType) => {
+    return console.log(data)
     onCreateCalled({ 
       idCustomer: session?.user.id!,
       titleCalled: data.title, 
