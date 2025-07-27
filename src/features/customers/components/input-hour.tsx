@@ -39,7 +39,7 @@ function InputHour ({ value, onChange, error }: InputSelectHourProps) {
 
         {open && (
           <div
-            className="w-73 h-40 absolute top-16 max-sm:top-11 overflow-y-auto bg-gray-600 border border-gray-400/15 rounded-lg shadow-xl px-5 py-4 text-gray-400 Text-Md mt-3"
+            className="lg:w-60 w-73 h-40 absolute top-11 max-sm:top-11 overflow-y-auto bg-gray-600 border border-gray-400/15 rounded-lg shadow-xl px-5 py-4 text-gray-400 Text-Md mt-3"
           >
             <span className="Text-Xxs text-gray-400">opções</span>
             <div className="mt-4 Text-Sm cursor-pointer flex flex-col gap-2 items-start">
