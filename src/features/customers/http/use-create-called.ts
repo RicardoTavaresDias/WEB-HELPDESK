@@ -5,6 +5,8 @@ export type CreateCalled = {
   idCustomer: string
   idTechnical?: string | undefined
   titleCalled: string
+  dateCustomer: string
+  hourCustomer: string
   description: string
   idServices: Services[]
 }

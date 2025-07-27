@@ -26,21 +26,26 @@ export function CreateCalled(){
     resolver: zodResolver(calledSchema)
   })
 
-  const onSubmit = (data: CalledSchemaType) => {
-    return console.log(data)
-    onCreateCalled({ 
-      idCustomer: session?.user.id!,
+  const onSubmit = async (data: CalledSchemaType) => {
+    const teste = await onCreateCalled({ 
       titleCalled: data.title, 
       description: data.description, 
+      idCustomer: session?.user.id!,
+      dateCustomer: data.date,
+      hourCustomer: data.hour,
       idServices: [{ id: data.category.id }]
     })
-    form.reset()
+
+    if(teste) {
+      form.reset()
+    }
+    
   }
 
   return (
     <>
       <Alert open={isSuccess} severity="success" >{data?.message}</Alert>
-      <Alert open={isError} severity="error" >{error?.message}</Alert>
+      <Alert open={isError} severity="info" >{error?.message}</Alert>
 
       <IsProfile myProfile="customers" /> 
       
