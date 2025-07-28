@@ -1,5 +1,6 @@
 import { api } from "@/services/api"
 import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query"
+import { useQueryGet } from "@/http/use-query-get"
 
 function useListServices () {
   return useInfiniteQuery({
@@ -19,4 +20,16 @@ function useListServices () {
   })
 }
 
-export { useListServices }
+function useServicePriceBase () {
+  return useQueryGet({
+    queryKey: "get_base_price",
+    fetchGet: async () => {
+      const response = await api.get("/services/base")
+      const result = response.data
+      
+      return result
+    }
+  })
+}
+
+export { useListServices, useServicePriceBase }

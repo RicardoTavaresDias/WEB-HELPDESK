@@ -4,6 +4,7 @@ import { UiButton } from "@/components/ui/UiButton"
 import { currency } from "@/lib/currency"
 import type { UseFormReturn } from "react-hook-form"
 import type { CalledSchemaType } from "../schemas/create-called-schema"
+import { useServicePriceBase } from "../http/use-list-services"
 
 type ModuleCreateCalledRightProps = {
   form: UseFormReturn<CalledSchemaType>
@@ -11,6 +12,8 @@ type ModuleCreateCalledRightProps = {
 }
 
 function ModuleCreateCalledRight ({ form, isPending }: ModuleCreateCalledRightProps) {
+  const { query: basePriceData } = useServicePriceBase()
+  
   return (
     <>
       <Modules.Context isType="40" >
@@ -30,7 +33,7 @@ function ModuleCreateCalledRight ({ form, isPending }: ModuleCreateCalledRightPr
 
           <div className="mt-1">
             <span className="Text-Sm text-gray-200 ">R$</span>
-            <span className="text-xl font-semibold text-gray-200">{currency({ coinFormatCents: String(200) }).replace("R$", "")}</span>
+            <span className="text-xl font-semibold text-gray-200">{currency({ coinFormatCents: String(basePriceData.data?.price || "0,00") }).replace("R$", "")}</span>
           </div>
         </div>
 
