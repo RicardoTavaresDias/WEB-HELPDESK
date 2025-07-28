@@ -39,7 +39,6 @@ export function CreateCalled(){
     if(teste) {
       form.reset()
     }
-    
   }
 
   return (

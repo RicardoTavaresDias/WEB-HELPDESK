@@ -20,7 +20,7 @@ function ModuleCreateCalledLeft ({ form }: ModuleCreateCalledLeftProps) {
             <span className="text-gray-300 Text-Xs">Configure os dias e horários em que você está disponível para atender chamados</span>
 
           <div className="lg:flex justify-between">
-            <div className="w-60">
+            <div className="w-60 lg:mr-4">
               <Input type="date" {...form.register("date")} label="Data" error={form.formState.errors.date?.message} />
             </div>
             

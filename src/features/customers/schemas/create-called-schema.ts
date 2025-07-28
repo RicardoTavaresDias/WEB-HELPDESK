@@ -14,5 +14,15 @@ export const calledSchema = z.object({
     .refine((value) => dayjs(value).isSame(dayjs(), "day") || dayjs(value).isAfter(dayjs(), "day"), { message: "Informe data atual ou data superior de hoje"}),
   hour: z.string().min(1, { message: "Campo obrigatório" })
 })
+.refine(date => {
+  if(dayjs(dayjs().format(`${date.date}T${date.hour}`)).isSameOrBefore(dayjs(), "hour")){
+    return false
+  }
+  return true
+}, {
+  path: ["hour"], 
+  message: "Informe uma data e hora iguais ou posteriores ao momento atual" 
+})
+
 
 export type CalledSchemaType = z.infer<typeof calledSchema>
