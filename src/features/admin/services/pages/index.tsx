@@ -54,8 +54,8 @@ export function AdminServices(){
             <Table.Body>
               {serivicesData && serivicesData.data.map((item) => (
                 <tr className="border-t border-gray-500 text-left" key={item.id} >
-                  <Table.Cell clas="lg:w-1/2 " internalSpacing="px-2 py-3 lg:px-4 lg:py-3">
-                    <div className="max-sm:w-20 truncate ">
+                  <Table.Cell clas="lg:w-1/2" internalSpacing="px-2 py-3 lg:px-4 lg:py-3">
+                    <div className="max-sm:w-20 max-w-120 truncate">
                       {item.titleService}
                     </div>
                       
@@ -68,7 +68,7 @@ export function AdminServices(){
                     </Table.Cell>
 
                     <Table.Cell internalSpacing="py-3 lg:px-4 lg:py-3">
-                      <div className="max-sm:hidden w-35">
+                      <div className="max-sm:hidden">
                         <Status type={item.serviceStatus} isButton={true} />
                       </div>
                       <div className="lg:hidden flex justify-center">
