@@ -1,16 +1,41 @@
 import { Modules } from "@/components/modules";
 import { Status } from "@/components/ui/status";
 import { IsProfile } from "@/features/layout/profile";
-import { useTechicalCalled } from "../http/use-technical-called"
+import { useTechicalCalledClose, useTechicalCalledInProgress, useTechicalCalledOpen } from "../http/use-technical-called"
 import { CalledsStatus } from "../components/calleds-status"
-import { Loading } from "@/components/ui/loading";
+import { LoaderSM, Loading } from "@/components/ui/loading";
 
 export function IndexCalledTechical(){
-  const { data, isLoading } = useTechicalCalled().query
+  const { data: inProgress, 
+    fetchNextPage: 
+    fetchNextPageInProgress, 
+    hasNextPage: hasNextPageInProgress, 
+    isFetchingNextPage: isFetchingNextPageInProgress,
+    isPending: isPendingInProgress
+  } = useTechicalCalledInProgress()
+
   
+  const { data: open, 
+    fetchNextPage: fetchNextPageInProgressOpen, 
+    hasNextPage: hasNextPageOpen,
+    isFetchingNextPage: isFetchingNextPageOpen,
+    isPending: isPendingOpen
+  } = useTechicalCalledOpen()
+
+  
+  const { data: close, 
+    fetchNextPage:fetchNextPageClose, 
+    hasNextPage: hasNextPageClose,
+    isFetchingNextPage: isFetchingNextPageClose,
+    isPending: isPendingIClose 
+  } = useTechicalCalledClose()
+
+  if(!inProgress || !open || !close){
+    return <Loading />
+  }
+
   return (
     <>
-      {isLoading && <Loading />}
       <IsProfile myProfile="technical" />
       
       <Modules.Root displauFull>
@@ -21,9 +46,26 @@ export function IndexCalledTechical(){
           <Status type="in_progress" isText />
           <Modules.Container>
             <CalledsStatus 
-              dataCalleds={data?.CalledInProgress}
+              dataCalleds={inProgress}
+              queryKey={["techical_called_Close", "techical_called_inProgress"]}
             />
           </Modules.Container>
+
+          <div className="flex justify-end">
+            {inProgress?.pages[0].result.next &&
+              <button className="text-sm cursor-pointer" onClick={() => fetchNextPageInProgress()} disabled={!hasNextPageInProgress || isFetchingNextPageInProgress} >
+                {isPendingInProgress ? (
+                  <LoaderSM />
+                ) : isFetchingNextPageInProgress ? (
+                  <LoaderSM />
+                ) : hasNextPageInProgress ? (
+                  inProgress?.pages[0].result.next && "Ver mais"
+                ) : (
+                  "Fim da lista"
+                )}
+              </button>  
+            }
+          </div>
         </div>
         {/* Em atendimento */}
 
@@ -32,9 +74,26 @@ export function IndexCalledTechical(){
           <Status type="open" isText />
           <Modules.Container>
             <CalledsStatus 
-              dataCalleds={data?.CalledOpen}
+              dataCalleds={open}
+              queryKey={["techical_called_inProgress", "techical_called_Open"]}
             />
           </Modules.Container>
+
+          <div className="flex justify-end">
+            {open?.pages[0].result.next &&
+              <button className="text-sm cursor-pointer" onClick={() => fetchNextPageInProgressOpen()} disabled={!hasNextPageOpen || isFetchingNextPageOpen} >
+                {isPendingOpen ? (
+                  <LoaderSM />
+                ) : isFetchingNextPageOpen ? (
+                  <LoaderSM />
+                ) : hasNextPageOpen ? (
+                  open?.pages[0].result.next && "Ver mais"
+                ) : (
+                  "Fim da lista"
+                )}
+              </button>
+            }
+          </div>
         </div>
         {/* Aberto */}
 
@@ -43,9 +102,26 @@ export function IndexCalledTechical(){
           <Status type="close" isText />
           <Modules.Container>
             <CalledsStatus 
-              dataCalleds={data?.CalledClose}
+              dataCalleds={close}
+              queryKey={["techical_called_Open", "techical_called_Close"]}
             />
           </Modules.Container>
+
+          <div className="flex justify-end">
+            {close?.pages[0].result.next &&
+              <button className="text-sm cursor-pointer" onClick={() => fetchNextPageClose()} disabled={!hasNextPageClose || isFetchingNextPageClose} >
+                  {isPendingIClose ? (
+                    <LoaderSM />
+                  ) : isFetchingNextPageClose ? (
+                    <LoaderSM />
+                  ) : hasNextPageClose ? (
+                    close?.pages[0].result.next && "Ver mais"
+                  ) : (
+                    "Fim da lista"
+                  )}
+                </button>
+              }
+          </div>
         </div>
         {/* Encerrado */}
 

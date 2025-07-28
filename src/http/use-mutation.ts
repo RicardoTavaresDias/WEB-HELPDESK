@@ -2,7 +2,7 @@ import { AxiosError } from "axios"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 type QueryMutationType<TData> = {
-  queryKey?: string 
+  queryKey?: string | string[]
   fetch: (data: TData) => Promise<void | any>
 }
 
@@ -21,8 +21,16 @@ function useQueryMutation<TData>({ queryKey, fetch }: QueryMutationType<TData>) 
         throw new Error(error.message)
       }
     },
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: [queryKey] })
+      onSuccess: async () => {
+        if(Array.isArray(queryKey)){
+          await Promise.all([
+            queryClient.invalidateQueries({ queryKey: [queryKey[0]] }),
+            queryClient.invalidateQueries({ queryKey: [queryKey[1]] })
+          ])
+          return
+        }
+
+        return queryClient.invalidateQueries({ queryKey: [queryKey] })
       }
    })
 }

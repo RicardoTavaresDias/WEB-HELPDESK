@@ -11,9 +11,24 @@ import { Status } from "@/components/ui/status";
 import type { Called } from "../types/calleds-user-response";
 import { useCalledUpdateStatus, type useCalledUpdateStatusType } from "../http/use-called-update-status"
 import { LoaderSM } from "@/components/ui/loading";
+import { useState } from "react";
 
-export function CalledsStatus ({ dataCalleds }: { dataCalleds?: Called[] }) {
-  const { isPending, mutateAsync: onUpdateStatus } = useCalledUpdateStatus()
+type CalledsStatusType = {
+  dataCalleds: dataCalleds
+  queryKey: string[]
+}
+
+type dataCalleds = {
+  pages: Page[]
+}
+
+type Page = {
+  data: Called[]
+}
+
+export function CalledsStatus ({ dataCalleds, queryKey }: CalledsStatusType) {
+  const [idLoading, setIdLoading] = useState<number | null>(null)
+  const { isPending, mutateAsync: onUpdateStatus } = useCalledUpdateStatus({ queryKey })
 
   const onSubmit = ({ id, status }: useCalledUpdateStatusType) => {
     const newStatusCalled = status === "open" ? "in_progress" : "close"
@@ -22,7 +37,7 @@ export function CalledsStatus ({ dataCalleds }: { dataCalleds?: Called[] }) {
   
   return (
     <>
-      {dataCalleds?.map(called => (
+      {dataCalleds?.pages.map((page) => page.data).flat().map(called => (
         <Fragment key={called.id}>
           <Modules.Context isType="30" >
             <div className="lg:w-[346px]">
@@ -35,11 +50,14 @@ export function CalledsStatus ({ dataCalleds }: { dataCalleds?: Called[] }) {
                   <Link to={`/chamados/${called.id}`} ><UiButton type="button" icon={IconPenLine} typeColor="gray" typeSize="xxs" /></Link>
                   {called.callStatus === "close" ||
                     <UiButton 
-                      icon={isPending ? LoaderSM : IconCicloCheckBig} 
+                      icon={isPending && idLoading === called.id ? LoaderSM : IconCicloCheckBig} 
                       typeColor="black" 
                       typeSize="xxs" 
                       color="#F9FAFA" 
-                      onClick={() => onSubmit({ id: called.id, status: called.callStatus })}
+                      onClick={() => {
+                        onSubmit({ id: called.id, status: called.callStatus })
+                        setIdLoading(called.id)
+                      }}
                     >
                       <span className="px-1">
                         {called.callStatus === "open" ? "Iniciar" : "Encerrar"}

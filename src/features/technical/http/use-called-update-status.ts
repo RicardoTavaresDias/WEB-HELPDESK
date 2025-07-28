@@ -6,9 +6,9 @@ export type useCalledUpdateStatusType = {
   status: string
 }
 
-function useCalledUpdateStatus () {
+function useCalledUpdateStatus ({ queryKey }: { queryKey: string[] }) {
   return useQueryMutation<useCalledUpdateStatusType>({
-    queryKey: "techical_called",
+    queryKey: queryKey,
     fetch: async ({ id, status }: useCalledUpdateStatusType) => {
       await api.patch(`/calleds/${id}`, { status })
     }
