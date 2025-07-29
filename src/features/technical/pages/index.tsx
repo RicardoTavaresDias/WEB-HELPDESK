@@ -53,7 +53,7 @@ export function IndexCalledTechical(){
 
           <div className="flex justify-center mt-6">
             {inProgress?.pages[0].data.length >= 10 &&
-              <button className="w-100 h-8 border rounded-lg bg-blue-base text-white Text-Sm border-none cursor-pointer hover:shadow-lg transition-shadow" 
+              <button className="w-100 h-8 border rounded-lg flex justify-center items-center bg-blue-base text-white Text-Sm border-none cursor-pointer hover:shadow-lg transition-shadow" 
                 onClick={() => fetchNextPageInProgress()} disabled={!hasNextPageInProgress || isFetchingNextPageInProgress} >
                 {isPendingInProgress ? (
                   <LoaderSM />
@@ -82,7 +82,7 @@ export function IndexCalledTechical(){
 
           <div className="flex justify-center mt-6">
             {open?.pages[0].data.length >= 10 &&
-              <button className="w-100 h-8 border rounded-lg bg-blue-base text-white Text-Sm border-none cursor-pointer hover:shadow-lg transition-shadow" 
+              <button className="w-100 h-8 border rounded-lg flex justify-center items-center bg-blue-base text-white Text-Sm border-none cursor-pointer hover:shadow-lg transition-shadow" 
                 onClick={() => fetchNextPageInProgressOpen()} disabled={!hasNextPageOpen || isFetchingNextPageOpen} >
                 {isPendingOpen ? (
                   <LoaderSM />
@@ -110,9 +110,9 @@ export function IndexCalledTechical(){
             />
           </Modules.Container>
 
-          <div className="flex justify-center mt-6">
+          <div className="flex items-center mt-6">
             {close?.pages[0].data.length >= 10 &&
-              <button className="w-100 h-8 border rounded-lg bg-blue-base text-white Text-Sm border-none cursor-pointer hover:shadow-lg transition-shadow" 
+              <button className="w-100 h-8 border rounded-lg flex justify-center items-center bg-blue-base text-white Text-Sm border-none cursor-pointer hover:shadow-lg transition-shadow" 
                 onClick={() => fetchNextPageClose()} disabled={!hasNextPageClose || isFetchingNextPageClose} >
                   {isPendingIClose ? (
                     <LoaderSM />
