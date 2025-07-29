@@ -43,7 +43,7 @@ export function IndexCalledTechical(){
 
         {/* Em atendimento */}
         <div className="mt-7 max-sm:mt-1">
-          <Status type="in_progress" isText />
+          {inProgress?.pages[0].data.length >= 1 && <Status type="in_progress" isText />}
           <Modules.Container>
             <CalledsStatus 
               dataCalleds={inProgress}
@@ -51,9 +51,10 @@ export function IndexCalledTechical(){
             />
           </Modules.Container>
 
-          <div className="flex justify-end">
-            {inProgress?.pages[0].result.next &&
-              <button className="text-sm cursor-pointer" onClick={() => fetchNextPageInProgress()} disabled={!hasNextPageInProgress || isFetchingNextPageInProgress} >
+          <div className="flex justify-center mt-6">
+            {inProgress?.pages[0].data.length >= 10 &&
+              <button className="w-100 h-8 border rounded-lg bg-blue-base text-white Text-Sm border-none cursor-pointer hover:shadow-lg transition-shadow" 
+                onClick={() => fetchNextPageInProgress()} disabled={!hasNextPageInProgress || isFetchingNextPageInProgress} >
                 {isPendingInProgress ? (
                   <LoaderSM />
                 ) : isFetchingNextPageInProgress ? (
@@ -71,7 +72,7 @@ export function IndexCalledTechical(){
 
         {/* Aberto */}
         <div className="mt-7">
-          <Status type="open" isText />
+          {open?.pages[0].data.length >= 1 && <Status type="open" isText />}
           <Modules.Container>
             <CalledsStatus 
               dataCalleds={open}
@@ -79,15 +80,17 @@ export function IndexCalledTechical(){
             />
           </Modules.Container>
 
-          <div className="flex justify-end">
-            {open?.pages[0].result.next &&
-              <button className="text-sm cursor-pointer" onClick={() => fetchNextPageInProgressOpen()} disabled={!hasNextPageOpen || isFetchingNextPageOpen} >
+          <div className="flex justify-center mt-6">
+            {open?.pages[0].data.length >= 10 &&
+              <button className="w-100 h-8 border rounded-lg bg-blue-base text-white Text-Sm border-none cursor-pointer hover:shadow-lg transition-shadow" 
+                onClick={() => fetchNextPageInProgressOpen()} disabled={!hasNextPageOpen || isFetchingNextPageOpen} >
                 {isPendingOpen ? (
                   <LoaderSM />
                 ) : isFetchingNextPageOpen ? (
                   <LoaderSM />
                 ) : hasNextPageOpen ? (
-                  open?.pages[0].result.next && "Ver mais"
+                  open?.pages[0].result.next && 
+                      "Ver mais"
                 ) : (
                   "Fim da lista"
                 )}
@@ -99,7 +102,7 @@ export function IndexCalledTechical(){
 
         {/* Encerrado */}
         <div className="mt-7">
-          <Status type="close" isText />
+          {close?.pages[0].data.length >= 1 && <Status type="close" isText />}
           <Modules.Container>
             <CalledsStatus 
               dataCalleds={close}
@@ -107,9 +110,10 @@ export function IndexCalledTechical(){
             />
           </Modules.Container>
 
-          <div className="flex justify-end">
-            {close?.pages[0].result.next &&
-              <button className="text-sm cursor-pointer" onClick={() => fetchNextPageClose()} disabled={!hasNextPageClose || isFetchingNextPageClose} >
+          <div className="flex justify-center mt-6">
+            {close?.pages[0].data.length >= 10 &&
+              <button className="w-100 h-8 border rounded-lg bg-blue-base text-white Text-Sm border-none cursor-pointer hover:shadow-lg transition-shadow" 
+                onClick={() => fetchNextPageClose()} disabled={!hasNextPageClose || isFetchingNextPageClose} >
                   {isPendingIClose ? (
                     <LoaderSM />
                   ) : isFetchingNextPageClose ? (
