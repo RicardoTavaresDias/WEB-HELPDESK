@@ -40,8 +40,8 @@ function CalledComments ({ data }: ModuleCalledComments) {
               </div>
 
               <div className="flex justify-between items-center w-full">
-                <span className="text-gray-400 Text-Xs" >{dayjs(comment.comment.createdAt).format("DD/MM/YY HH:mm")}</span>
-                <span className="text-gray-400 Text-Xs" >{dayjs().to(comment.comment.createdAt)}</span>
+                <span className="text-gray-400 Text-Xs" >{dayjs(comment.comment.updatedAt).format("DD/MM/YY HH:mm")}</span>
+                <span className="text-gray-400 Text-Xs" >{dayjs().to(comment.comment.updatedAt)}</span>
               </div>
             </div>
           ))}
