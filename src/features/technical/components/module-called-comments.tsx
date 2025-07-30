@@ -17,9 +17,11 @@ import { useRemoveCommentCalled } from "../http/use-remove-comment-called";
 
 type ModuleCalledComments = {
   data: CalledComment[] | undefined
+  modalComment: boolean
+  setModalComment: (value: boolean) => void;
 }
 
-function CalledComments ({ data }: ModuleCalledComments) {
+function CalledComments ({ data, modalComment, setModalComment }: ModuleCalledComments) {
   const [editando, setEditando] = useState<string | null>(null)
   const { isPending: isPendingUpdate, mutateAsync: onUpdateComment } = useUpdateCommentCalled()
   const { isPending: isPendingRemove, mutateAsync: onRemoveComment } = useRemoveCommentCalled()
@@ -40,8 +42,8 @@ function CalledComments ({ data }: ModuleCalledComments) {
       <Modules.Context isType="60">
         <div>
           <div className="flex justify-between items-center">
-            <span className="text-gray-400 text-sm" >Comentários</span>
-            <UiButton typeColor="black" typeSize="xxs" icon={IconPlus} color="#F9FAFA" />
+            <span className="text-gray-400 text-sm" >Acompanhamento</span>
+            <UiButton typeColor="black" typeSize="xxs" icon={IconPlus} color="#F9FAFA" onClick={() => setModalComment(!modalComment)}/>
           </div>
 
           {/* Opção 1 */}

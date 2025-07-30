@@ -1,0 +1,95 @@
+import { IconCicloAlert } from "@/assets/icon/iconCicleAlert";
+import { Modal } from "@/components/modal"
+import { Alert } from "@/components/ui/alert"
+import { LoaderSM } from "@/components/ui/loading"
+import { UiButton } from "@/components/ui/UiButton"
+import { useForm } from "react-hook-form";
+import { useCreateCommentCalled, type DataCreateCommentType } from "../http/use-create-comment-called";
+import { useAuth } from "@/hooks/useAuth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createCommentCalledSchema, type CreateCommentCalledSchemaType } from "../schemas/create-commet-called-schema";
+
+type ModalCreateCommentType = {
+  modalComment: boolean;
+  setModalComment: (value: boolean) => void;
+  idCalled: number | undefined
+}
+
+function ModalCreateComment ({ modalComment, setModalComment, idCalled }: ModalCreateCommentType) {
+  const { session } = useAuth()
+  const { data, isPending, isSuccess, isError, error, mutateAsync: onCreateComment } = useCreateCommentCalled()
+
+  const form = useForm<CreateCommentCalledSchemaType>({
+    defaultValues: {
+      description: ""
+    },
+    criteriaMode: 'all',
+    mode: 'all',
+    resolver: zodResolver(createCommentCalledSchema)
+  })
+  
+  const onSubmit = async (data: CreateCommentCalledSchemaType) => {
+    await onCreateComment({ idCalled, idUser: session?.user.id, description: data.description } as DataCreateCommentType)
+    if(isSuccess){
+      setModalComment(!modalComment)
+      form.reset()
+    }
+  }
+
+  return (
+    <>
+      <Alert severity="success" open={isSuccess}>
+        {data?.message}
+      </Alert>
+      <Alert severity="error" open={isError} >
+        {error?.message}
+      </Alert>
+
+      
+        <Modal.Root isActive={modalComment}>
+          <Modal.Title
+            title="Acompanhamento"
+            onClose={() => { 
+              setModalComment(!modalComment)
+              form.reset()
+            }}
+          />
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <Modal.Context>
+              <div className="group flex flex-col mt-4">
+                <label className={`Text-Xxs group-focus-within:text-blue-base ${form.formState.errors.description ? "text-feedback-danger" : "text-gray-300"}`}>Comentários</label>
+                <textarea 
+                  {...form.register("description")}
+                  className="w-full h-[150px] border-b-1 border-gray-500 max-sm:w-73 Heading-Md my-2 pb-2 outline-none group-focus-within:border-blue-base resize-none" 
+                  placeholder="Descreva o Acompanhamento do serviço" 
+                  style={{ lineHeight: "1.8" }}
+                />
+          
+                {form.formState.errors.description &&
+                  <div className="flex gap-1">
+                    <IconCicloAlert className="w-4 h-4 fill-feedback-danger"/>
+                    <span className="Text-Xs text-feedback-danger" >{form.formState.errors.description?.message}</span>
+                  </div>
+                } 
+              </div>
+
+            </Modal.Context>
+          
+            <Modal.Actions>
+              <UiButton
+                type="submit"
+                typeSize="xxl"
+                typeColor="black"
+                disabled={isPending}
+              >
+                {isPending ? <LoaderSM /> : "Salvar"}
+              </UiButton>
+            </Modal.Actions>
+          </form>
+        </Modal.Root>
+      
+    </>
+  )
+}
+
+export { ModalCreateComment }

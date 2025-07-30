@@ -11,10 +11,12 @@ import { ModalCreateServices } from "../components/modal-create-services";
 import { ModuleDetailsCalledLeft } from "../components/module-details-called-left";
 import { ModuleDetailsCalledRight } from "../components/module-details-called-right";
 import { CalledComments } from "../components/module-called-comments";
+import { ModalCreateComment } from "../components/modal-create-comment";
 
 export function CalledDetails(){
   const [called, setCalled] = useState<Called | null>(null)
   const [modalServices, setModalServices] = useState(false)
+  const [modalComment, setModalComment] = useState(false)
   const { id } = useParams()
 
   if (!id) {
@@ -35,6 +37,7 @@ export function CalledDetails(){
 
       <IsProfile myProfile="technical" />
       <ModalCreateServices modalServices={modalServices} setModalServices={setModalServices} idCalled={called?.id} />
+      <ModalCreateComment modalComment={modalComment} setModalComment={setModalComment} idCalled={called?.id} />
       
       <Modules.Root>
         <ModuleTitleStatus data={called} />
@@ -42,7 +45,7 @@ export function CalledDetails(){
         <Modules.Container>
           <ModuleDetailsCalledLeft called={called} />
           <ModuleDetailsCalledRight called={called} />
-          <AddServices calledServices={called?.services} modalServices={modalServices} setModalServices={setModalServices} calledId={called?.id}/>
+          <AddServices calledServices={called?.services} modalServices={modalServices} setModalServices={setModalServices} calledId={called?.id} />
 
           {/* <Modules.Context isType="40">
             <div>
@@ -77,7 +80,7 @@ export function CalledDetails(){
         </Modules.Container>
 
         <div className="w-full mt-6">
-          <CalledComments data={called?.calledComments} />
+          <CalledComments data={called?.calledComments} modalComment={modalComment} setModalComment={setModalComment} />
         </div>
 
       </Modules.Root>

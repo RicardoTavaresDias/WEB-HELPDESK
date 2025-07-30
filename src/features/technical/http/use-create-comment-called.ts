@@ -1,7 +1,7 @@
 import { useQueryMutation } from "@/http/use-mutation"
 import { api } from "@/services/api"
 
-type DataCreateCommentType = {
+export type DataCreateCommentType = {
   idCalled: number
   idUser: string
   description: string
@@ -10,7 +10,7 @@ type DataCreateCommentType = {
 function useCreateCommentCalled () {
   return useQueryMutation<DataCreateCommentType>({
     queryKey: "called_byId",
-    fetch: async (dataComment) => {
+    fetch: async (dataComment: DataCreateCommentType) => {
       const response = await api.post("/calleds/comment", dataComment)
       const result = response.data
 
