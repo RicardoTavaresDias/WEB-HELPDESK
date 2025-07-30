@@ -22,7 +22,7 @@ function ModuleDetailsCalledLeft ({ called }: ModuleDetailsCalledLeftProps) {
                 ( called.id > 9 && called.id < 100 ? `0${called.id}` : called.id )  
             )}
           </span>
-          <Status type={called.callStatus as  "open" | "in_progress" | "close"} isText /> 
+          <Status type={called.callStatus as "open" | "in_progress" | "close"} isText /> 
         </div>
 
         <span className="text-gray-200 text-base font-medium">{called.titleCalled}</span>

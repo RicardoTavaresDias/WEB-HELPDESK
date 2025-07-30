@@ -36,8 +36,16 @@ export function CalledDetails(){
       {isLoading && <Loading />}
 
       <IsProfile myProfile="technical" />
-      <ModalCreateServices modalServices={modalServices} setModalServices={setModalServices} idCalled={called?.id} />
-      <ModalCreateComment modalComment={modalComment} setModalComment={setModalComment} idCalled={called?.id} />
+      <ModalCreateServices 
+        modalServices={modalServices}
+        setModalServices={setModalServices} 
+        idCalled={called?.id} 
+      />
+      <ModalCreateComment 
+        modalComment={modalComment} 
+        setModalComment={setModalComment}
+        idCalled={called?.id} 
+      />
       
       <Modules.Root>
         <ModuleTitleStatus data={called} />
@@ -45,7 +53,13 @@ export function CalledDetails(){
         <Modules.Container>
           <ModuleDetailsCalledLeft called={called} />
           <ModuleDetailsCalledRight called={called} />
-          <AddServices calledServices={called?.services} modalServices={modalServices} setModalServices={setModalServices} calledId={called?.id} />
+          <AddServices 
+            calledServices={called?.services} 
+            modalServices={modalServices} 
+            setModalServices={setModalServices} 
+            calledId={called?.id} 
+            statusCalled={called?.callStatus} 
+          />
 
           {/* <Modules.Context isType="40">
             <div>
@@ -80,7 +94,12 @@ export function CalledDetails(){
         </Modules.Container>
 
         <div className="w-full mt-6">
-          <CalledComments data={called?.calledComments} modalComment={modalComment} setModalComment={setModalComment} />
+          <CalledComments 
+            dataComments={called?.calledComments} 
+            modalComment={modalComment} 
+            setModalComment={setModalComment}
+            statusCalled={called?.callStatus} 
+          />
         </div>
 
       </Modules.Root>

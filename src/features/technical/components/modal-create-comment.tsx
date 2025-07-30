@@ -61,7 +61,7 @@ function ModalCreateComment ({ modalComment, setModalComment, idCalled }: ModalC
                 <textarea 
                   {...form.register("description")}
                   className="w-full h-[150px] border-b-1 border-gray-500 max-sm:w-73 Heading-Md my-2 pb-2 outline-none group-focus-within:border-blue-base resize-none" 
-                  placeholder="Descreva o Acompanhamento do serviço" 
+                  placeholder="Descreva o acompanhamento do serviço" 
                   style={{ lineHeight: "1.8" }}
                 />
           

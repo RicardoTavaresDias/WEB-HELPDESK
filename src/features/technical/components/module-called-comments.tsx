@@ -16,12 +16,13 @@ import { useUpdateCommentCalled } from "../http/use-update-comment-called";
 import { useRemoveCommentCalled } from "../http/use-remove-comment-called";
 
 type ModuleCalledComments = {
-  data: CalledComment[] | undefined
+  dataComments: CalledComment[] | undefined
   modalComment: boolean
   setModalComment: (value: boolean) => void;
+  statusCalled: string | undefined
 }
 
-function CalledComments ({ data, modalComment, setModalComment }: ModuleCalledComments) {
+function CalledComments ({ dataComments, modalComment, setModalComment, statusCalled }: ModuleCalledComments) {
   const [editando, setEditando] = useState<string | null>(null)
   const { isPending: isPendingUpdate, mutateAsync: onUpdateComment } = useUpdateCommentCalled()
   const { isPending: isPendingRemove, mutateAsync: onRemoveComment } = useRemoveCommentCalled()
@@ -43,18 +44,20 @@ function CalledComments ({ data, modalComment, setModalComment }: ModuleCalledCo
         <div>
           <div className="flex justify-between items-center">
             <span className="text-gray-400 text-sm" >Acompanhamento</span>
-            <UiButton typeColor="black" typeSize="xxs" icon={IconPlus} color="#F9FAFA" onClick={() => setModalComment(!modalComment)}/>
+            {statusCalled !== "close" &&
+              <UiButton typeColor="black" typeSize="xxs" icon={IconPlus} color="#F9FAFA" onClick={() => setModalComment(!modalComment)}/>
+            }
           </div>
 
           {/* Opção 1 */}
-          {data?.map((comment) => (
+          {dataComments?.map((comment) => (
             <div className="flex flex-col gap-3 items-end  rounded-sm mt-5 p-3 bg-gray-500/20 shadow-md" key={comment.comment.id} >
-              {editando !== comment.comment.id &&
+              {editando !== comment.comment.id && statusCalled !== "close" &&
                 <UiButton type="button" icon={IconPenLine} typeColor="gray" typeSize="xxs"
                   onClick={() => setEditando(editando === comment.comment.id ? null : comment.comment.id)} />
               }
 
-              {editando === comment.comment.id && 
+              {editando === comment.comment.id && statusCalled !== "close" &&
                 <div className="flex gap-2">
                   <UiButton type="button" icon={isPendingRemove ? LoaderSM : IconTrash} typeColor="gray" typeSize="xxs" disabled={isPendingRemove || isPendingUpdate} 
                     onClick={() => onRemoveComment(comment.comment.id)} />

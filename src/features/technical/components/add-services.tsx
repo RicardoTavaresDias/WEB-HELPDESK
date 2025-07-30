@@ -13,9 +13,10 @@ type AddServicesType = {
   modalServices: boolean
   calledId?: number
   calledServices?: Service[] | null
+  statusCalled: string | undefined
 }
 
-export function AddServices ({ setModalServices, modalServices, calledServices, calledId }: AddServicesType) {
+export function AddServices ({ setModalServices, modalServices, calledServices, calledId, statusCalled }: AddServicesType) {
   const [remocveId, setRemoveId] = useState<string | null>(null)
   const { mutateAsync: onRemove, isPending } = useRemoveervices()
 
@@ -24,7 +25,9 @@ export function AddServices ({ setModalServices, modalServices, calledServices, 
       <Modules.Context isType="60">
         <div className="flex items-center justify-between">
           <span className="text-gray-400 Text-Xs">Serviços adicionais</span>
-          <UiButton type="button" typeColor="black" typeSize="xxs" icon={IconPlus} color="#F9FAFA" onClick={() => setModalServices(!modalServices)}/>
+          {statusCalled !== "close" &&
+            <UiButton type="button" typeColor="black" typeSize="xxs" icon={IconPlus} color="#F9FAFA" onClick={() => setModalServices(!modalServices)}/>
+          }
         </div>
 
         <div className="mt-4 flex flex-col gap-4">
@@ -34,17 +37,19 @@ export function AddServices ({ setModalServices, modalServices, calledServices, 
               <p className="text-sm font-semibold text-gray-200">{service.titleService}</p>
               <div className="flex items-center gap-6">
                 <span className="Text-Xs text-gray-200">{currency({ coinFormatCents: service.price })}</span>
-                <UiButton 
-                  type="button" 
-                  typeColor="gray" 
-                  typeSize="xxs" 
-                  icon={
-                    remocveId === service.id &&
-                    isPending ? LoaderSM : IconTrash
-                  } 
-                  onClick={() => { onRemove({ calledId: calledId!, idServices: service.id }), setRemoveId(service.id) }}
-                  disabled={isPending}
-                />
+                {statusCalled !== "close" &&
+                  <UiButton 
+                    type="button" 
+                    typeColor="gray" 
+                    typeSize="xxs" 
+                    icon={
+                      remocveId === service.id &&
+                      isPending ? LoaderSM : IconTrash
+                    } 
+                    onClick={() => { onRemove({ calledId: calledId!, idServices: service.id }), setRemoveId(service.id) }}
+                    disabled={isPending}
+                  />
+                }
               </div>
             </div>
           ))}
