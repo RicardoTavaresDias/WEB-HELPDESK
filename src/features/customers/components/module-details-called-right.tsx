@@ -8,9 +8,10 @@ type ModuleDetailsCalledRightProps = {
 }
 
 function ModuleDetailsCalledRight ({ dataDetails }: ModuleDetailsCalledRightProps) {
+ 
   return (
     <>
-      <Modules.Context isType="40">
+      <Modules.Context isType="50">
         <span className="text-gray-400 Text-Xs">Técnico responsável</span>
         <div className="flex items-center gap-2 mt-2">
           <Avatar user={{ name: dataDetails.UserTechnical?.name, avatar: dataDetails.UserTechnical?.avatar }} size="w-10 h-10" sizeText="text-xs" />

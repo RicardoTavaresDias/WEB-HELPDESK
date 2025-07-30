@@ -5,6 +5,7 @@ import { useCalledDetails } from "../http/use-called-details"
 import { Loading } from "@/components/ui/loading"
 import { ModuleDetailsCalledLeft } from "../components/module-details-called-left"
 import { ModuleDetailsCalledRight } from "../components/module-details-called-right"
+import { CalledComments } from "../components/module-called-comments"
 
 export function CallDetails(){
   const { id } = useParams()
@@ -28,6 +29,10 @@ export function CallDetails(){
         <Modules.Container>
           <ModuleDetailsCalledLeft dataDetails={dataDetails} />
           <ModuleDetailsCalledRight dataDetails={dataDetails} />
+
+          <div className="w-full">
+            <CalledComments data={dataDetails.calledComments} />
+          </div>
         </Modules.Container>
       </Modules.Root>
     </>

@@ -13,12 +13,14 @@ export interface Called {
   titleCalled: string
   description: string
   createdAt: string
+  basePrice: string
+  appointmentTime: string
   services: Service[]
+  calledComments: CalledComment[]
   UserCustomer: UserCustomer
   UserTechnical: UserTechnical
   callStatus: string
   priceTotal: number
-  basePrice: number
 }
 
 export interface Service {
@@ -27,9 +29,29 @@ export interface Service {
   price: string
 }
 
+export interface CalledComment {
+  comment: Comment
+  user: User
+}
+
+export interface Comment {
+  id: string
+  description: string
+  createdAt: string
+  updatedAt: string
+}
+
+export interface User {
+  id: string
+  name: string
+  avatar: string
+  role: string
+}
+
 export interface UserCustomer {
   id: string
   name: string
+  email: string
   avatar: string
 }
 
