@@ -84,7 +84,7 @@ function CalledComments ({ data, modalComment, setModalComment }: ModuleCalledCo
 
                 {editando !== comment.comment.id &&
                   <div className="">
-                    <p className="text-sm text-gray-300 ">
+                    <p className="text-sm text-gray-300 " style={{ whiteSpace: 'pre-line' }} >
                       {comment.comment.description}
                     </p>
                   </div>

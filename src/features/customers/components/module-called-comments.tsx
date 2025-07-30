@@ -33,7 +33,7 @@ function CalledComments ({ data }: ModuleCalledComments) {
                 </div>
 
                 <div className="">
-                  <p className="text-sm text-gray-300 ">
+                  <p className="text-sm text-gray-300 " style={{ whiteSpace: 'pre-line' }} >
                     {comment.comment.description}
                   </p>
                 </div>
