@@ -21,7 +21,8 @@ function ModalCreateComment ({ modalComment, setModalComment, idCalled }: ModalC
 
   const form = useForm<CreateCommentCalledSchemaType>({
     defaultValues: {
-      description: ""
+      description: "",
+      type: ""
     },
     criteriaMode: 'all',
     mode: 'all',
@@ -29,7 +30,7 @@ function ModalCreateComment ({ modalComment, setModalComment, idCalled }: ModalC
   })
   
   const onSubmit = async (data: CreateCommentCalledSchemaType) => {
-    await onCreateComment({ idCalled, idUser: session?.user.id, description: data.description } as DataCreateCommentType)
+    await onCreateComment({ idCalled, idUser: session?.user.id, description: data.description, type: data.type } as DataCreateCommentType)
     if(isSuccess){
       setModalComment(!modalComment)
       form.reset()
@@ -70,7 +71,22 @@ function ModalCreateComment ({ modalComment, setModalComment, idCalled }: ModalC
                     <IconCicloAlert className="w-4 h-4 fill-feedback-danger"/>
                     <span className="Text-Xs text-feedback-danger" >{form.formState.errors.description?.message}</span>
                   </div>
-                } 
+                }
+
+                 <label className={`Text-Xxs mt-5 group-focus-within:text-blue-base ${form.formState.errors.type ? "text-feedback-danger" : "text-gray-300"}`}>Comentários</label>
+                  <select 
+                    {...form.register("type")}
+                    className="w-full border-b-1 border-gray-500 max-sm:w-73 Heading-Md my-2 pb-2 outline-none group-focus-within:border-blue-base resize-none" 
+                  >
+                    <option value="followUp" >Acompanhamento</option>
+                    <option value="task" >Tarefa</option>
+                  </select>
+                  {form.formState.errors.type &&
+                    <div className="flex gap-1">
+                      <IconCicloAlert className="w-4 h-4 fill-feedback-danger"/>
+                      <span className="Text-Xs text-feedback-danger" >{form.formState.errors.type?.message}</span>
+                    </div>
+                  }
               </div>
 
             </Modal.Context>

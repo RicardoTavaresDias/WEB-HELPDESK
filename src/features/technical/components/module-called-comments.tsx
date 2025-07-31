@@ -6,14 +6,14 @@ import { IconPenLine } from "@/assets/icon/iconPenLine";
 import { dayjs } from "@/lib/dayjs"
 import { useState } from "react";
 import TextareaAutosize from 'react-textarea-autosize'
-import { Save } from "lucide-react"
-import { X } from "lucide-react"
+import { Save, NotebookText, X } from "lucide-react"
 import { IconTrash } from "@/assets/icon/iconTrash";
 import type { CalledComment } from "@/features/technical/types/calleds-user-response";
 import { LoaderSM } from "@/components/ui/loading";
 import { useForm } from "react-hook-form";
-import { useUpdateCommentCalled } from "../http/use-update-comment-called";
+import { useUpdateCommentCalled, type DataUpdateCommentType } from "../http/use-update-comment-called";
 import { useRemoveCommentCalled } from "../http/use-remove-comment-called";
+import { useAuth } from "@/hooks/useAuth";
 
 type ModuleCalledComments = {
   dataComments: CalledComment[] | undefined
@@ -23,7 +23,9 @@ type ModuleCalledComments = {
 }
 
 function CalledComments ({ dataComments, modalComment, setModalComment, statusCalled }: ModuleCalledComments) {
-  const [editando, setEditando] = useState<string | null>(null)
+  const { session } = useAuth()
+  const [isLoadingInput, setIsLoadingInput] = useState<string | null>(null)
+  const [isLoadingType, setIsLoadingType] = useState<string | null>(null)
   const { isPending: isPendingUpdate, mutateAsync: onUpdateComment } = useUpdateCommentCalled()
   const { isPending: isPendingRemove, mutateAsync: onRemoveComment } = useRemoveCommentCalled()
 
@@ -35,7 +37,12 @@ function CalledComments ({ dataComments, modalComment, setModalComment, statusCa
   const onSubmit = async (commentId: string) => {
     const newComment = form.getValues(`description-${commentId}`)
     await onUpdateComment({ idComment: commentId, description: newComment })
-    setEditando(null)
+    setIsLoadingInput(null)
+  }
+
+  const onSubmitType = async (dataType: DataUpdateCommentType) => {
+    await onUpdateComment(dataType) 
+    setIsLoadingType(null)
   }
 
   return  (
@@ -49,15 +56,30 @@ function CalledComments ({ dataComments, modalComment, setModalComment, statusCa
             }
           </div>
 
-          {/* Opção 1 */}
           {dataComments?.map((comment) => (
-            <div className="flex flex-col gap-3 items-end  rounded-sm mt-5 p-3 bg-gray-500/20 shadow-md" key={comment.comment.id} >
-              {editando !== comment.comment.id && statusCalled !== "close" &&
-                <UiButton type="button" icon={IconPenLine} typeColor="gray" typeSize="xxs"
-                  onClick={() => setEditando(editando === comment.comment.id ? null : comment.comment.id)} />
-              }
+            <div className={`flex flex-col gap-3 items-end  rounded-sm mt-5 p-3 ${comment.comment.type === "task" ? "bg-yellow-100/50" : "bg-gray-500/20"}  shadow-md`} key={comment.comment.id} >
 
-              {editando === comment.comment.id && statusCalled !== "close" &&
+              {/* Buttons  */}
+              {isLoadingInput !== comment.comment.id && statusCalled !== "close" && comment.user.id === session?.user.id &&
+                <div className="flex w-full justify-between">
+                  <span className="Text-Xs text-gray-400 font-semibold" >{comment.comment.type === "task" ? "Acompanhamento" : "Tarefa"}</span>
+
+                  <div className="flex gap-2">
+                    <UiButton type="button" icon={isPendingUpdate && isLoadingType === comment.comment.id ? LoaderSM : NotebookText} typeColor="gray" typeSize="xxs"
+                      onClick={() => { 
+                        onSubmitType({ idComment: comment.comment.id, type: comment.comment.type === "task" ? "followUp" : "task" })
+                        setIsLoadingType(isLoadingType === comment.comment.id ? null : comment.comment.id)
+                      }} 
+                    />
+                    <UiButton type="button" icon={IconPenLine} typeColor="gray" typeSize="xxs"
+                      onClick={() => setIsLoadingInput(isLoadingInput === comment.comment.id ? null : comment.comment.id)} />
+                  </div>
+                </div>
+              }
+              {/* Buttons  */}
+
+              {/* Buttons  */}
+              {isLoadingInput === comment.comment.id && statusCalled !== "close" && comment.user.id === session?.user.id &&
                 <div className="flex gap-2">
                   <UiButton type="button" icon={isPendingRemove ? LoaderSM : IconTrash} typeColor="gray" typeSize="xxs" disabled={isPendingRemove || isPendingUpdate} 
                     onClick={() => onRemoveComment(comment.comment.id)} />
@@ -66,17 +88,19 @@ function CalledComments ({ dataComments, modalComment, setModalComment, statusCa
                     onClick={() => onSubmit(comment.comment.id)} disabled={isPendingRemove || isPendingUpdate} />
 
                   <UiButton type="button" icon={X} typeColor="gray" typeSize="xxs" 
-                    onClick={() => { setEditando(editando === comment.comment.id ? null : comment.comment.id), form.reset() }} disabled={isPendingRemove || isPendingUpdate} />
+                    onClick={() => { setIsLoadingInput(isLoadingInput === comment.comment.id ? null : comment.comment.id), form.reset() }} disabled={isPendingRemove || isPendingUpdate} />
                 </div>
               }
+              {/* Buttons  */}
 
+              {/* Info */}
               <div className="w-full flex gap-4 lg:gap-6 max-sm:items-start">
                 <div className="flex flex-col items-center gap-1.5">
                   <Avatar user={{ name: comment.user.name, avatar: comment.user.avatar }} size="w-10 h-10" sizeText="text-[14px]"/>
                   <span className="text-[11px] w-19 truncate text-center">{comment.user.name}</span>
                 </div>
 
-                {editando === comment.comment.id &&
+                {isLoadingInput === comment.comment.id && comment.user.id === session?.user.id &&
                   <TextareaAutosize 
                     {...form.register(`description-${comment.comment.id}`)}
                     defaultValue={comment.comment.description}
@@ -85,7 +109,7 @@ function CalledComments ({ dataComments, modalComment, setModalComment, statusCa
                   />
                 }
 
-                {editando !== comment.comment.id &&
+                {isLoadingInput !== comment.comment.id &&
                   <div className="">
                     <p className="text-sm text-gray-300 " style={{ whiteSpace: 'pre-line' }} >
                       {comment.comment.description}
@@ -100,7 +124,7 @@ function CalledComments ({ dataComments, modalComment, setModalComment, statusCa
               </div>
             </div>
           ))}
-          {/* Opção 1 */}
+          {/* Info */}
 
         </div>
       </Modules.Context>

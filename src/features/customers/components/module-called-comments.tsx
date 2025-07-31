@@ -24,6 +24,7 @@ function CalledComments ({ data }: ModuleCalledComments) {
 
           {/* Opção 1 */}
           {data.map((comment) => (
+            (comment.comment.type === "followUp" &&
             <div className="flex flex-col gap-3 items-end  rounded-sm mt-5 p-3 bg-gray-500/20 shadow-md" key={comment.comment.id} >
 
               <div className="w-full flex gap-4 lg:gap-6 max-sm:items-start">
@@ -44,6 +45,7 @@ function CalledComments ({ data }: ModuleCalledComments) {
                 <span className="text-gray-400 Text-Xs" >{dayjs().to(comment.comment.updatedAt)}</span>
               </div>
             </div>
+            )
           ))}
           {/* Opção 1 */}
 

@@ -36,6 +36,7 @@ export interface CalledComment {
 export interface Comment {
   id: string
   description: string
+  type: "followUp" | "task"
   createdAt: string
   updatedAt: string
 }

@@ -38,6 +38,7 @@ export interface Comment {
   id: string
   description: string
   createdAt: string
+  type: "followUp" | "task"
   updatedAt: string
 }
 
