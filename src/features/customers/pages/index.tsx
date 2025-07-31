@@ -35,8 +35,8 @@ export function IndexCalledCustomers () {
             <Table.Head internalSpacing="px-2 py-1">Atualizado em</Table.Head>
             <Table.Head>Id</Table.Head>
             <Table.Head internalSpacing="px-2 py-1">Título</Table.Head>
-            <Table.Head >Serviço</Table.Head>
-            <Table.Head internalSpacing="px-2 py-1" >Valor total</Table.Head>
+            <Table.Head clas="w-60">Serviço</Table.Head>
+            <Table.Head internalSpacing="px-2 py-1" clas="w-21">Valor total</Table.Head>
             <Table.Head>Técnico</Table.Head>
             <Table.Head>Status</Table.Head>
             <Table.Head>{""}</Table.Head>
