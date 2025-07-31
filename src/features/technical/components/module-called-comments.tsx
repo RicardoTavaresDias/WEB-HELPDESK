@@ -60,22 +60,22 @@ function CalledComments ({ dataComments, modalComment, setModalComment, statusCa
             <div className={`flex flex-col gap-3 items-end  rounded-sm mt-5 p-3 ${comment.comment.type === "task" ? "bg-yellow-100/50" : "bg-gray-500/20"}  shadow-md`} key={comment.comment.id} >
 
               {/* Buttons  */}
-              {isLoadingInput !== comment.comment.id && statusCalled !== "close" && comment.user.id === session?.user.id &&
                 <div className="flex w-full justify-between">
                   <span className="Text-Xs text-gray-400 font-semibold" >{comment.comment.type === "task" ? "Acompanhamento" : "Tarefa"}</span>
-
-                  <div className="flex gap-2">
-                    <UiButton type="button" icon={isPendingUpdate && isLoadingType === comment.comment.id ? LoaderSM : NotebookText} typeColor="gray" typeSize="xxs"
-                      onClick={() => { 
-                        onSubmitType({ idComment: comment.comment.id, type: comment.comment.type === "task" ? "followUp" : "task" })
-                        setIsLoadingType(isLoadingType === comment.comment.id ? null : comment.comment.id)
-                      }} 
-                    />
-                    <UiButton type="button" icon={IconPenLine} typeColor="gray" typeSize="xxs"
-                      onClick={() => setIsLoadingInput(isLoadingInput === comment.comment.id ? null : comment.comment.id)} />
-                  </div>
+                  {isLoadingInput !== comment.comment.id && statusCalled !== "close" && comment.user.id === session?.user.id &&
+                    <div className="flex gap-2">
+                      <UiButton type="button" icon={isPendingUpdate && isLoadingType === comment.comment.id ? LoaderSM : NotebookText} typeColor="gray" typeSize="xxs"
+                        onClick={() => { 
+                          onSubmitType({ idComment: comment.comment.id, type: comment.comment.type === "task" ? "followUp" : "task" })
+                          setIsLoadingType(isLoadingType === comment.comment.id ? null : comment.comment.id)
+                        }} 
+                      />
+                      <UiButton type="button" icon={IconPenLine} typeColor="gray" typeSize="xxs"
+                        onClick={() => setIsLoadingInput(isLoadingInput === comment.comment.id ? null : comment.comment.id)} />
+                    </div>
+                  }
                 </div>
-              }
+              
               {/* Buttons  */}
 
               {/* Buttons  */}

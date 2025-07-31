@@ -31,10 +31,8 @@ function ModalCreateComment ({ modalComment, setModalComment, idCalled }: ModalC
   
   const onSubmit = async (data: CreateCommentCalledSchemaType) => {
     await onCreateComment({ idCalled, idUser: session?.user.id, description: data.description, type: data.type } as DataCreateCommentType)
-    if(isSuccess){
-      setModalComment(!modalComment)
-      form.reset()
-    }
+    setModalComment(!modalComment)
+    form.reset()
   }
 
   return (
