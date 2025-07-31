@@ -61,7 +61,7 @@ function CalledComments ({ dataComments, modalComment, setModalComment, statusCa
 
               {/* Buttons  */}
                 <div className="flex w-full justify-between">
-                  <span className="Text-Xs text-gray-400 font-semibold" >{comment.comment.type === "task" ? "Acompanhamento" : "Tarefa"}</span>
+                  <span className="Text-Xs text-gray-400 font-semibold" >{comment.comment.type === "task" ? "Tarefa" : "Acompanhamento"}</span>
                   {isLoadingInput !== comment.comment.id && statusCalled !== "close" && comment.user.id === session?.user.id &&
                     <div className="flex gap-2">
                       <UiButton type="button" icon={isPendingUpdate && isLoadingType === comment.comment.id ? LoaderSM : NotebookText} typeColor="gray" typeSize="xxs"
