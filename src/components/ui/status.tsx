@@ -34,7 +34,7 @@ export function Status({type, isIcon, isButton, isText}: StatusProps){
    return (
     <div className={`${color} p-2 h-7-open Text-Xs rounded-full flex justify-center items-center gap-1.5 w-fit`}>
       <Icon className={"w-4 h-4 " + fill}  />
-      <div className={"max-sm:hidden"}>{state}</div> 
+      <div className={`max-sm:hidden ${type === "in_progress" && "w-22"}`}>{state}</div> 
       {isText && <div className="lg:hidden">{state}</div>}
     </div>
   )

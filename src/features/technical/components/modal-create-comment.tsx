@@ -71,7 +71,7 @@ function ModalCreateComment ({ modalComment, setModalComment, idCalled }: ModalC
                   </div>
                 }
 
-                 <label className={`Text-Xxs mt-5 group-focus-within:text-blue-base ${form.formState.errors.type ? "text-feedback-danger" : "text-gray-300"}`}>Comentários</label>
+                 <label className={`Text-Xxs mt-5 group-focus-within:text-blue-base ${form.formState.errors.type ? "text-feedback-danger" : "text-gray-300"}`}>Tipo de Acompanhamento</label>
                   <select 
                     {...form.register("type")}
                     className="w-full border-b-1 border-gray-500 max-sm:w-73 Heading-Md my-2 pb-2 outline-none group-focus-within:border-blue-base resize-none" 
