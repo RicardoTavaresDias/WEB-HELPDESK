@@ -14,6 +14,7 @@ import {
   createCommentCalledSchema,
   type CreateCommentCalledSchemaType,
 } from "@/schemas/create-commet-called-schema";
+import { Check } from "lucide-react"
 
 type ModalCreateCommentType = {
   modalComment: boolean;
@@ -113,13 +114,29 @@ function ModalCreateComment({
               >
                 Tipo de Acompanhamento
               </label>
-              <select
-                {...form.register("type")}
-                className="w-full border-b-1 border-gray-500 max-sm:w-73 Heading-Md my-2 pb-2 outline-none group-focus-within:border-blue-base resize-none"
-              >
-                <option value="followUp">Acompanhamento</option>
-                <option value="task">Tarefa</option>
-              </select>
+              <div className=" flex gap-4 my-4 justify-center items-center">
+
+                <label className="flex gap-4 text-sm text-gray-300" >
+                  <input type="radio"
+                    {...form.register("type")}
+                    value="followUp"
+                    className="w-5 h-5"
+                  />
+                  Acompanhamento
+                </label>
+               
+                
+                <label className="flex gap-4 text-sm  text-gray-300" >
+                  <input type="radio"
+                    {...form.register("type")}
+                    value="task"
+                    className="w-5 h-5"
+                  />
+                  Tarefa
+                </label>                
+                
+                 
+              </div>
               {form.formState.errors.type && (
                 <div className="flex gap-1">
                   <IconCicloAlert className="w-4 h-4 fill-feedback-danger" />
