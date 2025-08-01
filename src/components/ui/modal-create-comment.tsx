@@ -113,8 +113,7 @@ function ModalCreateComment({
               >
                 Tipo de Acompanhamento
               </label>
-              <div className=" flex gap-4 my-4 justify-center items-center">
-
+              <div className=" flex gap-4 mt-4 justify-center items-center">
                 <label className="flex gap-4 text-sm text-gray-300" >
                   <input type="radio" 
                     {...form.register("type")}
@@ -125,7 +124,7 @@ function ModalCreateComment({
                 </label>
                
                 
-                <label className="flex gap-4 text-sm  text-gray-300" >
+                <label className="flex gap-4 text-sm text-gray-300" >
                   <input type="radio"
                     {...form.register("type")}
                     value="task"
@@ -133,8 +132,6 @@ function ModalCreateComment({
                   />
                   Tarefa
                 </label>                
-                
-                 
               </div>
               {form.formState.errors.type && (
                 <div className="flex gap-1">
