@@ -78,9 +78,9 @@ function ModalCreateComment({
         />
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Modal.Context>
-            <div className="group flex flex-col mt-4">
+            <div className="group/description flex flex-col mt-4">
               <label
-                className={`Text-Xxs group-focus-within:text-blue-base ${
+                className={`Text-Xxs group-focus-within/description:text-blue-base ${
                   form.formState.errors.description
                     ? "text-feedback-danger"
                     : "text-gray-300"
@@ -90,7 +90,7 @@ function ModalCreateComment({
               </label>
               <textarea
                 {...form.register("description")}
-                className="w-full h-[150px] border-b-1 border-gray-500 max-sm:w-73 Heading-Md my-2 pb-2 outline-none group-focus-within:border-blue-base resize-none"
+                className="w-full h-[150px] border-b-1 border-gray-500 max-sm:w-73 Heading-Md my-2 pb-2 outline-none group-focus-within/description:border-blue-base resize-none"
                 placeholder="Descreva o acompanhamento do serviço"
                 style={{ lineHeight: "1.8" }}
               />
@@ -103,9 +103,11 @@ function ModalCreateComment({
                   </span>
                 </div>
               )}
+            </div>
 
+            <div className="group/type">
               <label
-                className={`Text-Xxs mt-5 group-focus-within:text-blue-base ${
+                className={`Text-Xxs mt-5 group-focus-within/type:text-blue-base ${
                   form.formState.errors.type
                     ? "text-feedback-danger"
                     : "text-gray-300"
