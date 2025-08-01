@@ -56,7 +56,7 @@ export function IndexCalleds() {
                       <span className="flex flex-col Text-Sm ">
                         {called.titleCalled}
                       </span>
-                      <span className="text-sm">{called.services[0].titleService}</span>
+                      <span className="text-sm">{called.services[0]?.titleService}</span>
                     </div>
                   </Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-3 text-sm">

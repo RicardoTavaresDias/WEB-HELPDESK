@@ -36,7 +36,7 @@ function ModuleDetailsCalledLeft ({ called }: ModuleDetailsCalledLeftProps) {
 
         <div className="mt-5">
           <span className="text-gray-400 Text-Xs">Categoria</span>
-          <p className="text-sm font-normal text-gray-200">{called.services[0].titleService}</p>
+          <p className="text-sm font-normal text-gray-200">{called.services[0]?.titleService}</p>
         </div>
         
         <div className="mt-5 flex justify-between">

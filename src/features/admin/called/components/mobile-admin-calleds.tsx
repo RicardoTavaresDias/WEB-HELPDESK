@@ -37,7 +37,7 @@ function MobileAdminCalled ({ data }: MobileAdminCalledProps) {
                           {called.titleCalled}
                         </span>
                         <span className="truncate">
-                          {called.services[0].titleService}
+                          {called.services[0]?.titleService}
                         </span>
                       </div>
                     </Table.Cell>

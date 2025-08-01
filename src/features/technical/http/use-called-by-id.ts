@@ -6,7 +6,7 @@ function useCalledById (id: string) {
   return useQueryGet<Called>({
     queryKey: "called_byId",
     fetchGet: async () => {
-      const response = await api.get(`/calleds/called/${id}`)
+      const response = await api.get(`/calleds/${id}`)
       const result = response.data
 
       const [ ...rest ] = result

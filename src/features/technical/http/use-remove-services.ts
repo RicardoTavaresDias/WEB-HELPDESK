@@ -10,7 +10,7 @@ function useRemoveervices () {
   return useQueryMutation<RemoveServicesType>({
     queryKey: "called_byId",
     fetch: async ({ calledId, idServices }) => {
-      await api.delete(`/calleds/${calledId}/${idServices}`)
+      await api.delete(`/calleds/${calledId}/services/${idServices}`)
     }
   })
 }

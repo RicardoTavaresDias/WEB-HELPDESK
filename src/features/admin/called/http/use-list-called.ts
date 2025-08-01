@@ -6,7 +6,7 @@ function useListCalled(id: number) {
   return useQueryGet<Called[]>({
     queryKey: 'get_list',
     fetchGet: async () => {
-      const response = await api.get(`/calleds/called/${id}`)
+      const response = await api.get(`/calleds/${id}`)
       const result = response.data
 
       return result
