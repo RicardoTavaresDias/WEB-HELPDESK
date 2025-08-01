@@ -56,7 +56,7 @@ export function CallListdetails(){
               )
             }
               
-            if(called.callStatus === "in_progess") {
+            if(called.callStatus === "in_progress") {
               return (
                 <Fragment key={called.id}>
                   <UiButton typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => onSubmitStatus({id: called.id, status: "open"})} >Aberto</UiButton>
