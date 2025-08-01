@@ -8,7 +8,7 @@ import { currency } from "@/lib/currency";
 import { dayjs } from "@/lib/dayjs"
 import { Avatar } from "@/components/ui/avatar";
 import { Status } from "@/components/ui/status";
-import type { Called } from "../types/calleds-user-response";
+import type { Called } from "@/types/calleds-response";
 import { useCalledUpdateStatus, type useCalledUpdateStatusType } from "../http/use-called-update-status"
 import { LoaderSM } from "@/components/ui/loading";
 import { useState } from "react";

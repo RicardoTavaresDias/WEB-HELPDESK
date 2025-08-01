@@ -1,6 +1,6 @@
 import { useQueryGet } from "@/http/use-query-get"
 import { api } from "@/services/api"
-import { type Called } from "../types/calleds-user-response"
+import { type Called } from "@/types/calleds-response"
 
 function useCalledById (id: string) {
   return useQueryGet<Called>({

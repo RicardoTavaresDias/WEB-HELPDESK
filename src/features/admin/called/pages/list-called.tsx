@@ -11,8 +11,12 @@ import { Alert } from "@/components/ui/alert"
 import { Fragment } from "react/jsx-runtime"
 import { ListCalleLeft } from "../components/list-called-left";
 import { ListCalleRight } from "../components/list-called-right";
+import { ModalCreateComment } from "@/components/ui/modal-create-comment"
+import { CalledComments } from "@/components/ui/module-called-comments"
+import { useState } from "react";
 
 export function CallListdetails(){
+  const [modalComment, setModalComment] = useState(false)
   const { id } = useParams()
 
   if (!id) {
@@ -22,6 +26,10 @@ export function CallListdetails(){
   const { data: calleds, isLoading, error, isError } = useListCalled(Number(id)).query
   const { error: errorUpdate, mutateAsync: onSubmitStatus, isError: isErrorUpdate } = updateStatus()
 
+  if(!calleds){
+    return <Loading />
+  }
+
   return (
     <>
     {isLoading && <Loading />}
@@ -29,6 +37,12 @@ export function CallListdetails(){
         {error?.message}
         {errorUpdate?.message}
       </Alert>
+
+      <ModalCreateComment 
+        modalComment={modalComment} 
+        setModalComment={setModalComment}
+        idCalled={calleds[0].id} 
+      />
         
     <Modules.Root>
         <Modules.Title title="Chamado detalhado" to="/" >
@@ -64,6 +78,15 @@ export function CallListdetails(){
         <Modules.Container>
           <ListCalleLeft calleds={calleds} />
           <ListCalleRight calleds={calleds} />
+
+          <div className="w-full">
+          <CalledComments 
+            dataComments={calleds[0].calledComments} 
+            modalComment={modalComment} 
+            setModalComment={setModalComment}
+            statusCalled={calleds[0].callStatus} 
+          />
+        </div>
         </Modules.Container>
       </Modules.Root>
     </>

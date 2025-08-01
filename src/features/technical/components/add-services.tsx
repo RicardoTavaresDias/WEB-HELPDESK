@@ -3,7 +3,7 @@ import { IconTrash } from "@/assets/icon/iconTrash";
 import { Modules } from "@/components/modules";
 import { UiButton } from "@/components/ui/UiButton";
 import { currency } from "@/lib/currency";
-import { type Service } from "../types/calleds-user-response"
+import { type Service } from "@/types/calleds-response"
 import { useRemoveervices } from "../http/use-remove-services";
 import { LoaderSM } from "@/components/ui/loading";
 import { useState } from "react";

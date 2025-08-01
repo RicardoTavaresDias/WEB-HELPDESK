@@ -3,10 +3,10 @@ import { Avatar } from "@/components/ui/avatar";
 import { currency } from "@/lib/currency";
 import { Fragment } from "react/jsx-runtime";
 import { v4 as uuid } from 'uuid'
-import type { CalledsType } from "../types/calleds-response";
+import type { Called } from "@/types/calleds-response";
 
 type ListCalleLeftTye = {
-  calleds: CalledsType[] | undefined
+  calleds: Called[] | undefined
 }
 
 function ListCalleRight ({ calleds }: ListCalleLeftTye) {

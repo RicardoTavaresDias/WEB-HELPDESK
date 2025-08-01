@@ -2,7 +2,7 @@ import { Modules } from "@/components/modules"
 import { Avatar } from "@/components/ui/avatar"
 import { Status } from "@/components/ui/status"
 import { dayjs } from "@/lib/dayjs"
-import type { Called } from "../types/calleds-user-response"
+import type { Called } from "@/types/calleds-response"
 import { Loading } from "@/components/ui/loading"
 
 type ModuleDetailsCalledLeftProps = {

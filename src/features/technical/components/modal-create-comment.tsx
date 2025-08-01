@@ -4,10 +4,10 @@ import { Alert } from "@/components/ui/alert"
 import { LoaderSM } from "@/components/ui/loading"
 import { UiButton } from "@/components/ui/UiButton"
 import { useForm } from "react-hook-form";
-import { useCreateCommentCalled, type DataCreateCommentType } from "../http/use-create-comment-called";
+import { useCreateCommentCalled, type DataCreateCommentType } from "@/http/use-create-comment-called";
 import { useAuth } from "@/hooks/useAuth";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createCommentCalledSchema, type CreateCommentCalledSchemaType } from "../schemas/create-commet-called-schema";
+import { createCommentCalledSchema, type CreateCommentCalledSchemaType } from "../../../schemas/create-commet-called-schema";
 
 type ModalCreateCommentType = {
   modalComment: boolean;

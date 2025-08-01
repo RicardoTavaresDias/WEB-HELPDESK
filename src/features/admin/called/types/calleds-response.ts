@@ -10,11 +10,6 @@ type UserType = {
   avatar: string
 }
 
-// type BasePriceType = {
-//   description: string
-//   price: number
-// }
-
 export type CalledsType = {
   updatedAt: Date
   createdAt: Date
@@ -23,8 +18,21 @@ export type CalledsType = {
   services:  ServicesType[]
   UserCustomer: UserType
   UserTechnical: UserType
+  calledComments: CalledComment[]
   callStatus: "open" | "in_progess" | "close"
   priceTotal: number
   description: string
   basePrice: number
+}
+
+export interface CalledComment {
+  comment: Comment
+  user: User
+}
+
+export interface User {
+  id: string
+  name: string
+  avatar: string
+  role: string
 }

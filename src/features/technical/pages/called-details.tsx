@@ -3,15 +3,15 @@ import { useEffect, useState } from "react"
 import { Navigate, useParams } from "react-router" 
 import { IsProfile } from "@/features/layout/profile";
 import { useCalledById } from "../http/use-called-by-id"
-import { type Called } from "../types/calleds-user-response"
+import { type Called } from "@/types/calleds-response"
 import { Loading } from "@/components/ui/loading";
 import { ModuleTitleStatus } from "../components/module-titile-status";
 import { AddServices } from "../components/add-services";
 import { ModalCreateServices } from "../components/modal-create-services";
 import { ModuleDetailsCalledLeft } from "../components/module-details-called-left";
 import { ModuleDetailsCalledRight } from "../components/module-details-called-right";
-import { CalledComments } from "../components/module-called-comments";
-import { ModalCreateComment } from "../components/modal-create-comment";
+import { CalledComments } from "@/components/ui/module-called-comments";
+import { ModalCreateComment } from "@/components/ui/modal-create-comment";
 
 export function CalledDetails(){
   const [called, setCalled] = useState<Called | null>(null)

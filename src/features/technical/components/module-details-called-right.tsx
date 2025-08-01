@@ -1,7 +1,7 @@
 import { Modules } from "@/components/modules"
 import { Avatar } from "@/components/ui/avatar"
 import { currency } from "@/lib/currency"
-import type { Called } from "../types/calleds-user-response"
+import type { Called } from "@/types/calleds-response"
 import { Loading } from "@/components/ui/loading"
 
 type ModuleDetailsCalledRightProps = {

@@ -4,7 +4,7 @@ import { IconClock } from "@/assets/icon/iconClock";
 import { Modules } from "@/components/modules";
 import { UiButton } from "@/components/ui/UiButton";
 import { useCalledUpdateStatusById } from "../http/use-called-update-status";
-import { type Called } from "../types/calleds-user-response"
+import { type Called } from "@/types/calleds-response"
 import { Loading } from "@/components/ui/loading";
 
 interface UpdateStatusType {

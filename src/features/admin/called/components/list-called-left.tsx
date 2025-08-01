@@ -3,10 +3,10 @@ import { Avatar } from "@/components/ui/avatar";
 import { Status } from "@/components/ui/status";
 import { dayjs } from "@/lib/dayjs"
 import { Fragment } from "react/jsx-runtime";
-import type { CalledsType } from "../types/calleds-response";
+import type { Called } from "@/types/calleds-response";
 
 type ListCalleLeftTye = {
-  calleds: CalledsType[] | undefined
+  calleds: Called[] | undefined
 }
 
 function ListCalleLeft ({ calleds }: ListCalleLeftTye) {
