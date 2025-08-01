@@ -14,7 +14,6 @@ import {
   createCommentCalledSchema,
   type CreateCommentCalledSchemaType,
 } from "@/schemas/create-commet-called-schema";
-import { Check } from "lucide-react"
 
 type ModalCreateCommentType = {
   modalComment: boolean;
