@@ -116,7 +116,7 @@ function ModalCreateComment({
               <div className=" flex gap-4 my-4 justify-center items-center">
 
                 <label className="flex gap-4 text-sm text-gray-300" >
-                  <input type="radio"
+                  <input type="radio" 
                     {...form.register("type")}
                     value="followUp"
                     className="w-5 h-5"
