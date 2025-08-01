@@ -23,6 +23,7 @@ type ModuleCalledComments = {
   modalComment: boolean;
   setModalComment: (value: boolean) => void;
   statusCalled: string | undefined;
+  queryKeyIndex: string
 };
 
 function CalledComments({
@@ -30,14 +31,15 @@ function CalledComments({
   modalComment,
   setModalComment,
   statusCalled,
+  queryKeyIndex
 }: ModuleCalledComments) {
   const { session } = useAuth();
   const [isLoadingInput, setIsLoadingInput] = useState<string | null>(null);
   const [isLoadingType, setIsLoadingType] = useState<string | null>(null);
   const { isPending: isPendingUpdate, mutateAsync: onUpdateComment } =
-    useUpdateCommentCalled();
+    useUpdateCommentCalled(queryKeyIndex);
   const { isPending: isPendingRemove, mutateAsync: onRemoveComment } =
-    useRemoveCommentCalled();
+    useRemoveCommentCalled(queryKeyIndex);
 
   const form = useForm({
     criteriaMode: "all",

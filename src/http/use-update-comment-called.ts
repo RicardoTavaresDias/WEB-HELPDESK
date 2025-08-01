@@ -7,9 +7,9 @@ export type DataUpdateCommentType = {
   type?: string
 }
 
-function useUpdateCommentCalled () {
+function useUpdateCommentCalled (queryKey: string) {
   return useQueryMutation<DataUpdateCommentType>({
-    queryKey: "called_byId",
+    queryKey: queryKey,
     fetch: async (dataComment) => {
       const response = await api.patch(`/calleds/comment/${dataComment.idComment}`, { 
         description: dataComment.description, 

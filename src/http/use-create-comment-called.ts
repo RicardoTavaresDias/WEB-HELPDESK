@@ -8,9 +8,9 @@ export type DataCreateCommentType = {
   type: string
 }
 
-function useCreateCommentCalled () {
+function useCreateCommentCalled (queryKey: string) {
   return useQueryMutation<DataCreateCommentType>({
-    queryKey: "called_byId",
+    queryKey: queryKey,
     fetch: async (dataComment: DataCreateCommentType) => {
       const response = await api.post("/calleds/comment", dataComment)
       const result = response.data

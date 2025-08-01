@@ -42,6 +42,7 @@ export function CallListdetails(){
         modalComment={modalComment} 
         setModalComment={setModalComment}
         idCalled={calleds[0].id} 
+        queryKeyIndex='get_list'
       />
         
     <Modules.Root>
@@ -85,6 +86,7 @@ export function CallListdetails(){
             modalComment={modalComment} 
             setModalComment={setModalComment}
             statusCalled={calleds[0].callStatus} 
+            queryKeyIndex='get_list'
           />
         </div>
         </Modules.Container>

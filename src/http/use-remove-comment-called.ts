@@ -1,9 +1,9 @@
 import { useQueryMutation } from "@/http/use-mutation"
 import { api } from "@/services/api"
 
-function useRemoveCommentCalled () {
+function useRemoveCommentCalled (queryKey: string) {
   return useQueryMutation({
-    queryKey: "called_byId",
+    queryKey: queryKey,
     fetch: async (id: string) => {
       const response = await api.delete(`/calleds/comment/${id}`)
       const result = response.data

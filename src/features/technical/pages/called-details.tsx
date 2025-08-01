@@ -45,6 +45,7 @@ export function CalledDetails(){
         modalComment={modalComment} 
         setModalComment={setModalComment}
         idCalled={called?.id} 
+        queryKeyIndex="called_byId"
       />
       
       <Modules.Root>
@@ -99,6 +100,7 @@ export function CalledDetails(){
             modalComment={modalComment} 
             setModalComment={setModalComment}
             statusCalled={called?.callStatus} 
+            queryKeyIndex="called_byId"
           />
         </div>
 

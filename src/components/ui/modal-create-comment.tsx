@@ -19,12 +19,14 @@ type ModalCreateCommentType = {
   modalComment: boolean;
   setModalComment: (value: boolean) => void;
   idCalled: number | undefined;
+  queryKeyIndex: string
 };
 
 function ModalCreateComment({
   modalComment,
   setModalComment,
   idCalled,
+  queryKeyIndex
 }: ModalCreateCommentType) {
   const { session } = useAuth();
   const {
@@ -34,7 +36,7 @@ function ModalCreateComment({
     isError,
     error,
     mutateAsync: onCreateComment,
-  } = useCreateCommentCalled();
+  } = useCreateCommentCalled(queryKeyIndex);
 
   const form = useForm<CreateCommentCalledSchemaType>({
     defaultValues: {
