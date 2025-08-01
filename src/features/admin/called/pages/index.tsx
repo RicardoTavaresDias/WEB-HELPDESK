@@ -19,7 +19,7 @@ export function IndexCalleds() {
   return (
     <>
       {isLoading && <Loading/>}
-      <Alert severity="error" open={isError}>
+      <Alert severity="warning" open={isError}>
         {error?.message} 
       </Alert>
       

@@ -23,7 +23,7 @@ export function AdminServices(){
   return (
     <>
       {isLoading && <Loading />}
-      <Alert severity="error" open={isError}>{error?.message}</Alert>
+      <Alert severity="warning" open={isError}>{error?.message}</Alert>
 
       <CreateModal 
         modalNew={modalNew}

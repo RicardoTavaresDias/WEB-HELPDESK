@@ -29,7 +29,7 @@ export const UpdateStatus = ({
 
   return (
     <>
-      <Alert severity="error" open={isError}>{error?.message}</Alert>
+      <Alert severity="warning" open={isError}>{error?.message}</Alert>
     
       <div className="flex items-center gap-1 mr-2.5 max-sm:hidden">
         {service.serviceStatus === "active" && (

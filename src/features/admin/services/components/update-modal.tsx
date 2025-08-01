@@ -49,10 +49,10 @@ const UpdateModal = ({ modalEdition, setModalEdition, service }: UpdateMOdalType
 
   return (
     <>
-      <Alert severity="warning" open={!!form.formState.errors.root?.message} onClose={form.clearErrors} >
+      <Alert severity="error" open={!!form.formState.errors.root?.message} onClose={form.clearErrors} >
         {form.formState.errors.root?.message}
       </Alert>
-      <Alert severity="error" open={isError} >
+      <Alert severity="warning" open={isError} >
         {error?.message}
       </Alert>
       <Alert severity="success" open={isSuccess} >

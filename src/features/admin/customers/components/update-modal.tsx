@@ -44,7 +44,7 @@ export const ModalUpdateCustomers = ({modalEdition, setModalEdition, user}: Moda
 
   return (
     <>
-      <Alert severity="error" open={isError} >
+      <Alert severity="warning" open={isError} >
         {error?.message}
       </Alert>
       <Alert severity="success" open={isSuccess}  >

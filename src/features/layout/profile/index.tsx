@@ -42,7 +42,7 @@ export function IsProfile({ myProfile }: IsProfileProps){
   return (
     <>
       {isPending && <Loading />}
-        <Alert severity="error" open={isError} >
+        <Alert severity="warning" open={isError} >
           {error?.message}
         </Alert>
         <Alert severity="info" open={!!data?.info} >

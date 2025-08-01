@@ -37,7 +37,7 @@ export const FormChooseAvatar = ({ imagePreview, setImagePreview, fileRef }: For
   return (
     <>
       {isPending && <Loading/>}
-      {/* <Alert severity="error" open={isError}>
+      {/* <Alert severity="warning" open={isError}>
         {error?.message}
       </Alert>
       <Alert severity="success" open={isSuccess}>

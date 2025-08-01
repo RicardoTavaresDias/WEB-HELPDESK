@@ -33,7 +33,7 @@ export function CallListdetails(){
   return (
     <>
     {isLoading && <Loading />}
-      <Alert severity="error" open={isError || isErrorUpdate}>
+      <Alert severity="warning" open={isError || isErrorUpdate}>
         {error?.message}
         {errorUpdate?.message}
       </Alert>

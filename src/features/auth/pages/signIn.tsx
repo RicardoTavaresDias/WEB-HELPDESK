@@ -29,7 +29,7 @@ export function Signin() {
   return (
     <>
       {isPending && <Loading />}
-      <Alert severity="error" open={isError} >
+      <Alert severity="warning" open={isError} >
         {error?.message}
       </Alert>
 

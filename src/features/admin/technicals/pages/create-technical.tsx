@@ -36,7 +36,7 @@ export function CreateAdminTechnicals(){
   return (
     <>
       {isPending && <Loading />}
-      <Alert severity="error" open={isError} >
+      <Alert severity="warning" open={isError} >
         {error?.message}
       </Alert>
       <Alert severity="success" open={!!data?.success} >

@@ -64,7 +64,7 @@ function ModalCreateComment({
       <Alert severity="success" open={isSuccess}>
         {data?.message}
       </Alert>
-      <Alert severity="error" open={isError}>
+      <Alert severity="warning" open={isError}>
         {error?.message}
       </Alert>
 
