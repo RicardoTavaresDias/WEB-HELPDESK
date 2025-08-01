@@ -136,7 +136,7 @@ function ModalCreateComment({
                 </label>                
               </div>
               {form.formState.errors.type && (
-                <div className="flex gap-1">
+                <div className="flex gap-1 mt-4">
                   <IconCicloAlert className="w-4 h-4 fill-feedback-danger" />
                   <span className="Text-Xs text-feedback-danger">
                     {form.formState.errors.type?.message}
