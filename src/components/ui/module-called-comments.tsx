@@ -190,7 +190,7 @@ function CalledComments({
                     size="w-10 h-10"
                     sizeText="text-[14px]"
                   />
-                  <span className="text-[11px] w-19 truncate text-center">
+                  <span className="text-[11px] w-13 truncate text-center">
                     {comment.user.name}
                   </span>
                 </div>
