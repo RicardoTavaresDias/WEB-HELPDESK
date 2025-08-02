@@ -6,7 +6,6 @@ import { UiButton } from "@/components/ui/UiButton";
 import { Table } from "@/components/table"
 import { Avatar } from "@/components/ui/avatar";
 import { Alert } from "@/components/ui/alert";
-import { Loading } from "@/components/ui/loading";
 import { ModalUpdateCustomers } from "../components/update-modal"
 import { ModalRemoveCustomers } from "../components/remove-modal"
 import  { useCustomer } from "../http/use-customers"
@@ -23,7 +22,6 @@ export function IndexAdminCustomer(){
   
   return (
     <>
-      {isLoading && <Loading/>}
       <Alert severity="error" open={!!error}>
         {error?.message} 
       </Alert>
@@ -57,6 +55,18 @@ export function IndexAdminCustomer(){
             <Table.Head >{""}</Table.Head>
           </Table.Header>
           <Table.Body>
+
+           {isLoading && Array.from({ length: 10 }).map((_, i) => (
+              <>
+                <tr className="border-t border-gray-500 text-left" key={i}>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                </tr>
+              </>
+            ))}
+
+
           {
             dataCustomer && dataCustomer.data.map((user) => (
               <tr className="border-t border-gray-500 text-left" key={user.id}>

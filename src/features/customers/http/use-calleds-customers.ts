@@ -1,4 +1,4 @@
-import type { CalledsUserTecnicalType } from "@/features/technical/types/calleds-user-response"
+import type { CalledsUserTecnicalType } from "@/types/calleds-response"
 import { useQueryGet } from "@/http/use-query-get"
 import { api } from "@/services/api"
 

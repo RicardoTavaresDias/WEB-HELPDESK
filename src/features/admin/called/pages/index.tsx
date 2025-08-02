@@ -4,7 +4,6 @@ import { Table } from "@/components/table";
 import { Link } from "react-router";
 import { UiButton } from "@/components/ui/UiButton";
 import { useCalleds } from "../http/use-calleds"
-import { Loading } from "@/components/ui/loading";
 import { Alert } from "@/components/ui/alert";
 import { currency } from "@/lib/currency";
 import dayjs from "dayjs";
@@ -18,7 +17,7 @@ export function IndexCalleds() {
 
   return (
     <>
-      {isLoading && <Loading/>}
+      
       <Alert severity="warning" open={isError}>
         {error?.message} 
       </Alert>
@@ -40,6 +39,22 @@ export function IndexCalleds() {
               <Table.Head>{""}</Table.Head>
             </Table.Header>
             <Table.Body>
+
+              {isLoading && Array.from({ length: 10 }).map((_, i) => (
+                <>
+                  <tr className="border-t border-gray-500 text-left" key={i}>
+                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
+                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  </tr>
+                </>
+              ))}
+                
               {data && data.data.map((called) => (
                 <tr className="border-t border-gray-500 text-left" key={called.id}>
                   <Table.Cell internalSpacing="px-2 py-3" clas="w-36 text-sm">

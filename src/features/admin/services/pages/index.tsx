@@ -9,7 +9,6 @@ import { UpdateModal } from "../components/update-modal"
 import { useServices } from "../http/use-services"
 import { currency } from "@/lib/currency"
 import { Alert } from "@/components/ui/alert"
-import { Loading } from "@/components/ui/loading"
 import { UpdateStatus } from "../components/update-status"
 import type { DataServicesType } from "../types/data-services"
 import { PaginationIndex } from "@/components/ui/pagination";
@@ -22,7 +21,6 @@ export function AdminServices(){
 
   return (
     <>
-      {isLoading && <Loading />}
       <Alert severity="warning" open={isError}>{error?.message}</Alert>
 
       <CreateModal 
@@ -50,6 +48,17 @@ export function AdminServices(){
               <Table.Head internalSpacing="px-1 py-3 lg:px-4 lg:py-3" >Status</Table.Head>
               <Table.Head >{""}</Table.Head>
             </Table.Header>
+
+              {isLoading && Array.from({ length: 10 }).map((_, i) => (
+                <>
+                  <tr className="border-t border-gray-500 text-left" key={i}>
+                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
+                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  </tr>
+                </>
+              ))}
     
             <Table.Body>
               {serivicesData && serivicesData.data.map((item) => (

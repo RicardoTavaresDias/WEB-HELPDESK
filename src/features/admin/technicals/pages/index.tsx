@@ -7,7 +7,6 @@ import { UiButton } from "@/components/ui/UiButton";
 import { IconPlus } from "@/assets/icon/iconPlus";
 import { Fragment } from "react";
 import { Alert } from "@/components/ui/alert";
-import { Loading } from "@/components/ui/loading";
 import { Table } from "@/components/table"
 import { useTechnicals } from "../http/use-technicals"
 import { PaginationIndex } from "@/components/ui/pagination";
@@ -18,7 +17,6 @@ export function IndexAdminTechnicals(){
 
   return ( 
     <>
-      {isLoading && <Loading />}
         <Alert severity="warning" open={isError}>{error?.message}</Alert>
       
       <div className="mb-7">
@@ -38,6 +36,17 @@ export function IndexAdminTechnicals(){
           <Table.Head >Disponibilidade</Table.Head>
           <Table.Head >{""}</Table.Head>
         </Table.Header>
+
+          {isLoading && Array.from({ length: 10 }).map((_, i) => (
+            <>
+              <tr className="border-t border-gray-500 text-left" key={i}>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+              </tr>
+            </>
+          ))}
 
         <Table.Body>
           {
