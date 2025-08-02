@@ -7,10 +7,11 @@ import { Link } from "react-router"
 import type { DataCalledsType } from "../http/use-calleds"
 
 type MobileAdminCalledProps = {
-  data: DataCalledsType | undefined
+  data: DataCalledsType | undefined,
+  isLoading: boolean
 }
 
-function MobileAdminCalled ({ data }: MobileAdminCalledProps) {
+function MobileAdminCalled ({ data, isLoading }: MobileAdminCalledProps) {
   return (
     <>
       <div className="border-1 border-gray-500 rounded-md lg:hidden mt-4">
@@ -23,6 +24,18 @@ function MobileAdminCalled ({ data }: MobileAdminCalledProps) {
           </Table.Header>
 
           <Table.Body>
+
+            {isLoading && Array.from({ length: 5 }).map((_, i) => (
+              <>
+                <tr className="border-t border-gray-500 text-left" key={i}>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                </tr>
+              </>
+            ))}
+
               {
                 data && data.data.map((called)=> (
                   <tr className="border-t border-gray-500 text-left" key={called.id} >

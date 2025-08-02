@@ -4,13 +4,14 @@ import { Status } from "@/components/ui/status";
 import { UiButton } from "@/components/ui/UiButton";
 import { Link } from "react-router";
 import { dayjs } from "@/lib/dayjs"
-import type { CalledsUserTecnicalType } from "@/features/technical/types/calleds-user-response";
+import type { CalledsUserTecnicalType } from "@/types/calleds-response";
 
 type DataCalled = {
   data: CalledsUserTecnicalType | undefined
+  isLoading: boolean
 }
 
-function MobileCalledsIndex ({ data }: DataCalled) {
+function MobileCalledsIndex ({ data, isLoading }: DataCalled) {
   return  (
     <>
       <div className="border-1 border-gray-500 rounded-md lg:hidden mt-4">
@@ -23,6 +24,18 @@ function MobileCalledsIndex ({ data }: DataCalled) {
           </Table.Header>
 
           <Table.Body>
+
+            {isLoading && Array.from({ length: 5 }).map((_, i) => (
+              <>
+                <tr className="border-t border-gray-500 text-left" key={i}>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                </tr>
+              </>
+            ))}
+
             {data?.data.map(called => (
               <tr className="border-t border-gray-500 text-left" key={called.id} >
                 <Table.Cell internalSpacing="px-2 py-1" clas="w-17">

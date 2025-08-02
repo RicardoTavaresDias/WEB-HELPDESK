@@ -111,7 +111,7 @@ export function IndexCalleds() {
           </Table.Root>
         </div>
         
-        <MobileAdminCalled data={data} />
+        <MobileAdminCalled data={data} isLoading={isLoading} />
         <PaginationIndex pagination={pagination} page={page} setPage={setPage} />
       </div>
     </>

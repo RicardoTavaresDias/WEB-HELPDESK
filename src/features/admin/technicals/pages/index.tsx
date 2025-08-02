@@ -89,7 +89,7 @@ export function IndexAdminTechnicals(){
       </Table.Root>
       </div>
       
-      <MobileAdminTechnical dataUsers={dataUsers} />
+      <MobileAdminTechnical dataUsers={dataUsers} isLoading={isLoading} />
       <PaginationIndex pagination={pagination} page={page} setPage={setPage} />
     </>
   )

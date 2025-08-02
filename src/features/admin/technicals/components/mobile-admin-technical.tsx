@@ -9,9 +9,10 @@ import type { mappedUserType } from "@/lib/formatHours";
 
 type MobileAdminTechnicalProps = {
   dataUsers: mappedUserType[] | undefined
+  isLoading: boolean
 }
 
-function MobileAdminTechnical ({ dataUsers }: MobileAdminTechnicalProps) {
+function MobileAdminTechnical ({ dataUsers, isLoading }: MobileAdminTechnicalProps) {
   return (
     <>
       <div className="border-1 border-gray-500 rounded-md lg:hidden">
@@ -23,6 +24,17 @@ function MobileAdminTechnical ({ dataUsers }: MobileAdminTechnicalProps) {
           </Table.Header>
 
           <Table.Body>
+
+            {isLoading && Array.from({ length: 5 }).map((_, i) => (
+              <>
+                <tr className="border-t border-gray-500 text-left" key={i}>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                </tr>
+              </>
+            ))}
+
             {
               dataUsers && dataUsers.map(user => (
                 <tr className="border-t border-gray-500 text-left" key={user.id} >

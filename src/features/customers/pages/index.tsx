@@ -40,7 +40,7 @@ export function IndexCalledCustomers () {
             <Table.Head>{""}</Table.Head>
           </Table.Header>
 
-            {isLoading && Array.from({ length: 10 }).map((_, i) => (
+            {isLoading && Array.from({ length: 5 }).map((_, i) => (
               <>
                 <tr className="border-t border-gray-500 text-left" key={i}>
                   <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
@@ -107,7 +107,7 @@ export function IndexCalledCustomers () {
         </Table.Root>
       </div>
 
-      <MobileCalledsIndex data={data} />
+      <MobileCalledsIndex data={data} isLoading={isLoading} />
       <PaginationIndex pagination={pagination} page={page} setPage={setPage} />
     </>
   )

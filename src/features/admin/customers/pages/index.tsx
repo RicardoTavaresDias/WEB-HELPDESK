@@ -112,7 +112,8 @@ export function IndexAdminCustomer(){
         modalRemove={modalRemove} 
         setModalEdition={setModalEdition} 
         setModalRemove={setModalRemove} 
-        setUser={setUser} 
+        setUser={setUser}
+        isLoading={isLoading} 
       />
 
       <PaginationIndex pagination={pagination} page={page} setPage={setPage} />

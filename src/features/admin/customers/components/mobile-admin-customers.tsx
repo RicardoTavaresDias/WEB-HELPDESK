@@ -11,14 +11,15 @@ type MobileCustomersType = {
   setModalRemove: (value: any) => void
   modalRemove: boolean
   setModalEdition: (value: boolean) => void
-  modalEdition: boolean
+  modalEdition: boolean,
+  isLoading: boolean
 }
 
 type dataType = {
   data: UserCustomerType[]
 }
 
-function MobileAdminCustomers ({ dataCustomer, setUser, setModalRemove, modalRemove, setModalEdition, modalEdition }: MobileCustomersType) {
+function MobileAdminCustomers ({ dataCustomer, setUser, setModalRemove, modalRemove, setModalEdition, modalEdition, isLoading }: MobileCustomersType) {
   return (
     <>
       <div className="border-1 border-gray-500 rounded-md lg:hidden">
@@ -30,6 +31,18 @@ function MobileAdminCustomers ({ dataCustomer, setUser, setModalRemove, modalRem
           </Table.Header>
 
           <Table.Body>
+
+            {isLoading && Array.from({ length: 5 }).map((_, i) => (
+              <>
+                <tr className="border-t border-gray-500 text-left" key={i}>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                </tr>
+              </>
+            ))}
+
+
             {
               dataCustomer && dataCustomer.data.map((user) => (
                 <tr className="border-t border-gray-500 text-left text-sm" key={user.id} >
