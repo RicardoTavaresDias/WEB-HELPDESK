@@ -18,7 +18,7 @@ export const signupSchema = z.object({
   name: z
     .string({ message: "Campo somente string" })
     .min(1, { message: "Campo obrigatório" })
-    .regex(/^[a-zA-Z\s]*$/, { message: "Campo nome deve conter apenas letras e espaços." }),
+    .regex(/^[\p{L}\s]+$/u, { message: "Campo nome deve conter apenas letras e espaços." }),
     ...signinSchema.shape
 });
 
