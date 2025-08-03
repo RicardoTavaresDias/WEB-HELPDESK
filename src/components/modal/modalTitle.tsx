@@ -1,5 +1,5 @@
-import { IconArrowLeft } from "../../assets/icon/iconArrowLeft"
-import { IconX } from "../../assets/icon/iconX"
+import { IconArrowLeft } from "@/assets/icon/iconArrowLeft.tsx"
+import { IconX } from "@/assets/icon/iconX.tsx"
 
 type PropsTitle = {
   onClose: () => void
