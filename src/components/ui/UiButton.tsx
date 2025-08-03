@@ -4,7 +4,7 @@ type VariantProps = {
   children?: React.ReactNode,
   icon?: ElementType
   typeColor: "black" | "gray" | "hoverGray" | "none"
-  typeSize: "base" | "xxs" | "xs" | "md" | "lg" | "xl" | "xxl"
+  typeSize: "base" | "xxs" | "xs" | "md" | "lg" | "xl" | "xxl" | "customized"
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 const variant = {
@@ -15,7 +15,8 @@ const variant = {
     md: " py-3 px-5 rounded-md max-sm:px-6.5", // botão cancelar e salvar e botões status dos chamados admin
     lg: " py-3 px-15 max-sm:px-10 rounded-md", // botões duplos modal cancelar e excluir
     xl: " py-3 px-8 max-sm:px-15 rounded-md", // botões duplos edição cancelar e salva na pagina admin tecnico     llg
-    xxl: " lg:px-43 px-35 py-3 rounded-md" // botão grande salvar Modal unico     xl
+    xxl: " lg:px-43 px-35 py-3 rounded-md", // botão grande salvar Modal unico     xl
+    customized: " w-42 h-10 rounded-md flex justify-center"
   },
   typeColor: {
     gray: " bg-gray-500 text-gray-200",

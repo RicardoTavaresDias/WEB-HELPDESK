@@ -206,7 +206,7 @@ function CalledComments({
                   )}
 
                 {isLoadingInput !== comment.comment.id && (
-                  <div className="">
+                  <div className="w-full">
                     <p
                       className="text-sm text-gray-300 "
                       style={{ whiteSpace: "pre-line" }}

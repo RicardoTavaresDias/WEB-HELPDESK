@@ -22,20 +22,20 @@ function ModuleTitleStatus ({ data }: UpdateStatusType) {
       <Modules.Title title="Chamado detalhado" to="/">
         {calledStatus?.callStatus === "open" &&
           <>
-            <UiButton type="button" typeColor="gray" typeSize="md" icon={IconClock} onClick={() => onUpdateStatus({ id: calledStatus.id, status: "close" })} >Encerrar</UiButton>
-            <UiButton type="button" typeColor="black" typeSize="md" color="#F9FAFA" icon={IconCicloCheckBig} onClick={() => onUpdateStatus({ id: calledStatus.id, status: "in_progress" })} >Iniciar atendimento</UiButton>
+            <UiButton type="button" typeColor="gray" typeSize="customized" icon={IconClock} onClick={() => onUpdateStatus({ id: calledStatus.id, status: "close" })} >Encerrar</UiButton>
+            <UiButton type="button" typeColor="black" typeSize="customized" color="#F9FAFA" icon={IconCicloCheckBig} onClick={() => onUpdateStatus({ id: calledStatus.id, status: "in_progress" })} >Iniciar atendimento</UiButton>
           </>
         }
         {calledStatus?.callStatus === "in_progress" &&
           <>
-            <UiButton type="button" typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => onUpdateStatus({ id: calledStatus.id, status: "open" })} >Abrir</UiButton>
-            <UiButton type="button" typeColor="black" typeSize="md" icon={IconCicloCheckBig} color="#F9FAFA" onClick={() => onUpdateStatus({ id: calledStatus.id, status: "close" })} >Encerrar</UiButton>
+            <UiButton type="button" typeColor="gray" typeSize="customized" icon={IconCicleHelp} onClick={() => onUpdateStatus({ id: calledStatus.id, status: "open" })} >Abrir</UiButton>
+            <UiButton type="button" typeColor="black" typeSize="customized" icon={IconCicloCheckBig} color="#F9FAFA" onClick={() => onUpdateStatus({ id: calledStatus.id, status: "close" })} >Encerrar</UiButton>
           </>
         }
         {calledStatus?.callStatus === "close" &&
           <>
-            <UiButton type="button" typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => onUpdateStatus({ id: calledStatus.id, status: "open" })} >Abrir</UiButton>
-            <UiButton type="button" typeColor="black" typeSize="md" color="#F9FAFA" icon={IconClock} onClick={() => onUpdateStatus({ id: calledStatus.id, status: "in_progress" })} >Iniciar atendimento</UiButton>
+            <UiButton type="button" typeColor="gray" typeSize="customized" icon={IconCicleHelp} onClick={() => onUpdateStatus({ id: calledStatus.id, status: "open" })} >Abrir</UiButton>
+            <UiButton type="button" typeColor="black" typeSize="customized" color="#F9FAFA" icon={IconClock} onClick={() => onUpdateStatus({ id: calledStatus.id, status: "in_progress" })} >Iniciar atendimento</UiButton>
           </>
         }
       </Modules.Title>
