@@ -15,9 +15,9 @@ export function Layout({ identification }: LayoutProps){
 
   return (
     <>
-      <aside className="bg-gray-100 w-full h-[100dvh] relative p-6 lg:p-4" >
+      <aside className="bg-gray-100  h-[100dvh] relative lg:p-4" >
          {/* <Header, Menu Mobile> */}
-        <div className="flex justify-between items-center lg:flex-col lg:w-42 lg:pt-3 overflow-hidden lg:py-6">
+        <div className="flex justify-between items-center lg:flex-col lg:w-42 lg:pt-3 overflow-hidden lg:py-6 p-6">
           <div className="flex items-center gap-4">
             <div className="lg:hidden">
               <MenuMobile element={identification} />
@@ -75,15 +75,15 @@ export function Layout({ identification }: LayoutProps){
           </div>
         </nav>
         {/* </Menu Desktop> */}
-      </aside>
-   
-      {/* </Conteúdo> */}
-      <section className={`fixed touch-pan-y inset-0 bg-gray-600 lg:right-0 lg:left-55 h-[100dvh] max-sm:w-full max-sm:rounded-3xl lg:rounded-tl-3xl lg:top-2.5 top-23`}>
+      
+        {/* </Conteúdo> */}
+        <section className={`lg:fixed  overflow-auto inset-0 bg-gray-600 lg:right-0 lg:left-55 h-[100dvh] max-sm:w-full max-sm:rounded-3xl lg:rounded-tl-3xl lg:top-2.5 top-23`}>
           <div className=" p-4 py-7 lg:px-12 lg:py-13 max-sm:w-[375px] m-auto max-w-[1366px] max-sm:mb-20" >
             <Outlet />
           </div>
-      </section>
-      {/* </Conteúdo> */}
+        </section>
+        {/* </Conteúdo> */}
+      </aside>
     </>
   )
 }
