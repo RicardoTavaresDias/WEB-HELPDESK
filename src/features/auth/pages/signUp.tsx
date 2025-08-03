@@ -4,13 +4,12 @@ import { Account } from "@/components/auth/account";
 import { Input } from "@/components/ui/input";
 import { useSignup } from "@/features/auth/http/create-signUp";
 import { Alert } from "@/components/ui/alert";
-import { Loading } from "@/components/ui/loading";
 import { signupSchema, type signupSchemaType } from "../schemas/AuthSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export function Signup() {
-  const { data, error, isError, isSuccess, isPending, mutateAsync: onCreateSignup } = useSignup();
+  const { data, error, isError, isSuccess, mutateAsync: onCreateSignup } = useSignup();
 
   const form = useForm<signupSchemaType>({
     defaultValues: {
@@ -30,7 +29,6 @@ export function Signup() {
 
   return (
     <>
-      {isPending && <Loading />}
       <Alert severity="warning" open={isError} >
         {error?.message}
       </Alert>
@@ -38,7 +36,7 @@ export function Signup() {
         {data?.message}
       </Alert>
 
-      <main className="pt-3 max-sm:pt-8">
+      <main className="pt-3">
         <div className="bg-gray-600 2xl:w-170 w-145 lg:h-screen ml-auto py-12 max-sm:py-8 rounded-tl-3xl max-sm:w-95 max-sm:px-4 max-sm:rounded-3xl max-sm:mx-auto flex items-center justify-center">
           <div id="animeAuth" className="w-110 px-4 2xl:px-0">
             <LogoAuth />

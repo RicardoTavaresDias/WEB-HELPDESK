@@ -4,13 +4,12 @@ import { Account } from "@/components/auth/account";
 import { Input } from "@/components/ui/input";
 import { useSignin } from "../http/creeate-signIn";
 import { Alert } from "@/components/ui/alert";
-import { Loading } from "@/components/ui/loading";
 import { useForm } from "react-hook-form";
 import { signinSchema, type signinSchemaType } from "../schemas/AuthSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export function Signin() {
-  const { error, isError, isPending, mutateAsync: onLogin } = useSignin()
+  const { error, isError, mutateAsync: onLogin } = useSignin()
 
   const form = useForm<signinSchemaType>({
     defaultValues: {
@@ -28,7 +27,6 @@ export function Signin() {
   
   return (
     <>
-      {isPending && <Loading />}
       <Alert severity="warning" open={isError} >
         {error?.message}
       </Alert>
