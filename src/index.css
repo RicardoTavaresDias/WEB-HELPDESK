@@ -76,18 +76,19 @@ body {
   -webkit-font-smoothing: antialiased;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 main {
   background-image: url("./assets/logo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 100vh;
 }
 
 .menuMobile:before {
     content:'';
-    position: absolute;
+    position: relative;
     top: -15px;
     left: 15px;
     border-style: solid;
