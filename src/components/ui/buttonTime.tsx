@@ -1,4 +1,4 @@
-import { IconX } from "../../assets/icon/iconX"
+import { IconX } from "../../assets/icon/iconX.tsx"
 
 type ButtonTimeProps = {
   children: React.ReactNode
