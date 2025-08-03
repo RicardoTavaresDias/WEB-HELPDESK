@@ -17,7 +17,7 @@ export function Layout({ identification }: LayoutProps){
     <>
       <aside className="bg-gray-100 w-full h-[100dvh] relative p-6 lg:p-4" >
          {/* <Header, Menu Mobile> */}
-        <div className="flex justify-between items-center lg:flex-col lg:w-42 lg:pt-3 lg:py-6 fixed w-[345px]">
+        <div className="flex justify-between items-center lg:flex-col lg:w-42 lg:pt-3 overflow-hidden lg:py-6">
           <div className="flex items-center gap-4">
             <div className="lg:hidden">
               <MenuMobile element={identification} />
