@@ -1,6 +1,5 @@
 import { ChevronLeft } from "lucide-react";
 import type { MouseEventHandler } from "react";
-import type { PaginationType } from "./index"
 
 type PreviousType = {
   previous?: number
