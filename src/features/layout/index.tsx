@@ -78,12 +78,10 @@ export function Layout({ identification }: LayoutProps){
       </aside>
    
       {/* </Conteúdo> */}
-      <section className={`fixed bg-gray-600 lg:right-0 lg:left-55 h-[100dvh] max-sm:w-full max-sm:rounded-3xl lg:rounded-tl-3xl lg:top-2.5 top-23`}>
-
+      <section className={"fixed top-[92px] bottom-0 right-0 left-0 lg:left-55 bg-gray-600 overflow-auto z-10"}>
           <div className="p-4 py-7 lg:px-12 lg:py-13 max-sm:w-[375px] m-auto max-w-[1366px] max-sm:mb-20" >
             <Outlet />
           </div>
-      
       </section>
       {/* </Conteúdo> */}
     </>
