@@ -5,6 +5,7 @@ import { IconChevronDown } from "@/assets/icon/iconChevronDown";
 import { IconCheck } from "@/assets/icon/iconCheck";
 import { LoaderSM } from "@/components/ui/loading";
 import type { SelectServicesCategoryType } from "../types/calleds-useCustomers-response";
+import { useEffect, useRef } from "react";
 
 type InputSelectServicesProps = {
   value: SelectServicesCategoryType | undefined;
@@ -14,7 +15,28 @@ type InputSelectServicesProps = {
 
 function InputSelectServices({ value, onChange, error }: InputSelectServicesProps) {
   const { menuRef, setOpen, open } = useOpenModal();
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending } = useListServices();
+
+  // Intersection Observer
+  useEffect(() => {
+    if (!hasNextPage || isFetchingNextPage) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          fetchNextPage();
+        }
+      },
+      { threshold: 1 }
+    );
+
+    const el = loadMoreRef.current;
+    if (el) observer.observe(el);
+
+    return () => {
+      if (el) observer.unobserve(el);
+    };
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   const onScrollSelect = (event: React.UIEvent<HTMLDivElement>) => {
     const target = event.currentTarget
@@ -82,10 +104,9 @@ function InputSelectServices({ value, onChange, error }: InputSelectServicesProp
                   ))}
             </div>
 
-            <button
-              type="button"
+            <div
+              ref={loadMoreRef}
               className="w-full text-xs flex justify-center text-gray-400 my-5"
-              disabled={!hasNextPage || isFetchingNextPage}
             >
               {isPending ? (
                 <LoaderSM />
@@ -96,7 +117,7 @@ function InputSelectServices({ value, onChange, error }: InputSelectServicesProp
               ) : (
                 "Fim da lista"
               )}
-            </button>
+            </div>
           </div>
         )}
       </div>
