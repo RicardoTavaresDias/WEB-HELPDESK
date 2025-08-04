@@ -5,7 +5,6 @@ import { IconChevronDown } from "@/assets/icon/iconChevronDown";
 import { IconCheck } from "@/assets/icon/iconCheck";
 import { LoaderSM } from "@/components/ui/loading";
 import type { SelectServicesCategoryType } from "./modal-create-services";
-import { useEffect, useRef } from "react";
 
 type InputSelectServicesProps = {
   selectCategoryServices: SelectServicesCategoryType | null;
@@ -19,29 +18,7 @@ function InputSelectServices({
   setSelectCategoryServices,
 }: InputSelectServicesProps) {
   const { menuRef, setOpen, open } = useOpenModal();
-  const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending } = useListServices();
-
-  // Intersection Observer
-  useEffect(() => {
-    if (!hasNextPage || isFetchingNextPage) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          fetchNextPage();
-        }
-      },
-      { threshold: 1 }
-    );
-
-    const el = loadMoreRef.current;
-    if (el) observer.observe(el);
-
-    return () => {
-      if (el) observer.unobserve(el);
-    };
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
-
 
   const onScrollSelect = (event: React.UIEvent<HTMLDivElement>) => {
     const target = event.currentTarget
@@ -76,7 +53,7 @@ function InputSelectServices({
 
         {open && (
           <div
-            className="w-full h-60 overflow-y-scroll bg-gray-600 border border-gray-400/15 rounded-lg shadow-xl px-5 py-4 text-gray-400 Text-Md"
+            className="w-full h-60 overflow-y-auto bg-gray-600 border border-gray-400/15 rounded-lg shadow-xl px-5 py-4 text-gray-400 Text-Md"
             onScroll={(e) => onScrollSelect(e)}
           >
             <span className="Text-Xxs text-gray-400">opções</span>
@@ -108,9 +85,10 @@ function InputSelectServices({
                   ))}
             </div>
 
-            <div
-              ref={loadMoreRef}
+            <button
+              type="button"
               className="w-full text-xs flex justify-center text-gray-400 my-5"
+              disabled={!hasNextPage || isFetchingNextPage}
             >
               {isPending ? (
                 <LoaderSM />
@@ -121,7 +99,7 @@ function InputSelectServices({
               ) : (
                 "Fim da lista"
               )}
-            </div>
+            </button>
           </div>
         )}
       </div>
