@@ -69,26 +69,34 @@ export const UpdateStatus = ({
 
       <div className="flex items-center gap-1 mr-2.5 lg:hidden">
         {service.serviceStatus === "active" && (
-          <IconBan
-            className="w-4 h-4 cursor-pointer"
-            onClick={() =>
-              onUpdateStatus({
-                id: service.id,
-                status: service.serviceStatus,
-              })
+          <>
+            {isPending ? <LoaderSM /> :
+              <IconBan
+                className="w-4 h-4 cursor-pointer"
+                onClick={() =>
+                  onUpdateStatus({
+                    id: service.id,
+                    status: service.serviceStatus,
+                  })
+                }
+              />
             }
-          />
+          </>
         )}
         {service.serviceStatus === "inactive" && (
-          <IconCicloCheck
-            className="w-4 h-4 cursor-pointer"
-            onClick={() =>
-              onUpdateStatus({
-                id: service.id,
-                status: service.serviceStatus,
-              })
+          <>
+            {isPending ? <LoaderSM /> :
+              <IconCicloCheck
+                className="w-4 h-4 cursor-pointer"
+                onClick={() =>
+                  onUpdateStatus({
+                    id: service.id,
+                    status: service.serviceStatus,
+                  })
+                }
+              />  
             }
-          />
+          </>
         )}
       </div>
 
