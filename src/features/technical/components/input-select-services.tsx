@@ -54,6 +54,7 @@ function InputSelectServices({
         {open && (
           <div
             className="w-full h-60 overflow-y-auto bg-gray-600 border border-gray-400/15 rounded-lg shadow-xl px-5 py-4 text-gray-400 Text-Md"
+            style={{ WebkitOverflowScrolling: 'touch' }}
             onScroll={(e) => onScrollSelect(e)}
             onTouchMove={onScrollSelect}
           >
