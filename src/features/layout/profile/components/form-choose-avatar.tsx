@@ -39,17 +39,17 @@ export const FormChooseAvatar = ({ imagePreview, setImagePreview, fileRef }: For
       <div className="flex items-center w-fit" ref={menuRef}>
 
         {/* Avatar */}
-        <Avatar user={session?.user as SessionUser} size="w-20 h-20" sizeText="text-[22px]" />
+        <Avatar user={session?.user as SessionUser} size="w-14 h-14" sizeText="text-[22px]" />
 
         {imagePreview && (
           <img
             src={imagePreview}
             alt="Preview"
-            className="absolute top-0 left-0 w-20 h-20 object-cover rounded-full border-2 border-none"
+            className="absolute top-0 left-0 w-14 h-14 object-cover rounded-full border-2 border-none"
           />
         )}
                       
-        <div className="absolute ml-15 mt-11 z-40 cursor-pointer" onClick={() => setOpen(!open)}>
+        <div className="absolute ml-10 mt-8 z-40 cursor-pointer" onClick={() => setOpen(!open)}>
           <div className="bg-gray-500 rounded-full w-6.5 h-6.5 flex justify-center items-center" >
             <IconCamera className="w-5 h-5 fill-gray-400 hover:fill-gray-200" />
           </div>

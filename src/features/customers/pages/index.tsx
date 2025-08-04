@@ -60,7 +60,7 @@ export function IndexCalledCustomers () {
               <tr className="border-t border-gray-500 text-left" key={called.id}>
                 <Table.Cell internalSpacing="px-2 py-3" clas="w-36 text-sm" >{dayjs(called.updatedAt).format("DD/MM/YYYY HH:mm")}</Table.Cell>
 
-                <Table.Cell clas="text-sm">
+                <Table.Cell clas="text-sm font-semibold">
                    {
                     called.id > 0 && called.id < 10 ? `00${called.id}` :
                       ( called.id > 9 && called.id < 100 ? `0${called.id}` : called.id ) 
@@ -68,7 +68,7 @@ export function IndexCalledCustomers () {
                 </Table.Cell>
                 
                 <Table.Cell internalSpacing="px-2 py-1" >
-                  <span className="flex flex-col Text-Sm ">
+                  <span className="flex flex-col Text-Sm">
                     {called.titleCalled}
                   </span>
                 </Table.Cell>

@@ -51,8 +51,8 @@ export function CallListdetails(){
             if(called.callStatus === "open"){
               return (
                 <Fragment key={called.id}>
-                  <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => onSubmitStatus({id: called.id, status: "in_progress"})} >Em Atendimento</UiButton>
-                  <UiButton typeColor="gray" typeSize="md" icon={IconCicloCheckBig} onClick={() => onSubmitStatus({id: called.id, status: "close"})} >Encerrado</UiButton>
+                  <UiButton typeColor="gray" typeSize="customized" icon={IconClock} onClick={() => onSubmitStatus({id: called.id, status: "in_progress"})} >Em Atendimento</UiButton>
+                  <UiButton typeColor="gray" typeSize="customized" icon={IconCicloCheckBig} onClick={() => onSubmitStatus({id: called.id, status: "close"})} >Encerrado</UiButton>
                 </Fragment>
               )
             }
@@ -60,16 +60,16 @@ export function CallListdetails(){
             if(called.callStatus === "in_progress") {
               return (
                 <Fragment key={called.id}>
-                  <UiButton typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => onSubmitStatus({id: called.id, status: "open"})} >Aberto</UiButton>
-                  <UiButton typeColor="gray" typeSize="md" icon={IconCicloCheckBig} onClick={() => onSubmitStatus({id: called.id, status: "close"})} >Encerrado</UiButton>
+                  <UiButton typeColor="gray" typeSize="customized" icon={IconCicleHelp} onClick={() => onSubmitStatus({id: called.id, status: "open"})} >Aberto</UiButton>
+                  <UiButton typeColor="gray" typeSize="customized" icon={IconCicloCheckBig} onClick={() => onSubmitStatus({id: called.id, status: "close"})} >Encerrado</UiButton>
                 </Fragment>
               )
             }
               
             return (
               <Fragment key={called.id}>
-                <UiButton typeColor="gray" typeSize="md" icon={IconCicleHelp} onClick={() => onSubmitStatus({id: called.id, status: "open"})} >Aberto</UiButton>
-                <UiButton typeColor="gray" typeSize="md" icon={IconClock} onClick={() => onSubmitStatus({id: called.id, status: "in_progress"})} >Em Atendimento</UiButton>
+                <UiButton typeColor="gray" typeSize="customized" icon={IconCicleHelp} onClick={() => onSubmitStatus({id: called.id, status: "open"})} >Aberto</UiButton>
+                <UiButton typeColor="gray" typeSize="customized" icon={IconClock} onClick={() => onSubmitStatus({id: called.id, status: "in_progress"})} >Em Atendimento</UiButton>
               </Fragment>
             )
           })}

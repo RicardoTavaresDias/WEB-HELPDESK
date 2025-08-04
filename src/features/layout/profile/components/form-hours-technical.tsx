@@ -28,12 +28,13 @@ export const FormHoursTechnical = () => {
           data && data.map((user) => (
             <div className="flex gap-1 mt-3" key={user.id}>
               {
-                user.userHours.flat().slice(0,6).map((useHours) => (
+                user.userHours.flat().slice(0,5).map((useHours) => (
                 <Fragment key={uuid()} >
                   <ButtonTime type="read" >{useHours}</ButtonTime>
                 </Fragment>
                 ))
               }
+              <ButtonTime type="read" >+{user.userHours.flat().length - 5}</ButtonTime>
             </div>
           ))
         } 

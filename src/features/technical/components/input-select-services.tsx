@@ -87,7 +87,7 @@ function InputSelectServices({
 
             <button
               type="button"
-              className="w-full text-xs flex justify-center text-gray-400"
+              className="w-full text-xs flex justify-center text-gray-400 my-5"
               disabled={!hasNextPage || isFetchingNextPage}
             >
               {isPending ? (
