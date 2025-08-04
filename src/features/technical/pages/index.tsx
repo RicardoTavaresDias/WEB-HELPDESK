@@ -40,7 +40,8 @@ export function IndexCalledTechical(){
       
       <Modules.Root displauFull>
         <Modules.Title title="Meus chamados" />
-
+        <div className="lg:mb-7"></div>
+        
         {/* Em atendimento */}
         {inProgress?.pages[0].data.length >= 1 && 
           <div className="max-sm:mt-1">
