@@ -22,7 +22,7 @@ function InputSelectServices({
 
   const onScrollSelect = (event: React.UIEvent<HTMLDivElement>) => {
     const target = event.currentTarget
-    const isButtom = Math.ceil(target.scrollHeight - target.scrollTop) <= target.clientHeight
+    const isButtom = target.scrollHeight - target.scrollTop <= target.clientHeight
     if(isButtom){
       fetchNextPage()
     }
@@ -53,10 +53,8 @@ function InputSelectServices({
 
         {open && (
           <div
-            className="w-full h-60 overflow-y-auto bg-gray-600 border border-gray-400/15 rounded-lg shadow-xl px-5 py-4 text-gray-400 Text-Md"
-            style={{ WebkitOverflowScrolling: 'touch' }}
+            className="w-full h-60 overflow-y-scroll bg-gray-600 border border-gray-400/15 rounded-lg shadow-xl px-5 py-4 text-gray-400 Text-Md"
             onScroll={(e) => onScrollSelect(e)}
-            onTouchMove={onScrollSelect}
           >
             <span className="Text-Xxs text-gray-400">opções</span>
 
