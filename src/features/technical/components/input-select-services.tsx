@@ -22,7 +22,7 @@ function InputSelectServices({
 
   const onScrollSelect = (event: React.UIEvent<HTMLDivElement>) => {
     const target = event.currentTarget
-    const isButtom = target.scrollHeight - target.scrollTop <= target.clientHeight
+    const isButtom = Math.ceil(target.scrollHeight - target.scrollTop) <= target.clientHeight
     if(isButtom){
       fetchNextPage()
     }
