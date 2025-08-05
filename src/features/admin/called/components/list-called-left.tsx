@@ -44,7 +44,7 @@ function ListCalleLeft ({ calleds }: ListCalleLeftTye) {
               <span className="text-gray-400 Text-Xs">Criado em</span>
               <p className="text-sm font-normal text-gray-200">{dayjs(called.createdAt).format("DD/MM/YYYY HH:mm")}</p>
             </div>
-            <div className="w-50">
+            <div className="">
               <span className="text-gray-400 Text-Xs">Atualizado em</span>
               <p className="text-sm font-normal text-gray-200">{dayjs(called.updatedAt).format("DD/MM/YYYY HH:mm")}</p>
             </div>
