@@ -24,7 +24,7 @@ function ModuleUpdateLeft ({ userTechnical, form }: ModuleUpdateLeftProps) {
             </span>
           </div>
           <div className="my-6">
-            {userTechnical && <Avatar user={userTechnical} size="w-18 h-18" sizeText="text-[22px]" /> }
+            {userTechnical && <Avatar user={userTechnical} size="w-14 h-14" sizeText="text-[22px]" /> }
           </div>
           <Input type="text" {...form.register("name")} label="nome" error={form.formState.errors.name?.message} />
           <Input type="text" {...form.register("email")} label="e-mail" error={form.formState.errors.email?.message} />
