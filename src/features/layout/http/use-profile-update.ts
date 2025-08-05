@@ -36,7 +36,7 @@ function useProfileUpdate () {
         ...result
       }))
 
-      loadUser()
+      setTimeout(() => loadUser(), 3000)
       return { sucess: "Cadastro atualizado com sucesso." }
     }
   })

@@ -3,7 +3,7 @@ import { Modal } from "@/components/modal";
 import { useProfile } from "@/hooks/useProfile";
 import { useProfileUpdate } from "../http/use-profile-update"
 import { Alert } from "@/components/ui/alert";
-import { Loading, Loader } from "@/components/ui/loading";
+import { Loading } from "@/components/ui/loading";
 import { FormPassword } from "./components/form-password";
 import { FormHoursTechnical } from "./components/form-hours-technical";
 import { FormChooseAvatar } from "./components/form-choose-avatar";
@@ -41,16 +41,15 @@ export function IsProfile({ myProfile }: IsProfileProps){
 
   return (
     <>
-      {isPending && <Loading />}
-        <Alert severity="warning" open={isError} >
-          {error?.message}
-        </Alert>
-        <Alert severity="info" open={!!data?.info} >
-          {data?.info}
-        </Alert>
-        <Alert severity="success" open={!!data?.sucess} >
-          {data?.sucess}
-        </Alert>
+      <Alert severity="warning" open={isError} >
+        {error?.message}
+      </Alert>
+      <Alert severity="info" open={!!data?.info} >
+        {data?.info}
+      </Alert>
+      <Alert severity="success" open={!!data?.sucess} >
+        {data?.sucess}
+      </Alert>
 
       {/* Perfil */}
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -62,6 +61,9 @@ export function IsProfile({ myProfile }: IsProfileProps){
           }} />
 
           <Modal.Context className={myProfile !== "technical" ? "" : "mb-0 border-t"} >
+
+            {isPending && <Loading />}
+
             <div className="lg:w-full relative">
               {/* Avatar */}
               <FormChooseAvatar 
@@ -88,7 +90,7 @@ export function IsProfile({ myProfile }: IsProfileProps){
 
           <div className="m-auto mb-5">
             <UiButton typeSize="xxl" typeColor="black" disabled={isPending} >
-              { isPending ? <Loader /> : "Salvar" }
+              Salvar
             </UiButton>
           </div>
         </Modal.Root>

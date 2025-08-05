@@ -6,7 +6,7 @@ import { useOpenModal } from "@/hooks/useOpenModal"
 import { useAuth } from "@/hooks/useAuth"
 import type { MutableRefObject } from "react";
 import { useRemoveAvatar } from "../../http/use-avatar-remove"
-import { Loading } from "@/components/ui/loading"
+import { LoaderSM, Loading } from "@/components/ui/loading"
 import { UiButton } from "@/components/ui/UiButton"
 import { UserX } from "lucide-react"
 import { removeProfile } from "../../http/use-remove-user"
@@ -45,7 +45,7 @@ export const FormChooseAvatar = ({ imagePreview, setImagePreview, fileRef }: For
 
   return (
     <>
-      {isPending && <Loading/> || removeIsPending && <Loading/>} 
+      {isPending && <Loading/>} 
       <div className="flex items-center w-fit" ref={menuRef}>
 
         {/* Avatar */}
@@ -91,21 +91,23 @@ export const FormChooseAvatar = ({ imagePreview, setImagePreview, fileRef }: For
         </div>
         {/* Modal Escolher foto do perfil */}
 
-        <div className="ml-8">
-          <UiButton 
-            type="button"
-            typeColor="gray"
-            typeSize="xxs"
-            icon={UserX}
-            onClick={() => {
-              onSubmit()
-            }}
-          >
-            <span className="text-xs font-normal">
-              Remover Conta
-            </span>
-          </UiButton>
-        </div>
+        {session?.user.role !== "technical" && 
+          <div className="ml-8">
+            <UiButton 
+              type="button"
+              typeColor="gray"
+              typeSize="xxs"
+              icon={UserX}
+              onClick={() => {
+                onSubmit()
+              }}
+            >
+              <span className="text-xs font-normal">
+                {removeIsPending ? <div className="mx-2"><LoaderSM /></div> : "Remover Conta"}
+              </span>
+            </UiButton>
+          </div>
+        }
         
       </div>
 
