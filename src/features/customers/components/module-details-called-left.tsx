@@ -34,6 +34,11 @@ function ModuleDetailsCalledLeft ({ dataDetails }: ModuleDetailsCalledLeftProps)
           <span className="text-gray-400 Text-Xs">Categoria</span>
           <p className="text-sm font-normal text-gray-200">{dataDetails.services[0].titleService}</p>
         </div>
+
+        <div className="mt-5">
+          <span className="text-gray-400 Text-Xs">Horário agendado</span>
+          <p className="text-sm font-normal text-gray-200">{dayjs(dataDetails.appointmentTime).format("DD/MM/YYYY HH:mm")}</p>
+        </div>
         
         <div className="mt-5 flex justify-between">
           <div>

@@ -13,6 +13,7 @@ export interface Called {
   titleCalled: string
   description: string
   createdAt: string
+  appointmentTime: string
   services: Service[]
   UserCustomer: UserCustomer
   UserTechnical: UserTechnical

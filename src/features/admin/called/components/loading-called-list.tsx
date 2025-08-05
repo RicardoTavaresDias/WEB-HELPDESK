@@ -23,6 +23,11 @@ function LoadingCalledList () {
           <span className="text-gray-400 Text-Xs">Categoria</span>
           <p className="bg-gray-500 text-transparent w-full h-5 animate-pulse">p</p>
         </div>
+
+        <div className="mt-5">
+          <span className="text-gray-400 Text-Xs">Horário agendado</span>
+          <p className="bg-gray-500 text-transparent w-full h-5 animate-pulse">p</p>
+        </div>
       
         <div className="mt-5 flex justify-between">
           <div>
