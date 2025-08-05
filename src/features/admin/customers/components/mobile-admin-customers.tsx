@@ -25,8 +25,8 @@ function MobileAdminCustomers ({ dataCustomer, setUser, setModalRemove, modalRem
       <div className="border-1 border-gray-500 rounded-md lg:hidden">
         <Table.Root>
           <Table.Header>
-            <Table.Head clas="text-center" >Nome</Table.Head>
-            <Table.Head clas="text-center" >Email</Table.Head>
+            <Table.Head >Nome</Table.Head>
+            <Table.Head >Email</Table.Head>
             <Table.Head >{""}</Table.Head>
           </Table.Header>
 
