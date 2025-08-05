@@ -64,7 +64,7 @@ export function AdminServices(){
               {serivicesData && serivicesData.data.map((item) => (
                 <tr className="border-t border-gray-500 text-left" key={item.id} >
                   <Table.Cell clas="lg:w-1/2" internalSpacing="px-2 py-3 lg:px-4 lg:py-3">
-                    <div className="max-sm:w-30 max-w-120 truncate max-sm:text-xs">
+                    <div className="max-sm:w-30 max-w-120 max-sm:text-xs">
                       {item.titleService}
                     </div>
                       
@@ -80,7 +80,7 @@ export function AdminServices(){
                       <div className="max-sm:hidden">
                         <Status type={item.serviceStatus} isButton={true} />
                       </div>
-                      <div className="lg:hidden flex justify-end ml-2" >
+                      <div className="lg:hidden flex justify-center ml-2" >
                         <Status type={item.serviceStatus} isButton={false} />
                       </div>
                     </Table.Cell>

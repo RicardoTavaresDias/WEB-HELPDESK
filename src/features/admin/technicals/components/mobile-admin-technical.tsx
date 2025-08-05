@@ -44,10 +44,13 @@ function MobileAdminTechnical ({ dataUsers, isLoading, setUser, modalRemove, set
                 <tr className="border-t border-gray-500 text-left" key={user.id} >
                   <Table.Cell internalSpacing="pl-3 pr-1 py-4.5 flex gap-3 items-center">
                     <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-7 h-7" sizeText="text-[11px]" />
-                    <span className="truncate w-18 text-xs">{user.name}</span>
+                    <div className="">
+                      <p className="text-xs">{user.name.split(" ")[0]}</p>
+                      <p className="text-xs">{user.name.split(" ")[1]}</p>
+                    </div>
                   </Table.Cell>
 
-                  <Table.Cell internalSpacing="p-1.5" >
+                  <Table.Cell internalSpacing="p-1.5">
                     <div className="flex gap-1  w-fit">
                        {
                         user.userHours.flat().map((hour, index) => (
@@ -59,8 +62,7 @@ function MobileAdminTechnical ({ dataUsers, isLoading, setUser, modalRemove, set
                       {
                         user.userHours.flat().length > 1 &&
                           <div className="border rounded-full w-10 text-center border-gray-500 text-gray-400 flex justify-center items-center">
-                            <p className="text-[12px]">+</p>
-                            {(user.userHours.flat().length - 1)}
+                            <p className="text-xs">+ {(user.userHours.flat().length - 1)}</p>
                           </div>
                       }
                     </div>
