@@ -84,16 +84,17 @@ export function AdminServices(){
                         <Status type={item.serviceStatus} isButton={false} />
                       </div>
                     </Table.Cell>
-
-                    <Table.Cell clas="flex justify-end" internalSpacing="px-2.5 py-3 lg:px-4 lg:py-3" >
-                      <UpdateStatus 
-                        service={item}
-                        modalEdition={modalEdition}
-                        setModalEdition={setModalEdition}
-                        setServices={setServices}
-                      />
+                   
+                    <Table.Cell clas=" " internalSpacing="px-2.5 py-3 lg:px-4 lg:py-3" >
+                      <div className="flex justify-end">
+                        <UpdateStatus 
+                          service={item}
+                          modalEdition={modalEdition}
+                          setModalEdition={setModalEdition}
+                          setServices={setServices}
+                        />
+                      </div>
                     </Table.Cell>
-                    
                   </tr>
                ))
               }
