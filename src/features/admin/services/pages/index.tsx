@@ -45,7 +45,7 @@ export function AdminServices(){
             <Table.Header>
               <Table.Head clas="w-20 flex items-start" internalSpacing="px-2 py-3 lg:px-4 lg:py-3">Título</Table.Head>
               <Table.Head internalSpacing="px-1 py-3 lg:px-4 lg:py-3">Valor</Table.Head>
-              <Table.Head internalSpacing="px-1 py-3 lg:px-4 lg:py-3" >Status</Table.Head>
+              <Table.Head internalSpacing="px-1 py-3 lg:px-4 lg:py-3">Status</Table.Head>
               <Table.Head >{""}</Table.Head>
             </Table.Header>
 
@@ -64,15 +64,15 @@ export function AdminServices(){
               {serivicesData && serivicesData.data.map((item) => (
                 <tr className="border-t border-gray-500 text-left" key={item.id} >
                   <Table.Cell clas="lg:w-1/2" internalSpacing="px-2 py-3 lg:px-4 lg:py-3">
-                    <div className="max-sm:w-20 max-w-120 truncate">
+                    <div className="max-sm:w-30 max-w-120 truncate max-sm:text-xs">
                       {item.titleService}
                     </div>
                       
                     </Table.Cell>
 
                     <Table.Cell clas=" lg:w-full" internalSpacing="px-1 py-3 lg:px-4 lg:py-3">
-                      <div className="max-sm:w-22">
-                        <span >{currency({ coinFormatCents: item.price })}</span>
+                      <div className="max-sm:w-full">
+                        <span className="max-sm:text-xs">{currency({ coinFormatCents: item.price })}</span>
                       </div>
                     </Table.Cell>
 
@@ -80,7 +80,7 @@ export function AdminServices(){
                       <div className="max-sm:hidden">
                         <Status type={item.serviceStatus} isButton={true} />
                       </div>
-                      <div className="lg:hidden flex justify-center">
+                      <div className="lg:hidden flex justify-end ml-2" >
                         <Status type={item.serviceStatus} isButton={false} />
                       </div>
                     </Table.Cell>
