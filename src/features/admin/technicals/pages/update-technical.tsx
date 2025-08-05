@@ -12,6 +12,7 @@ import { UserHours } from "../http/use-hours";
 import { useEffect } from "react";
 import { ModuleUpdateLeft } from "../components/module-update-left";
 import { ModuleUpdateRight } from "../components/module-update-right";
+import { LoadingUpdatePage } from "../components/loading-update-page";
 
 export function UpdateAdminTechnicals() {
   const { id } = useParams()
@@ -21,7 +22,7 @@ export function UpdateAdminTechnicals() {
   }
   
   const { userTechnical, setUserTechnical, query } = useSearchTechnical(id as string)
-  const { refetch, isLoading } = query
+  const { refetch } = query
   const userHours = new UserHours(setUserTechnical as any)
 
   const form = useForm<UserTechnicalTypeSchema>({
@@ -50,7 +51,7 @@ export function UpdateAdminTechnicals() {
 
   return (
     <>
-      {isLoading && <Loading /> || isPending && <Loading/>}
+      {isPending && <Loading/>}
       <Alert severity="warning" open={isError} >
         {error?.message}
       </Alert>
@@ -84,8 +85,14 @@ export function UpdateAdminTechnicals() {
           </Modules.Title>
 
           <Modules.Container>
-            <ModuleUpdateLeft form={form} userTechnical={userTechnical} />
-            <ModuleUpdateRight setUserTechnical={setUserTechnical} userTechnical={userTechnical} />
+            {!userTechnical && <LoadingUpdatePage />}
+            {userTechnical && 
+              <>
+                <ModuleUpdateLeft form={form} userTechnical={userTechnical} />
+                <ModuleUpdateRight setUserTechnical={setUserTechnical} userTechnical={userTechnical} />
+              </>
+            }
+             
           </Modules.Container>
         </form>
       </Modules.Root>

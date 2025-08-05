@@ -1,5 +1,5 @@
 import { AxiosError } from "axios"
-import { keepPreviousData, useQuery } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import { useState } from "react"
 
 type UseGetType<TData> = {
@@ -23,8 +23,7 @@ function useQueryGet<TData>({ queryKey, fetchGet }: UseGetType<TData>) {
         throw new Error(error.message)
       }
     },
-    retry: 1,
-    placeholderData: keepPreviousData
+    retry: 1
   })
 
   return {

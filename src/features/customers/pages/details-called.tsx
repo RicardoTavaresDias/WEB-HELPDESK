@@ -2,10 +2,10 @@ import { Navigate, useParams } from "react-router"
 import { IsProfile } from "@/features/layout/profile"
 import { Modules } from "@/components/modules"
 import { useCalledDetails } from "../http/use-called-details"
-import { Loading } from "@/components/ui/loading"
 import { ModuleDetailsCalledLeft } from "../components/module-details-called-left"
 import { ModuleDetailsCalledRight } from "../components/module-details-called-right"
 import { CalledComments } from "../components/module-called-comments"
+import { LoadingCalledDetails } from "../components/loading-called-details"
 
 export function CallDetails(){
   const { id } = useParams()
@@ -14,11 +14,7 @@ export function CallDetails(){
     return <Navigate replace to="/" />
   }
 
-  const { data: dataDetails, isLoading } = useCalledDetails(id).query
-
-  if(isLoading || !dataDetails){
-    return <Loading />
-  }
+  const { data: dataDetails } = useCalledDetails(id).query
 
   return (
     <>
@@ -27,12 +23,21 @@ export function CallDetails(){
       <Modules.Root>
         <Modules.Title title="Chamado detalhado" to="/" />
         <Modules.Container>
-          <ModuleDetailsCalledLeft dataDetails={dataDetails} />
-          <ModuleDetailsCalledRight dataDetails={dataDetails} />
 
-          <div className="w-full">
-            <CalledComments data={dataDetails.calledComments} />
-          </div>
+          {!dataDetails && <LoadingCalledDetails />}
+          
+          {dataDetails &&
+            <>
+              <ModuleDetailsCalledLeft dataDetails={dataDetails} />
+              <ModuleDetailsCalledRight dataDetails={dataDetails} />
+
+              {dataDetails.calledComments.length > 0 &&
+                <div className="w-full">
+                  <CalledComments data={dataDetails.calledComments} />
+                </div>
+              }
+            </>
+          }    
         </Modules.Container>
       </Modules.Root>
     </>

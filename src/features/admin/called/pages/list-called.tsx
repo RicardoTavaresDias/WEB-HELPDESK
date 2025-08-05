@@ -6,7 +6,6 @@ import { IconClock } from "@/assets/icon/iconClock";
 import { UiButton } from "@/components/ui/UiButton"
 import { useListCalled } from "../http/use-list-called"
 import { updateStatus } from "../http/use-update-status"
-import { Loading } from "@/components/ui/loading"
 import { Alert } from "@/components/ui/alert"
 import { Fragment } from "react/jsx-runtime"
 import { ListCalleLeft } from "../components/list-called-left";
@@ -14,6 +13,7 @@ import { ListCalleRight } from "../components/list-called-right";
 import { ModalCreateComment } from "@/components/ui/modal-create-comment"
 import { CalledComments } from "@/components/ui/module-called-comments"
 import { useState } from "react";
+import { LoadingCalledList } from "../components/loading-called-list";
 
 export function CallListdetails(){
   const [modalComment, setModalComment] = useState(false)
@@ -23,16 +23,11 @@ export function CallListdetails(){
     return <Navigate replace to="/" />
   }
 
-  const { data: calleds, isLoading, error, isError } = useListCalled(Number(id)).query
+  const { data: calleds, error, isError } = useListCalled(Number(id)).query
   const { error: errorUpdate, mutateAsync: onSubmitStatus, isError: isErrorUpdate } = updateStatus()
-
-  if(!calleds){
-    return <Loading />
-  }
 
   return (
     <>
-    {isLoading && <Loading />}
       <Alert severity="warning" open={isError || isErrorUpdate}>
         {error?.message}
         {errorUpdate?.message}
@@ -41,12 +36,19 @@ export function CallListdetails(){
       <ModalCreateComment 
         modalComment={modalComment} 
         setModalComment={setModalComment}
-        idCalled={calleds[0].id} 
+        idCalled={calleds && calleds[0].id} 
         queryKeyIndex='get_list'
       />
         
     <Modules.Root>
         <Modules.Title title="Chamado detalhado" to="/" >
+          {!calleds &&
+            <>
+              <UiButton typeColor="gray" typeSize="customized" icon={IconClock} >Em Atendimento</UiButton>
+              <UiButton typeColor="gray" typeSize="customized" icon={IconCicloCheckBig} >Encerrado</UiButton>
+            </>
+          }
+
           {calleds && calleds.map((called) => {
             if(called.callStatus === "open"){
               return (
@@ -77,18 +79,26 @@ export function CallListdetails(){
         </Modules.Title>
 
         <Modules.Container>
-          <ListCalleLeft calleds={calleds} />
-          <ListCalleRight calleds={calleds} />
 
-          <div className="w-full">
-          <CalledComments 
-            dataComments={calleds[0].calledComments} 
-            modalComment={modalComment} 
-            setModalComment={setModalComment}
-            statusCalled={calleds[0].callStatus} 
-            queryKeyIndex='get_list'
-          />
-        </div>
+          {!calleds && <LoadingCalledList />}
+          
+          {calleds &&
+            <>
+              <ListCalleLeft calleds={calleds} />
+              <ListCalleRight calleds={calleds} />
+
+              <div className="w-full">
+                <CalledComments 
+                  dataComments={calleds[0].calledComments} 
+                  modalComment={modalComment} 
+                  setModalComment={setModalComment}
+                  statusCalled={calleds[0].callStatus} 
+                  queryKeyIndex='get_list'
+                />
+              </div>
+            </>
+          }
+    
         </Modules.Container>
       </Modules.Root>
     </>

@@ -17,7 +17,7 @@ export function IndexAdminTechnicals(){
 
   return ( 
     <>
-        <Alert severity="warning" open={isError}>{error?.message}</Alert>
+      <Alert severity="warning" open={isError}>{error?.message}</Alert>
       
       <div className="mb-7">
         <Modules.Title title="Técnicos" isButton={true} >

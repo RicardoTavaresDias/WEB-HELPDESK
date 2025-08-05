@@ -57,7 +57,7 @@ function ModuleUpdateRight ({ userTechnical, setUserTechnical }: ModuleUpdateRig
 
           <div className="mt-5">
             <span className="text-xs font-semibold text-gray-300 uppercase">
-              Tarde{" "}
+              Tarde
             </span>
             <div className="flex gap-2 mt-2 flex-wrap">
               {userTechnical && userTechnical.userHours &&

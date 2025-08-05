@@ -33,13 +33,13 @@ export function Alert({ severity, open, onClose, children }: AlertType) {
         transition ease-out duration-300 fixed
       `}>
         <div className="flex justify-between items-center"> 
-          <div className="flex gap-2 w-full items-center mr-2"> 
-            {severity === "success" && <CircleCheckBig className={`w-5 h-5 flex-shrink-0 ${backGraund[severity][0]}`} />}
-            {severity === "info" && <Info className={`w-5 h-5 flex-shrink-0 ${backGraund[severity][0]}`} />}
-            {severity === "warning" && <TriangleAlert className={`w-5 h-5 flex-shrink-0 ${backGraund[severity][0]}`} />}
-            {severity === "error" && <CircleAlert className={`w-5 h-5 flex-shrink-0 ${backGraund[severity][0]}`} />}
-            <div className="flex flex-col flex-grow min-w-0"> {/* Use flex-grow e min-w-0 */}
-              <span className="text-md font-semibold">{severity[0].toUpperCase() + severity.substring(1)}</span>
+          <div className="flex gap-2 w-full items-start mr-2"> 
+            {severity === "success" && <CircleCheckBig className={`w-5 h-5 flex-shrink-0 mt-1 ${backGraund[severity][0]}`} />}
+            {severity === "info" && <Info className={`w-5 h-5 flex-shrink-0 mt-1 ${backGraund[severity][0]}`} />}
+            {severity === "warning" && <TriangleAlert className={`w-5 h-5 flex-shrink-0 mt-1 ${backGraund[severity][0]}`} />}
+            {severity === "error" && <CircleAlert className={`w-5 h-5 flex-shrink-0 mt-1 ${backGraund[severity][0]}`} />}
+            <div className="flex flex-col flex-grow min-w-0"> 
+              <span className="text-md font-semibold ">{severity[0].toUpperCase() + severity.substring(1)}</span>
               <span className="text-sm break-words overflow-hidden text-ellipsis">
                 {children}
               </span>
