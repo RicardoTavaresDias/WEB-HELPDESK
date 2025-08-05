@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const api = axios.create({
-  baseURL: "http://localhost:3333" // "http://localhost:3333" ou "https://api-helpdesk-kky6.onrender.com"
+  baseURL: "https://api-helpdesk-kky6.onrender.com" // "http://localhost:3333" ou "https://api-helpdesk-kky6.onrender.com"
 })
 
 api.interceptors.response.use(
