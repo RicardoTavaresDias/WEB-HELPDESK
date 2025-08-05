@@ -23,7 +23,8 @@ function useQueryGet<TData>({ queryKey, fetchGet }: UseGetType<TData>) {
         throw new Error(error.message)
       }
     },
-    retry: 1
+    retry: 1,
+    refetchOnWindowFocus: false // Desativa carregamento automático na troca de abas do navegador.
   })
 
   return {

@@ -7,6 +7,9 @@ import { useAuth } from "@/hooks/useAuth"
 import type { MutableRefObject } from "react";
 import { useRemoveAvatar } from "../../http/use-avatar-remove"
 import { Loading } from "@/components/ui/loading"
+import { UiButton } from "@/components/ui/UiButton"
+import { UserX } from "lucide-react"
+import { removeProfile } from "../../http/use-remove-user"
 
 type FormChooseAvatarType = {
   imagePreview: string | null
@@ -21,7 +24,7 @@ type SessionUser = {
 
 export const FormChooseAvatar = ({ imagePreview, setImagePreview, fileRef }: FormChooseAvatarType) => {
    const { menuRef, open, setOpen } = useOpenModal()
-   const { session } = useAuth()
+   const { session, remove } = useAuth()
    const { mutateAsync: onRemove, isPending } = useRemoveAvatar()
 
   function handleImageChange(event: React.ChangeEvent<HTMLInputElement>){
@@ -33,9 +36,16 @@ export const FormChooseAvatar = ({ imagePreview, setImagePreview, fileRef }: For
     }
   }
 
+  const { mutateAsync: onRemoveProfile, isPending: removeIsPending } = removeProfile()
+
+  const onSubmit = async () => {
+    await onRemoveProfile(session?.user.id as any)
+    remove()
+  }
+
   return (
     <>
-      {isPending && <Loading/>}  
+      {isPending && <Loading/> || removeIsPending && <Loading/>} 
       <div className="flex items-center w-fit" ref={menuRef}>
 
         {/* Avatar */}
@@ -48,7 +58,7 @@ export const FormChooseAvatar = ({ imagePreview, setImagePreview, fileRef }: For
             className="absolute top-0 left-0 w-14 h-14 object-cover rounded-full border-2 border-none"
           />
         )}
-                      
+
         <div className="absolute ml-10 mt-8 z-40 cursor-pointer" onClick={() => setOpen(!open)}>
           <div className="bg-gray-500 rounded-full w-6.5 h-6.5 flex justify-center items-center" >
             <IconCamera className="w-5 h-5 fill-gray-400 hover:fill-gray-200" />
@@ -57,7 +67,7 @@ export const FormChooseAvatar = ({ imagePreview, setImagePreview, fileRef }: For
         {/* Avatar */}
 
         {/* Modal Escolher foto do perfil */}
-        <div className={`absolute top-22 left-13 z-20 ${open ? "scale-100 opacity-100" : "scale-95 opacity-0 hidden"} origin-top transition ease-out duration-200`}>
+        <div className={`absolute top-18 left-8 z-20 ${open ? "scale-100 opacity-100" : "scale-95 opacity-0 hidden"} origin-top transition ease-out duration-200`}>
           <IconPlay className="w-5 absolute -top-2 left-3 fill-gray-600 drop-shadow-xl/60  border-none -z-10" />
           <div className={`w-50 bg-gray-600 p-2 drop-shadow-2xl/10 rounded-lg  `} >
             <ul className="Text-Xs">
@@ -81,7 +91,25 @@ export const FormChooseAvatar = ({ imagePreview, setImagePreview, fileRef }: For
         </div>
         {/* Modal Escolher foto do perfil */}
 
+        <div className="ml-8">
+          <UiButton 
+            type="button"
+            typeColor="gray"
+            typeSize="xxs"
+            icon={UserX}
+            onClick={() => {
+              onSubmit()
+            }}
+          >
+            <span className="text-xs font-normal">
+              Remover Conta
+            </span>
+          </UiButton>
+        </div>
+        
       </div>
+
+      
     </>
   )
 }

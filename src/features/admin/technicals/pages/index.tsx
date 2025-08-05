@@ -5,19 +5,31 @@ import { Modules } from "@/components/modules";
 import { Link } from "react-router";
 import { UiButton } from "@/components/ui/UiButton";
 import { IconPlus } from "@/assets/icon/iconPlus";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Alert } from "@/components/ui/alert";
 import { Table } from "@/components/table"
 import { useTechnicals } from "../http/use-technicals"
 import { PaginationIndex } from "@/components/ui/pagination";
 import { MobileAdminTechnical } from "../components/mobile-admin-technical";
+import { ModalRemovetechnicals } from "../components/remove-modal";
+import { IconTrash } from "@/assets/icon/iconTrash";
 
 export function IndexAdminTechnicals(){
+  const [modalRemove, setModalRemove] = useState(false)
+  const [user, setUser] = useState({ id: "" })
   const { data: dataUsers, isLoading, error, isError, pagination, page, setPage } = useTechnicals()
 
   return ( 
     <>
       <Alert severity="warning" open={isError}>{error?.message}</Alert>
+
+      {/* Modal Remove */}
+      <ModalRemovetechnicals
+        userId={user.id}
+        modalRemove={modalRemove}
+        setModalRemove={setModalRemove}
+      />
+      {/* Modal Remove */}
       
       <div className="mb-7">
         <Modules.Title title="Técnicos" isButton={true} >
@@ -78,8 +90,19 @@ export function IndexAdminTechnicals(){
                     }
                   </div>
                 </Table.Cell>
+
                 <Table.Cell clas="flex justify-end ">
-                  <Link to={`/tecnicos/edicao/${user.id}`} ><UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} /></Link>
+                  <div className="flex gap-1.5">
+                    <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconTrash} 
+                      onClick={() => {
+                        setUser(user)
+                        setModalRemove(!modalRemove)
+                      }} />
+                      
+                    <Link to={`/tecnicos/edicao/${user.id}`} >
+                      <UiButton type="button" typeColor="gray" typeSize="xxs" icon={IconPenLine} />
+                    </Link>
+                  </div>
                 </Table.Cell>
               </tr>
             ))
@@ -89,7 +112,14 @@ export function IndexAdminTechnicals(){
       </Table.Root>
       </div>
       
-      <MobileAdminTechnical dataUsers={dataUsers} isLoading={isLoading} />
+      <MobileAdminTechnical 
+        dataUsers={dataUsers} 
+        isLoading={isLoading}
+        modalRemove={modalRemove}
+        setModalRemove={setModalRemove}
+        setUser={setUser}
+      />
+
       <PaginationIndex pagination={pagination} page={page} setPage={setPage} />
     </>
   )
