@@ -25,8 +25,8 @@ function MobileAdminCustomers ({ dataCustomer, setUser, setModalRemove, modalRem
       <div className="border-1 border-gray-500 rounded-md lg:hidden">
         <Table.Root>
           <Table.Header>
-            <Table.Head>Nome</Table.Head>
-            <Table.Head>Email</Table.Head>
+            <Table.Head clas="text-center" >Nome</Table.Head>
+            <Table.Head clas="text-center" >Email</Table.Head>
             <Table.Head >{""}</Table.Head>
           </Table.Header>
 
@@ -47,14 +47,18 @@ function MobileAdminCustomers ({ dataCustomer, setUser, setModalRemove, modalRem
               dataCustomer && dataCustomer.data.map((user) => (
                 <tr className="border-t border-gray-500 text-left text-sm" key={user.id} >
 
-                  <Table.Cell internalSpacing="pl-3 pr-1 py-4.5 flex gap-3 items-center">
+                  <Table.Cell internalSpacing="pl-3 py-4.5 flex gap-3 items-center">
                     <Avatar user={{ name: user.name, avatar: user.avatar }} size="w-7 h-7" sizeText="text-[11px]" />
-                    <span className="truncate w-18">{user.name}</span>
+                    <div className="">
+                      <p className="text-xs">{user.name.split(" ")[0]}</p>
+                      <p className="text-xs">{user.name.split(" ")[1]}</p>
+                    </div>
+                    
                   </Table.Cell>
 
-                  <Table.Cell internalSpacing="px-1.5 py-4.5">
-                    <div className="w-24 truncate">
-                      {user.email}
+                  <Table.Cell internalSpacing="px-1 py-4.5">
+                    <div className="w-35 flex justify-center">
+                      <p className="truncate text-xs">{user.email}</p>
                     </div>
                   </Table.Cell>
 
