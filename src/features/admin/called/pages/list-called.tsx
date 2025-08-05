@@ -23,7 +23,7 @@ export function CallListdetails(){
     return <Navigate replace to="/" />
   }
 
-  const { data: calleds, error, isError } = useListCalled(Number(id)).query
+  const { data: calleds, error, isError, isFetching, isLoading } = useListCalled(Number(id)).query
   const { error: errorUpdate, mutateAsync: onSubmitStatus, isError: isErrorUpdate } = updateStatus()
 
   return (
@@ -80,9 +80,9 @@ export function CallListdetails(){
 
         <Modules.Container>
 
-          {!calleds && <LoadingCalledList />}
-          
-          {calleds &&
+          {isLoading && <LoadingCalledList /> || isFetching && <LoadingCalledList />}
+
+          {!isFetching && calleds &&
             <>
               <ListCalleLeft calleds={calleds} />
               <ListCalleRight calleds={calleds} />

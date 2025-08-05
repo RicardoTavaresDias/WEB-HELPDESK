@@ -14,7 +14,7 @@ export function CallDetails(){
     return <Navigate replace to="/" />
   }
 
-  const { data: dataDetails } = useCalledDetails(id).query
+  const { data: dataDetails, isFetching, isLoading } = useCalledDetails(id).query
 
   return (
     <>
@@ -24,9 +24,9 @@ export function CallDetails(){
         <Modules.Title title="Chamado detalhado" to="/" />
         <Modules.Container>
 
-          {!dataDetails && <LoadingCalledDetails />}
+          {isLoading && <LoadingCalledDetails /> || isFetching && <LoadingCalledDetails />}
           
-          {dataDetails &&
+          {!isFetching && dataDetails &&
             <>
               <ModuleDetailsCalledLeft dataDetails={dataDetails} />
               <ModuleDetailsCalledRight dataDetails={dataDetails} />

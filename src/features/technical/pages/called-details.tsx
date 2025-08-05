@@ -23,7 +23,7 @@ export function CalledDetails(){
     return <Navigate replace to="/" />
   }
 
-  const { data } = useCalledById(id).query
+  const { data, isLoading, isFetching } = useCalledById(id).query
   
   useEffect(() => {
     if (Array.isArray(data)) {
@@ -51,9 +51,9 @@ export function CalledDetails(){
 
         <Modules.Container>
 
-          {!called && <LoadingCalledDetails />}
+          {isLoading && <LoadingCalledDetails /> || isFetching && <LoadingCalledDetails />}
 
-          {called &&
+          {!isFetching && called &&
             <>
               <ModuleDetailsCalledLeft called={called} />
               <ModuleDetailsCalledRight called={called} />
