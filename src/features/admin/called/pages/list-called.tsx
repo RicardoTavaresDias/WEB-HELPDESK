@@ -14,6 +14,7 @@ import { ModalCreateComment } from "@/components/ui/modal-create-comment"
 import { CalledComments } from "@/components/ui/module-called-comments"
 import { useState } from "react";
 import { LoadingCalledList } from "../components/loading-called-list";
+import { Loading } from "@/components/ui/loading";
 
 export function CallListdetails(){
   const [modalComment, setModalComment] = useState(false)
@@ -24,10 +25,12 @@ export function CallListdetails(){
   }
 
   const { data: calleds, error, isError, isFetching, isLoading } = useListCalled(Number(id)).query
-  const { error: errorUpdate, mutateAsync: onSubmitStatus, isError: isErrorUpdate } = updateStatus()
+  const { error: errorUpdate, mutateAsync: onSubmitStatus, isError: isErrorUpdate, isPending } = updateStatus()
 
   return (
     <>
+      {isPending && <Loading />}
+
       <Alert severity="warning" open={isError || isErrorUpdate}>
         {error?.message}
         {errorUpdate?.message}
