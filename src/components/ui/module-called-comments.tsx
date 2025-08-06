@@ -200,7 +200,7 @@ function CalledComments({
                     <TextareaAutosize
                       {...form.register(`description-${comment.comment.id}`)}
                       defaultValue={comment.comment.description}
-                      className={`w-full text-sm border-gray-500 outline-none overflow-hidden p-2 border rounded resize-none`}
+                      className={`w-full text-sm text-[16px] border-gray-500 outline-none overflow-hidden p-2 border rounded resize-none`}
                       rows={4}
                     />
                   )}
