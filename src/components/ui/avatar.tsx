@@ -29,7 +29,8 @@ export function Avatar({ user, size = "w-10 h-10", sizeText, onClick }: AvatarTy
   return (
     <>
       <img 
-        src={`https://api-helpdesk-kky6.onrender.com/user/avatar/${user.avatar}`} 
+        // src={`http://localhost:3333/user/avatar/${user.avatar}`} 
+        src={`https://cjkemmilbwhdyzkihdwh.supabase.co/storage/v1/object/public/upload/${user.avatar}`}
         alt="foto do usuario" 
         className={`${size} rounded-full cursor-pointer object-cover`}
         onClick={onClick}
