@@ -22,7 +22,7 @@ export function Layout({ identification }: LayoutProps){
             <div className="lg:hidden">
               <MenuMobile element={identification} />
             </div>
-            <div className="flex  items-center gap-3">
+            <div className="flex  items-center gap-3 w-max">
               <div>
                 <img className="w-10 h-10" src={Vector} alt="logotipo"/>
               </div>
