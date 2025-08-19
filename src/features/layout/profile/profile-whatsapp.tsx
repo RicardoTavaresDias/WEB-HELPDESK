@@ -72,9 +72,12 @@ export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataTyp
             {/* Title */}
 
             <Modal.Context className="mb-0 border-t" >
-              <div className={`lg:w-full relative flex items-center justify-center ${!data ? "h-65" : ""}`}>
+              <div className={`lg:w-full relative flex items-center justify-center`}>
                 <div className="flex flex-col items-center">
-                  <div className="mb-5">
+
+                  <div className="mb-5 flex flex-col justify-center items-center gap-4">
+
+                    {/* Servidor */}
                     {open ? 
                       <div className="flex gap-1">
                         {<Server className="stroke-green-400 w-5" />}{open}
@@ -84,25 +87,31 @@ export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataTyp
                         {<ServerOff className="stroke-[#D03E3E] w-5" />}{close}
                       </div> 
                     }
+                    {/* Servidor */}
+
+                    {/* QRcode ou img */}
+                    <div className="w-65 h-65 flex justify-center">
+                      {message === "connection" ||
+                        <>
+                          {!data ? <Loading /> : 
+                            <QRCodeSVG 
+                              value={`${data && data}`} 
+                              className="w-65 h-65"
+                            />
+                          }
+                        </>
+                      }
+
+                      {message === "connection" &&
+                        <>
+                          <img src="https://cdn1.iconfinder.com/data/icons/main-ui-elements-with-colour-bg/512/ok_cool_save_okay-512.png" className="w-65 h-65" />
+                        </>
+                      }
+                    </div>
+                    {/* QRcode ou img */}
+                    
                   </div>
-                
 
-                {message === "connection" ||
-                  <>
-                    {!data ? <Loading /> : 
-                      <QRCodeSVG 
-                        value={`${data && data}`} 
-                        className="w-65 h-65"
-                      />
-                    }
-                  </>
-                }
-
-                {message === "connection" &&
-                  <>
-                    <img src="https://cdn1.iconfinder.com/data/icons/main-ui-elements-with-colour-bg/512/ok_cool_save_okay-512.png" className="w-65 h-65" />
-                  </>
-                }
                 </div>
               </div>
             </Modal.Context>
