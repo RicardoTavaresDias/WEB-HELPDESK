@@ -1,6 +1,7 @@
 import { Modal } from "@/components/modal";
 import { Loading } from "@/components/ui/loading";
 import { useProfile } from "@/hooks/useProfile";
+import { urlWhatsapp } from "@/services/api";
 import { QRCodeSVG } from "qrcode.react"
 import { useEffect, useState } from "react";
 
@@ -23,7 +24,7 @@ export function IsProfileWhatsapp({ data, mutateAsync }: DataType){
 
   useEffect(() => {
     // Troque pelo IP/porta do seu servidor
-    const ws = new WebSocket('http://localhost:3000')
+    const ws = new WebSocket(urlWhatsapp)
 
     ws.onopen = () => {
       console.log('✅ Conectado ao servidor');

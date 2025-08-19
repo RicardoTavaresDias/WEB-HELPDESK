@@ -1,5 +1,7 @@
 import axios from "axios"
 
+export const urlWhatsapp = "http://localhost:3000"
+
 export const api = axios.create({
   baseURL: "https://api-helpdesk-kky6.onrender.com" // "http://localhost:3333" ou "https://api-helpdesk-kky6.onrender.com"
 })
