@@ -5,6 +5,7 @@ import { useProfile } from "@/hooks/useProfile";
 import { urlWhatsapp } from "@/services/api";
 import { QRCodeSVG } from "qrcode.react"
 import { useEffect, useState } from "react";
+import { Server, ServerOff } from "lucide-react"
 
 type DataType = {
   data: string
@@ -30,7 +31,7 @@ export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataTyp
 
     ws.onopen = () => {
       ws.send('Olá servidor!');
-      setOpen('✅ Conectado ao servidor')
+      setOpen('Conectado ao servidor')
     };
 
     ws.onmessage = (event) => {
@@ -39,7 +40,7 @@ export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataTyp
     };
 
     ws.onclose = () => {
-        setClose('❌ Conexão encerrada ao servidor')
+        setClose('Conexão encerrada ao servidor')
     };
 
     ws.onerror = (error: any) => {
@@ -72,6 +73,20 @@ export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataTyp
 
             <Modal.Context className="mb-0 border-t" >
               <div className={`lg:w-full relative flex items-center justify-center ${!data ? "h-65" : ""}`}>
+                <div className="flex flex-col items-center">
+                  <div className="mb-5">
+                    {open ? 
+                      <div className="flex gap-1">
+                        {<Server className="stroke-green-400 w-5" />}{open}
+                      </div> 
+                      : 
+                      <div className="flex gap-1">
+                        {<ServerOff className="stroke-[#D03E3E] w-5" />}{close}
+                      </div> 
+                    }
+                  </div>
+                
+
                 {message === "connection" ||
                   <>
                     {!data ? <Loading /> : 
@@ -88,13 +103,12 @@ export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataTyp
                     <img src="https://cdn1.iconfinder.com/data/icons/main-ui-elements-with-colour-bg/512/ok_cool_save_okay-512.png" className="w-65 h-65" />
                   </>
                 }
-
+                </div>
               </div>
             </Modal.Context>
             <div className="m-auto mb-5">
               {message === "disconnected" && '❌ Conexão encerrada'}     
               {message === "connection" && "✅ Conectado"}
-              {open ? open : close}
             </div>
           </Modal.Root>
         </div>
