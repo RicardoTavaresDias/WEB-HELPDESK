@@ -75,7 +75,7 @@ export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataTyp
               <div className={`lg:w-full relative flex items-center justify-center`}>
                 <div className="flex flex-col items-center">
 
-                  <div className="mb-5 flex flex-col justify-center items-center gap-4">
+                  <div className="flex flex-col justify-center items-center gap-4">
 
                     {/* Servidor */}
                     {open ? 
@@ -122,7 +122,7 @@ export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataTyp
               </div>
             </Modal.Context>
             <div className="m-auto mb-5">
-              {message === "disconnected" && '❌ Conexão encerrada'}     
+              {message === "disconnected" && '❌ Conexão encerrada'}
               {message === "connection" && "✅ Conectado"}
             </div>
           </Modal.Root>
