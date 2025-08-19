@@ -48,7 +48,7 @@ export function CreateAdminTechnicals(){
 
       <form onSubmit={form.handleSubmit(onSubmit)} >
         <Modules.Root>
-          <Modules.Title title="Perfil de técnico" to="/tecnicos">
+          <Modules.Title title="Perfil de técnico" to="/tecnicos/?page=1">
             <UiButton type="button" typeColor="gray" typeSize="xl" onClick={() => { form.reset(); setUserHours([]) }} disabled={isPending} >Cancelar</UiButton>
             <UiButton type="submit" typeColor="black" typeSize="xl" disabled={isPending} >Salvar</UiButton>
           </Modules.Title>

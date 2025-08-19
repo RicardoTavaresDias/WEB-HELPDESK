@@ -24,7 +24,6 @@ function useServices () {
     error: result.query.error,
     isLoading: result.query.isLoading,
     page: result.page,
-    setPage: result.setPage,
     pagination: result.query.data?.result || null,
     isError: result.query.isError
   }

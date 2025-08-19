@@ -9,7 +9,6 @@ export const api = axios.create({
 api.interceptors.response.use(
   response => response,
   (error) => {
-    console.log(error)
     if(error.response?.data.message === "Token JWT não encontrado" || 
       error.response?.data.message === "Token JWT inválido"){
       localStorage.clear()

@@ -17,7 +17,7 @@ import { IconTrash } from "@/assets/icon/iconTrash";
 export function IndexAdminTechnicals(){
   const [modalRemove, setModalRemove] = useState(false)
   const [user, setUser] = useState({ id: "" })
-  const { data: dataUsers, isLoading, error, isError, pagination, page, setPage } = useTechnicals()
+  const { data: dataUsers, isLoading, error, isError, pagination } = useTechnicals()
 
   return ( 
     <>
@@ -49,18 +49,16 @@ export function IndexAdminTechnicals(){
           <Table.Head >{""}</Table.Head>
         </Table.Header>
 
+        <Table.Body>
           {isLoading && Array.from({ length: 10 }).map((_, i) => (
-            <>
-              <tr className="border-t border-gray-500 text-left" key={i}>
-                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
-                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-              </tr>
-            </>
+            <tr className="border-t border-gray-500 text-left" key={i}>
+              <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
+              <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+              <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+              <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+            </tr>
           ))}
 
-        <Table.Body>
           {
             dataUsers && dataUsers.map(user => (
               <tr className="border-t border-gray-500 text-left" key={user.id} >
@@ -120,7 +118,7 @@ export function IndexAdminTechnicals(){
         setUser={setUser}
       />
 
-      <PaginationIndex pagination={pagination} page={page} setPage={setPage} />
+      <PaginationIndex pagination={pagination} />
     </>
   )
 }

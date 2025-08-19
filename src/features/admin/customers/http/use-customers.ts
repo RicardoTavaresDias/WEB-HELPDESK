@@ -24,8 +24,7 @@ function useCustomer () {
     error: result.query.error,
     isLoading: result.query.isLoading,
     pagination: result.query.data?.result || null,
-    page: result.page,
-    setPage: result.setPage
+    page: result.page
   }
 }
 

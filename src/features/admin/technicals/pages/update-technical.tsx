@@ -18,7 +18,7 @@ export function UpdateAdminTechnicals() {
   const { id } = useParams()
 
   if (!id) {
-    return <Navigate replace to="/" />
+    return <Navigate replace to="/?page=1" />
   }
   
   const { userTechnical, setUserTechnical, query } = useSearchTechnical(id as string)
@@ -64,7 +64,7 @@ export function UpdateAdminTechnicals() {
 
       <Modules.Root>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <Modules.Title title="Perfil de técnico" to="/tecnicos">
+          <Modules.Title title="Perfil de técnico" to="/tecnicos/?page=1">
             <UiButton
               type="button"
               typeColor="gray"

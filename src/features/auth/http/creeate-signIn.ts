@@ -21,7 +21,7 @@ function useSignin () {
         user: result.user
       })
 
-      navigate("/")
+      navigate("/?page=1")
     }
   })
 }

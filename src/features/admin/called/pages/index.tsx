@@ -12,7 +12,7 @@ import { PaginationIndex } from "@/components/ui/pagination"
 import { MobileAdminCalled } from "../components/mobile-admin-calleds";
 
 export function IndexCalleds() {
-  const { page, query, setPage, pagination } = useCalleds()
+  const { query, pagination } = useCalleds()
   const { data, isLoading, error, isError } = query
 
   return (
@@ -41,18 +41,16 @@ export function IndexCalleds() {
             <Table.Body>
 
               {isLoading && Array.from({ length: 10 }).map((_, i) => (
-                <>
-                  <tr className="border-t border-gray-500 text-left" key={i}>
-                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
-                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                  </tr>
-                </>
+                <tr className="border-t border-gray-500 text-left" key={i}>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                </tr>
               ))}
                 
               {data && data.data.map((called) => (
@@ -112,7 +110,7 @@ export function IndexCalleds() {
         </div>
         
         <MobileAdminCalled data={data} isLoading={isLoading} />
-        <PaginationIndex pagination={pagination} page={page} setPage={setPage} />
+        <PaginationIndex pagination={pagination} />
       </div>
     </>
   )

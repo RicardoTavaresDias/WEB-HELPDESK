@@ -28,19 +28,16 @@ export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataTyp
     const ws = new WebSocket(urlWhatsapp)
 
     ws.onopen = () => {
-      console.log('✅ Conectado ao servidor');
       ws.send('Olá servidor!');
       setOpen('✅ Conectado ao servidor')
     };
 
     ws.onmessage = (event) => {
-        const teste = JSON.parse(event.data)
-        console.log('📩 Mensagem recebida: ' + teste.data)
-        setMessage(teste.data)
+        const onmessageJson = JSON.parse(event.data)
+        setMessage(onmessageJson.data)
     };
 
     ws.onclose = () => {
-        console.log('❌ Conexão encerrada ao servidor');
         setClose('❌ Conexão encerrada ao servidor')
     };
 

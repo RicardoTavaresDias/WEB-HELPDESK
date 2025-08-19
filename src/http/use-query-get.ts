@@ -1,6 +1,6 @@
 import { AxiosError } from "axios"
 import { useQuery } from "@tanstack/react-query"
-import { useState } from "react"
+import { useSearchParams } from "react-router"
 
 type UseGetType<TData> = {
   queryKey?: string
@@ -8,7 +8,9 @@ type UseGetType<TData> = {
 }
 
 function useQueryGet<TData>({ queryKey, fetchGet }: UseGetType<TData>) {
-  const [page, setPage] = useState(1)
+   const [searchParams] = useSearchParams()
+
+   const page = searchParams.get("page") ? Number(searchParams.get("page")) : 1
   
   const query = useQuery<TData>({
     queryKey: [queryKey, page],
@@ -29,8 +31,7 @@ function useQueryGet<TData>({ queryKey, fetchGet }: UseGetType<TData>) {
 
   return {
     query,
-    page,
-    setPage
+    page
   }
 }
 

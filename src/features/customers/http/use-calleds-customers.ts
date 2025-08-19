@@ -15,7 +15,6 @@ function useCalledsCustomer () {
 
   return {
     page: result.page,
-    setPage: result.setPage,
     pagination: result.query.data?.result || null,
     query: result.query
   }

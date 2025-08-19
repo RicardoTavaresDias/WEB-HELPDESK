@@ -22,8 +22,7 @@ function useCalleds () {
   return {
     pagination: result.query.data?.result || null,
     query: result.query,
-    page: result.page,
-    setPage: result.setPage
+    page: result.page
   }
 }
 

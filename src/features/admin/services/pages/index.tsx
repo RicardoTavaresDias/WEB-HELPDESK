@@ -17,7 +17,7 @@ export function AdminServices(){
   const [modalNew, setModalNew] = useState(false)
   const [modalEdition, setModalEdition] = useState(false)
   const [service, setServices] = useState<DataServicesType>()
-  const { data: serivicesData, error, isLoading, page, setPage, pagination, isError } = useServices()
+  const { data: serivicesData, error, isLoading, pagination, isError } = useServices()
 
   return (
     <>
@@ -49,18 +49,17 @@ export function AdminServices(){
               <Table.Head >{""}</Table.Head>
             </Table.Header>
 
-              {isLoading && Array.from({ length: 10 }).map((_, i) => (
-                <>
-                  <tr className="border-t border-gray-500 text-left" key={i}>
-                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
-                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                    <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                  </tr>
-                </>
-              ))}
-    
             <Table.Body>
+              {isLoading && Array.from({ length: 10 }).map((_, i) => (
+                <tr className="border-t border-gray-500 text-left" key={i}>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                </tr>
+              ))}
+
+
               {serivicesData && serivicesData.data.map((item) => (
                 <tr className="border-t border-gray-500 text-left" key={item.id} >
                   <Table.Cell clas="lg:w-1/2" internalSpacing="px-2 py-3 lg:px-4 lg:py-3">
@@ -102,7 +101,7 @@ export function AdminServices(){
           </Table.Root>
         </div>
       
-      <PaginationIndex pagination={pagination} page={page} setPage={setPage} />
+      <PaginationIndex pagination={pagination} />
     </>
   )
 }

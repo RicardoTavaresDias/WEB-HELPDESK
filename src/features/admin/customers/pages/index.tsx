@@ -18,7 +18,7 @@ export function IndexAdminCustomer(){
   const [modalEdition, setModalEdition] = useState(false)
   const [user, setUser] = useState<UserCustomerType>({ id: "", name: "", email: "", avatar: "" })
 
-  const { isLoading, error, page, pagination, setPage, data: dataCustomer } = useCustomer()
+  const { isLoading, error, pagination, data: dataCustomer } = useCustomer()
   
   return (
     <>
@@ -57,13 +57,11 @@ export function IndexAdminCustomer(){
           <Table.Body>
 
            {isLoading && Array.from({ length: 10 }).map((_, i) => (
-              <>
-                <tr className="border-t border-gray-500 text-left" key={i}>
-                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
-                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                </tr>
-              </>
+              <tr className="border-t border-gray-500 text-left" key={i}>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+              </tr>
             ))}
 
 
@@ -116,7 +114,7 @@ export function IndexAdminCustomer(){
         isLoading={isLoading} 
       />
 
-      <PaginationIndex pagination={pagination} page={page} setPage={setPage} />
+      <PaginationIndex pagination={pagination} />
     </>
   )
 }

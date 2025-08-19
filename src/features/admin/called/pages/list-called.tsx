@@ -21,7 +21,7 @@ export function CallListdetails(){
   const { id } = useParams()
 
   if (!id) {
-    return <Navigate replace to="/" />
+    return <Navigate replace to="/?page=1" />
   }
 
   const { data: calleds, error, isError, isFetching, isLoading } = useListCalled(Number(id)).query
@@ -44,7 +44,7 @@ export function CallListdetails(){
       />
         
     <Modules.Root>
-        <Modules.Title title="Chamado detalhado" to="/" >
+        <Modules.Title title="Chamado detalhado" to="/?page=1" >
           {!calleds &&
             <>
               <UiButton typeColor="gray" typeSize="customized" icon={IconClock} >Em Atendimento</UiButton>

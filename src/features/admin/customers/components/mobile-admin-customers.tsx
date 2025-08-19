@@ -33,13 +33,11 @@ function MobileAdminCustomers ({ dataCustomer, setUser, setModalRemove, modalRem
           <Table.Body>
 
             {isLoading && Array.from({ length: 5 }).map((_, i) => (
-              <>
-                <tr className="border-t border-gray-500 text-left" key={i}>
-                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
-                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                </tr>
-              </>
+              <tr className="border-t border-gray-500 text-left" key={i}>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+              </tr>
             ))}
 
 

@@ -13,7 +13,7 @@ import { currency } from "@/lib/currency";
 import { MobileCalledsIndex } from "../components/mobile-calleds-index";
 
 export function IndexCalledCustomers () {
-  const { page, pagination, setPage, query } = useCalledsCustomer()
+  const { pagination, query } = useCalledsCustomer()
   const { data, isLoading } = query
 
   return (
@@ -40,22 +40,21 @@ export function IndexCalledCustomers () {
             <Table.Head>{""}</Table.Head>
           </Table.Header>
 
+          <Table.Body>
             {isLoading && Array.from({ length: 5 }).map((_, i) => (
-              <>
-                <tr className="border-t border-gray-500 text-left" key={i}>
-                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
-                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                  <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
-                </tr>
-              </>
+              <tr className="border-t border-gray-500 text-left" key={i}>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse" ></div></Table.Cell>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+                <Table.Cell><div className="bg-gray-500 w-full h-4 animate-pulse"></div></Table.Cell>
+              </tr>
             ))}
 
-          <Table.Body>
+
             {data?.data.map(called => (
               <tr className="border-t border-gray-500 text-left" key={called.id}>
                 <Table.Cell internalSpacing="px-2 py-3" clas="w-36 text-sm" >{dayjs(called.updatedAt).format("DD/MM/YYYY HH:mm")}</Table.Cell>
@@ -108,7 +107,7 @@ export function IndexCalledCustomers () {
       </div>
 
       <MobileCalledsIndex data={data} isLoading={isLoading} />
-      <PaginationIndex pagination={pagination} page={page} setPage={setPage} />
+      <PaginationIndex pagination={pagination} />
     </>
   )
 }

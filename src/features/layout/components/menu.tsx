@@ -35,7 +35,7 @@ export function Menu({ element, open, setOpen }: MenuType ) {
                     : button.notActive
                 } cursor-pointer rounded-md h-11 group/list`}
                 onClick={() => {
-                  navigate("/");
+                  navigate("/?page=1");
                   setOpen && setOpen(!open);
                 }}
               >
@@ -54,7 +54,7 @@ export function Menu({ element, open, setOpen }: MenuType ) {
                   currentPath === "tecnicos" ? button.active : button.notActive
                 } cursor-pointer rounded-md h-11 group/user`}
                 onClick={() => {
-                  navigate("/tecnicos");
+                  navigate("/tecnicos/?page=1");
                   setOpen && setOpen(!open);
                 }}
               >
@@ -73,7 +73,7 @@ export function Menu({ element, open, setOpen }: MenuType ) {
                   currentPath === "clientes" ? button.active : button.notActive
                 } cursor-pointer rounded-md h-11 group/business`}
                 onClick={() => {
-                  navigate("/clientes");
+                  navigate("/clientes/?page=1");
                   setOpen && setOpen(!open);
                 }}
               >
@@ -92,7 +92,7 @@ export function Menu({ element, open, setOpen }: MenuType ) {
                   currentPath === "servicos" ? button.active : button.notActive
                 } cursor-pointer rounded-md h-11 group/wrench`}
                 onClick={() => {
-                  navigate("/servicos");
+                  navigate("/servicos/?page=1");
                   setOpen && setOpen(!open);
                 }}
               >

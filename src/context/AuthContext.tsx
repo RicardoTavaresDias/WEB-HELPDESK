@@ -43,7 +43,6 @@ export function AuthProvider({children}: AuthProviderType ){
     localStorage.removeItem(`${LOCAL_STORAGE_KEY}:token`)
 
     window.location.assign("/")
-    console.log("Auth Provider", "removido")
   }
 
   function loadUser(){

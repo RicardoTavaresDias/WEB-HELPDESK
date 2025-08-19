@@ -21,7 +21,7 @@ export function CallDetails(){
       <IsProfile myProfile="customers" />
 
       <Modules.Root>
-        <Modules.Title title="Chamado detalhado" to="/" />
+        <Modules.Title title="Chamado detalhado" to="/?page=1" />
         <Modules.Container>
 
           {isLoading && <LoadingCalledDetails /> || isFetching && <LoadingCalledDetails />}
