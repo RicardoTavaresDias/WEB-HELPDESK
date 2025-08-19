@@ -70,13 +70,15 @@ export function CalledDetails(){
         </Modules.Container>
 
         <div className="w-full mt-6">
-          <CalledComments 
-            dataComments={called?.calledComments} 
-            modalComment={modalComment} 
-            setModalComment={setModalComment}
-            statusCalled={called?.callStatus} 
-            queryKeyIndex="called_byId"
-          />
+          {!isFetching && called &&
+            <CalledComments 
+              dataComments={called?.calledComments} 
+              modalComment={modalComment} 
+              setModalComment={setModalComment}
+              statusCalled={called?.callStatus} 
+              queryKeyIndex="called_byId"
+            />
+          }
         </div>
 
       </Modules.Root>

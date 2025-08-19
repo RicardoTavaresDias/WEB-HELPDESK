@@ -97,13 +97,13 @@ export const FormChooseAvatar = ({ imagePreview, setImagePreview, fileRef }: For
               type="button"
               typeColor="gray"
               typeSize="xxs"
-              icon={UserX}
+              icon={removeIsPending ? LoaderSM : UserX }
               onClick={() => {
                 onSubmit()
               }}
             >
               <span className="text-xs font-normal">
-                {removeIsPending ? <div className="mx-2"><LoaderSM /></div> : "Remover Conta"}
+                Remover Conta
               </span>
             </UiButton>
           </div>

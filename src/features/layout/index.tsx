@@ -18,7 +18,7 @@ export function Layout({ identification }: LayoutProps){
 
   return (
     <>
-      <IsProfileWhatsapp data={data} mutateAsync={mutateAsync} />
+      <IsProfileWhatsapp data={data} mutateAsync={mutateAsync} identification={identification} />
 
       <aside className="bg-gray-100  h-[100dvh] relative lg:p-4 overflow-hidden" >
          {/* <Header, Menu Mobile> */}

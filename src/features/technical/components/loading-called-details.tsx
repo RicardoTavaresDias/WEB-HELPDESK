@@ -1,7 +1,5 @@
-import { IconPlus } from "@/assets/icon/iconPlus";
 import { Modules } from "@/components/modules";
 import { Status } from "@/components/ui/status";
-import { UiButton } from "@/components/ui/UiButton";
 
 function LoadingCalledDetails () {
   return (
@@ -81,11 +79,6 @@ function LoadingCalledDetails () {
 
       {/* Services */}
       <Modules.Context isType="60">
-        <div className="flex items-center justify-between">
-          <span className="text-gray-400 Text-Xs">Serviços adicionais</span>
-          <UiButton type="button" typeColor="black" typeSize="xxs" icon={IconPlus} color="#F9FAFA" />
-        </div>
-
         <div className="mt-4 flex flex-col gap-4">
           <div className="flex items-center justify-between" >
             <p className="bg-gray-500 text-transparent w-75 h-5 animate-pulse">p</p>
@@ -96,6 +89,14 @@ function LoadingCalledDetails () {
         </div>
       </Modules.Context>
       {/* Services */}
+
+      {/* Comments */}
+      <div className="border border-gray-500 rounded-lg p-5 lg:p-4 2xl:p-6 break-words basis-[calc(100%-0.75rem)]">
+        <div className="flex justify-between items-center w-full">
+          <span className="bg-gray-500 text-transparent w-30 h-4 animate-pulse">Acompanhamento</span>
+        </div>
+      </div>
+      {/* Comments */}
     </>
   )
 }

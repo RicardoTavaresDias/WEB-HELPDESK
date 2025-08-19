@@ -50,7 +50,7 @@ function InputSelectServices({ value, onChange, error }: InputSelectServicesProp
 
         {open && (
           <div
-            className="w-full h-60 overflow-y-auto bg-gray-600 border border-gray-400/15 rounded-lg shadow-xl px-5 py-4 text-gray-400 Text-Md mt-3"
+            className="w-full h-60 overflow-y-auto bg-gray-600 border border-gray-400/15 rounded-lg shadow-xl px-5 py-4 text-gray-400 Text-Md"
             onScroll={(e) => onScrollSelect(e)}
           >
             <span className="Text-Xxs text-gray-400">opções</span>
