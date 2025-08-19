@@ -16,7 +16,6 @@ type DataType = {
 export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataType){
   const { profileModal, isModal } = useProfile()
   const [open, setOpen] = useState<string>()
-  const [close, setClose] = useState<string>()
   const [message, setMessage] = useState<string>()
 
   useEffect(() => {
@@ -40,7 +39,7 @@ export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataTyp
     };
 
     ws.onclose = () => {
-        setClose('Conexão encerrada ao servidor')
+        console.log('Conexão encerrada ao servidor')
     };
 
     ws.onerror = (error: any) => {
