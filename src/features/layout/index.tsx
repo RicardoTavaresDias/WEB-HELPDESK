@@ -1,10 +1,11 @@
 import Vector from "@/assets/img/Vector.svg"
-
 import { Outlet } from 'react-router'
 import { Menu } from "./components/menu"
 import { MenuMobile } from "./components/menuMobile"
 import { MenuLogOut } from "./components/menuLogOut"
 import { useAuth } from "@/hooks/useAuth"
+import { IsProfileWhatsapp } from "./profile/profile-whatsapp"
+import { useGetWhatsapp } from "./http/use-get-whatsapp"
 
 type LayoutProps = {
   identification: "admin" | "técnico" | "cliente"
@@ -13,8 +14,12 @@ type LayoutProps = {
 export function Layout({ identification }: LayoutProps){
   const { session } = useAuth()
 
+  const { data, mutateAsync } = useGetWhatsapp()
+
   return (
     <>
+      <IsProfileWhatsapp data={data} mutateAsync={mutateAsync} />
+
       <aside className="bg-gray-100  h-[100dvh] relative lg:p-4 overflow-hidden" >
          {/* <Header, Menu Mobile> */}
         <div className="flex justify-between items-center lg:flex-col lg:w-42 lg:pt-3 overflow-hidden lg:py-6 p-6">
@@ -39,7 +44,7 @@ export function Layout({ identification }: LayoutProps){
 
           <div className="lg:hidden">
             <div className="group">
-              <MenuLogOut classmobile="right-3 top-24 w-87" identification={identification}/>
+              <MenuLogOut classmobile="right-3 top-24 w-87" identification={identification} />
             </div>
           </div>
         </div>
@@ -57,7 +62,7 @@ export function Layout({ identification }: LayoutProps){
                 <div className="flex gap-3 items-center">
                   <div className="group">
                     <div>
-                      <MenuLogOut classmobile={`left-56 ${identification === "admin" ? "top-[calc(100vh-110px)]" : "top-[calc(100vh-158px)]"}  w-50`} identification={identification} />
+                      <MenuLogOut classmobile={`left-56 ${identification === "admin" ? "top-[calc(100vh-155px)]" : "top-[calc(100vh-158px)]"}  w-50`} identification={identification} fetchWhatsApp={mutateAsync} />
                     </div>
                   </div>
                   <div>
