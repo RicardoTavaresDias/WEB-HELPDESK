@@ -1,3 +1,4 @@
+import { IconX } from "@/assets/icon/iconX";
 import { Modal } from "@/components/modal";
 import { Loading } from "@/components/ui/loading";
 import { useProfile } from "@/hooks/useProfile";
@@ -57,7 +58,18 @@ export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataTyp
       {identification === "admin" &&
         <div className="max-sm:hidden">
           <Modal.Root isActive={profileModal}>
-            <Modal.Title title={open ? open : close as string} onClose={() => isModal()} /> 
+
+            {/* Title */}
+            <div className="py-5 px-7 flex justify-between items-center bg-[#00c07f] rounded-t-xl">
+              <div className="flex items-center justify-center w-full">
+                <span className="text-[25px] font-semibold text-white" >{"Wahtsaapp API"}</span>
+              </div>
+              <button type="button" onClick={() => isModal()}>
+                <IconX className="w-4.5 h-4.5 cursor-pointer fill-white" />
+              </button>
+            </div>
+            {/* Title */}
+
             <Modal.Context className="mb-0 border-t" >
               <div className={`lg:w-full relative flex items-center justify-center ${!data ? "h-65" : ""}`}>
                 {message === "connection" ||
@@ -82,6 +94,7 @@ export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataTyp
             <div className="m-auto mb-5">
               {message === "disconnected" && '❌ Conexão encerrada'}     
               {message === "connection" && "✅ Conectado"}
+              {open ? open : close}
             </div>
           </Modal.Root>
         </div>
