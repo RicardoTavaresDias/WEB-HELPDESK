@@ -88,7 +88,7 @@ export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataTyp
                       <div className="flex gap-2 items-center">
                         {<ServerOff className="stroke-[#D03E3E] w-5" />} 
                         <span className="text-gray-300 Text-Md">
-                          Servidor fora, startando, pode levar uns minutos.
+                          Servidor fora, startando, pode levar alguns minutos.
                         </span>
                       </div> 
                     }
