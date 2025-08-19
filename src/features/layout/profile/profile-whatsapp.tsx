@@ -64,7 +64,7 @@ export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataTyp
             <Modal.Context className="mb-0 border-t" >
               <div className={`lg:w-full relative flex items-center justify-center ${!data ? "h-65" : ""}`}>
                 {message === "connection" ||
-                <>
+                  <>
                     {!data ? <Loading /> : 
                       <QRCodeSVG 
                         value={`${data && data}`} 

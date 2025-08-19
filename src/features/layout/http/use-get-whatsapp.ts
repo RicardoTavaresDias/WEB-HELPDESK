@@ -1,11 +1,10 @@
 import { urlWhatsapp } from "@/services/api"
 import { useMutation } from "@tanstack/react-query"
 
-const token = localStorage.getItem("helpDesk:token")
-
 function useGetWhatsapp () {
   return useMutation({
     mutationFn: async () => {
+      const token = localStorage.getItem("@helpDesk:token")
       const response = await fetch(urlWhatsapp, {
         headers: {
           Authorization: `Bearer ${token}`,
