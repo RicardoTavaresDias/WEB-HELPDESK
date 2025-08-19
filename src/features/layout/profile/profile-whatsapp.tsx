@@ -79,7 +79,7 @@ export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataTyp
 
                     {/* Servidor */}
                     {open ? 
-                      <div className="flex gap-1">
+                      <div className="flex gap-2 items-center">
                         {<Server className="stroke-green-400 w-5" />}
                         <span className="text-gray-300 Text-Md">
                           {open}
