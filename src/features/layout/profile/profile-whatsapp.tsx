@@ -62,7 +62,7 @@ export function IsProfileWhatsapp({ data, mutateAsync, identification }: DataTyp
             {/* Title */}
             <div className="py-5 px-7 flex justify-between items-center bg-[#00c07f] rounded-t-xl">
               <div className="flex items-center justify-center w-full">
-                <span className="text-[25px] font-semibold text-white" >{"Wahtsaapp API"}</span>
+                <span className="text-[25px] font-semibold text-white" >{"WhatsApp API "}</span>
               </div>
               <button type="button" onClick={() => isModal()}>
                 <IconX className="w-4.5 h-4.5 cursor-pointer fill-white" />
