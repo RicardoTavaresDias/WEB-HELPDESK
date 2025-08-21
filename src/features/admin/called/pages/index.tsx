@@ -77,7 +77,7 @@ export function IndexCalleds() {
                   </Table.Cell>
                   <Table.Cell internalSpacing="px-2 py-3">
                     <div className="flex gap-2 items-center w-37 truncate ml-1.5">
-                      <Avatar user={{ name: called.UserCustomer.name, avatar: called.UserCustomer.avatar }} size="w-8" sizeText="text-[10px]" />
+                      <Avatar user={{ name: called.UserCustomer.name, avatar: called.UserCustomer.avatar }} size="w-8 h-8" sizeText="text-[12px]" />
                       <div className="w-37 truncate">
                         {called.UserCustomer.name}
                       </div>
@@ -86,7 +86,7 @@ export function IndexCalleds() {
                   <Table.Cell internalSpacing="px-2 py-3">
                     {called.UserTechnical && 
                       <div className="flex gap-2 items-center w-37 truncate ml-1.5">
-                        <Avatar user={{ name: called.UserTechnical.name, avatar: called.UserTechnical.avatar }} size="w-8" sizeText="text-[10px]" />
+                        <Avatar user={{ name: called.UserTechnical.name, avatar: called.UserTechnical.avatar }} size="w-8 h-8" sizeText="text-[12px]" />
                         <div className="w-37 truncate">
                           {called.UserTechnical.name}
                         </div>
